@@ -1,0 +1,859 @@
+{
+  "info": {
+    "_postman_id": "c8d09a8c-119f-499a-9710-68c82fbff8ee",
+    "name": "InsightFaceSwap API v1 by useapi.net",
+    "description": "Experimental [REST API](https://useapi.net/docs/api-faceswap-v1) for [InsightFaceSwap Discord Bot](https://discord.gg/Ym3X8U59ZN) by [Picsi.Ai](https://www.picsi.ai/). InsightFaceSwap allows users to swap faces from source image(s) onto different target images. It offers free and paid [subscription](https://www.patreon.com/picsi) models. Paid subscribers have access to a wide selection of extra features such as [HiFidelity Mode](https://www.patreon.com/posts/89036144), [ARTIFY](https://www.patreon.com/posts/picsi-ai-v2-0-97389077), oldify/youngify, morphing multiple faces in one image, and [many more](https://discord.com/channels/1095014106576212101/1128550062683865178).\n\nThe experimental InsightFaceSwap API does not require any additional subscription, and we believe it will complement our other experimental API offerings well.\n\nFollowing InsightFaceSwap Discord Bot commands supported:\n\n- [<code>GET</code>&nbsp;faceswap/account](https://useapi.net/docs/api-faceswap-v1/get-faceswap-account.html)\n    \n- [<code>GET</code>&nbsp;faceswap/account/<code>channel</code>](https://useapi.net/docs/api-faceswap-v1/get-faceswap-account-channel.html)\n    \n- [<code>POST</code>&nbsp;faceswap/account/<code>channel</code>](https://useapi.net/docs/api-faceswap-v1/post-faceswap-account-channel.html)\n    \n- [<code>DEL</code>&nbsp;faceswap/account/<code>channel</code>](https://useapi.net/docs/api-faceswap-v1/del-faceswap-account-channel.html)\n    \n- [<code>POST</code>&nbsp;faceswap/listid](https://useapi.net/docs/api-faceswap-v1/post-faceswap-listid.html)\n    \n- [<code>POST</code>&nbsp;faceswap/saveid](https://useapi.net/docs/api-faceswap-v1/post-faceswap-saveid.html)\n    \n- [<code>POST</code>&nbsp;faceswap/swapid](https://useapi.net/docs/api-faceswap-v1/post-faceswap-swapid.html)\n    \n- [<code>POST</code>&nbsp;faceswap/swap](https://useapi.net/docs/api-faceswap-v1/post-faceswap-swap.html)\n    \n- [<code>POST</code>&nbsp;faceswap/inswapper](https://useapi.net/docs/api-faceswap-v1/post-faceswap-inswapper.html)\n    \n- [<code>POST</code>&nbsp;faceswap/setid](https://useapi.net/docs/api-faceswap-v1/post-faceswap-setid.html)\n    \n- [<code>DEL</code>&nbsp;faceswap/delid](https://useapi.net/docs/api-faceswap-v1/del-faceswap-delid.html)\n    \n- [<code>DEL</code>&nbsp;faceswap/delall](https://useapi.net/docs/api-faceswap-v1/post-faceswap-delall.html)\n    \n\nWe fully support the ability to use [multiple InsightFaceSwap accounts](https://useapi.net/docs/api-faceswap-v1/setup-multiple-faceswap-accounts), complete with automated load balancing.\n\nVisit [https://useapi.net](https://useapi.net) for more details.\n\n---\n**Updated:** January 20, 2026",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "updated": "2026-01-20",
+    "_exporter_id": "29112081"
+  },
+  "item": [
+    {
+      "name": "faceswap/account",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/faceswap/account",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "faceswap",
+            "account"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "faceswap/account/<channel>",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/faceswap/account/{{channel-id}}",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "faceswap",
+            "account",
+            "{{channel-id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "faceswap/account/<channel>",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"discord\": \"{{discord-token}}\",\r\n    \"server\": \"{{server-id}}\",\r\n    \"channel\": \"{{channel-id}}\"    \r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/faceswap/account/{{channel-id}}",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "faceswap",
+            "account",
+            "{{channel-id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "faceswap/account/<channel>",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/faceswap/account/{{channel-id}}",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "faceswap",
+            "account",
+            "{{channel-id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "faceswap/listid",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "channel",
+              "value": "{{channel-id}}",
+              "type": "text"
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "type": "text"
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/faceswap/listid",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "faceswap",
+            "listid"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "faceswap/saveid",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "channel",
+              "value": "{{channel-id}}",
+              "type": "text"
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "type": "text"
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "type": "text"
+            },
+            {
+              "key": "idname",
+              "value": "",
+              "type": "text"
+            },
+            {
+              "key": "image",
+              "type": "file",
+              "value": null
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/faceswap/saveid",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "faceswap",
+            "saveid"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "faceswap/swapid",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "channel",
+              "value": "{{channel-id}}",
+              "type": "text"
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "type": "text"
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "type": "text"
+            },
+            {
+              "key": "idname",
+              "value": "",
+              "type": "text"
+            },
+            {
+              "key": "image",
+              "type": "file",
+              "value": null
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/faceswap/swapid",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "faceswap",
+            "swapid"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "faceswap/setid",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "channel",
+              "value": "{{channel-id}}",
+              "type": "text"
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "type": "text"
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "type": "text"
+            },
+            {
+              "key": "idname",
+              "value": "",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/faceswap/setid",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "faceswap",
+            "setid"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "faceswap/swap",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "channel",
+              "value": "{{channel-id}}",
+              "type": "text"
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "type": "text"
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "type": "text"
+            },
+            {
+              "key": "saveid_idname",
+              "value": "",
+              "type": "text"
+            },
+            {
+              "key": "saveid_image",
+              "type": "file",
+              "value": null
+            },
+            {
+              "key": "swapid_idname",
+              "value": "",
+              "type": "text"
+            },
+            {
+              "key": "swapid_image",
+              "type": "file",
+              "value": null
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/faceswap/swap",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "faceswap",
+            "swap"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "faceswap/inswapper",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "channel",
+              "value": "{{channel-id}}",
+              "type": "text"
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "type": "text"
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "type": "text"
+            },
+            {
+              "key": "targetMessageId",
+              "value": "",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/faceswap/inswapper",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "faceswap",
+            "inswapper"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "faceswap/picsi",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "channel",
+              "value": "{{channel-id}}",
+              "type": "text",
+              "description": "optional",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "type": "text",
+              "description": "optional",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "type": "text",
+              "description": "optional",
+              "disabled": true
+            },
+            {
+              "key": "options",
+              "value": "",
+              "type": "text",
+              "description": "optional",
+              "disabled": true
+            },
+            {
+              "key": "source_image",
+              "description": "required",
+              "type": "file",
+              "value": null
+            },
+            {
+              "key": "target_image_gif_or_video",
+              "description": "required",
+              "type": "file",
+              "value": null
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/faceswap/picsi",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "faceswap",
+            "picsi"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "faceswap/changebg",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "channel",
+              "value": "{{channel-id}}",
+              "type": "text",
+              "description": "optional",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "type": "text",
+              "description": "optional",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "type": "text",
+              "description": "optional",
+              "disabled": true
+            },
+            {
+              "key": "options",
+              "value": "",
+              "type": "text",
+              "description": "optional",
+              "disabled": true
+            },
+            {
+              "key": "a_background_photo_of",
+              "description": "required",
+              "type": "text",
+              "value": ""
+            },
+            {
+              "key": "image",
+              "description": "required",
+              "type": "file",
+              "value": null
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/faceswap/changebg",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "faceswap",
+            "changebg"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "faceswap/headshot",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "channel",
+              "value": "{{channel-id}}",
+              "type": "text",
+              "description": "optional",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "type": "text",
+              "description": "optional",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "type": "text",
+              "description": "optional",
+              "disabled": true
+            },
+            {
+              "key": "options",
+              "value": "",
+              "type": "text",
+              "description": "optional",
+              "disabled": true
+            },
+            {
+              "key": "prompt",
+              "description": "required",
+              "type": "text",
+              "value": ""
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/faceswap/headshot",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "faceswap",
+            "headshot"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "faceswap/jobs/?jobid=<jobid>",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/faceswap/jobs/?jobid=<jobid>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "faceswap",
+            "jobs",
+            ""
+          ],
+          "query": [
+            {
+              "key": "jobid",
+              "value": "<jobid>"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "faceswap/jobs/cancel/?jobid=<jobid>",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/faceswap/jobs/cancel/?jobid=<jobid>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "faceswap",
+            "jobs",
+            "cancel",
+            ""
+          ],
+          "query": [
+            {
+              "key": "jobid",
+              "value": "<jobid>"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "faceswap/jobs",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/faceswap/jobs",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "faceswap",
+            "jobs"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "faceswap/delid",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "channel",
+              "value": "{{channel-id}}",
+              "type": "text"
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "type": "text"
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "type": "text"
+            },
+            {
+              "key": "idname",
+              "value": "",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/faceswap/delid",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "faceswap",
+            "delid"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "faceswap/delall",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "channel",
+              "value": "{{channel-id}}",
+              "type": "text"
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "type": "text"
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/faceswap/delall",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "faceswap",
+            "delall"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{api-token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "api-token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "discord-token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "channel-id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "server-id",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://useapi.net/docs/api-google-flow-v1",
+      "service-desc": [
+        { "href": "https://useapi.net/assets/postman/google-flow-v1.json", "type": "application/json", "title": "Google Flow API v1 — Postman collection" }
+      ],
+      "service-doc": [
+        { "href": "https://useapi.net/docs/api-google-flow-v1", "type": "text/html", "title": "Google Flow API v1 — documentation" },
+        { "href": "https://www.postman.com/useapinet/useapi-net/collection/29112081-db5b420d-b5a6-4710-91b2-82980b4cddd5", "type": "text/html", "title": "Google Flow API v1 — Postman docs" }
+      ]
+    },
+    {
+      "anchor": "https://useapi.net/docs/api-dreamina-v1",
+      "service-desc": [
+        { "href": "https://useapi.net/assets/postman/dreamina-v1.json", "type": "application/json", "title": "Dreamina API v1 — Postman collection" }
+      ],
+      "service-doc": [
+        { "href": "https://useapi.net/docs/api-dreamina-v1", "type": "text/html", "title": "Dreamina API v1 — documentation" },
+        { "href": "https://www.postman.com/useapinet/useapi-net/collection/29112081-347618e4-ef47-4ca4-bdee-72d321dcb4f2", "type": "text/html", "title": "Dreamina API v1 — Postman docs" }
+      ]
+    },
+    {
+      "anchor": "https://useapi.net/docs/api-kling-v1",
+      "service-desc": [
+        { "href": "https://useapi.net/assets/postman/kling-v1.json", "type": "application/json", "title": "Kling API v1 — Postman collection" }
+      ],
+      "service-doc": [
+        { "href": "https://useapi.net/docs/api-kling-v1", "type": "text/html", "title": "Kling API v1 — documentation" },
+        { "href": "https://www.postman.com/useapinet/useapi-net/collection/29112081-d26e35d5-af3a-44a7-9810-3aeb6351c169", "type": "text/html", "title": "Kling API v1 — Postman docs" }
+      ]
+    },
+    {
+      "anchor": "https://useapi.net/docs/api-minimax-v1",
+      "service-desc": [
+        { "href": "https://useapi.net/assets/postman/minimax-v1.json", "type": "application/json", "title": "MiniMax API v1 — Postman collection" }
+      ],
+      "service-doc": [
+        { "href": "https://useapi.net/docs/api-minimax-v1", "type": "text/html", "title": "MiniMax API v1 — documentation" },
+        { "href": "https://www.postman.com/useapinet/useapi-net/collection/29112081-ded91f3a-ca96-4842-ad7b-6b1244fed442", "type": "text/html", "title": "MiniMax API v1 — Postman docs" }
+      ]
+    },
+    {
+      "anchor": "https://useapi.net/docs/api-runwayml-v1",
+      "service-desc": [
+        { "href": "https://useapi.net/assets/postman/runwayml-v1.json", "type": "application/json", "title": "Runway API v1 — Postman collection" }
+      ],
+      "service-doc": [
+        { "href": "https://useapi.net/docs/api-runwayml-v1", "type": "text/html", "title": "Runway API v1 — documentation" },
+        { "href": "https://www.postman.com/useapinet/useapi-net/collection/29112081-c6d86d09-998e-4e9c-9d6d-54a9573cd9a7", "type": "text/html", "title": "Runway API v1 — Postman docs" }
+      ]
+    },
+    {
+      "anchor": "https://useapi.net/docs/api-pixverse-v2",
+      "service-desc": [
+        { "href": "https://useapi.net/assets/postman/pixverse-v2.json", "type": "application/json", "title": "PixVerse API v2 — Postman collection" }
+      ],
+      "service-doc": [
+        { "href": "https://useapi.net/docs/api-pixverse-v2", "type": "text/html", "title": "PixVerse API v2 — documentation" },
+        { "href": "https://www.postman.com/useapinet/useapi-net/collection/29112081-946e4e63-64de-4265-b388-6be967e9b061", "type": "text/html", "title": "PixVerse API v2 — Postman docs" }
+      ]
+    },
+    {
+      "anchor": "https://useapi.net/docs/api-mureka-v1",
+      "service-desc": [
+        { "href": "https://useapi.net/assets/postman/mureka-v1.json", "type": "application/json", "title": "Mureka API v1 — Postman collection" }
+      ],
+      "service-doc": [
+        { "href": "https://useapi.net/docs/api-mureka-v1", "type": "text/html", "title": "Mureka API v1 — documentation" },
+        { "href": "https://www.postman.com/useapinet/useapi-net/collection/29112081-6ca3c497-835e-44bc-a2be-978be82b69cc", "type": "text/html", "title": "Mureka API v1 — Postman docs" }
+      ]
+    },
+    {
+      "anchor": "https://useapi.net/docs/api-flowmusic-v1",
+      "service-desc": [
+        { "href": "https://useapi.net/assets/postman/flowmusic-v1.json", "type": "application/json", "title": "FlowMusic API v1 — Postman collection" }
+      ],
+      "service-doc": [
+        { "href": "https://useapi.net/docs/api-flowmusic-v1", "type": "text/html", "title": "FlowMusic API v1 — documentation" },
+        { "href": "https://www.postman.com/useapinet/useapi-net/collection/29112081-3386ba6a-1539-415b-b9cf-7ef1c9d7939d", "type": "text/html", "title": "FlowMusic API v1 — Postman docs" }
+      ]
+    },
+    {
+      "anchor": "https://useapi.net/docs/api-tempolor-v1",
+      "service-desc": [
+        { "href": "https://useapi.net/assets/postman/tempolor-v1.json", "type": "application/json", "title": "TemPolor API v1 — Postman collection" }
+      ],
+      "service-doc": [
+        { "href": "https://useapi.net/docs/api-tempolor-v1", "type": "text/html", "title": "TemPolor API v1 — documentation" },
+        { "href": "https://www.postman.com/useapinet/useapi-net/collection/29112081-e6199d78-0334-4936-bb19-94375d412f84", "type": "text/html", "title": "TemPolor API v1 — Postman docs" }
+      ]
+    },
+    {
+      "anchor": "https://useapi.net/docs/api-faceswap-v1",
+      "service-desc": [
+        { "href": "https://useapi.net/assets/postman/faceswap-v1.json", "type": "application/json", "title": "InsightFaceSwap API v1 — Postman collection" }
+      ],
+      "service-doc": [
+        { "href": "https://useapi.net/docs/api-faceswap-v1", "type": "text/html", "title": "InsightFaceSwap API v1 — documentation" },
+        { "href": "https://www.postman.com/useapinet/useapi-net/collection/29112081-9ac29d7b-9ca5-42c9-9d86-b9e29a16df56", "type": "text/html", "title": "InsightFaceSwap API v1 — Postman docs" }
+      ]
+    }
+  ]
+}

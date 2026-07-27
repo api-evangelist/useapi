@@ -1,0 +1,178 @@
+generated: '2026-07-27'
+method: searched
+source:
+- https://useapi.net/llms.txt
+- https://useapi.net/docs/start-here/setup-useapi
+- https://useapi.net/docs/account-management
+- https://useapi.net/docs/questions-and-answers
+- https://useapi.net/docs/api-google-flow-v1
+- openapi/ (derived from the first-party Postman collections)
+summary: >-
+  useapi.net publishes exactly one platform-wide convention — bearer-token authentication — and is
+  explicit in its own documentation that everything else is per-service. The vendor states:
+  "Identifier names (jobid / taskId / musicId / etc.), job lifecycle, response shapes, webhook
+  payload shape, status code semantics, and synchronous-vs-asynchronous behavior vary per API."
+  Integrators must treat each of the ten APIs as a separate contract; this artifact records what is
+  genuinely cross-cutting and flags where the platform is deliberately heterogeneous.
+
+authentication:
+  style: bearer
+  header: 'Authorization: Bearer user:<number>-<unique-string>'
+  token_format: 'user:<number>-<unique-string>'
+  scope: >-
+    A single token authorizes every API under the subscription. There is no OAuth, no per-API key,
+    and no scope system.
+  rules:
+  - Use the complete token string including the `user:` prefix and the alphanumeric suffix.
+  - Do not truncate to just the numeric portion.
+  - Do not URL-encode the token.
+  delivery: Token is emailed on subscription; see https://useapi.net/docs/start-here/setup-useapi
+  artifact: authentication/useapi-authentication.yml
+
+bring_your_own_account:
+  model: >-
+    useapi.net is a fronting layer, not a first-party model host. Before calling a generation
+    endpoint the caller registers one or more of their own accounts on the underlying AI service
+    (via POST /<service>/accounts, supplying browser cookies or a session token). An active
+    subscription on the underlying service is required.
+  load_balancing: >-
+    When the per-request account selector (`email` / `account` / `channel_id`, depending on the
+    service) is omitted, useapi.net picks an account automatically using a weighted health score
+    built from executing / completed / failed / rateLimited counts over the last 15 minutes.
+  quarantine: >-
+    Accounts that return upstream 429s are pulled from rotation automatically. On Google Flow the
+    documented cooldowns are ~30 minutes for USER_QUOTA_REACHED and USER_REQUESTS_THROTTLED, and
+    until UTC midnight for PER_MODEL_DAILY_QUOTA_REACHED. Quarantine is skipped when exactly one
+    account is configured.
+
+idempotency:
+  supported: false
+  evidence: >-
+    No idempotency key header or parameter is documented on any endpoint, and none appears in any
+    of the ten first-party Postman collections. The only use of the word "idempotent" in the
+    documentation describes an internal implementation detail (repeated 429s for the same
+    account/reason/model tuple preserve the original quarantine firstSeen timestamp) and is not a
+    caller-facing contract.
+  practical_guidance: >-
+    Generation calls are not safe to blind-retry — a retried POST creates a second job and consumes
+    credits on the underlying account. Use the returned job identifier and the per-service job
+    endpoint (or a replyUrl webhook) to determine outcome before retrying.
+
+asynchrony:
+  model: job-based
+  pattern: >-
+    Most generation endpoints create a job and return an identifier; the caller then polls the
+    service's job endpoint or receives a replyUrl webhook callback.
+  identifier_names_vary: true
+  examples:
+  - service: google-flow
+    identifier: jobid
+    poll: GET /v1/google-flow/jobs/{jobId}
+  - service: dreamina
+    identifier: jobid
+    poll: GET /v1/dreamina/videos/{jobid}
+  - service: flowmusic
+    identifier: jobid
+    poll: GET /v1/flowmusic/jobs/{jobid}
+    note: Synchronous by default; async is opt-in via an `async` flag plus replyUrl.
+  - service: mureka
+    identifier: musicId
+  - service: pixverse
+    identifier: taskId
+
+webhooks:
+  supported: true
+  parameter: replyUrl
+  set_globally: 'POST https://api.useapi.net/v2/account with {"replyUrl": "..."} sets the default for every API'
+  override: Any individual call may override the account-level default with its own replyUrl.
+  fires_on: job completed or failed
+  payload_shape: per-service — the vendor explicitly states webhook payload shape varies by API
+  artifact: asyncapi/useapi-jobs-webhooks.yml
+
+pagination:
+  standardized: false
+  note: >-
+    There is no platform-wide pagination contract; each service uses the paging vocabulary of the
+    site it wraps. Observed parameters across the ten first-party Postman collections:
+  styles:
+  - style: limit-offset
+    params: [limit, offset]
+  - style: cursor
+    params: [cursor]
+  - style: last-id / keyset
+    params: [last_id, lastId, lastVideoId, lastImageId, lastMusicId, lastChatID]
+  - style: page-number
+    params: [page, pageSize, page_size, pageNum]
+  account_stats:
+    endpoint: GET https://api.useapi.net/v2/account/stats
+    params: [bot, date, limit, config]
+    max_limit: 50000
+    note: When `limit` is supplied the `date` filter is ignored and the last N records are returned.
+
+versioning:
+  scheme: uri-path
+  pattern: https://api.useapi.net/{version}/{service}
+  observed_versions: [v1, v2]
+  note: >-
+    The version is per-service, not per-platform — PixVerse is on v2 while the other current
+    services are on v1, and the cross-cutting account API is on v2. Version bumps are announced on
+    the blog; the retired Midjourney surface is the one documented precedent for a v1 to v2 cutover.
+  artifact: lifecycle/useapi-lifecycle.yml
+
+error_envelope:
+  standardized: false
+  problem_json: false
+  shapes:
+  - shape: flat
+    example: '{"error": "Unauthorized"}'
+    note: useapi.net platform-level errors (auth, account not found, validation).
+  - shape: passthrough
+    example: '{"error": {"code": 400, "message": "...", "status": "INVALID_ARGUMENT", "details": [...]}}'
+    note: >-
+      Errors originating at the wrapped provider are forwarded largely verbatim, so the envelope is
+      the upstream vendor's (the example above is Google's google.rpc.ErrorInfo shape).
+  artifact: errors/useapi-problem-types.yml
+
+rate_limits:
+  publishes_quotas: false
+  signaling:
+    status: 429
+    headers: [Retry-After]
+    body_field: retryAfter
+    body_field_format: ISO 8601 timestamp
+  note: >-
+    useapi.net does not impose or publish its own request quota; 429s originate from the wrapped
+    provider (or from useapi.net's own `no_eligible_account` short-circuit once every linked
+    account is quarantined). Every 429, including the short-circuit, carries a Retry-After header
+    and a retryAfter body field, and callers are told to honor it.
+  reason_codes: >-
+    On Google Flow the 429 is further qualified by an upstream reason —
+    PUBLIC_ERROR_UNUSUAL_ACTIVITY_TOO_MUCH_TRAFFIC, PUBLIC_ERROR_USER_REQUESTS_THROTTLED,
+    PUBLIC_ERROR_PER_MODEL_DAILY_QUOTA_REACHED, PUBLIC_ERROR_USER_QUOTA_REACHED — each with a
+    different remediation and cooldown. See errors/useapi-problem-types.yml.
+
+request_tracing:
+  request_id_header: none documented
+  observability: >-
+    GET https://api.useapi.net/v2/account/stats is the audit surface — per-bot request counts broken
+    down by config, endpoint, model, HTTP status, status text, tier and SKU, with average latency
+    and success rate. Data latency is 5-15 minutes and retention is 3 months.
+
+content_moderation:
+  prevalidation: false
+  statement: >-
+    "Our API does not perform any prompt pre-validations — it will return an error status code when
+    the underlying AI service moderates the job." The vendor recommends caller-side screening and
+    points to its own free MiniMax-Text-01 endpoint (POST /v1/minimax/llm) for text and image safety
+    checks.
+
+media_upload:
+  pattern: >-
+    Binary assets are POSTed as a raw body with the file's own Content-Type (not multipart), e.g.
+    POST /v1/runwayml/assets/?name=<name> and POST /v1/minimax/files/.
+
+cross_service_caveat: >-
+  The same underlying model (for example Seedance 2.0, Veo 3.1 or Nano Banana) is frequently exposed
+  by more than one useapi.net API, but the request and response shapes differ between them — each
+  API exposes the native interface of the site it wraps. https://useapi.net/model-matrix is the
+  canonical map of which model is available through which API.

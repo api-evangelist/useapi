@@ -1,0 +1,137 @@
+generated: '2026-07-27'
+method: searched
+source: https://useapi.net/blog
+machine_readable_source: https://useapi.net/assets/aibot/blog.txt
+scheme:
+  kind: dated announcement posts
+  slug_format: /blog/YYMMDD (with a letter suffix when more than one post lands on a date)
+  semver: false
+  feed: none — no RSS or Atom feed is published
+  note: 'The blog doubles as the platform changelog: new APIs, new upstream models, new endpoints and retirements
+    are all announced here. There is no separate release-notes surface and no per-API version history page.'
+coverage:
+  total_posts: 93
+  first: '2024-12-13'
+  latest: '2026-06-29'
+  window_captured: 24
+current_versions:
+  generation_apis: v1 (PixVerse on v2)
+  account_api: v2
+entries:
+- date: '2026-06-29'
+  title: 'MiniMax: Midjourney V7 Image Generation'
+  url: https://useapi.net/blog/260629
+  summary: Generate Midjourney V7 images through the useapi.net MiniMax API using prose prompts and image references
+    — no Midjourney -- flags — with copy-paste curl examples and Pro/Master per-generation pricing.
+- date: '2026-06-26'
+  title: 'MiniMax (Hailuo) Seedance 2.0: Standard vs Fast vs Mini — real faces with video + audio omni references'
+  url: https://useapi.net/blog/260626b
+  summary: MiniMax (Hailuo) API Seedance 2.0 omni mode drops a real face from a photo into a reference video and
+    drives speech from a reference audio — compared across the Standard, Fast, and Mini tiers.
+- date: '2026-06-26'
+  title: 'PixVerse Seedance 2.0: Mini vs Fast vs Standard — real faces with video + audio omni references'
+  url: https://useapi.net/blog/260626a
+  summary: PixVerse API v2 Seedance 2.0 omni mode drops a real face from a photo into a reference video and drives
+    speech from a reference audio — compared across the Mini, Fast, and Standard tiers.
+- date: '2026-06-26'
+  title: 'Dreamina: Seedance 2.0 Mini omni video from three image references'
+  url: https://useapi.net/blog/260626
+  summary: Seedance 2.0 Mini is now on the useapi.net Dreamina API — the cheapest, fastest Seedance 2.0 with Omni
+    Reference. Watch three reference images become a 15s 720p clip with a spoken line.
+- date: '2026-06-25'
+  title: 'PixVerse: Text-to-Speech with MiniMax and ElevenLabs'
+  url: https://useapi.net/blog/260625
+  summary: PixVerse API v2 adds text-to-speech — five models across MiniMax Speech 2.8 and ElevenLabs (multilingual-v2,
+    v3 audio tags, turbo-v2.5), with 300+ voices, emotions, inline audio tags, and 40+ languages.
+- date: '2026-06-24'
+  title: 'PixVerse: Music Generation with MiniMax, ElevenLabs and Lyria 3 Pro'
+  url: https://useapi.net/blog/260624
+  summary: PixVerse API v2 adds music generation — songs and instrumentals from a text prompt across MiniMax music-2.6,
+    ElevenLabs music-v1, and Google Lyria 3 Pro, with custom or model-written lyrics.
+- date: '2026-06-23'
+  title: 'PixVerse: Grok Imagine 1.5 and Seedance 2.0 4K'
+  url: https://useapi.net/blog/260623
+  summary: PixVerse API v2 adds Grok Imagine 1.5 image-to-video, Grok video extend, and Seedance 2.0 4K — example
+    clips generated from a single source image.
+- date: '2026-06-17'
+  title: 'Kling 3.0 Turbo: faster video with dialogue and scene changes'
+  url: https://useapi.net/blog/260617
+  summary: Kling v3 Turbo is now on the useapi.net Kling API — a faster v3.0 variant for text-to-video and image-to-video.
+    Watch one portrait become a 10s 1080p noir clip with spoken dialogue and scene cuts.
+- date: '2026-06-09'
+  title: 'Google Flow: Inline @-mentions'
+  url: https://useapi.net/blog/260609
+  summary: Google Flow API v1 now supports inline @-mention markers in the prompt on POST /videos and POST /images.
+    Place your character / image / voice references…
+- date: '2026-06-05'
+  title: 'Google Flow: Reusable Voices and Characters'
+  url: https://useapi.net/blog/260605
+  summary: Google Flow API v1 now supports custom voices and reusable characters. Build a voice once, build a character
+    once (1–2 reference images + that voice…
+- date: '2026-06-03'
+  title: 'FlowMusic API v1: Powered by Lyria 3 Pro'
+  url: https://useapi.net/blog/260603
+  summary: FlowMusic API v1 turns a text prompt into a complete, fully-produced song, powered by Google's Lyria
+    3 Pro (formerly Producer AI, originally Riffusion). The…
+- date: '2026-05-20'
+  title: 'Google Flow: Gemini Omni Flash'
+  url: https://useapi.net/blog/260520
+  summary: Google Flow API v1 now supports Gemini Omni Flash — Google's audio-native video model with text-to-video,
+    reference-to-video, and a new video editing mode…
+- date: '2026-05-13'
+  title: 'PixVerse: Motion Control'
+  url: https://useapi.net/blog/260513
+  summary: PixVerse API v2 now supports Motion Control — drive a still character image with motion extracted from
+    a reference video. Upload a portrait of who you want…
+- date: '2026-05-04'
+  title: 'PixVerse: HappyHorse 1.0'
+  url: https://useapi.net/blog/260504
+  summary: PixVerse API v2 now supports HappyHorse 1.0 — Alibaba's 1-ranked video model. Native 1080p, audio always
+    on (cannot be disabled), free for Pro+ subscribers…
+- date: '2026-04-15'
+  title: 'Seedance 2.0: Using Real Faces (Tutorial)'
+  url: https://useapi.net/blog/260415
+  summary: Seedance 2.0 is now available on both Runway API v1 and Dreamina API v1. The two integrations share the
+    same underlying model but differ in one important…
+- date: '2026-04-05'
+  title: 'PixVerse v6: Multi-Shot Storytelling and Audio'
+  url: https://useapi.net/blog/260405
+  summary: PixVerse API v2 now supports the latest v6 model as the new default — the most advanced and cost-effective
+    PixVerse model yet.
+- date: '2026-04-04'
+  title: 'Mureka: V9 Now the Default Music Model'
+  url: https://useapi.net/blog/260404
+  summary: Mureka API v1 now supports the latest V9 model as the new default. V9 features advanced prompt control
+    and studio-grade sound at 12 credits per song.
+- date: '2026-04-03'
+  title: 'Google Flow: Veo 3.1 Lite and Voice Narration'
+  url: https://useapi.net/blog/260403
+  summary: Google Flow API v1 now supports Veo 3.1 Lite — a faster, cheaper model at just 5 credits ($0.025) per
+    video — and voice narration with 30 AI voice presets…
+- date: '2026-04-02'
+  title: 'Dreamina: Seedance 2.0 Video Generation'
+  url: https://useapi.net/blog/260402
+  summary: 'Dreamina API v1 now supports the CA (Canada) region with access to Seedance 2.0 — ByteDance''s latest
+    and most capable video generation model. Also new: 1080p…'
+- date: '2026-03-21'
+  title: 'TemPolor: v4.5+ Song Model With 16+ Languages'
+  url: https://useapi.net/blog/260321
+  summary: TemPolor API v1 now supports the v4.5+ song model — a next-gen proprietary model with 16+ languages and
+    up to 5 minutes of generated music. It is now the…
+- date: '2026-03-09'
+  title: 'AI Image Models: 17 Compared'
+  url: https://useapi.net/blog/260309i
+  summary: We ran the same text to image generation through 17 image generation models to see how each one interprets
+    it. All images use 16:9 aspect ratio with…
+- date: '2026-03-09'
+  title: 'PixVerse: Image Generation'
+  url: https://useapi.net/blog/260309
+  summary: 'Same prompt across all models:'
+- date: '2026-03-06'
+  title: 'Kling: Motion Control 3.0 with Character Consistency'
+  url: https://useapi.net/blog/260306
+  summary: 'Step 1: Create a character element from a video using POST /elements'
+- date: '2026-03-05'
+  title: 'Runway: Unified Videos Endpoint and New Models'
+  url: https://useapi.net/blog/260305
+  summary: 'Prompt: Elegant portrait of a woman in vintage 1920s fashion with art deco jewelry and soft studio lighting'

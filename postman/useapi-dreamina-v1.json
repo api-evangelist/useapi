@@ -1,0 +1,763 @@
+{
+  "info": {
+    "_postman_id": "d8f3a1c2-7b45-4e89-9d12-6c3f8e2a4b01",
+    "name": "Dreamina API v1 by useapi.net",
+    "description": "Experimental API for Dreamina by ByteDance. Video models: Seedance 2.0 (US+CA; 1080p CA-only), 2.0 Fast (US+CA), 1.5 Pro (US+CA), 1.0 Pro (CA), 1.0 Mini (US+CA), 1.0 Fast (CA), Sora2 (CA). Image models: Seedream 5.0 Lite, 4.6, 4.5, 4.1, 4.0, Nano Banana, 3.0, GPT Image 2 (CA only). Supports US and CA regions, 720p/1080p resolution, video upscale (2x super resolution).\n\n**Features:**\n\n- Multiple Dreamina accounts with automated load balancing\n    \n- Real-time webhooks for job events (replyUrl parameter)\n    \n- Async image and video generation with job polling\n    \n- Dynamic concurrency management\n    \n- Image upload for reference frame and image generation support\n    \n\n**Commands:**\n\n- [POST /accounts](https://useapi.net/docs/api-dreamina-v1/post-dreamina-accounts) - Configure Dreamina account\n    \n- [GET /accounts](https://useapi.net/docs/api-dreamina-v1/get-dreamina-accounts) - List all configured accounts\n    \n- [GET /accounts/<account>](https://useapi.net/docs/api-dreamina-v1/get-dreamina-accounts-account) - Get account details, models, credits\n    \n- [DELETE /accounts/<account>](https://useapi.net/docs/api-dreamina-v1/delete-dreamina-accounts-account) - Delete account configuration\n    \n- [POST /assets/<account>](https://useapi.net/docs/api-dreamina-v1/post-dreamina-assets-account) - Upload images (JPEG, PNG, WebP)\n    \n- [GET /assets/<account>](https://useapi.net/docs/api-dreamina-v1/get-dreamina-assets-account) - List generation history\n    \n- [DELETE /assets/<assetId>](https://useapi.net/docs/api-dreamina-v1/delete-dreamina-assets-assetid) - Delete asset from history\n    \n- [POST /videos](https://useapi.net/docs/api-dreamina-v1/post-dreamina-videos) - Generate videos\n    \n- [GET /videos/<jobid>](https://useapi.net/docs/api-dreamina-v1/get-dreamina-videos-jobid) - Get video job status and results\n    \n- [POST /images](https://useapi.net/docs/api-dreamina-v1/post-dreamina-images) - Generate images\n    \n- [GET /images/<jobid>](https://useapi.net/docs/api-dreamina-v1/get-dreamina-images-jobid) - Get image job status and results\n    \n- [POST /videos/upscale](https://useapi.net/docs/api-dreamina-v1/post-dreamina-videos-upscale) - Upscale video (2x super resolution)\n    \n- [POST /videos/interpolate](https://useapi.net/docs/api-dreamina-v1/post-dreamina-videos-interpolate) - Frame interpolation (30/60 FPS)\n    \n- [POST /images/upscale](https://useapi.net/docs/api-dreamina-v1/post-dreamina-images-upscale) - Upscale generated image\n    \n- [GET /scheduler](https://useapi.net/docs/api-dreamina-v1/get-dreamina-scheduler) - List executing jobs\n    \n- [DELETE /scheduler/<jobid>](https://useapi.net/docs/api-dreamina-v1/delete-dreamina-scheduler-jobid) - Cancel executing job\n    \n\nVisit [https://useapi.net/docs/api-dreamina-v1](https://useapi.net/docs/api-dreamina-v1) for complete documentation.\n\n---\n**Updated:** February 23, 2026 (April 17, 2026)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "updated": "2026-04-17",
+    "_exporter_id": "29112081"
+  },
+  "item": [
+    {
+      "name": "POST accounts",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"email\": \"your-dreamina-email@example.com\",\n    \"password\": \"your-dreamina-password\",\n    \"region\": \"US\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/dreamina/accounts",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "dreamina",
+            "accounts"
+          ]
+        },
+        "description": "Configure your Dreamina account for API access using email and password credentials.\n\nSee [Setup Dreamina](https://useapi.net/docs/start-here/setup-dreamina) for detailed instructions.\n\n[Documentation](https://useapi.net/docs/api-dreamina-v1/post-dreamina-accounts)"
+      },
+      "response": []
+    },
+    {
+      "name": "GET accounts",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/dreamina/accounts",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "dreamina",
+            "accounts"
+          ]
+        },
+        "description": "List all configured Dreamina accounts.\n\n[Documentation](https://useapi.net/docs/api-dreamina-v1/get-dreamina-accounts)"
+      },
+      "response": []
+    },
+    {
+      "name": "GET accounts/<account>",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/dreamina/accounts/{{account}}",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "dreamina",
+            "accounts",
+            "{{account}}"
+          ]
+        },
+        "description": "Get configuration details for a specific Dreamina account, including session status, available models, and credit balance. Can also be called once a day to claim free daily credits.\n\n[Documentation](https://useapi.net/docs/api-dreamina-v1/get-dreamina-accounts-account)"
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE accounts/<account>",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/dreamina/accounts/{{account}}",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "dreamina",
+            "accounts",
+            "{{account}}"
+          ]
+        },
+        "description": "Delete a configured Dreamina account. Removes the account from your configuration and cleans up any executing job entries.\n\n[Documentation](https://useapi.net/docs/api-dreamina-v1/delete-dreamina-accounts-account)"
+      },
+      "response": []
+    },
+    {
+      "name": "POST assets/<account>",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "image/jpeg",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "file",
+          "file": {
+            "src": ""
+          }
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/dreamina/assets/{{account}}",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "dreamina",
+            "assets",
+            "{{account}}"
+          ]
+        },
+        "description": "Upload images to Dreamina for use as reference frames in video and image generation.\n\nSupports JPEG, PNG, and WebP formats up to 10 MB. Returns assetRef for use in POST /videos and POST /images.\n\n[Documentation](https://useapi.net/docs/api-dreamina-v1/post-dreamina-assets-account)"
+      },
+      "response": []
+    },
+    {
+      "name": "GET assets/<account>",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/dreamina/assets/{{account}}?count=20",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "dreamina",
+            "assets",
+            "{{account}}"
+          ],
+          "query": [
+            {
+              "key": "count",
+              "value": "20",
+              "description": "Number of assets to return (1-100, default: 20). Optional."
+            },
+            {
+              "key": "offset",
+              "value": "",
+              "description": "Pagination cursor from previous response's nextOffset. Optional.",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "List generation history (images and videos) for a specific account. Returns assets with their URLs, dimensions, and reusable assetRef values for POST /images or as in POST /videos.\n\n[Documentation](https://useapi.net/docs/api-dreamina-v1/get-dreamina-assets-account)"
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE assets/<assetId>",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/dreamina/assets/{{assetId}}",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "dreamina",
+            "assets",
+            "{{assetId}}"
+          ]
+        },
+        "description": "Delete a specific asset (image or video) from generation history.\n\n[Documentation](https://useapi.net/docs/api-dreamina-v1/delete-dreamina-assets-assetid)"
+      },
+      "response": []
+    },
+    {
+      "name": "POST videos",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "prompt",
+              "value": "Two cool cats walking and talking",
+              "description": "Text prompt for video generation. Required for T2V mode. Max 5000 characters.",
+              "type": "text"
+            },
+            {
+              "key": "model",
+              "value": "seedance-2.0",
+              "description": "AI model (default: seedance-2.0). US region: seedance-2.0 (720p only), seedance-2.0-fast, seedance-1.5-pro, seedance-1.0-mini. CA region: all of the above plus seedance-2.0-mini, seedance-1.0-pro, seedance-1.0-fast, sora2, and seedance-2.0 at 1080p/4k. Optional.",
+              "type": "text"
+            },
+            {
+              "key": "account",
+              "value": "",
+              "description": "Specific account to use. Auto-selected if omitted. Optional.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "ratio",
+              "value": "16:9",
+              "description": "Aspect ratio: 21:9, 16:9 (default), 4:3, 1:1, 3:4, 9:16. Cannot be used with image refs. Optional.",
+              "type": "text"
+            },
+            {
+              "key": "duration",
+              "value": "5",
+              "description": "Duration in seconds. seedance-2.0 and seedance-2.0-mini: 4-15, seedance-1.5-pro: 5/10/12, seedance-1.0-mini: 5/10, sora2: 4/8/12. Default: 5. Optional.",
+              "type": "text"
+            },
+            {
+              "key": "resolution",
+              "value": "",
+              "description": "Output resolution: 720p (default), 1080p, or 4k. 1080p supported by seedance-2.0 (CA only), seedance-1.5-pro, seedance-1.0-mini, and seedance-1.0-fast. 4k supported by seedance-2.0 (CA only). seedance-1.0-pro is always 1080p. seedance-2.0-fast, seedance-2.0-mini, and sora2 are 720p only. Optional.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "firstFrameRef",
+              "value": "",
+              "description": "assetRef from POST /assets for starting frame. Triggers first_frame mode. Optional.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "endFrameRef",
+              "value": "",
+              "description": "assetRef for ending frame. Triggers end_frame mode. Requires firstFrameRef. Optional.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "frame_1_imageRef",
+              "value": "",
+              "description": "assetRef for keyframe 1. Multi-frame mode (seedance-1.0-mini, min 2 frames). Optional.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "frame_1_prompt",
+              "value": "",
+              "description": "Per-frame prompt for keyframe 1. Max 5000 characters. Optional.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "frame_1_duration",
+              "value": "",
+              "description": "Per-frame duration for keyframe 1 (1-6, default: 5). Optional.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "frame_2_imageRef",
+              "value": "",
+              "description": "assetRef for keyframe 2. Optional.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "frame_2_prompt",
+              "value": "",
+              "description": "Per-frame prompt for keyframe 2. Optional.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "frame_2_duration",
+              "value": "",
+              "description": "Per-frame duration for keyframe 2. Optional.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Webhook URL for job status callbacks. Optional.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Custom reference string passed back in webhook callbacks. Optional.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Override max concurrent jobs for this request (1-50). Optional.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/dreamina/videos",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "dreamina",
+            "videos"
+          ]
+        },
+        "description": "Generate videos using Dreamina AI models. Supports text-to-video, first frame (I2V), end frame, and multi-frame keyframe modes.\n\nAsync by default — returns immediately with a job ID. Poll GET /videos/<jobid> for completion.\n\n[Documentation](https://useapi.net/docs/api-dreamina-v1/post-dreamina-videos)"
+      },
+      "response": []
+    },
+    {
+      "name": "GET videos/<jobid>",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/dreamina/videos/{{jobid}}",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "dreamina",
+            "videos",
+            "{{jobid}}"
+          ]
+        },
+        "description": "Retrieve the status and result of a video generation job. Poll this endpoint after POST /videos. Jobs are retained for 30 days.\n\nWhen status is 'completed', response.videoUrl contains the download URL.\n\n[Documentation](https://useapi.net/docs/api-dreamina-v1/get-dreamina-videos-jobid)"
+      },
+      "response": []
+    },
+    {
+      "name": "POST videos/upscale",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "jobid",
+              "value": "",
+              "description": "Job ID of a completed video generation job from POST /videos. Required.",
+              "type": "text"
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Webhook URL for job status callbacks. Optional.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Custom reference string passed back in webhook callbacks. Optional.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Override max concurrent jobs for this request (1-50). Optional.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/dreamina/videos/upscale",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "dreamina",
+            "videos",
+            "upscale"
+          ]
+        },
+        "description": "Upscale a generated video to 2x resolution (super resolution). Doubles width and height — 720p becomes 1440p, 1080p becomes 4K. Each video can only be upscaled once.\n\nPoll GET /videos/<jobid> for the upscaled result.\n\n[Documentation](https://useapi.net/docs/api-dreamina-v1/post-dreamina-videos-upscale)"
+      },
+      "response": []
+    },
+    {
+      "name": "POST videos/interpolate",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "jobid",
+              "value": "",
+              "description": "Job ID of a completed video generation or video upscale job. Required.",
+              "type": "text"
+            },
+            {
+              "key": "fps",
+              "value": "60",
+              "description": "Target frame rate: 30 or 60 (from 24 FPS source). Required.",
+              "type": "text"
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Webhook URL for job status callbacks. Optional.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Custom reference string passed back in webhook callbacks. Optional.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Override max concurrent jobs for this request (1-50). Optional.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/dreamina/videos/interpolate",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "dreamina",
+            "videos",
+            "interpolate"
+          ]
+        },
+        "description": "Interpolate a generated video to 30 or 60 FPS (from 24 FPS source). Works on both original and upscaled videos. Each video can only be interpolated once.\n\nPoll GET /videos/<jobid> for the interpolated result.\n\n[Documentation](https://useapi.net/docs/api-dreamina-v1/post-dreamina-videos-interpolate)"
+      },
+      "response": []
+    },
+    {
+      "name": "POST images",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "prompt",
+              "value": "A stunning aurora borealis over a frozen lake at midnight",
+              "description": "Text prompt for image generation. Optional when model supports imageRef_N. Max 1600 characters.",
+              "type": "text"
+            },
+            {
+              "key": "model",
+              "value": "seedream-4.6",
+              "description": "AI model: seedream-5.0-lite (free), seedream-4.7 (CA only), seedream-4.6 (default, free), seedream-4.5, seedream-4.1, seedream-4.0 (free), nano-banana, seedream-3.0, gpt-image-2 (CA only, 1k, 3 refs, ratios 1:1/2:3/3:2). Optional.",
+              "type": "text"
+            },
+            {
+              "key": "account",
+              "value": "",
+              "description": "Specific account to use. Auto-selected if omitted. Not needed when imageRef_N provided. Optional.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "ratio",
+              "value": "",
+              "description": "Aspect ratio: auto (default), 1:1, 3:4, 16:9, 4:3, 9:16, 2:3, 3:2, 21:9. Optional.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "resolution",
+              "value": "",
+              "description": "Output resolution: 1k, 2k, 4k. Default depends on model. Optional.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "imageRef_1",
+              "value": "",
+              "description": "Reference image assetRef from POST /assets or completed image job. Optional.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "imageRef_2",
+              "value": "",
+              "description": "Reference image 2. Optional.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "imageRef_3",
+              "value": "",
+              "description": "Reference image 3. Optional.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "imageStrength",
+              "value": "",
+              "description": "Reference image influence strength (0-1, default: 0.5). Optional.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Webhook URL for job status callbacks. Optional.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Custom reference string passed back in webhook callbacks. Optional.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Override max concurrent jobs for this request (1-50). Optional.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/dreamina/images",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "dreamina",
+            "images"
+          ]
+        },
+        "description": "Generate images using Dreamina AI models from text prompts with optional reference images. Each generation produces up to 4 images.\n\nAsync by default — returns immediately with a job ID. Poll GET /images/<jobid> for completion.\n\n[Documentation](https://useapi.net/docs/api-dreamina-v1/post-dreamina-images)"
+      },
+      "response": []
+    },
+    {
+      "name": "GET images/<jobid>",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/dreamina/images/{{jobid}}",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "dreamina",
+            "images",
+            "{{jobid}}"
+          ]
+        },
+        "description": "Retrieve the status and result of an image generation or upscale job. Poll this endpoint after POST /images or POST /images/upscale. Jobs are retained for 30 days.\n\nWhen status is 'completed', response.images contains the generated images with URLs and assetRef values.\n\n[Documentation](https://useapi.net/docs/api-dreamina-v1/get-dreamina-images-jobid)"
+      },
+      "response": []
+    },
+    {
+      "name": "POST images/upscale",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"jobid\": \"\",\n    \"imageIndex\": 0,\n    \"upscaleResolution\": \"4k\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/dreamina/images/upscale",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "dreamina",
+            "images",
+            "upscale"
+          ]
+        },
+        "description": "Upscale a generated image to higher resolution (2K, 4K, or 8K). Requires a completed image generation job from POST /images.\n\nPoll GET /images/<jobid> for the result.\n\n[Documentation](https://useapi.net/docs/api-dreamina-v1/post-dreamina-images-upscale)"
+      },
+      "response": []
+    },
+    {
+      "name": "GET scheduler",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/dreamina/scheduler",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "dreamina",
+            "scheduler"
+          ]
+        },
+        "description": "List all currently executing (in-progress) image and video generation jobs, grouped by account.\n\n[Documentation](https://useapi.net/docs/api-dreamina-v1/get-dreamina-scheduler)"
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE scheduler/<jobid>",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/dreamina/scheduler/{{jobid}}",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "dreamina",
+            "scheduler",
+            "{{jobid}}"
+          ]
+        },
+        "description": "Cancel an executing job. If the job is still in 'created' status, it will be marked as failed with reason 'Cancelled by user'.\n\n[Documentation](https://useapi.net/docs/api-dreamina-v1/delete-dreamina-scheduler-jobid)"
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{api-token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "api-token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "account",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "jobid",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "assetId",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

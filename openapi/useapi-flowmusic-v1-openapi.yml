@@ -1,0 +1,538 @@
+# Derived from the first-party useapi.net Postman collection: https://useapi.net/assets/postman/flowmusic-v1.json
+# method: derived  |  no operation, path, parameter or example was invented.
+openapi: 3.1.0
+info:
+  title: FlowMusic API v1 by useapi.net
+  version: 1.0.0
+  description: '## [FlowMusic API v1](https://useapi.net/docs/api-flowmusic-v1)
+
+
+    Google Flow Music (Lyria 3 Pro) API by useapi.net. Set the `api-token` collection variable (see https://useapi.net/docs/start-here/setup-useapi).
+    All request bodies are sent as form-data; the API also accepts equivalent JSON.'
+  contact:
+    name: useapi.net support
+    email: support@useapi.net
+    url: https://useapi.net/docs/support
+  x-derived-from: https://useapi.net/assets/postman/flowmusic-v1.json
+externalDocs:
+  description: flowmusic documentation
+  url: https://useapi.net/docs/api-flowmusic-v1
+servers:
+- url: https://api.useapi.net/v1/flowmusic
+security:
+- bearerAuth: []
+tags:
+- name: flowmusic
+  description: FlowMusic API v1 by useapi.net
+paths:
+  /accounts:
+    post:
+      operationId: postAccounts
+      summary: POST accounts
+      description: '## [Configure a Flow Music account](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-accounts)'
+      tags:
+      - flowmusic
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                refresh_token:
+                  type: string
+                maxJobs:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+      x-request-variants:
+      - name: POST accounts (update maxJobs)
+        description: '## [Update maxJobs on an existing account](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-accounts)'
+    get:
+      operationId: getAccounts
+      summary: GET accounts
+      description: '## [List accounts](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-accounts)'
+      tags:
+      - flowmusic
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /accounts/{email}:
+    get:
+      operationId: getAccountsByEmail
+      summary: GET accounts/{email}
+      description: '## [Get one account](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-accounts-email)'
+      tags:
+      - flowmusic
+      parameters:
+      - name: email
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    delete:
+      operationId: deleteAccountsByEmail
+      summary: DELETE accounts/{email}
+      description: '## [Remove an account](https://useapi.net/docs/api-flowmusic-v1/delete-flowmusic-accounts-email)'
+      tags:
+      - flowmusic
+      parameters:
+      - name: email
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /accounts/usage:
+    get:
+      operationId: getAccountsUsage
+      summary: GET accounts/usage
+      description: '## [Account usage](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-accounts-usage)'
+      tags:
+      - flowmusic
+      parameters:
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Required. Which configured account to report on.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /music:
+    post:
+      operationId: postMusic
+      summary: POST music
+      description: '## [Generate a song](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-music)'
+      tags:
+      - flowmusic
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                prompt:
+                  type: string
+                email:
+                  type: string
+                instrumental:
+                  type: string
+                lyrics:
+                  type: string
+                ghostwriter:
+                  type: string
+                refImage1:
+                  type: string
+                refAudio1:
+                  type: string
+                mode:
+                  type: string
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+      x-request-variants:
+      - name: POST music (async)
+        description: '## [Generate a song](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-music)'
+    get:
+      operationId: getMusic
+      summary: GET music
+      description: '## [List clips](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-music)'
+      tags:
+      - flowmusic
+      parameters:
+      - name: email
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional. Filter clips by configured account.
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional. Number of clips to return, 1-100 (default 30).
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional. Page offset (default 0).
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /music/edit:
+    post:
+      operationId: postMusicEdit
+      summary: POST music/edit (effect)
+      description: '## [Edit a song](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-music-edit)'
+      tags:
+      - flowmusic
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                operation:
+                  type: string
+                clip:
+                  type: string
+                effect:
+                  type: string
+                mix:
+                  type: string
+                room_size:
+                  type: string
+                gain_db:
+                  type: string
+                pan:
+                  type: string
+                bass_db:
+                  type: string
+                mid_db:
+                  type: string
+                treble_db:
+                  type: string
+                fade_in_s:
+                  type: string
+                fade_out_s:
+                  type: string
+                start_s:
+                  type: string
+                end_s:
+                  type: string
+                title:
+                  type: string
+                seed:
+                  type: string
+                mode:
+                  type: string
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+      x-request-variants:
+      - name: POST music/edit (extend)
+        description: '## [Edit a song](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-music-edit)'
+      - name: POST music/edit (replace)
+        description: '## [Edit a song](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-music-edit)'
+      - name: POST music/edit (cover)
+        description: '## [Edit a song](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-music-edit)'
+      - name: POST music/edit (remix)
+        description: '## [Edit a song](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-music-edit)'
+      - name: POST music/edit (stems)
+        description: '## [Edit a song](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-music-edit)'
+  /music/lyrics:
+    post:
+      operationId: postMusicLyrics
+      summary: POST music/lyrics
+      description: '## [Generate lyrics (free)](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-music-lyrics)'
+      tags:
+      - flowmusic
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                prompt:
+                  type: string
+                structure:
+                  type: string
+                email:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /music/download:
+    get:
+      operationId: getMusicDownload
+      summary: GET music/download
+      description: '## [Download a clip](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-music-download)'
+      tags:
+      - flowmusic
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Required. Encoded clip asset id (user:<id>-<email>-clip:<uuid>) or a completed jobid (resolves to its
+          first clip).
+      - name: format
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional. Only mp3 is supported (the default).
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /files:
+    post:
+      operationId: postFiles
+      summary: POST files (raw body upload)
+      description: '## [Upload a file](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-files)'
+      tags:
+      - flowmusic
+      parameters:
+      - name: email
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional. Which configured account to use.
+      - name: stripMetadata
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, default true. Strip AI-provenance/EXIF metadata before upload. Set false to keep original bytes.
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /files/generate:
+    post:
+      operationId: postFilesGenerate
+      summary: POST files/generate
+      description: '## [Generate an AI image](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-files-generate)'
+      tags:
+      - flowmusic
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                prompt:
+                  type: string
+                email:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /jobs:
+    get:
+      operationId: getJobs
+      summary: GET jobs
+      description: '## [List running jobs](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-jobs)'
+      tags:
+      - flowmusic
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /jobs/{jobid}:
+    get:
+      operationId: getJobsByJobid
+      summary: GET jobs/{jobid}
+      description: '## [Poll a job](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-jobs-jobid)'
+      tags:
+      - flowmusic
+      parameters:
+      - name: jobid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    delete:
+      operationId: deleteJobsByJobid
+      summary: DELETE jobs/{jobid}
+      description: '## [Cancel a job](https://useapi.net/docs/api-flowmusic-v1/delete-flowmusic-jobs-jobid)'
+      tags:
+      - flowmusic
+      parameters:
+      - name: jobid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'useapi.net API token. Header: `Authorization: Bearer user:<number>-<unique-string>`. Use the complete
+        token including the `user:` prefix.'

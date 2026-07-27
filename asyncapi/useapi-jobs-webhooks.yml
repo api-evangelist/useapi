@@ -1,0 +1,98 @@
+generated: '2026-07-27'
+method: searched
+source:
+- https://useapi.net/docs/account-management/post-account
+- https://useapi.net/docs/api-google-flow-v1
+- https://useapi.net/llms.txt
+- openapi/ (replyUrl parameters derived from the first-party Postman collections)
+type: Webhooks
+spec_type: none
+asyncapi_published: false
+asyncapi_probed:
+- https://useapi.net/asyncapi.yaml
+- https://useapi.net/.well-known/api-catalog (linkset lists only Postman service-desc entries)
+- https://github.com/useapi (22 repositories, no event schema)
+
+summary: >-
+  useapi.net publishes no AsyncAPI document and operates no streaming or pub/sub surface. Its only
+  event mechanism is an outbound HTTP callback: a `replyUrl` the caller supplies, which the platform
+  POSTs to once a generation job completes or fails. There is a single logical event (job terminal
+  state) rather than a typed event catalog, and the callback payload is explicitly per-service.
+
+transport:
+  style: outbound HTTP callback
+  direction: useapi.net -> caller
+  trigger: a generation job reaches a terminal state (completed or failed)
+  delivery_guarantees: not documented
+  retries: not documented
+  signing: not documented — no signature header, shared secret or verification scheme is published
+  security_note: >-
+    Because no callback signing is documented, treat the callback as an untrusted notification: use
+    it as a trigger to re-read authoritative job state from the service's own job endpoint with your
+    bearer token, rather than trusting the posted body.
+
+configuration:
+  global:
+    operation: POST https://api.useapi.net/v2/account
+    body: '{"replyUrl": "<your callback URL>"}'
+    effect: >-
+      "provided value will be used as default value for all API calls unless you choose to override
+      them for individual calls. Place here your callback URL. API will call the provided replyUrl
+      once job completed or failed."
+    read_back: GET https://api.useapi.net/v2/account returns the configured replyUrl
+    validation: 'replyUrl length is validated — an over-long value returns {"error": "replyUrl is too long"}'
+  per_request:
+    parameter: replyUrl
+    location: request body of the generation endpoints
+    effect: overrides the account-level default for that job only
+    also_seen: replyRef — an opaque caller-supplied correlation value echoed back on the callback
+
+channels:
+- name: job.terminal
+  description: >-
+    Fired once per generation job when it completes or fails. This is the only documented event on
+    the platform.
+  bound_to:
+    apis:
+    - useapi:google-flow-v1
+    - useapi:flowmusic-v1
+    - useapi:dreamina-v1
+    - useapi:kling-v1
+    - useapi:minimax-v1
+    - useapi:runwayml-v1
+    - useapi:pixverse-v2
+    - useapi:mureka-v1
+    - useapi:tempolor-v1
+    - useapi:faceswap-v1
+  payload:
+    schema_published: false
+    note: >-
+      The vendor states plainly that "webhook payload shape ... vary per API". In practice the body
+      mirrors that service's own job-retrieval response, so the authoritative schema for a given
+      service is the GET job endpoint in that service's OpenAPI (openapi/useapi-<service>-openapi.yml).
+    correlation_fields_by_service:
+    - service: google-flow
+      identifier: jobid
+      verify_with: GET /v1/google-flow/jobs/{jobId}
+    - service: dreamina
+      identifier: jobid
+      verify_with: GET /v1/dreamina/videos/{jobid}
+    - service: flowmusic
+      identifier: jobid
+      verify_with: GET /v1/flowmusic/jobs/{jobid}
+    - service: mureka
+      identifier: musicId
+    - service: pixverse
+      identifier: taskId
+    - service: faceswap
+      identifier: jobid
+      verify_with: GET /v1/faceswap/jobs/?jobid={jobid}
+
+operational_guidance:
+  from_vendor: >-
+    "consider using the replyUrl webhook to retrieve results, as this will ensure the least
+    intrusive operation" — the vendor recommends webhooks over polling both to reduce load and to
+    make automated traffic look less machine-like to the wrapped provider.
+  retention_caveat: >-
+    Job results expire after 7 days (410 Gone, "Job has expired"). Download media referenced by a
+    callback before the retention window closes.

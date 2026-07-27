@@ -1,0 +1,1341 @@
+{
+    "info": {
+        "_postman_id": "6685c51d-be43-4034-aecd-329c1db31b60",
+        "name": "Google Flow API v1 by useapi.net",
+        "description": "Experimental API for Google Flow with full support for Veo, Imagen 4, and Nano Banana.\n\n**Features:**\n\n- Multiple Google accounts with automated load balancing\n    \n- Real-time webhooks for job events (replyUrl parameter)\n    \n- Async mode for fire-and-forget video generation\n    \n- Dynamic concurrency management\n    \n- Image and video generation with reference image support\n    \n\n**Key Features:**\n\n- Generate images with Imagen 4 and Nano Banana / Gemini 2.5 Flash Image\n    \n- Generate videos with Veo 3.1 Quality and Fast models\n    \n- T2V, I2V, I2V-FL, and R2V generation modes\n    \n- Reference images support (style and context references)\n    \n- Use free Google accounts for unlimited image generations\n    \n- Use Google AI Ultra subscription for unlimited Veo 3.1 Fast video generations\n    \n\n**Commands:**\n\n- [POST /images](https://useapi.net/docs/api-google-flow-v1/post-google-flow-images) - Generate images with Imagen 4 or Nano Banana\n    \n- [POST /videos](https://useapi.net/docs/api-google-flow-v1/post-google-flow-videos) - Generate videos with Veo 3.1 Quality or Fast\n    \n- [POST /assets/<email>](https://useapi.net/docs/api-google-flow-v1/post-google-flow-assets-email) - Upload assets (PNG, JPEG)\n    \n- [POST /videos/extend](https://useapi.net/docs/api-google-flow-v1/post-google-flow-videos-extend) - Extend video with a new prompt\n    \n- [POST /videos/concatenate](https://useapi.net/docs/api-google-flow-v1/post-google-flow-videos-concatenate) - Concatenate multiple videos\n    \n- [GET /jobs](https://useapi.net/docs/api-google-flow-v1/get-google-flow-jobs) - Get load balancing statistics\n    \n- [GET /jobs/<jobid>](https://useapi.net/docs/api-google-flow-v1/get-google-flow-jobs-jobid) - Get job status and results\n    \n- [GET /accounts](https://useapi.net/docs/api-google-flow-v1/get-google-flow-accounts) - List all configured accounts\n    \n- [GET /accounts/<email>](https://useapi.net/docs/api-google-flow-v1/get-google-flow-accounts-email) - Get specific account configuration\n    \n- [POST /accounts](https://useapi.net/docs/api-google-flow-v1/post-google-flow-accounts) - Configure Google Flow account\n    \n- [DELETE /accounts/<email>](https://useapi.net/docs/api-google-flow-v1/delete-google-flow-accounts-email) - Delete account configuration\n    \n- [GET /accounts/captcha-stats](https://useapi.net/docs/api-google-flow-v1/get-google-flow-accounts-captcha-stats) - Query captcha solving statistics\n    \n\nVisit [https://useapi.net/docs/api-google-flow-v1](https://useapi.net/docs/api-google-flow-v1) for complete documentation.\n\n---\n**Updated:** June 9, 2026",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "updated": "2026-03-20",
+        "_exporter_id": "29112081"
+    },
+    "item": [
+        {
+            "name": "GET accounts",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "https://api.useapi.net/v1/google-flow/accounts",
+                    "protocol": "https",
+                    "host": [
+                        "api",
+                        "useapi",
+                        "net"
+                    ],
+                    "path": [
+                        "v1",
+                        "google-flow",
+                        "accounts"
+                    ]
+                },
+                "description": "List all configured Google Flow accounts for your API token.\n\nReturns an object with account emails as keys and their health status.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/get-google-flow-accounts)"
+            },
+            "response": []
+        },
+        {
+            "name": "GET accounts/<email>",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "https://api.useapi.net/v1/google-flow/accounts/{{email}}",
+                    "protocol": "https",
+                    "host": [
+                        "api",
+                        "useapi",
+                        "net"
+                    ],
+                    "path": [
+                        "v1",
+                        "google-flow",
+                        "accounts",
+                        "{{email}}"
+                    ]
+                },
+                "description": "Get configuration and health status for a specific Google Flow account.\n\nReturns health status, credits information, and available video models when account is healthy.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/get-google-flow-accounts-email)"
+            },
+            "response": []
+        },
+        {
+            "name": "POST accounts",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"cookies\": \"Cookies copied from Chrome DevTools in table format. See Setup Google Flow guide for details.\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "https://api.useapi.net/v1/google-flow/accounts",
+                    "protocol": "https",
+                    "host": [
+                        "api",
+                        "useapi",
+                        "net"
+                    ],
+                    "path": [
+                        "v1",
+                        "google-flow",
+                        "accounts"
+                    ]
+                },
+                "description": "Configure your Google account for Google Flow API access.\n\nRequires cookies from accounts.google.com. The email is automatically extracted from the cookies.\n\nSee [Setup Google Flow](https://useapi.net/docs/start-here/setup-google-flow) for detailed instructions on how to obtain these cookies.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-accounts)"
+            },
+            "response": []
+        },
+        {
+            "name": "DELETE accounts/<email>",
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                    "raw": "https://api.useapi.net/v1/google-flow/accounts/{{email}}",
+                    "protocol": "https",
+                    "host": [
+                        "api",
+                        "useapi",
+                        "net"
+                    ],
+                    "path": [
+                        "v1",
+                        "google-flow",
+                        "accounts",
+                        "{{email}}"
+                    ]
+                },
+                "description": "Remove Google Flow account configuration.\n\nCancels any scheduled refresh operations automatically.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/delete-google-flow-accounts-email)"
+            },
+            "response": []
+        },
+        {
+            "name": "POST assets/<email>",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "image/jpeg",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "file",
+                    "file": {
+                        "src": ""
+                    }
+                },
+                "url": {
+                    "raw": "https://api.useapi.net/v1/google-flow/assets/{{email}}",
+                    "protocol": "https",
+                    "host": [
+                        "api",
+                        "useapi",
+                        "net"
+                    ],
+                    "path": [
+                        "v1",
+                        "google-flow",
+                        "assets",
+                        "{{email}}"
+                    ]
+                },
+                "description": "Upload assets to Google Flow for use in image and video generation.\n\nSupports PNG/JPEG/WebP (image, up to 20 MB) and MP4 (video, up to 100 MB — for Omni Flash V2V edit via referenceVideo_1).\n\nReturns mediaGenerationId for use in reference parameters. Video uploads also return durationSeconds.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-assets-email)"
+            },
+            "response": []
+        },
+        {
+            "name": "POST images",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "formdata",
+                    "formdata": [
+                        {
+                            "key": "prompt",
+                            "value": "a cat in a hat",
+                            "description": "Text prompt for image generation. Required.\n\nOptional inline @-mention markers (case-insensitive): @character_N (1..7) and @reference_N (1..10) resolve to the matching body params, e.g. \"@character_1 standing next to @reference_1, golden hour\". Each marker MUST have a matching body slot supplied or the API returns 400. @referenceAudio_* and @referenceVideo_* are NOT supported on /images.",
+                            "type": "text"
+                        },
+                        {
+                            "key": "email",
+                            "value": "",
+                            "description": "Google account email to use. If not provided, API automatically selects account via load balancing. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "model",
+                            "value": "",
+                            "description": "AI model to use: nano-banana-2-lite (default), nano-banana-2, nano-banana-pro. Deprecated aliases: nano-banana maps to nano-banana-2, imagen-4 maps to nano-banana-2-lite. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "reference_1",
+                            "value": "",
+                            "description": "First reference image mediaGenerationId. Max 3 references total. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "reference_2",
+                            "value": "",
+                            "description": "Second reference image mediaGenerationId. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "reference_3",
+                            "value": "",
+                            "description": "Third reference image mediaGenerationId. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "reference_4",
+                            "value": "",
+                            "description": "Fourth reference image mediaGenerationId. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "reference_5",
+                            "value": "",
+                            "description": "Fifth reference image mediaGenerationId. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "reference_6",
+                            "value": "",
+                            "description": "Sixth reference image mediaGenerationId. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "reference_7",
+                            "value": "",
+                            "description": "Seventh reference image mediaGenerationId. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "reference_8",
+                            "value": "",
+                            "description": "Eighth reference image mediaGenerationId. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "reference_9",
+                            "value": "",
+                            "description": "Ninth reference image mediaGenerationId. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "reference_10",
+                            "value": "",
+                            "description": "Tenth reference image mediaGenerationId. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "character_1",
+                            "value": "",
+                            "description": "Character reference-id #1 from POST /characters. Triggers R2V (Ingredients) mode. Each character's image count rolls into the per-model image-ref budget. Veo fast/lite supports characters in 8s only with total imgs<=3; omni-flash supports all durations with total imgs<=7. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "character_2",
+                            "value": "",
+                            "description": "Character reference-id #2 from POST /characters. Triggers R2V (Ingredients) mode. Each character's image count rolls into the per-model image-ref budget. Veo fast/lite supports characters in 8s only with total imgs<=3; omni-flash supports all durations with total imgs<=7. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "character_3",
+                            "value": "",
+                            "description": "Character reference-id #3 from POST /characters. Triggers R2V (Ingredients) mode. Each character's image count rolls into the per-model image-ref budget. Veo fast/lite supports characters in 8s only with total imgs<=3; omni-flash supports all durations with total imgs<=7. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "character_4",
+                            "value": "",
+                            "description": "Character reference-id #4 from POST /characters. Triggers R2V (Ingredients) mode. Each character's image count rolls into the per-model image-ref budget. Veo fast/lite supports characters in 8s only with total imgs<=3; omni-flash supports all durations with total imgs<=7. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "character_5",
+                            "value": "",
+                            "description": "Character reference-id #5 from POST /characters. Triggers R2V (Ingredients) mode. Each character's image count rolls into the per-model image-ref budget. Veo fast/lite supports characters in 8s only with total imgs<=3; omni-flash supports all durations with total imgs<=7. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "character_6",
+                            "value": "",
+                            "description": "Character reference-id #6 from POST /characters. Triggers R2V (Ingredients) mode. Each character's image count rolls into the per-model image-ref budget. Veo fast/lite supports characters in 8s only with total imgs<=3; omni-flash supports all durations with total imgs<=7. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "character_7",
+                            "value": "",
+                            "description": "Character reference-id #7 from POST /characters. Triggers R2V (Ingredients) mode. Each character's image count rolls into the per-model image-ref budget. Veo fast/lite supports characters in 8s only with total imgs<=3; omni-flash supports all durations with total imgs<=7. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "count",
+                            "value": "1",
+                            "description": "Number of image variations to generate (1-4). Default: 1. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "seed",
+                            "value": "",
+                            "description": "Seed for reproducible results. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "aspectRatio",
+                            "value": "",
+                            "description": "Aspect ratio: 16:9, 4:3, 1:1, 3:4, 9:16, auto. Legacy aliases landscape and portrait also accepted. 'auto' is only valid when at least one reference_* is provided (backend derives aspect ratio from the first reference; with 2+ references the orientation can vary between images). Default: 16:9 (nano-banana-2-lite and text-to-image); auto (nano-banana-2/pro image-to-image). Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "replyUrl",
+                            "value": "",
+                            "description": "Webhook URL for job event callbacks. Maximum length 1024 characters. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "replyRef",
+                            "value": "",
+                            "description": "Your reference ID stored with job. Maximum length 1024 characters. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "captchaToken",
+                            "value": "",
+                            "description": "Your own reCAPTCHA v3 Enterprise token. Single attempt, no retry. Mutually exclusive with captchaRetry and captchaOrder. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "captchaRetry",
+                            "value": "",
+                            "description": "Number of captcha retry attempts (1-10, default: 3). Cycles through configured captcha providers. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "captchaOrder",
+                            "value": "",
+                            "description": "Explicit captcha provider sequence as comma-separated string (e.g., AntiCaptcha,CapSolver). Maximum 10 entries. Mutually exclusive with captchaRetry. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        }
+                    ]
+                },
+                "url": {
+                    "raw": "https://api.useapi.net/v1/google-flow/images",
+                    "protocol": "https",
+                    "host": [
+                        "api",
+                        "useapi",
+                        "net"
+                    ],
+                    "path": [
+                        "v1",
+                        "google-flow",
+                        "images"
+                    ]
+                },
+                "description": "Generate images using Imagen 4 or Nano Banana / Gemini 2.5 Flash Image.\n\nSupports up to 3 reference images and generates 1-4 variations.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-images)"
+            },
+            "response": []
+        },
+        {
+            "name": "POST videos",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "formdata",
+                    "formdata": [
+                        {
+                            "key": "prompt",
+                            "value": "a cat playing piano",
+                            "description": "Text prompt for video generation. Required.\n\nOptional inline @-mention markers (case-insensitive): @character_N (1..7), @referenceImage_N (1..7), and @referenceAudio_N (1..5) resolve to the matching body params, e.g. \"@character_1 sitting on @referenceImage_1, @referenceImage_2 in the background, says hello in @referenceAudio_1 voice\". Each marker MUST have a matching body slot supplied or the API returns 400. @referenceVideo_* is NOT supported inline — pass referenceVideo_1 as a body param. /videos/extend does not accept any inline markers.",
+                            "type": "text"
+                        },
+                        {
+                            "key": "email",
+                            "value": "",
+                            "description": "Google account email to use. If not provided, API automatically selects account via load balancing. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "model",
+                            "value": "",
+                            "description": "AI model: veo-3.1-fast (default), veo-3.1-quality, veo-3.1-lite (5 credits/$0.025), veo-3.1-lite-low-priority (Ultra, free), or omni-flash (Gemini Omni Flash, Pro or Ultra — audio-native T2V/R2V at 4/6/8/10s + V2V edit). All models except veo-3.1-quality support R2V (reference images) and voice narration. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "startImage",
+                            "value": "",
+                            "description": "Starting image mediaGenerationId. Veo: I2V or I2V-FL. omni-flash: I2V only (start frame), no referenceImage_*, no character_*, no referenceAudio_*, no endImage. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "endImage",
+                            "value": "",
+                            "description": "Ending image mediaGenerationId for I2V-FL mode. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "referenceImage_1",
+                            "value": "",
+                            "description": "Reference image #1 for R2V mode. Veo supports up to referenceImage_3 (max 3, not veo-3.1-quality). omni-flash supports up to referenceImage_7 (R2V) or referenceImage_5 (V2V edit). Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "referenceImage_2",
+                            "value": "",
+                            "description": "Reference image #2 for R2V mode. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "referenceImage_3",
+                            "value": "",
+                            "description": "Reference image #3 for R2V mode. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "referenceImage_4",
+                            "value": "",
+                            "description": "Reference image #4 for R2V mode (omni-flash only — slots 4-7 are Omni Flash exclusive). Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "referenceImage_5",
+                            "value": "",
+                            "description": "Reference image #5 for R2V mode (omni-flash only — slots 4-7 are Omni Flash exclusive). Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "referenceImage_6",
+                            "value": "",
+                            "description": "Reference image #6 for R2V mode (omni-flash only — slots 4-7 are Omni Flash exclusive). Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "referenceImage_7",
+                            "value": "",
+                            "description": "Reference image #7 for R2V mode (omni-flash only — slots 4-7 are Omni Flash exclusive). Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "character_1",
+                            "value": "",
+                            "description": "Character reference-id #1 from POST /characters. Triggers R2V (Ingredients) mode. Each character's image count rolls into the per-model image-ref budget. Veo fast/lite supports characters in 8s only with total imgs<=3; omni-flash supports all durations with total imgs<=7. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "character_2",
+                            "value": "",
+                            "description": "Character reference-id #2 from POST /characters. Triggers R2V (Ingredients) mode. Each character's image count rolls into the per-model image-ref budget. Veo fast/lite supports characters in 8s only with total imgs<=3; omni-flash supports all durations with total imgs<=7. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "character_3",
+                            "value": "",
+                            "description": "Character reference-id #3 from POST /characters. Triggers R2V (Ingredients) mode. Each character's image count rolls into the per-model image-ref budget. Veo fast/lite supports characters in 8s only with total imgs<=3; omni-flash supports all durations with total imgs<=7. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "character_4",
+                            "value": "",
+                            "description": "Character reference-id #4 from POST /characters. Triggers R2V (Ingredients) mode. Each character's image count rolls into the per-model image-ref budget. Veo fast/lite supports characters in 8s only with total imgs<=3; omni-flash supports all durations with total imgs<=7. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "character_5",
+                            "value": "",
+                            "description": "Character reference-id #5 from POST /characters. Triggers R2V (Ingredients) mode. Each character's image count rolls into the per-model image-ref budget. Veo fast/lite supports characters in 8s only with total imgs<=3; omni-flash supports all durations with total imgs<=7. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "character_6",
+                            "value": "",
+                            "description": "Character reference-id #6 from POST /characters. Triggers R2V (Ingredients) mode. Each character's image count rolls into the per-model image-ref budget. Veo fast/lite supports characters in 8s only with total imgs<=3; omni-flash supports all durations with total imgs<=7. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "character_7",
+                            "value": "",
+                            "description": "Character reference-id #7 from POST /characters. Triggers R2V (Ingredients) mode. Each character's image count rolls into the per-model image-ref budget. Veo fast/lite supports characters in 8s only with total imgs<=3; omni-flash supports all durations with total imgs<=7. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "referenceAudio_1",
+                            "value": "",
+                            "description": "Voice preset #1 for narration (case-insensitive). Slot _1 is universal (Veo R2V + Omni Flash). Slots _2.._5 are omni-flash-only. Voice names: achird, achernar, algieba, algenib, alnilam, aoede, autonoe, callirrhoe, charon, despina, enceladus, erinome, fenrir, gacrux, iapetus, kore, laomedeia, leda, orus, puck, pulcherrima, rasalgethi, sadachbia, sadaltager, schedar, sulafat, umbriel, vindemiatrix, zephyr, zubenelgenubi. Preview: https://www.gstatic.com/aitestkitchen/voices/samples/{Name}.wav. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "referenceAudio_2",
+                            "value": "",
+                            "description": "Additional voice preset #2 (omni-flash R2V up to _5, omni-flash V2V edit up to _3). Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "referenceAudio_3",
+                            "value": "",
+                            "description": "Additional voice preset #3 (omni-flash R2V up to _5, omni-flash V2V edit up to _3). Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "referenceAudio_4",
+                            "value": "",
+                            "description": "Additional voice preset #4 (omni-flash R2V up to _5, omni-flash V2V edit up to _3). Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "referenceAudio_5",
+                            "value": "",
+                            "description": "Additional voice preset #5 (omni-flash R2V up to _5, omni-flash V2V edit up to _3). Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "referenceVideo_1",
+                            "value": "",
+                            "description": "mediaGenerationId of a previously uploaded MP4 (via POST /assets/<email> with Content-Type: video/mp4). Switches the request to Omni Flash V2V edit mode. Requires model=omni-flash. Cannot be combined with startImage/endImage. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "startFrameIndex_1",
+                            "value": "",
+                            "description": "V2V edit trim start on a 24fps virtual timeline (paired with referenceVideo_1). Range 0-239. Default: 0. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "endFrameIndex_1",
+                            "value": "",
+                            "description": "V2V edit trim end on a 24fps virtual timeline. Range 1-240 (240 = 10s, V2V input max). Default: min(round(uploaded_duration × 24), 240). Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "count",
+                            "value": "1",
+                            "description": "Number of video variations to generate (1-4). Default: 1. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "seed",
+                            "value": "",
+                            "description": "Seed for reproducible results. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "aspectRatio",
+                            "value": "",
+                            "description": "Aspect ratio: landscape (default), portrait. Optional. Note: omni-flash also accepts only these two.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "duration",
+                            "value": "",
+                            "description": "Output video length in seconds: 4, 6, 8 (default), or 10. Veo: 4/6 require Ultra and apply only to T2V/I2V/I2V-FL — not supported with referenceImage_* (R2V) or /videos/extend (both 8s only). 10 is omni-flash-only. omni-flash V2V edit (with referenceVideo_1) does NOT accept duration — output length matches the trim window. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "async",
+                            "value": "false",
+                            "description": "true - Returns 201 Created immediately with jobId. false - Waits for completion (60-180s). Default: false. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "replyUrl",
+                            "value": "",
+                            "description": "Webhook URL for job event callbacks. Maximum length 1024 characters. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "replyRef",
+                            "value": "",
+                            "description": "Your reference ID stored with job. Maximum length 1024 characters. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "captchaToken",
+                            "value": "",
+                            "description": "Your own reCAPTCHA v3 Enterprise token. Single attempt, no retry. Mutually exclusive with captchaRetry and captchaOrder. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "captchaRetry",
+                            "value": "",
+                            "description": "Number of captcha retry attempts (1-10, default: 3). Cycles through configured captcha providers. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "captchaOrder",
+                            "value": "",
+                            "description": "Explicit captcha provider sequence as comma-separated string (e.g., AntiCaptcha,CapSolver). Maximum 10 entries. Mutually exclusive with captchaRetry. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        }
+                    ]
+                },
+                "url": {
+                    "raw": "https://api.useapi.net/v1/google-flow/videos",
+                    "protocol": "https",
+                    "host": [
+                        "api",
+                        "useapi",
+                        "net"
+                    ],
+                    "path": [
+                        "v1",
+                        "google-flow",
+                        "videos"
+                    ]
+                },
+                "description": "Generate videos using Veo 3.1 (Quality / Fast / Lite / Lite Lower Priority) or Gemini Omni Flash.\n\nSupports T2V, I2V, I2V-FL, and R2V (Veo + Omni Flash) and V2V edit (Omni Flash only — via referenceVideo_1). Typical generation time: 60-180 seconds.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-videos)"
+            },
+            "response": []
+        },
+        {
+            "name": "GET jobs",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "https://api.useapi.net/v1/google-flow/jobs/?options=summary",
+                    "protocol": "https",
+                    "host": [
+                        "api",
+                        "useapi",
+                        "net"
+                    ],
+                    "path": [
+                        "v1",
+                        "google-flow",
+                        "jobs",
+                        ""
+                    ],
+                    "query": [
+                        {
+                            "key": "options",
+                            "value": "summary",
+                            "description": "Level of detail: summary (default), executing, or history. Optional."
+                        }
+                    ]
+                },
+                "description": "Get load balancing statistics across all configured Google Flow accounts.\n\nProvides real-time visibility into job distribution, account health, and performance metrics.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/get-google-flow-jobs)"
+            },
+            "response": []
+        },
+        {
+            "name": "GET jobs/<jobId>",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "https://api.useapi.net/v1/google-flow/jobs/{{jobId}}",
+                    "protocol": "https",
+                    "host": [
+                        "api",
+                        "useapi",
+                        "net"
+                    ],
+                    "path": [
+                        "v1",
+                        "google-flow",
+                        "jobs",
+                        "{{jobId}}"
+                    ]
+                },
+                "description": "Retrieve job status and results by job ID.\n\nReturns complete job information including generated images/videos with download URLs.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/get-google-flow-jobs-jobid)"
+            },
+            "response": []
+        },
+        {
+            "name": "POST images/upscale",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"mediaGenerationId\": \"user:12345-email:6a6f...-image:CAMaJDMx...\",\n    \"resolution\": \"2k\",\n    \"captchaRetry\": 3\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "https://api.useapi.net/v1/google-flow/images/upscale",
+                    "protocol": "https",
+                    "host": [
+                        "api",
+                        "useapi",
+                        "net"
+                    ],
+                    "path": [
+                        "v1",
+                        "google-flow",
+                        "images",
+                        "upscale"
+                    ]
+                },
+                "description": "Upscale a previously generated image to 2K or 4K resolution.\n\n- 4K resolution requires a paid Google account (free accounts fail with 403 captcha_quality: PUBLIC_ERROR_UNUSUAL_ACTIVITY).\n\n**Body Parameters:**\n- `mediaGenerationId` (required) - The mediaGenerationId from POST /images\n- `resolution` (optional) - Target resolution: 2k (default), 4k\n- `captchaToken` (optional) - Your own reCAPTCHA v3 Enterprise token. Single attempt, no retry\n- `captchaRetry` (optional) - Number of captcha retry attempts (1-10, default: 3)\n- `captchaOrder` (optional) - Explicit captcha provider sequence as comma-separated string\n\nNote: captchaToken, captchaRetry, and captchaOrder are mutually exclusive.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-images-upscale)"
+            },
+            "response": []
+        },
+        {
+            "name": "POST videos/upscale",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"mediaGenerationId\": \"user:12345-email:6a6f...-video:CAMaJDMx...\",\n    \"resolution\": \"1080p\",\n    \"async\": false,\n    \"captchaRetry\": 3\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "https://api.useapi.net/v1/google-flow/videos/upscale",
+                    "protocol": "https",
+                    "host": [
+                        "api",
+                        "useapi",
+                        "net"
+                    ],
+                    "path": [
+                        "v1",
+                        "google-flow",
+                        "videos",
+                        "upscale"
+                    ]
+                },
+                "description": "Upscale a previously generated video to 1080p or 4K resolution.\n\n- Requires paid Google AI subscription or remaining credits.\n- 4K requires Google AI Ultra subscription.\n- 1080p is free, 4K costs 50 credits.\n\n**Body Parameters:**\n- `mediaGenerationId` (required) - The mediaGenerationId from POST /videos\n- `resolution` (optional) - Target resolution: 1080p (default), 4k\n- `async` (optional) - true: Returns 201 immediately with jobId. false: Waits for completion. Default: false\n- `replyUrl` (optional) - Webhook URL for job event callbacks. Max 1024 characters\n- `replyRef` (optional) - Your reference ID stored with job. Max 1024 characters\n- `captchaToken` (optional) - Your own reCAPTCHA v3 Enterprise token. Single attempt, no retry\n- `captchaRetry` (optional) - Number of captcha retry attempts (1-10, default: 3)\n- `captchaOrder` (optional) - Explicit captcha provider sequence as comma-separated string\n\nNote: captchaToken, captchaRetry, and captchaOrder are mutually exclusive.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-videos-upscale)"
+            },
+            "response": []
+        },
+        {
+            "name": "POST videos/gif",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"mediaGenerationId\": \"user:12345-email:6a6f...-video:CAMaJDMx...\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "https://api.useapi.net/v1/google-flow/videos/gif",
+                    "protocol": "https",
+                    "host": [
+                        "api",
+                        "useapi",
+                        "net"
+                    ],
+                    "path": [
+                        "v1",
+                        "google-flow",
+                        "videos",
+                        "gif"
+                    ]
+                },
+                "description": "Generate an animated GIF preview from a previously generated video.\n\n- No captcha required.\n- Can take up to 90 seconds.\n- Returns base64-encoded GIF data.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-videos-gif)"
+            },
+            "response": []
+        },
+        {
+            "name": "POST videos/extend",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"mediaGenerationId\": \"user:12345-email:6a6f...-video:CAMaJDMx...\",\n    \"prompt\": \"The camera slowly pans right revealing a majestic waterfall\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "https://api.useapi.net/v1/google-flow/videos/extend",
+                    "protocol": "https",
+                    "host": [
+                        "api",
+                        "useapi",
+                        "net"
+                    ],
+                    "path": [
+                        "v1",
+                        "google-flow",
+                        "videos",
+                        "extend"
+                    ]
+                },
+                "description": "Extend a previously generated video with a new prompt.\n\nCreates an additional 8-second segment that continues from the last ~1 second of the source video.\n\n**Body Parameters:**\n- `mediaGenerationId` (required) - The mediaGenerationId from POST /videos or POST /videos/extend\n- `prompt` (required) - Text description for what happens next\n- `model` (optional) - Video model: veo-3.1-fast (default), veo-3.1-fast-relaxed (Ultra only), veo-3.1-quality\n- `count` (optional) - Number of variations (1-4, default: 1)\n- `seed` (optional) - Seed for reproducible results\n- `async` (optional) - true: Returns 201 immediately. false: Waits for completion. Default: false\n- `replyUrl` (optional) - Webhook URL for callbacks\n- `replyRef` (optional) - Your reference ID\n- `captchaToken` (optional) - Your own reCAPTCHA v3 Enterprise token. Single attempt, no retry\n- `captchaRetry` (optional) - Retry attempts (1-10, default: 3)\n- `captchaOrder` (optional) - Explicit provider sequence\n\nNote: captchaToken, captchaRetry, and captchaOrder are mutually exclusive.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-videos-extend)"
+            },
+            "response": []
+        },
+        {
+            "name": "POST videos/concatenate",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"media\": [\n        { \"mediaGenerationId\": \"user:12345-email:...-video:...\" },\n        { \"mediaGenerationId\": \"user:12345-email:...-video:...\", \"trimStart\": 1 }\n    ]\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "https://api.useapi.net/v1/google-flow/videos/concatenate",
+                    "protocol": "https",
+                    "host": [
+                        "api",
+                        "useapi",
+                        "net"
+                    ],
+                    "path": [
+                        "v1",
+                        "google-flow",
+                        "videos",
+                        "concatenate"
+                    ]
+                },
+                "description": "Concatenate multiple videos into a single video.\n\nCombines 2-10 videos with optional trimming for smooth transitions. Returns base64-encoded video (~7MB per input).\n\n**Body Parameters:**\n- `media` (required) - Array of 2-10 video objects:\n  - `mediaGenerationId` (required) - Video reference from POST /videos\n  - `trimStart` (optional) - Seconds to trim from start (0-8). Use 1 for extended videos to remove overlap.\n  - `trimEnd` (optional) - Seconds to trim from end (0-8)\n\n- No captcha required.\n- All videos must have the same aspect ratio.\n- Synchronous - waits for completion.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-videos-concatenate)"
+            },
+            "response": []
+        },
+        {
+            "name": "GET accounts/captcha-providers",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "https://api.useapi.net/v1/google-flow/accounts/captcha-providers",
+                    "protocol": "https",
+                    "host": [
+                        "api",
+                        "useapi",
+                        "net"
+                    ],
+                    "path": [
+                        "v1",
+                        "google-flow",
+                        "accounts",
+                        "captcha-providers"
+                    ]
+                },
+                "description": "Retrieve configured captcha provider API keys (masked for security).\n\nReturns masked keys for AntiCaptcha, EzCaptcha, CapSolver, and YesCaptcha if configured.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/get-google-flow-accounts-captcha-providers)"
+            },
+            "response": []
+        },
+        {
+            "name": "POST accounts/captcha-providers",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"AntiCaptcha\": \"<your AntiCaptcha API key>\",\n    \"CapSolver\": \"<your CapSolver API key>\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "https://api.useapi.net/v1/google-flow/accounts/captcha-providers",
+                    "protocol": "https",
+                    "host": [
+                        "api",
+                        "useapi",
+                        "net"
+                    ],
+                    "path": [
+                        "v1",
+                        "google-flow",
+                        "accounts",
+                        "captcha-providers"
+                    ]
+                },
+                "description": "Configure captcha provider API keys for image and video generation.\n\nSupported providers: AntiCaptcha, EzCaptcha, CapSolver (promo code useapi for 8% discount), YesCaptcha.\n\nSet a field to empty string to remove that provider.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-accounts-captcha-providers)"
+            },
+            "response": []
+        },
+        {
+            "name": "GET accounts/captcha-stats",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "https://api.useapi.net/v1/google-flow/accounts/captcha-stats",
+                    "protocol": "https",
+                    "host": [
+                        "api",
+                        "useapi",
+                        "net"
+                    ],
+                    "path": [
+                        "v1",
+                        "google-flow",
+                        "accounts",
+                        "captcha-stats"
+                    ],
+                    "query": [
+                        {
+                            "key": "date",
+                            "value": "",
+                            "description": "Filter by date (YYYY-MM-DD). Defaults to today if limit not specified. Optional.",
+                            "disabled": true
+                        },
+                        {
+                            "key": "limit",
+                            "value": "",
+                            "description": "Number of records to return (max 50000). If specified, date filter is ignored. Optional.",
+                            "disabled": true
+                        },
+                        {
+                            "key": "provider",
+                            "value": "",
+                            "description": "Filter by captcha provider: AntiCaptcha, EzCaptcha, CapSolver, YesCaptcha, UserProvided. Optional.",
+                            "disabled": true
+                        }
+                    ]
+                },
+                "description": "Query captcha solving statistics for your account.\n\nReturns detailed information about captcha token requests including success/failure rates, solve times, and provider breakdowns.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/get-google-flow-accounts-captcha-stats)"
+            },
+            "response": []
+        },
+        {
+            "name": "POST voices",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "formdata",
+                    "formdata": [
+                        {
+                            "key": "email",
+                            "value": "",
+                            "description": "Google Flow account email. Required.",
+                            "type": "text",
+                            "disabled": false
+                        },
+                        {
+                            "key": "voice",
+                            "value": "Achernar",
+                            "description": "System voice preset to base on (Achernar/Achird/Algenib/Algieba/... 30 names). Case-sensitive. Required.",
+                            "type": "text",
+                            "disabled": false
+                        },
+                        {
+                            "key": "displayName",
+                            "value": "Cheerful Narrator",
+                            "description": "User-facing voice name shown in GET /voices. 1-200 chars. Required.",
+                            "type": "text",
+                            "disabled": false
+                        },
+                        {
+                            "key": "dialog",
+                            "value": "Hello, this is a test voice.",
+                            "description": "Text the voice will say. 1-120 chars. Required.",
+                            "type": "text",
+                            "disabled": false
+                        },
+                        {
+                            "key": "voicePerformance",
+                            "value": "Cheerful, energetic delivery",
+                            "description": "Delivery style description. 1-120 chars. Required.",
+                            "type": "text",
+                            "disabled": false
+                        },
+                        {
+                            "key": "captchaToken",
+                            "value": "",
+                            "description": "Optional explicit reCAPTCHA token (mutually exclusive with retry/order).",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "captchaRetry",
+                            "value": "",
+                            "description": "Captcha retry count (1-10, default 3). Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "captchaOrder",
+                            "value": "",
+                            "description": "Comma-separated captcha provider order. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        }
+                    ]
+                },
+                "url": {
+                    "raw": "{{api_url}}/v1/google-flow/voices",
+                    "host": [
+                        "{{api_url}}"
+                    ],
+                    "path": [
+                        "v1",
+                        "google-flow",
+                        "voices"
+                    ]
+                },
+                "description": "Create a user (custom) voice on the specified account. Captcha-gated."
+            },
+            "response": []
+        },
+        {
+            "name": "GET voices",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{api_url}}/v1/google-flow/voices?email=&source=",
+                    "host": [
+                        "{{api_url}}"
+                    ],
+                    "path": [
+                        "v1",
+                        "google-flow",
+                        "voices"
+                    ],
+                    "query": [
+                        {
+                            "key": "email",
+                            "value": "",
+                            "description": "Account email. Required."
+                        },
+                        {
+                            "key": "source",
+                            "value": "",
+                            "description": "Filter by 'system' or 'user'. Omit for both. Optional.",
+                            "disabled": true
+                        }
+                    ]
+                },
+                "description": "List system + user voices on the account. Fast — no audioUrl resolution. Use GET /voices/<ref> to play a specific voice."
+            },
+            "response": []
+        },
+        {
+            "name": "GET voices/<ref>",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{api_url}}/v1/google-flow/voices/:ref",
+                    "host": [
+                        "{{api_url}}"
+                    ],
+                    "path": [
+                        "v1",
+                        "google-flow",
+                        "voices",
+                        ":ref"
+                    ],
+                    "variable": [
+                        {
+                            "key": "ref",
+                            "value": "Achernar",
+                            "description": "URL-encoded voice reference. Either a system voice name (e.g. \"Achernar\") or a user voice ref (user:N-email:hex-voice:WID-mid:MID)."
+                        }
+                    ]
+                },
+                "description": "Resolve a single voice with playback URL. System voice -> static sampleUrl. User voice -> signed audioUrl (~6h). CF-cached 1h."
+            },
+            "response": []
+        },
+        {
+            "name": "DELETE voices/<ref>",
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                    "raw": "{{api_url}}/v1/google-flow/voices/:ref",
+                    "host": [
+                        "{{api_url}}"
+                    ],
+                    "path": [
+                        "v1",
+                        "google-flow",
+                        "voices",
+                        ":ref"
+                    ],
+                    "variable": [
+                        {
+                            "key": "ref",
+                            "value": "",
+                            "description": "URL-encoded user voice ref (system voices cannot be deleted)."
+                        }
+                    ]
+                },
+                "description": "Delete a user voice. Busts CF caches for this voice + any character that referenced it. System voices -> 400."
+            },
+            "response": []
+        },
+        {
+            "name": "POST characters",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "formdata",
+                    "formdata": [
+                        {
+                            "key": "displayName",
+                            "value": "Carol",
+                            "description": "User-facing character name. 1-200 chars. Required.",
+                            "type": "text",
+                            "disabled": false
+                        },
+                        {
+                            "key": "imageReference_1",
+                            "value": "",
+                            "description": "mediaGenerationId from POST /assets/email. Required. The account email is decoded from this reference.",
+                            "type": "text",
+                            "disabled": false
+                        },
+                        {
+                            "key": "imageReference_2",
+                            "value": "",
+                            "description": "Second image (optional, max 2 per character). Must belong to the same account as imageReference_1 or returns 400.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "personalityNotes",
+                            "value": "",
+                            "description": "Short description (<=2000 chars). Optional.",
+                            "type": "text",
+                            "disabled": true
+                        },
+                        {
+                            "key": "voice",
+                            "value": "",
+                            "description": "Attach a voice. Either a system voice preset name (case-insensitive, e.g. 'Umbriel') or a user voice ref from POST /voices. User voice refs must belong to the same account as imageReference_1 or returns 400. Optional.",
+                            "type": "text",
+                            "disabled": true
+                        }
+                    ]
+                },
+                "url": {
+                    "raw": "{{api_url}}/v1/google-flow/characters",
+                    "host": [
+                        "{{api_url}}"
+                    ],
+                    "path": [
+                        "v1",
+                        "google-flow",
+                        "characters"
+                    ]
+                },
+                "description": "Create a character (1-2 image refs + optional voice). The account is extracted from imageReference_1 — no email body field. The returned reference-id encodes the inline imgs:N count."
+            },
+            "response": []
+        },
+        {
+            "name": "GET characters",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{api_url}}/v1/google-flow/characters?email=",
+                    "host": [
+                        "{{api_url}}"
+                    ],
+                    "path": [
+                        "v1",
+                        "google-flow",
+                        "characters"
+                    ],
+                    "query": [
+                        {
+                            "key": "email",
+                            "value": "",
+                            "description": "Account email. Required."
+                        }
+                    ]
+                },
+                "description": "List all characters on the account. Fast — no previewUrl/thumbnailUrl/audioUrl resolution. Use GET /characters/<ref> for previews."
+            },
+            "response": []
+        },
+        {
+            "name": "GET characters/<ref>",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{api_url}}/v1/google-flow/characters/:ref",
+                    "host": [
+                        "{{api_url}}"
+                    ],
+                    "path": [
+                        "v1",
+                        "google-flow",
+                        "characters",
+                        ":ref"
+                    ],
+                    "variable": [
+                        {
+                            "key": "ref",
+                            "value": "",
+                            "description": "URL-encoded character reference-id from POST /characters."
+                        }
+                    ]
+                },
+                "description": "Resolve a single character with all media URLs: imageReferences[].previewUrl, thumbnailUrl, voice.audioUrl. CF-cached 1h."
+            },
+            "response": []
+        },
+        {
+            "name": "DELETE characters/<ref>",
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                    "raw": "{{api_url}}/v1/google-flow/characters/:ref",
+                    "host": [
+                        "{{api_url}}"
+                    ],
+                    "path": [
+                        "v1",
+                        "google-flow",
+                        "characters",
+                        ":ref"
+                    ],
+                    "variable": [
+                        {
+                            "key": "ref",
+                            "value": "",
+                            "description": "URL-encoded character reference-id."
+                        }
+                    ]
+                },
+                "description": "Delete a character. The attached voice (if any) is not deleted — voices have their own lifecycle."
+            },
+            "response": []
+        }
+    ],
+    "auth": {
+        "type": "bearer",
+        "bearer": [
+            {
+                "key": "token",
+                "value": "{{api-token}}",
+                "type": "string"
+            }
+        ]
+    },
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        }
+    ],
+    "variable": [
+        {
+            "key": "api-token",
+            "value": "",
+            "type": "string"
+        },
+        {
+            "key": "email",
+            "value": "",
+            "type": "string"
+        },
+        {
+            "key": "jobId",
+            "value": "",
+            "type": "string"
+        }
+    ]
+}

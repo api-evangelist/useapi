@@ -1,0 +1,1371 @@
+{
+	"info": {
+		"_postman_id": "3386ba6a-1539-415b-b9cf-7ef1c9d7939d",
+		"name": "FlowMusic API v1 by useapi.net",
+		"description": "## [FlowMusic API v1](https://useapi.net/docs/api-flowmusic-v1)\n\nGoogle Flow Music (Lyria 3 Pro) API by useapi.net. Set the `api-token` collection variable (see https://useapi.net/docs/start-here/setup-useapi). All request bodies are sent as form-data; the API also accepts equivalent JSON.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{api-token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api-token",
+			"value": "Please refer to https://useapi.net/docs/start-here/setup-useapi",
+			"type": "string"
+		},
+		{
+			"key": "email",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "jobid",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "clip_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "refresh_token",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "POST accounts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/flowmusic/accounts",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"flowmusic",
+						"accounts"
+					]
+				},
+				"description": "## [Configure a Flow Music account](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-accounts)",
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "refresh_token",
+							"value": "",
+							"description": "Required to add/refresh. The flowmusic.app refresh token (min 8 chars). See Setup Flow Music: https://useapi.net/docs/start-here/setup-flowmusic",
+							"type": "text"
+						},
+						{
+							"key": "maxJobs",
+							"value": "",
+							"description": "Optional. Max concurrent jobs for this account, 1-16 (defaults to the plan tier).",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST accounts (update maxJobs)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/flowmusic/accounts",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"flowmusic",
+						"accounts"
+					]
+				},
+				"description": "## [Update maxJobs on an existing account](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-accounts)",
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "{{email}}",
+							"description": "Required. An already-configured account whose maxJobs to change.",
+							"type": "text"
+						},
+						{
+							"key": "maxJobs",
+							"value": "",
+							"description": "Required. New max concurrent jobs, 1-16. Only this field is updated \u2014 no refresh_token, no token refresh.",
+							"type": "text"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET accounts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/flowmusic/accounts",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"flowmusic",
+						"accounts"
+					]
+				},
+				"description": "## [List accounts](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-accounts)"
+			},
+			"response": []
+		},
+		{
+			"name": "GET accounts/{email}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/flowmusic/accounts/{{email}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"flowmusic",
+						"accounts",
+						"{{email}}"
+					]
+				},
+				"description": "## [Get one account](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-accounts-email)"
+			},
+			"response": []
+		},
+		{
+			"name": "GET accounts/usage",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/flowmusic/accounts/usage?email={{email}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"flowmusic",
+						"accounts",
+						"usage"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "{{email}}",
+							"description": "Required. Which configured account to report on."
+						}
+					]
+				},
+				"description": "## [Account usage](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-accounts-usage)"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE accounts/{email}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/flowmusic/accounts/{{email}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"flowmusic",
+						"accounts",
+						"{{email}}"
+					]
+				},
+				"description": "## [Remove an account](https://useapi.net/docs/api-flowmusic-v1/delete-flowmusic-accounts-email)"
+			},
+			"response": []
+		},
+		{
+			"name": "POST music",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/flowmusic/music",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"flowmusic",
+						"music"
+					]
+				},
+				"description": "## [Generate a song](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-music)",
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "prompt",
+							"value": "lo-fi hip hop, mellow piano, 80 bpm",
+							"description": "Required. Song description - style, mood, genre, instruments, BPM, vocal direction. 1-10000 chars.",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "",
+							"description": "Optional. Which configured account to use; an account with free capacity is auto-selected if omitted.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "instrumental",
+							"value": "",
+							"description": "Optional. true forces an instrumental; false (default) lets the model decide from your prompt.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "lyrics",
+							"value": "",
+							"description": "Optional. Your own lyrics, [Verse]/[Chorus]-tagged (max 10000 chars). Providing them forces a vocal render.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "ghostwriter",
+							"value": "",
+							"description": "Optional. Lyrics-writer version when the model writes lyrics: standard or pro.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "refImage1",
+							"value": "",
+							"description": "Optional. Encoded image asset id from POST /files or POST /files/generate. refImage1...refImage10 accepted. Style hint only. All refs in one request must belong to the same account.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "refAudio1",
+							"value": "",
+							"description": "Optional. Encoded audio asset id from POST /files. refAudio1...refAudio10 accepted. Experimental, limited effect.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "mode",
+							"value": "",
+							"description": "Optional. sync (default, blocks ~40-150s) or async (returns 201 + jobid; poll GET /jobs/{jobid}).",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "replyUrl",
+							"value": "",
+							"description": "Optional. Webhook URL; the job record is POSTed to it on completion or failure.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "replyRef",
+							"value": "",
+							"description": "Optional. Custom reference string echoed back in the webhook.",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST music (async)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/flowmusic/music",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"flowmusic",
+						"music"
+					]
+				},
+				"description": "## [Generate a song](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-music)",
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "prompt",
+							"value": "lo-fi hip hop, mellow piano, 80 bpm",
+							"description": "Required. Song description - style, mood, genre, instruments, BPM, vocal direction. 1-10000 chars.",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "",
+							"description": "Optional. Which configured account to use; an account with free capacity is auto-selected if omitted.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "instrumental",
+							"value": "",
+							"description": "Optional. true forces an instrumental; false (default) lets the model decide from your prompt.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "lyrics",
+							"value": "",
+							"description": "Optional. Your own lyrics, [Verse]/[Chorus]-tagged (max 10000 chars). Providing them forces a vocal render.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "ghostwriter",
+							"value": "",
+							"description": "Optional. Lyrics-writer version when the model writes lyrics: standard or pro.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "refImage1",
+							"value": "",
+							"description": "Optional. Encoded image asset id from POST /files or POST /files/generate. refImage1...refImage10 accepted. Style hint only. All refs in one request must belong to the same account.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "refAudio1",
+							"value": "",
+							"description": "Optional. Encoded audio asset id from POST /files. refAudio1...refAudio10 accepted. Experimental, limited effect.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "mode",
+							"value": "async",
+							"description": "Optional. sync (default) or async (returns 201 + jobid; poll GET /jobs/{jobid}).",
+							"type": "text"
+						},
+						{
+							"key": "replyUrl",
+							"value": "",
+							"description": "Optional. Webhook URL; the job record is POSTed to it on completion or failure.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "replyRef",
+							"value": "",
+							"description": "Optional. Custom reference string echoed back in the webhook.",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST music/edit (effect)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/flowmusic/music/edit",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"flowmusic",
+						"music",
+						"edit"
+					]
+				},
+				"description": "## [Edit a song](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-music-edit)",
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "operation",
+							"value": "effect",
+							"description": "Required. The edit kind: effect (apply one audio effect; reportedly free).",
+							"type": "text"
+						},
+						{
+							"key": "clip",
+							"value": "",
+							"description": "Required. Encoded clip asset id from a previous generation or GET /music (user:<id>-<email>-clip:<uuid>).",
+							"type": "text"
+						},
+						{
+							"key": "effect",
+							"value": "Reverb",
+							"description": "Required for effect. One of: Trim, Fade, Gain, Reverb, Pan, Equalizer. Each effect reads only its own params.",
+							"type": "text"
+						},
+						{
+							"key": "mix",
+							"value": "0.4",
+							"description": "Reverb effect. 0 to 1.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "room_size",
+							"value": "0.7",
+							"description": "Reverb effect. 0 to 1.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "gain_db",
+							"value": "",
+							"description": "Gain effect. -30 to 30.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "pan",
+							"value": "",
+							"description": "Pan effect. -1 (left) to 1 (right).",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "bass_db",
+							"value": "",
+							"description": "Equalizer effect. -12 to 12.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "mid_db",
+							"value": "",
+							"description": "Equalizer effect. -12 to 12.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "treble_db",
+							"value": "",
+							"description": "Equalizer effect. -12 to 12.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "fade_in_s",
+							"value": "",
+							"description": "Fade effect. Seconds, >= 0 (at least one of fade_in_s/fade_out_s > 0).",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "fade_out_s",
+							"value": "",
+							"description": "Fade effect. Seconds, >= 0.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "start_s",
+							"value": "",
+							"description": "Trim effect. Start seconds, >= 0.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "end_s",
+							"value": "",
+							"description": "Trim effect. End seconds, > start_s, <= clip duration.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "title",
+							"value": "",
+							"description": "Optional. Title for the result clip.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "seed",
+							"value": "",
+							"description": "Optional. Integer >= 0; pins the result for reproducibility.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "mode",
+							"value": "",
+							"description": "Optional. sync (default) or async (returns 201 + jobid; poll GET /jobs/{jobid}).",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "replyUrl",
+							"value": "",
+							"description": "Optional. Webhook URL; the job record is POSTed to it on completion or failure.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "replyRef",
+							"value": "",
+							"description": "Optional. Custom reference string echoed back in the webhook.",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST music/edit (extend)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/flowmusic/music/edit",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"flowmusic",
+						"music",
+						"edit"
+					]
+				},
+				"description": "## [Edit a song](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-music-edit)",
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "operation",
+							"value": "extend",
+							"description": "Required. The edit kind: extend (add new music to the end, or from a point).",
+							"type": "text"
+						},
+						{
+							"key": "clip",
+							"value": "",
+							"description": "Required. Encoded clip asset id from a previous generation or GET /music (user:<id>-<email>-clip:<uuid>).",
+							"type": "text"
+						},
+						{
+							"key": "instruction",
+							"value": "add an instrumental outro",
+							"description": "Required for extend. What to add.",
+							"type": "text"
+						},
+						{
+							"key": "extend_s",
+							"value": "30",
+							"description": "Optional. Seconds to add, 1-300 (default 150).",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "extend_from_s",
+							"value": "",
+							"description": "Optional. The point to extend from (default = end of clip).",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "title",
+							"value": "",
+							"description": "Optional. Title for the result clip.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "seed",
+							"value": "",
+							"description": "Optional. Integer >= 0; pins the result for reproducibility.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "mode",
+							"value": "",
+							"description": "Optional. sync (default) or async (returns 201 + jobid; poll GET /jobs/{jobid}).",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "replyUrl",
+							"value": "",
+							"description": "Optional. Webhook URL; the job record is POSTed to it on completion or failure.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "replyRef",
+							"value": "",
+							"description": "Optional. Custom reference string echoed back in the webhook.",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST music/edit (replace)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/flowmusic/music/edit",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"flowmusic",
+						"music",
+						"edit"
+					]
+				},
+				"description": "## [Edit a song](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-music-edit)",
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "operation",
+							"value": "replace",
+							"description": "Required. The edit kind: replace (regenerate a time section).",
+							"type": "text"
+						},
+						{
+							"key": "clip",
+							"value": "",
+							"description": "Required. Encoded clip asset id from a previous generation or GET /music (user:<id>-<email>-clip:<uuid>).",
+							"type": "text"
+						},
+						{
+							"key": "instruction",
+							"value": "softer piano in this section",
+							"description": "Required for replace. How to regenerate the section.",
+							"type": "text"
+						},
+						{
+							"key": "mask_start_s",
+							"value": "0",
+							"description": "Required for replace. Section start (seconds).",
+							"type": "text"
+						},
+						{
+							"key": "mask_end_s",
+							"value": "8",
+							"description": "Required for replace. Section end (seconds), > mask_start_s, <= clip duration.",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "",
+							"description": "Optional. Title for the result clip.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "seed",
+							"value": "",
+							"description": "Optional. Integer >= 0; pins the result for reproducibility.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "mode",
+							"value": "",
+							"description": "Optional. sync (default) or async (returns 201 + jobid; poll GET /jobs/{jobid}).",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "replyUrl",
+							"value": "",
+							"description": "Optional. Webhook URL; the job record is POSTed to it on completion or failure.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "replyRef",
+							"value": "",
+							"description": "Optional. Custom reference string echoed back in the webhook.",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST music/edit (cover)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/flowmusic/music/edit",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"flowmusic",
+						"music",
+						"edit"
+					]
+				},
+				"description": "## [Edit a song](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-music-edit)",
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "operation",
+							"value": "cover",
+							"description": "Required. The edit kind: cover (restyle the whole song, a Lyria 3 Pro cover).",
+							"type": "text"
+						},
+						{
+							"key": "clip",
+							"value": "",
+							"description": "Required. Encoded clip asset id from a previous generation or GET /music (user:<id>-<email>-clip:<uuid>).",
+							"type": "text"
+						},
+						{
+							"key": "instruction",
+							"value": "lo-fi chillhop reinterpretation",
+							"description": "Optional. Free-text style direction.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "strength",
+							"value": "0.7",
+							"description": "Optional. Cover strength, 0 to 1 (default 1).",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "title",
+							"value": "",
+							"description": "Optional. Title for the result clip.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "seed",
+							"value": "",
+							"description": "Optional. Integer >= 0; pins the result for reproducibility.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "mode",
+							"value": "",
+							"description": "Optional. sync (default) or async (returns 201 + jobid; poll GET /jobs/{jobid}).",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "replyUrl",
+							"value": "",
+							"description": "Optional. Webhook URL; the job record is POSTed to it on completion or failure.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "replyRef",
+							"value": "",
+							"description": "Optional. Custom reference string echoed back in the webhook.",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST music/edit (remix)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/flowmusic/music/edit",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"flowmusic",
+						"music",
+						"edit"
+					]
+				},
+				"description": "## [Edit a song](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-music-edit)",
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "operation",
+							"value": "remix",
+							"description": "Required. The edit kind: remix (re-sing with edited lyrics).",
+							"type": "text"
+						},
+						{
+							"key": "clip",
+							"value": "",
+							"description": "Required. Encoded clip asset id from a previous generation or GET /music (user:<id>-<email>-clip:<uuid>).",
+							"type": "text"
+						},
+						{
+							"key": "lyrics",
+							"value": "[Verse 1]\nNeon rain on the avenue\n[Chorus]\nWe rise again",
+							"description": "Required for remix. The edited lyrics, [Verse]/[Chorus]-tagged.",
+							"type": "text"
+						},
+						{
+							"key": "prompt",
+							"value": "dreamy synthwave, 100 bpm",
+							"description": "Optional. Sound-prompt override (defaults to the source clip's).",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "title",
+							"value": "",
+							"description": "Optional. Title for the result clip.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "seed",
+							"value": "",
+							"description": "Optional. Integer >= 0; pins the result for reproducibility.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "mode",
+							"value": "",
+							"description": "Optional. sync (default) or async (returns 201 + jobid; poll GET /jobs/{jobid}).",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "replyUrl",
+							"value": "",
+							"description": "Optional. Webhook URL; the job record is POSTed to it on completion or failure.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "replyRef",
+							"value": "",
+							"description": "Optional. Custom reference string echoed back in the webhook.",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST music/edit (stems)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/flowmusic/music/edit",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"flowmusic",
+						"music",
+						"edit"
+					]
+				},
+				"description": "## [Edit a song](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-music-edit)",
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "operation",
+							"value": "stems",
+							"description": "Required. The edit kind: stems (separate the song into 4 stem clips: drums/bass/vocals/other). Synchronous ~15-60s; returns all 4 stems in one reply.",
+							"type": "text"
+						},
+						{
+							"key": "clip",
+							"value": "",
+							"description": "Required. Encoded clip asset id from a previous generation or GET /music (user:<id>-<email>-clip:<uuid>).",
+							"type": "text"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST music/lyrics",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/flowmusic/music/lyrics",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"flowmusic",
+						"music",
+						"lyrics"
+					]
+				},
+				"description": "## [Generate lyrics (free)](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-music-lyrics)",
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "prompt",
+							"value": "a hopeful song about new beginnings at sunrise",
+							"description": "Required. Theme or idea for the lyrics. 1-2000 chars.",
+							"type": "text"
+						},
+						{
+							"key": "structure",
+							"value": "",
+							"description": "Optional. Structure hint, e.g. a [Verse]/[Chorus] layout. Max 2000 chars.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "",
+							"description": "Optional. Which configured account to use.",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET music",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/flowmusic/music",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"flowmusic",
+						"music"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "{{email}}",
+							"description": "Optional. Filter clips by configured account.",
+							"disabled": true
+						},
+						{
+							"key": "limit",
+							"value": null,
+							"description": "Optional. Number of clips to return, 1-100 (default 30).",
+							"disabled": true
+						},
+						{
+							"key": "offset",
+							"value": null,
+							"description": "Optional. Page offset (default 0).",
+							"disabled": true
+						}
+					]
+				},
+				"description": "## [List clips](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-music)"
+			},
+			"response": []
+		},
+		{
+			"name": "GET music/download",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/flowmusic/music/download?id={{clip_id}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"flowmusic",
+						"music",
+						"download"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "{{clip_id}}",
+							"description": "Required. Encoded clip asset id (user:<id>-<email>-clip:<uuid>) or a completed jobid (resolves to its first clip)."
+						},
+						{
+							"key": "format",
+							"value": null,
+							"description": "Optional. Only mp3 is supported (the default).",
+							"disabled": true
+						}
+					]
+				},
+				"description": "## [Download a clip](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-music-download)"
+			},
+			"response": []
+		},
+		{
+			"name": "POST files (raw body upload)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "image/png",
+						"description": "The file's MIME type: image/jpeg, image/png, image/webp, audio/mpeg, audio/wav, audio/mp4, audio/x-m4a, or audio/aac."
+					}
+				],
+				"url": {
+					"raw": "https://api.useapi.net/v1/flowmusic/files",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"flowmusic",
+						"files"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": null,
+							"description": "Optional. Which configured account to use.",
+							"disabled": true
+						},
+						{
+							"key": "stripMetadata",
+							"value": null,
+							"description": "Optional, default true. Strip AI-provenance/EXIF metadata before upload. Set false to keep original bytes.",
+							"disabled": true
+						}
+					]
+				},
+				"description": "## [Upload a file](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-files)",
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/path/to/image.png"
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST files/generate",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/flowmusic/files/generate",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"flowmusic",
+						"files",
+						"generate"
+					]
+				},
+				"description": "## [Generate an AI image](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-files-generate)",
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "prompt",
+							"value": "album cover art, neon synthwave city at night",
+							"description": "Required. Image description. 1-2000 chars.",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "",
+							"description": "Optional. Which configured account to use.",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET jobs",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/flowmusic/jobs",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"flowmusic",
+						"jobs"
+					]
+				},
+				"description": "## [List running jobs](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-jobs)"
+			},
+			"response": []
+		},
+		{
+			"name": "GET jobs/{jobid}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/flowmusic/jobs/{{jobid}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"flowmusic",
+						"jobs",
+						"{{jobid}}"
+					]
+				},
+				"description": "## [Poll a job](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-jobs-jobid)"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE jobs/{jobid}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/flowmusic/jobs/{{jobid}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"flowmusic",
+						"jobs",
+						"{{jobid}}"
+					]
+				},
+				"description": "## [Cancel a job](https://useapi.net/docs/api-flowmusic-v1/delete-flowmusic-jobs-jobid)"
+			},
+			"response": []
+		}
+	]
+}

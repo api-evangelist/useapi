@@ -1,0 +1,73 @@
+generated: '2026-07-27'
+method: searched
+source: https://useapi.net/.well-known/api-catalog
+workspace: https://www.postman.com/useapinet/workspace/useapi-net
+schema: https://schema.getpostman.com/json/collection/v2.1.0/collection.json
+note: >-
+  These are the first-party Postman v2.1 collections useapi.net publishes as the `service-desc`
+  entries of its RFC 9727 /.well-known/api-catalog linkset, saved verbatim. They are the only
+  machine-readable contract the vendor ships for the ten currently-offered APIs — the OpenAPI 3.1
+  documents in openapi/ are API Evangelist derivations of these files. The two OpenAPI 3.0.2
+  documents in openapi/ for the retired Midjourney API are vendor-published (SwaggerHub) and are
+  not derived from Postman.
+collections:
+- file: useapi-google-flow-v1.json
+  api: useapi:google-flow-v1
+  name: Google Flow API v1 by useapi.net
+  source: https://useapi.net/assets/postman/google-flow-v1.json
+  public_docs: https://www.postman.com/useapinet/useapi-net/collection/29112081-db5b420d-b5a6-4710-91b2-82980b4cddd5
+  requests: 25
+- file: useapi-flowmusic-v1.json
+  api: useapi:flowmusic-v1
+  name: FlowMusic API v1 by useapi.net
+  source: https://useapi.net/assets/postman/flowmusic-v1.json
+  public_docs: https://www.postman.com/useapinet/useapi-net/collection/29112081-3386ba6a-1539-415b-b9cf-7ef1c9d7939d
+  requests: 22
+- file: useapi-dreamina-v1.json
+  api: useapi:dreamina-v1
+  name: Dreamina API v1 by useapi.net
+  source: https://useapi.net/assets/postman/dreamina-v1.json
+  public_docs: https://www.postman.com/useapinet/useapi-net/collection/29112081-347618e4-ef47-4ca4-bdee-72d321dcb4f2
+  requests: 16
+- file: useapi-kling-v1.json
+  api: useapi:kling-v1
+  name: Kling API v1 by useapi.net
+  source: https://useapi.net/assets/postman/kling-v1.json
+  public_docs: https://www.postman.com/useapinet/useapi-net/collection/29112081-d26e35d5-af3a-44a7-9810-3aeb6351c169
+  requests: 45
+- file: useapi-minimax-v1.json
+  api: useapi:minimax-v1
+  name: MiniMax API v1 by useapi.net
+  source: https://useapi.net/assets/postman/minimax-v1.json
+  public_docs: https://www.postman.com/useapinet/useapi-net/collection/29112081-ded91f3a-ca96-4842-ad7b-6b1244fed442
+  requests: 44
+- file: useapi-runwayml-v1.json
+  api: useapi:runwayml-v1
+  name: Runway API v1 by useapi.net
+  source: https://useapi.net/assets/postman/runwayml-v1.json
+  public_docs: https://www.postman.com/useapinet/useapi-net/collection/29112081-c6d86d09-998e-4e9c-9d6d-54a9573cd9a7
+  requests: 44
+- file: useapi-pixverse-v2.json
+  api: useapi:pixverse-v2
+  name: PixVerse API v2 (web) by useapi.net
+  source: https://useapi.net/assets/postman/pixverse-v2.json
+  public_docs: https://www.postman.com/useapinet/useapi-net/collection/29112081-946e4e63-64de-4265-b388-6be967e9b061
+  requests: 37
+- file: useapi-mureka-v1.json
+  api: useapi:mureka-v1
+  name: Mureka API v1 by useapi.net
+  source: https://useapi.net/assets/postman/mureka-v1.json
+  public_docs: https://www.postman.com/useapinet/useapi-net/collection/29112081-6ca3c497-835e-44bc-a2be-978be82b69cc
+  requests: 34
+- file: useapi-tempolor-v1.json
+  api: useapi:tempolor-v1
+  name: TemPolor API v1 by useapi.net
+  source: https://useapi.net/assets/postman/tempolor-v1.json
+  public_docs: https://www.postman.com/useapinet/useapi-net/collection/29112081-e6199d78-0334-4936-bb19-94375d412f84
+  requests: 21
+- file: useapi-faceswap-v1.json
+  api: useapi:faceswap-v1
+  name: InsightFaceSwap API v1 by useapi.net
+  source: https://useapi.net/assets/postman/faceswap-v1.json
+  public_docs: https://www.postman.com/useapinet/useapi-net/collection/29112081-9ac29d7b-9ca5-42c9-9d86-b9e29a16df56
+  requests: 18

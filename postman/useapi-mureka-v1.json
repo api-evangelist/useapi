@@ -1,0 +1,1720 @@
+{
+  "info": {
+    "_postman_id": "fc95a3b7-8997-4e66-be67-b5a012f9b391",
+    "name": "Mureka API v1 by useapi.net",
+    "description": "Full documentation available at [useapi.net](http://useapi.net/docs/api-mureka-v1/).\n\n**New Features:**\n- V9 model (mureka-9) - now the default model\n- Async job support with replyUrl webhooks\n- GET /jobs and GET /jobs/<jobId> endpoints\n- Browserless account setup with token + refresh_token on POST /accounts\n\n---\n**Updated:** July 14, 2026",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "updated": "2026-07-14",
+    "_exporter_id": "29112081"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/accounts",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "accounts"
+          ]
+        },
+        "description": "## [Retrieve Mureka API accounts configuration.](https://useapi.net/docs/api-mureka-v1/get-mureka-accounts)"
+      },
+      "response": []
+    },
+    {
+      "name": "accounts/<account>",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/accounts/<account>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "accounts",
+            "<account>"
+          ]
+        },
+        "description": "## [Retrieve Mureka API account configuration for account](https://useapi.net/docs/api-mureka-v1/get-mureka-accounts-account)"
+      },
+      "response": []
+    },
+    {
+      "name": "accounts/<account>",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/accounts/<account>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "accounts",
+            "<account>"
+          ]
+        },
+        "description": "## [Delete Mureka API account](https://useapi.net/docs/api-mureka-v1/del-mureka-accounts-account)"
+      },
+      "response": []
+    },
+    {
+      "name": "accounts",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"you@example.com\",\r\n    \"password\": \"your-mureka-password\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/accounts",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "accounts"
+          ]
+        },
+        "description": "## [Configure Mureka API account](https://useapi.net/docs/api-mureka-v1/post-mureka-accounts)\n\nTwo ways to connect — send **one** body.\n\n**Email + password (recommended):** `{ \"email\", \"password\" }`. The API stores the password and logs back in automatically whenever Mureka ends the session — no manual re-linking. Create a dedicated Mureka account with email + password via the guided setup page. Reports `authMode: \"email\"`.\n\n**Session token:** `{ \"token\", \"refresh_token\" }` copied from Mureka at sign-in. `refresh_token` is optional but recommended (omit it for a token-only account: ~30 days, no auto-refresh, then re-link). Reports `authMode: \"token\"`."
+      },
+      "response": []
+    },
+    {
+      "name": "jobs",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/jobs/?account",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "jobs",
+            ""
+          ],
+          "query": [
+            {
+              "key": "account",
+              "value": null,
+              "description": "Optional when only one account configured. Required if multiple accounts."
+            }
+          ]
+        },
+        "description": "## [List running jobs for an account](https://useapi.net/docs/api-mureka-v1/get-mureka-jobs)"
+      },
+      "response": []
+    },
+    {
+      "name": "jobs/<jobId>",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/jobs/{{jobId}}",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "jobs",
+            "{{jobId}}"
+          ]
+        },
+        "description": "## [Get job status and results](https://useapi.net/docs/api-mureka-v1/get-mureka-jobs-jobid)"
+      },
+      "response": []
+    },
+    {
+      "name": "profile",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "account",
+              "value": "",
+              "description": "Optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/profile/?account ",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "profile",
+            ""
+          ],
+          "query": [
+            {
+              "key": "account ",
+              "value": null,
+              "description": "Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required"
+            }
+          ]
+        },
+        "description": "## [Retrieve your mureka.ai account information (credits etc)](https://useapi.net/docs/api-mureka-v1/get-mureka-profile)"
+      },
+      "response": []
+    },
+    {
+      "name": "music",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "account",
+              "value": "",
+              "description": "Optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "expand",
+              "value": "",
+              "description": "Optional true/false value to specify how much details you want to retrieve",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "last_id",
+              "value": "",
+              "description": "Optional pagination value",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/music/?account",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "music",
+            ""
+          ],
+          "query": [
+            {
+              "key": "account",
+              "value": null,
+              "description": "Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required"
+            },
+            {
+              "key": "limit",
+              "value": null,
+              "description": "Optional, specify the number of videos to return. Default 30",
+              "disabled": true
+            },
+            {
+              "key": "last_id",
+              "value": null,
+              "description": "Optional, specify the last_id from previous response to get next page",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "expand",
+              "value": null,
+              "description": "Optional, set to true to retrieve complete song details. Default: false",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "## [Retrieve generated music](https://useapi.net/docs/api-mureka-v1/get-mureka-music)"
+      },
+      "response": []
+    },
+    {
+      "name": "music/<song_id>",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/music/<song_id>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "music",
+            "<song_id>"
+          ],
+          "query": [
+            {
+              "key": "limit",
+              "value": null,
+              "description": "Optional, specify the number of videos to return. Default 30",
+              "disabled": true
+            },
+            {
+              "key": "last_id",
+              "value": null,
+              "description": "Optional, specify the last_id from previous response to get next page",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "## [Retrieve generated song details](https://useapi.net/docs/api-mureka-v1/get-mureka-music-song_id)"
+      },
+      "response": []
+    },
+    {
+      "name": "music/<song_id>",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/music/<song_id>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "music",
+            "<song_id>"
+          ],
+          "query": [
+            {
+              "key": "limit",
+              "value": null,
+              "description": "Optional, specify the number of videos to return. Default 30",
+              "disabled": true
+            },
+            {
+              "key": "last_id",
+              "value": null,
+              "description": "Optional, specify the last_id from previous response to get next page",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "## [Delete generated song](https://useapi.net/docs/api-mureka-v1/del-mureka-music-song_id)"
+      },
+      "response": []
+    },
+    {
+      "name": "music/create",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "prompt",
+              "value": "",
+              "description": "Optional, use it to guide AI to generate desired lyrics. If omitted AI will generate some random lyrics.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "account",
+              "value": "",
+              "description": "Optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "model",
+              "value": "",
+              "description": "Optional model. V9 (mureka-9) is the default.",
+              "type": "text",
+              "uuid": "13a5ae8c-6b54-4a4a-a51b-418d3e5d9246",
+              "disabled": true
+            },
+            {
+              "key": "async",
+              "value": "false",
+              "description": "Optional. Set to true for fire-and-forget mode. Returns 201 immediately with jobId.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional. Webhook URL for job status callbacks.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/music/create",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "music",
+            "create"
+          ]
+        },
+        "description": "## [Create a music using AI-generated lyrics](https://useapi.net/docs/api-mureka-v1/post-mureka-music-create)"
+      },
+      "response": []
+    },
+    {
+      "name": "music/create-advanced",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "lyrics",
+              "value": "",
+              "description": "Required lyrics",
+              "type": "text"
+            },
+            {
+              "key": "account",
+              "value": "",
+              "description": "Optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "title",
+              "value": "",
+              "description": "Optional song title",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "desc",
+              "value": "",
+              "description": "Optional desciption to inculde name of desired styles, moods and type of vocals",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "ref_id",
+              "value": "",
+              "description": "Optional reference song",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "vocal_id",
+              "value": "",
+              "description": "Optional vocal reference",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "motif_id",
+              "value": "",
+              "description": "Optional motif reference",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "model",
+              "value": "",
+              "description": "Optional model. V9 (mureka-9) is the default.",
+              "type": "text",
+              "uuid": "13a5ae8c-6b54-4a4a-a51b-418d3e5d9246",
+              "disabled": true
+            },
+            {
+              "key": "async",
+              "value": "false",
+              "description": "Optional. Set to true for fire-and-forget mode. Returns 201 immediately with jobId.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional. Webhook URL for job status callbacks.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/music/create-advanced",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "music",
+            "create-advanced"
+          ]
+        },
+        "description": "## [Create a music using custom lyrics, styles, vocals and reference song](https://useapi.net/docs/api-mureka-v1/post-mureka-music-create-advanced)"
+      },
+      "response": []
+    },
+    {
+      "name": "music/create-instrumental",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "prompt",
+              "value": "",
+              "description": "Optional instrumental prompt",
+              "type": "text"
+            },
+            {
+              "key": "account",
+              "value": "",
+              "description": "Optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "model",
+              "value": "",
+              "description": "Optional model. V9 (mureka-9) is the default.",
+              "type": "text",
+              "uuid": "13a5ae8c-6b54-4a4a-a51b-418d3e5d9246",
+              "disabled": true
+            },
+            {
+              "key": "ref_id",
+              "value": "",
+              "description": "Optional reference song uploaded via POST file",
+              "type": "text",
+              "uuid": "ceb8b75b-d39e-4d6c-b2c0-78790d5f2659",
+              "disabled": true
+            },
+            {
+              "key": "title",
+              "value": "",
+              "description": "Optional title",
+              "type": "text",
+              "uuid": "a6f0291a-cd25-4e52-bfae-da8990553836",
+              "disabled": true
+            },
+            {
+              "key": "async",
+              "value": "false",
+              "description": "Optional. Set to true for fire-and-forget mode. Returns 201 immediately with jobId.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional. Webhook URL for job status callbacks.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/music/create-instrumental",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "music",
+            "create-instrumental"
+          ]
+        },
+        "description": "## [Create a instrumental music](https://useapi.net/docs/api-mureka-v1/post-mureka-music-create-instrumental)"
+      },
+      "response": []
+    },
+    {
+      "name": "music/extend",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "song_id",
+              "value": "",
+              "description": "Required song id",
+              "type": "text"
+            },
+            {
+              "key": "lyrics",
+              "value": "",
+              "description": "Required lyrics",
+              "type": "text"
+            },
+            {
+              "key": "async",
+              "value": "false",
+              "description": "Optional. Set to true for fire-and-forget mode. Returns 201 immediately with jobId.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional. Webhook URL for job status callbacks.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/music/extend",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "music",
+            "extend"
+          ]
+        },
+        "description": "## [Extend song](https://useapi.net/docs/api-mureka-v1/post-mureka-music-extend)"
+      },
+      "response": []
+    },
+    {
+      "name": "music/regenerate",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "song_id",
+              "value": "",
+              "description": "Required song id",
+              "type": "text"
+            },
+            {
+              "key": "start_milliseconds",
+              "value": "",
+              "description": "Required, define a starting point for the extension",
+              "type": "text"
+            },
+            {
+              "key": "async",
+              "value": "false",
+              "description": "Optional. Set to true for fire-and-forget mode. Returns 201 immediately with jobId.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional. Webhook URL for job status callbacks.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/music/regenerate",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "music",
+            "regenerate"
+          ]
+        },
+        "description": "## [Regenerate song](https://useapi.net/docs/api-mureka-v1/post-mureka-music-regenerate)"
+      },
+      "response": []
+    },
+    {
+      "name": "music/video-generate",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "song_id",
+              "value": "",
+              "description": "Required song id",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/music/video-generate",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "music",
+            "video-generate"
+          ]
+        },
+        "description": "## [Create an AI-generated video for your song](https://useapi.net/docs/api-mureka-v1/post-mureka-music-video-generate)"
+      },
+      "response": []
+    },
+    {
+      "name": "music/lyrics-generate",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "prompt",
+              "value": "",
+              "description": "Optional, use it to guide AI to generate desired lyrics. If omitted AI will generate some random lyrics.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "account",
+              "value": "",
+              "description": "Optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/music/lyrics-generate",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "music",
+            "lyrics-generate"
+          ]
+        },
+        "description": "## [AI-generated lyrics from your prompt](https://useapi.net/docs/api-mureka-v1/post-mureka-music-lyrics-generate)"
+      },
+      "response": []
+    },
+    {
+      "name": "music/download",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "song_id",
+              "value": "",
+              "description": "Required song id",
+              "type": "text"
+            },
+            {
+              "key": "type",
+              "value": "",
+              "description": "Required, valid values: stem, license",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/music/download",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "music",
+            "download"
+          ]
+        },
+        "description": "## [Download song instrumentals&amp;stems and license](https://useapi.net/docs/api-mureka-v1/post-mureka-music-download)"
+      },
+      "response": []
+    },
+    {
+      "name": "music/vocals",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "account",
+              "value": "",
+              "description": "Optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "last_id",
+              "value": "",
+              "description": "Optional pagination value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "mine",
+              "value": "",
+              "description": "Optional, set to true to get list of uploaded vocals",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/music/vocals/?account",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "music",
+            "vocals",
+            ""
+          ],
+          "query": [
+            {
+              "key": "account",
+              "value": null,
+              "description": "Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required"
+            },
+            {
+              "key": "limit",
+              "value": null,
+              "description": "Optional, specify the number of videos to return. Default 30",
+              "disabled": true
+            },
+            {
+              "key": "last_id",
+              "value": null,
+              "description": "Optional, specify the last_id from previous response to get next page",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "## [Retrieve a list of vocal samples including the ones you uploaded](https://useapi.net/docs/api-mureka-v1/get-mureka-music-vocals)"
+      },
+      "response": []
+    },
+    {
+      "name": "music/refs",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "account",
+              "value": "",
+              "description": "Optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "last_id",
+              "value": "",
+              "description": "Optional pagination value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "mood",
+              "value": "",
+              "description": "Optionally filter by mood",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "genre",
+              "value": "",
+              "description": "Optionally filter by genre",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/music/refs/?account",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "music",
+            "refs",
+            ""
+          ],
+          "query": [
+            {
+              "key": "account",
+              "value": null,
+              "description": "Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required"
+            },
+            {
+              "key": "limit",
+              "value": null,
+              "description": "Optional, specify the number of videos to return. Default 30",
+              "disabled": true
+            },
+            {
+              "key": "last_id",
+              "value": null,
+              "description": "Optional, specify the last_id from previous response to get next page",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "## [Retrieve songs for reference](https://useapi.net/docs/api-mureka-v1/get-mureka-music-refs)"
+      },
+      "response": []
+    },
+    {
+      "name": "music/moods-and-genres",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "account",
+              "value": "",
+              "description": "Optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/music/moods-and-genres/?account",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "music",
+            "moods-and-genres",
+            ""
+          ],
+          "query": [
+            {
+              "key": "account",
+              "value": null,
+              "description": "Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required"
+            },
+            {
+              "key": "limit",
+              "value": null,
+              "description": "Optional, specify the number of videos to return. Default 30",
+              "disabled": true
+            },
+            {
+              "key": "last_id",
+              "value": null,
+              "description": "Optional, specify the last_id from previous response to get next page",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "## [Retrieve moods and genres](https://useapi.net/docs/api-mureka-v1/get-mureka-music-moods-and-genres)"
+      },
+      "response": []
+    },
+    {
+      "name": "files",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/files/?account",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "files",
+            ""
+          ],
+          "query": [
+            {
+              "key": "account",
+              "value": null,
+              "description": "Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required"
+            },
+            {
+              "key": "last_id",
+              "value": "",
+              "description": "Optional,  use it to retrieve the next page of data",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "## [Retrieve your reference tracks](https://useapi.net/docs/api-mureka-v1/get-mureka-files)"
+      },
+      "response": []
+    },
+    {
+      "name": "files/youtube",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/files/youtube/?account&url",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "files",
+            "youtube",
+            ""
+          ],
+          "query": [
+            {
+              "key": "account",
+              "value": null,
+              "description": "Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required"
+            },
+            {
+              "key": "url",
+              "value": null,
+              "description": "Required, provide the YouTube url link for which you want to retrieve the soundtrack.",
+              "type": "text"
+            }
+          ]
+        },
+        "description": "## [Retrieve soundtrack from YouTube url](https://useapi.net/docs/api-mureka-v1/get-mureka-files-youtube)"
+      },
+      "response": []
+    },
+    {
+      "name": "files • use Body » binary to upload .mp3",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/files/?account&title&genre&mood",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "files",
+            ""
+          ],
+          "query": [
+            {
+              "key": "account",
+              "value": null,
+              "description": "Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required"
+            },
+            {
+              "key": "title",
+              "value": null,
+              "description": "Required"
+            },
+            {
+              "key": "genre",
+              "value": null,
+              "description": "Required, provide the genre of your track. See supported values using GET /music/moods-and-genres"
+            },
+            {
+              "key": "mood",
+              "value": null,
+              "description": "Required, provide the mood of your track. See supported values using GET /music/moods-and-genres"
+            }
+          ]
+        },
+        "description": "## [Upload mp3 audio track to your music collection](https://useapi.net/docs/api-mureka-v1/post-mureka-files)"
+      },
+      "response": []
+    },
+    {
+      "name": "files/motif • use Body » binary to upload .mp3",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/files/motif/?account",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "files",
+            "motif",
+            ""
+          ],
+          "query": [
+            {
+              "key": "account",
+              "value": null,
+              "description": "Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required"
+            }
+          ]
+        },
+        "description": "## [Upload mp3 melody (motif) track](https://useapi.net/docs/api-mureka-v1/post-mureka-files-motif)"
+      },
+      "response": []
+    },
+    {
+      "name": "files/vocal • use Body » binary to upload .mp3",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/files/vocal/?account&title",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "files",
+            "vocal",
+            ""
+          ],
+          "query": [
+            {
+              "key": "account",
+              "value": null,
+              "description": "Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required"
+            },
+            {
+              "key": "title",
+              "value": null,
+              "description": "Requred name of your vocal"
+            }
+          ]
+        },
+        "description": "## [Upload mp3 vocal](https://useapi.net/docs/api-mureka-v1/post-mureka-files-vocal)"
+      },
+      "response": []
+    },
+    {
+      "name": "files/vocal",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/files/vocal/?account&id",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "files",
+            "vocal",
+            ""
+          ],
+          "query": [
+            {
+              "key": "account",
+              "value": null,
+              "description": "Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required"
+            },
+            {
+              "key": "id",
+              "value": null,
+              "description": "Required, to see full list of uploaded vocals use GET music/vocals/?mine=true"
+            }
+          ]
+        },
+        "description": "## [Delete vocal](https://useapi.net/docs/api-mureka-v1/del-mureka-files-vocal)"
+      },
+      "response": []
+    },
+    {
+      "name": "files",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/files/?account&id",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "files",
+            ""
+          ],
+          "query": [
+            {
+              "key": "account",
+              "value": null,
+              "description": "Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required"
+            },
+            {
+              "key": "id",
+              "value": null,
+              "description": "Required, to see full list of uploaded tracks use GET /files."
+            }
+          ]
+        },
+        "description": "## [Delete track](https://useapi.net/docs/api-mureka-v1/del-mureka-files)"
+      },
+      "response": []
+    },
+    {
+      "name": "speech",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/speech/?account",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "speech",
+            ""
+          ],
+          "query": [
+            {
+              "key": "account",
+              "value": null,
+              "description": "Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required"
+            },
+            {
+              "key": "last_id",
+              "value": "",
+              "description": "Optional. Use it to retrieve the next page of data. Set its value to the last_id returned in the previous response.",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "## [Retrieve generated speech](https://useapi.net/docs/api-mureka-v1/get-mureka-speech)"
+      },
+      "response": []
+    },
+    {
+      "name": "speech",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "account",
+              "value": "",
+              "description": "Optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "title",
+              "value": "",
+              "description": "Optional. Maximum length is 500 characters.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "text",
+              "value": "",
+              "description": "Required string when not using conversation. Must be used together with voice_id. Maximum text length is 5000 characters.",
+              "type": "text",
+              "uuid": "13a5ae8c-6b54-4a4a-a51b-418d3e5d9246"
+            },
+            {
+              "key": "voice_id",
+              "value": "",
+              "description": "Required number when not using conversation. Must be used together with text. Get available voice IDs from GET /speech/voices. To create a cloned voice, first use POST /speech/voice to upload an audio sample and clone the voice.",
+              "type": "text",
+              "uuid": "aa3af4a9-4d1e-49ac-9ba5-dc4ed6453d4e"
+            },
+            {
+              "key": "conversation",
+              "value": "",
+              "description": "Optional JSON string. Alternative to text and voice_id. Must be a JSON string array of objects with voice_id (number) and text (string) fields. Cannot be used together with text and voice_id. Total text length across all conversation items cannot exceed 5000 characters.",
+              "type": "text",
+              "uuid": "e53d7aae-364e-49b3-a2ff-3d8562a8f117",
+              "disabled": true
+            },
+            {
+              "key": "async",
+              "value": "false",
+              "description": "Optional. Set to true for fire-and-forget mode. Returns 201 immediately with jobId.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional. Webhook URL for job status callbacks.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/speech",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "speech"
+          ]
+        },
+        "description": "## [Generate speech](https://useapi.net/docs/api-mureka-v1/post-mureka-speech)"
+      },
+      "response": []
+    },
+    {
+      "name": "speech",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/speech/?account&id",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "speech",
+            ""
+          ],
+          "query": [
+            {
+              "key": "account",
+              "value": null,
+              "description": "Optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required."
+            },
+            {
+              "key": "id",
+              "value": null,
+              "description": "Required. The ID of the speech to delete. Get speech IDs from GET /speech."
+            }
+          ]
+        },
+        "description": "## [Delete speech](https://useapi.net/docs/api-mureka-v1/del-mureka-speech)"
+      },
+      "response": []
+    },
+    {
+      "name": "speech/voices",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/speech/voices/?account",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "speech",
+            "voices",
+            ""
+          ],
+          "query": [
+            {
+              "key": "account",
+              "value": null,
+              "description": "Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required"
+            },
+            {
+              "key": "last_id",
+              "value": "",
+              "description": "Optional. Use it to retrieve the next page of data. Set its value to the last_id returned in the previous response.",
+              "disabled": true
+            },
+            {
+              "key": "cloned",
+              "value": "",
+              "description": "Optional. Filter voices by type. Set to true for only cloned voices, false for built-in voices, or omit for all voices. Supported values: true, false.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "## [Retrieve speech voices](https://useapi.net/docs/api-mureka-v1/get-mureka-speech-voices)"
+      },
+      "response": []
+    },
+    {
+      "name": "speech/voice • use Body » binary to upload .mp3",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/speech/voice/?account&title&desc&lang",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "speech",
+            "voice",
+            ""
+          ],
+          "query": [
+            {
+              "key": "account",
+              "value": null,
+              "description": "Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required"
+            },
+            {
+              "key": "title",
+              "value": null,
+              "description": "Required. Voice title. Length: 1-50 characters."
+            },
+            {
+              "key": "desc",
+              "value": null,
+              "description": "Required. Voice description. Length: 1-500 characters."
+            },
+            {
+              "key": "lang",
+              "value": null,
+              "description": "Required. Language code for the voice. Supported values: en (English), zh-Hans (Simplified Chinese), zh-Hant (Traditional Chinese), ja (Japanese), ko (Korean), es (Spanish), pt (Portuguese), de (German), fr (French), it (Italian), ru (Russian)."
+            }
+          ]
+        },
+        "description": "## [Clone voice for speech](https://useapi.net/docs/api-mureka-v1/post-mureka-speech-voice)"
+      },
+      "response": []
+    },
+    {
+      "name": "speech/voice",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/mureka/speech/voice/?account&voice_id",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "mureka",
+            "speech",
+            "voice",
+            ""
+          ],
+          "query": [
+            {
+              "key": "account",
+              "value": null,
+              "description": "Optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required."
+            },
+            {
+              "key": "voice_id",
+              "value": null,
+              "description": "Required. The ID of the voice to delete. Get voice IDs from GET /speech/voices."
+            }
+          ]
+        },
+        "description": "## [Delete speech voice](https://useapi.net/docs/api-mureka-v1/del-mureka-speech-voice)"
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{api-token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "api-token",
+      "value": "Please refer to https://useapi.net/docs/start-here/setup-useapi",
+      "type": "string"
+    }
+  ]
+}

@@ -1,17 +1,23 @@
 aid: useapi
 name: useapi.net
-description: useapi.net is a unified, experimental REST API platform that fronts a set of consumer AI
-  content-generation services — video, image, music, speech and face-swap models — behind one subscription
-  and one API surface, so developers do not have to hold an account with each underlying provider. Added
-  to the API Evangelist network as a stub for full-pipeline profiling.
+description: useapi.net is an experimental, unified REST API platform that fronts a set of consumer AI
+  content-generation services — video, image, music, speech and face-swap models — behind one flat $15/month
+  subscription and a single bearer-token API surface, so developers do not have to hold a separate developer
+  account with each underlying provider. Ten services are exposed today (Google Flow, Flow Music, Dreamina,
+  Kling, MiniMax/Hailuo, Runway, PixVerse, Mureka, TemPolor and InsightFaceSwap), each as its own versioned
+  REST API under api.useapi.net with its own native request/response shapes. The platform is built around
+  bring-your-own-account access — the caller links one or more of their existing accounts on the underlying
+  AI service and useapi.net performs automated multi-account load balancing, quarantine of rate-limited
+  accounts, asynchronous job handling and replyUrl webhook callbacks on job completion or failure. It is a
+  reverse-engineered, explicitly experimental service, positioned as substantially cheaper than the official
+  first-party APIs of the services it wraps.
 url: https://raw.githubusercontent.com/api-evangelist/useapi/refs/heads/main/apis.yml
 x-type: company
 x-source: manual:request
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-07-27'
 modified: '2026-07-27'
+image: https://useapi.net/assets/images/logo.png
 tags:
 - Company
 - AI
@@ -19,16 +25,337 @@ tags:
 - Video Generation
 - Image Generation
 - Music Generation
-apis: []
+- Text to Speech
+- Face Swap
+- API Aggregator
+- Machine Learning
+- Media
+- Webhooks
+apis:
+- aid: useapi:google-flow-v1
+  name: Google Flow API v1
+  description: REST API for Google Flow (Veo 3.1 video, Gemini Omni Flash audio-native video, Imagen 4 and
+    Nano Banana image generation) driven through one or more linked Google accounts, with a captcha-solver
+    pipeline, per-account quarantine on Google 429 quota reasons and automated load balancing.
+  humanURL: https://useapi.net/docs/api-google-flow-v1
+  baseURL: https://api.useapi.net/v1/google-flow
+  tags:
+  - Video Generation
+  - Image Generation
+  - Google Flow
+  - Veo
+  properties:
+  - type: OpenAPI
+    url: openapi/useapi-google-flow-v1-openapi.yml
+  - type: PostmanCollection
+    url: postman/useapi-google-flow-v1.json
+  - type: Documentation
+    url: https://useapi.net/docs/api-google-flow-v1
+  - type: Overlay
+    url: overlays/useapi-google-flow-v1-overlay.yaml
+- aid: useapi:flowmusic-v1
+  name: Flow Music API v1
+  description: REST API for Google Flow Music (Lyria 3 Pro) — generate complete vocal or instrumental songs
+    from a prompt, restyle with cover, remix lyrics, extend, replace and apply audio effects, plus lyrics-only
+    generation. Synchronous by default with opt-in async and replyUrl webhooks.
+  humanURL: https://useapi.net/docs/api-flowmusic-v1
+  baseURL: https://api.useapi.net/v1/flowmusic
+  tags:
+  - Music Generation
+  - Lyria
+  - Audio
+  properties:
+  - type: OpenAPI
+    url: openapi/useapi-flowmusic-v1-openapi.yml
+  - type: PostmanCollection
+    url: postman/useapi-flowmusic-v1.json
+  - type: Documentation
+    url: https://useapi.net/docs/api-flowmusic-v1
+  - type: Overlay
+    url: overlays/useapi-flowmusic-v1-overlay.yaml
+- aid: useapi:dreamina-v1
+  name: Dreamina API v1
+  description: REST API for ByteDance Dreamina (CapCut) — Seedance video models and Seedream image models,
+    with asset upload, image and video upscale, frame interpolation and a job scheduler.
+  humanURL: https://useapi.net/docs/api-dreamina-v1
+  baseURL: https://api.useapi.net/v1/dreamina
+  tags:
+  - Video Generation
+  - Image Generation
+  - Seedance
+  - Seedream
+  properties:
+  - type: OpenAPI
+    url: openapi/useapi-dreamina-v1-openapi.yml
+  - type: PostmanCollection
+    url: postman/useapi-dreamina-v1.json
+  - type: Documentation
+    url: https://useapi.net/docs/api-dreamina-v1
+  - type: Overlay
+    url: overlays/useapi-dreamina-v1-overlay.yaml
+- aid: useapi:kling-v1
+  name: Kling AI API v1
+  description: REST API for Kling AI by Kuaishou — Kling v3/O3, Turbo, 2.x and 1.x video models plus lip-sync
+    avatars, native audio, motion control, reusable elements and custom voice cloning.
+  humanURL: https://useapi.net/docs/api-kling-v1
+  baseURL: https://api.useapi.net/v1/kling
+  tags:
+  - Video Generation
+  - Kling
+  - Lip Sync
+  properties:
+  - type: OpenAPI
+    url: openapi/useapi-kling-v1-openapi.yml
+  - type: PostmanCollection
+    url: postman/useapi-kling-v1.json
+  - type: Documentation
+    url: https://useapi.net/docs/api-kling-v1
+  - type: Overlay
+    url: overlays/useapi-kling-v1-overlay.yaml
+- aid: useapi:minimax-v1
+  name: MiniMax / Hailuo AI API v1
+  description: REST API for MiniMax via Hailuo AI — Hailuo video models plus third-party video, a broad image
+    model catalog, MiniMax Speech 2.5 text-to-speech, Music 2.0, a MiniMax Agent endpoint and a free
+    MiniMax-Text-01 LLM endpoint usable for prompt safety screening.
+  humanURL: https://useapi.net/docs/api-minimax-v1
+  baseURL: https://api.useapi.net/v1/minimax
+  tags:
+  - Video Generation
+  - Image Generation
+  - Text to Speech
+  - MiniMax
+  properties:
+  - type: OpenAPI
+    url: openapi/useapi-minimax-v1-openapi.yml
+  - type: PostmanCollection
+    url: postman/useapi-minimax-v1.json
+  - type: Documentation
+    url: https://useapi.net/docs/api-minimax-v1
+  - type: Overlay
+    url: overlays/useapi-minimax-v1-overlay.yaml
+- aid: useapi:runwayml-v1
+  name: Runway API v1
+  description: REST API for Runway AI — Gen-4.x native video plus third-party video models routed through
+    Runway, a large image model catalog, Act Two character animation, lip sync, Frames, image and video
+    upscale, video extend and Kling motion control. The Runway Unlimited plan unlocks credit-free exploreMode.
+  humanURL: https://useapi.net/docs/api-runwayml-v1
+  baseURL: https://api.useapi.net/v1/runwayml
+  tags:
+  - Video Generation
+  - Image Generation
+  - Runway
+  - Upscaling
+  properties:
+  - type: OpenAPI
+    url: openapi/useapi-runwayml-v1-openapi.yml
+  - type: PostmanCollection
+    url: postman/useapi-runwayml-v1.json
+  - type: Documentation
+    url: https://useapi.net/docs/api-runwayml-v1
+  - type: Overlay
+    url: overlays/useapi-runwayml-v1-overlay.yaml
+- aid: useapi:pixverse-v2
+  name: PixVerse API v2
+  description: REST API for PixVerse.ai — native PixVerse video models plus third-party video, a broad image
+    catalog, music generation, text-to-speech across MiniMax and ElevenLabs voices, extend, upscale, lip sync,
+    modify and 150+ video effects.
+  humanURL: https://useapi.net/docs/api-pixverse-v2
+  baseURL: https://api.useapi.net/v2/pixverse
+  tags:
+  - Video Generation
+  - Image Generation
+  - Text to Speech
+  - PixVerse
+  properties:
+  - type: OpenAPI
+    url: openapi/useapi-pixverse-v2-openapi.yml
+  - type: PostmanCollection
+    url: postman/useapi-pixverse-v2.json
+  - type: Documentation
+    url: https://useapi.net/docs/api-pixverse-v2
+  - type: Overlay
+    url: overlays/useapi-pixverse-v2-overlay.yaml
+- aid: useapi:mureka-v1
+  name: Mureka API v1
+  description: REST API for Mureka AI by Kunlun Tech — generate songs from lyrics, descriptions or musical
+    styles across the Mureka V9, O2, V8 and V7.6 models, with vocal references, melody seeding, custom vocal
+    cloning, regenerate, extend and multi-speaker speech cloning.
+  humanURL: https://useapi.net/docs/api-mureka-v1
+  baseURL: https://api.useapi.net/v1/mureka
+  tags:
+  - Music Generation
+  - Voice Cloning
+  - Mureka
+  properties:
+  - type: OpenAPI
+    url: openapi/useapi-mureka-v1-openapi.yml
+  - type: PostmanCollection
+    url: postman/useapi-mureka-v1.json
+  - type: Documentation
+    url: https://useapi.net/docs/api-mureka-v1
+  - type: Overlay
+    url: overlays/useapi-mureka-v1-overlay.yaml
+- aid: useapi:tempolor-v1
+  name: TemPolor API v1
+  description: REST API for TemPolor royalty-free music generation — create soundtracks from text prompts,
+    custom lyrics or MIDI, with voice cloning, chord and BPM customization and export to mp3, wav and stems.
+  humanURL: https://useapi.net/docs/api-tempolor-v1
+  baseURL: https://api.useapi.net/v1/tempolor
+  tags:
+  - Music Generation
+  - Royalty Free
+  - TemPolor
+  properties:
+  - type: OpenAPI
+    url: openapi/useapi-tempolor-v1-openapi.yml
+  - type: PostmanCollection
+    url: postman/useapi-tempolor-v1.json
+  - type: Documentation
+    url: https://useapi.net/docs/api-tempolor-v1
+  - type: Overlay
+    url: overlays/useapi-tempolor-v1-overlay.yaml
+- aid: useapi:faceswap-v1
+  name: InsightFaceSwap API v1
+  description: REST API for the InsightFaceSwap Discord bot by Picsi.Ai — swap faces from source images onto
+    target images with HiFidelity mode, ARTIFY effects, age transformation, multi-face morphing, background
+    change and headshot generation.
+  humanURL: https://useapi.net/docs/api-faceswap-v1
+  baseURL: https://api.useapi.net/v1/faceswap
+  tags:
+  - Face Swap
+  - Image Generation
+  - InsightFaceSwap
+  properties:
+  - type: OpenAPI
+    url: openapi/useapi-faceswap-v1-openapi.yml
+  - type: PostmanCollection
+    url: postman/useapi-faceswap-v1.json
+  - type: Documentation
+    url: https://useapi.net/docs/api-faceswap-v1
+  - type: Overlay
+    url: overlays/useapi-faceswap-v1-overlay.yaml
+- aid: useapi:account-v2
+  name: useapi.net Account Management API v2
+  description: Cross-cutting account API for the useapi.net subscription itself — retrieve account details
+    and the configured service accounts, set the default replyUrl webhook applied to every API, and query
+    per-bot usage statistics broken down by config, endpoint, model, status code and tier. Statistics carry
+    5–15 minutes of latency and are retained for three months.
+  humanURL: https://useapi.net/docs/account-management
+  baseURL: https://api.useapi.net/v2/account
+  tags:
+  - Account Management
+  - Usage Statistics
+  - Webhooks
+  properties:
+  - type: Documentation
+    url: https://useapi.net/docs/account-management
+  - type: APIReference
+    url: https://useapi.net/docs/account-management/get-account-stats
+- aid: useapi:midjourney-v2
+  name: Midjourney REST API v2 (retired)
+  description: Reverse-engineered REST API for Midjourney, driven through a linked Discord account. Retired —
+    useapi.net discontinued Midjourney support on June 24, 2026. The v1 surface was previously sunset on
+    March 1, 2024 when all calls were routed to v2. The published OpenAPI 3.0.2 definitions remain available
+    on SwaggerHub and are archived here.
+  humanURL: https://useapi.net/docs/api-v2
+  baseURL: https://api.useapi.net/v2
+  x-status: retired
+  x-retired: '2026-06-24'
+  tags:
+  - Image Generation
+  - Midjourney
+  - Retired
+  properties:
+  - type: OpenAPI
+    url: openapi/useapi-midjourney-v2-openapi.yml
+  - type: OpenAPI
+    url: openapi/useapi-midjourney-v1-openapi.yml
+  - type: Documentation
+    url: https://useapi.net/docs/api-v2
 common:
 - type: Website
   url: https://useapi.net/
+- type: DeveloperPortal
+  url: https://useapi.net/docs/start-here
 - type: Documentation
   url: https://useapi.net/docs/subscription
+- type: APIReference
+  url: https://useapi.net/docs/api-google-flow-v1
+- type: GettingStarted
+  url: https://useapi.net/docs/start-here/setup-useapi
+- type: Support
+  url: https://useapi.net/docs/support
+- type: Blog
+  url: https://useapi.net/blog
 - type: GitHubOrganization
   url: https://github.com/useapi
+- type: Pricing
+  url: https://useapi.net/docs/subscription
+- type: SignUp
+  url: https://buy.stripe.com/8x2aEX4Bd8Vh9PMg4qeUU03
+- type: Login
+  url: https://billing.stripe.com/p/login/28obM4fZld0JaHu6oo
+- type: TermsOfService
+  url: https://useapi.net/docs/legal
+- type: PrivacyPolicy
+  url: https://useapi.net/docs/legal
+- type: Postman
+  url: https://www.postman.com/useapinet/workspace/useapi-net
+- type: PostmanCollection
+  url: postman/_index.yml
+- type: Sandbox
+  url: sandbox/useapi-sandbox.yml
+- type: WellKnown
+  url: well-known/useapi-well-known.yml
+- type: APICatalog
+  url: well-known/useapi-api-catalog.json
+- type: LLMsTxt
+  url: llms/useapi-llms.txt
+- type: Packages
+  url: packages/useapi-packages.yml
+- type: SDKs
+  url: packages/useapi-packages.yml
+- type: MCPServer
+  url: mcp/useapi-mcp.yml
+- type: Authentication
+  url: authentication/useapi-authentication.yml
+- type: Conventions
+  url: conventions/useapi-conventions.yml
+- type: RateLimits
+  url: conventions/useapi-conventions.yml
+- type: ErrorCatalog
+  url: errors/useapi-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/useapi-lifecycle.yml
+- type: Deprecation
+  url: lifecycle/useapi-lifecycle.yml
+- type: ChangeLog
+  url: changelog/useapi-changelog.yml
+- type: Conformance
+  url: conformance/useapi-conformance.yml
+- type: DataModel
+  url: data-model/useapi-data-model.yml
+- type: Webhooks
+  url: asyncapi/useapi-jobs-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DomainSecurity
+  url: security/useapi-domain-security.yml
+- type: ModelMatrix
+  url: https://useapi.net/model-matrix
+- type: Discord
+  url: https://discord.gg/w28uK3cnmF
+- type: Telegram
+  url: https://t.me/use_api
+- type: SwaggerHub
+  url: https://app.swaggerhub.com/apis/useapi/Midjourney_API_v2/1.0
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-27'
+  status: enriched
+  artifacts_added: 54
+  pass: local-v1

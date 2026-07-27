@@ -1,0 +1,98 @@
+generated: '2026-07-27'
+method: searched
+source:
+- https://useapi.net/llms.txt
+- https://useapi.net/docs/start-here/setup-useapi
+- https://useapi.net/docs/account-management
+- openapi/ (securitySchemes derived from the first-party Postman collections)
+docs: https://useapi.net/docs/start-here/setup-useapi
+
+summary:
+  types: [http]
+  http_schemes: [bearer]
+  oauth2_flows: []
+  api_key_in: []
+  model: single long-lived platform bearer token, no scopes
+  note: >-
+    One token authorizes every useapi.net API on the subscription. There is no OAuth, no OpenID
+    Connect, no per-API key, no scope system, and no documented rotation or revocation endpoint.
+    /.well-known/openid-configuration and /.well-known/oauth-authorization-server both return 404.
+
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  header: Authorization
+  format: 'Bearer user:<number>-<unique-string>'
+  example_shape: 'user:12345-abcdefghi'
+  description: >-
+    The useapi.net subscription token. Emailed to the subscriber on signup and retrieved from the
+    setup page. No expiry or rotation mechanism is documented.
+  rules:
+  - Use the complete token string, including the `user:` prefix and the alphanumeric suffix.
+  - Do not truncate to just the numeric portion.
+  - Do not URL-encode the token.
+  applies_to: all twelve captured APIs, all 298 operations
+  sources:
+  - openapi/useapi-dreamina-v1-openapi.yml
+  - openapi/useapi-faceswap-v1-openapi.yml
+  - openapi/useapi-flowmusic-v1-openapi.yml
+  - openapi/useapi-google-flow-v1-openapi.yml
+  - openapi/useapi-kling-v1-openapi.yml
+  - openapi/useapi-midjourney-v1-openapi.yml
+  - openapi/useapi-midjourney-v2-openapi.yml
+  - openapi/useapi-minimax-v1-openapi.yml
+  - openapi/useapi-mureka-v1-openapi.yml
+  - openapi/useapi-pixverse-v2-openapi.yml
+  - openapi/useapi-runwayml-v1-openapi.yml
+  - openapi/useapi-tempolor-v1-openapi.yml
+
+second_factor_credentials:
+  description: >-
+    Platform authentication is only half the story. Because useapi.net is a bring-your-own-account
+    fronting layer, calling a generation endpoint also requires credentials for the caller's own
+    account on the wrapped AI service, registered ahead of time through that service's
+    POST /accounts endpoint. These are session-grade secrets, not API keys.
+  credential_types:
+  - service: google-flow
+    credential: cookies copied from accounts.google.com
+    registered_via: POST /v1/google-flow/accounts
+    selector: email
+  - service: flowmusic
+    credential: Google sign-in session / refresh token
+    registered_via: POST /v1/flowmusic/accounts
+    selector: email
+  - service: dreamina, kling, minimax, mureka, pixverse, runwayml, tempolor
+    credential: site session cookies or account credentials
+    registered_via: POST /v1/<service>/accounts
+    selector: account (email on runwayml and flowmusic)
+  - service: faceswap
+    credential: Discord token + server id + channel id
+    registered_via: POST /v1/faceswap/account/{channel_id}
+    selector: channel_id
+  security_implication: >-
+    Handing full browser session cookies for a third-party consumer account to an intermediary is a
+    material trust decision, and the vendor's own Q&A acknowledges that automating these accounts
+    runs against the wrapped services' terms of use. Assess this before adoption; it is the defining
+    risk of the platform, not an incidental detail.
+
+failure_modes:
+- status: 401
+  meaning: Missing, malformed or invalid useapi.net token.
+  body: '{"error": "Unauthorized"}'
+- status: 402
+  meaning: Token is valid but the useapi.net subscription is expired.
+  body: '{"error": "Account has no subscription or subscription expired"}'
+- status: 403
+  meaning: Token is valid but the referenced resource belongs to a different useapi.net user.
+  body: '{"error": "Unauthorized access to user:12345 detected in character reference"}'
+- status: 596
+  meaning: >-
+    Non-standard status. The useapi.net token is fine but the linked upstream account's session or
+    refresh token was rejected. Delete and re-register that account.
+  body: '{"error": "Account user@email.com in error state: refresh token rejected", "code": 596}'
+
+related:
+  scopes: none — no OAuth scope surface exists, so no scopes/ artifact is emitted
+  conventions: conventions/useapi-conventions.yml
+  errors: errors/useapi-problem-types.yml

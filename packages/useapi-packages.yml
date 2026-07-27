@@ -1,0 +1,101 @@
+generated: '2026-07-27'
+method: searched
+source: >-
+  npm registry search, PyPI, and the github.com/useapi organization. Registries probed with no
+  first-party useapi.net result: PyPI (useapi, useapi-net), Maven Central, NuGet, pkg.go.dev,
+  RubyGems, Packagist, crates.io.
+summary:
+  official_client_libraries: 2
+  official_example_repositories: 11
+  note: >-
+    useapi.net does not ship a generated SDK for its ten current APIs. The only published client
+    libraries are the TypeScript and Python clients for the now-retired Midjourney API, both built
+    from the SwaggerHub OpenAPI definitions. For the current APIs the vendor's own distribution
+    channel is per-service runnable example repositories on GitHub plus the Postman collections
+    indexed in /.well-known/api-catalog.
+packages:
+- language: typescript
+  registry: npm
+  name: "@useapi/midjourney-api"
+  url: https://www.npmjs.com/package/@useapi/midjourney-api
+  install: npm install @useapi/midjourney-api
+  version: 1.0.4
+  published: '2023-11-03'
+  repository: https://github.com/useapi/midjourney-api
+  official: true
+  covers: useapi:midjourney-v2
+  status: unmaintained
+  note: >-
+    First-party (npm publisher "useapi.net"). Generated from the SwaggerHub OpenAPI. Covers the
+    Midjourney API, which useapi.net discontinued on 2026-06-24.
+- language: python
+  registry: pypi
+  name: midjourney-api-client
+  url: https://pypi.org/project/midjourney-api-client/
+  install: pip install midjourney-api-client
+  repository: https://github.com/useapi/midjourney-api-client
+  official: true
+  covers: useapi:midjourney-v2
+  status: unmaintained
+  note: First-party Python client generated from the SwaggerHub OpenAPI. Same retirement caveat.
+third_party:
+- language: javascript
+  registry: npm
+  name: n8n-nodes-useapi
+  url: https://www.npmjs.com/package/n8n-nodes-useapi
+  official: false
+  publisher: lvalics
+  note: >-
+    Community n8n nodes for useapi.net, referenced from the vendor's own Q&A page
+    (https://useapi.net/docs/questions-and-answers) as the recommended n8n integration.
+- language: javascript
+  registry: npm
+  name: n8n-nodes-useapi-net
+  url: https://www.npmjs.com/package/n8n-nodes-useapi-net
+  official: false
+  publisher: arielletolome
+example_repositories:
+- name: useapi/examples
+  url: https://github.com/useapi/examples
+  language: javascript
+  description: Collection of examples and how-tos across the experimental APIs.
+- name: useapi/google-flow-api
+  url: https://github.com/useapi/google-flow-api
+  language: javascript
+  description: Runnable Node.js examples for the Google Flow API.
+- name: useapi/flowmusic-api
+  url: https://github.com/useapi/flowmusic-api
+  language: javascript
+  description: Code examples for the Flow Music API.
+- name: useapi/dreamina-api
+  url: https://github.com/useapi/dreamina-api
+  language: javascript
+  description: Code examples for the Dreamina (CapCut) API.
+- name: useapi/kling-api
+  url: https://github.com/useapi/kling-api
+  language: javascript
+  description: Runnable examples for the Kling AI API.
+- name: useapi/minimax-api
+  url: https://github.com/useapi/minimax-api
+  language: javascript
+  description: Runnable examples for the MiniMax (Hailuo) API.
+- name: useapi/runway-api
+  url: https://github.com/useapi/runway-api
+  language: javascript
+  description: Runway API examples.
+- name: useapi/pixverse-api
+  url: https://github.com/useapi/pixverse-api
+  language: javascript
+  description: Runnable Node.js examples for the PixVerse API.
+- name: useapi/mureka-api
+  url: https://github.com/useapi/mureka-api
+  language: javascript
+  description: Runnable Node.js examples for the Mureka API.
+- name: useapi/seedance-2-api
+  url: https://github.com/useapi/seedance-2-api
+  language: javascript
+  description: Runs Seedance 2.0 four ways across PixVerse, Runway, Dreamina and MiniMax.
+- name: useapi/ai-music-comparison
+  url: https://github.com/useapi/ai-music-comparison
+  language: javascript
+  description: One brief across five AI music models.

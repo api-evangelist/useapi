@@ -1,0 +1,1407 @@
+# Derived from the first-party useapi.net Postman collection: https://useapi.net/assets/postman/mureka-v1.json
+# method: derived  |  no operation, path, parameter or example was invented.
+openapi: 3.1.0
+info:
+  title: Mureka API v1 by useapi.net
+  version: 1.0.0
+  description: 'Full documentation available at [useapi.net](http://useapi.net/docs/api-mureka-v1/).
+
+
+    **New Features:**
+
+    - V9 model (mureka-9) - now the default model
+
+    - Async job support with replyUrl webhooks
+
+    - GET /jobs and GET /jobs/<jobId> endpoints
+
+    - Browserless account setup with token + refresh_token on POST /accounts
+
+
+    ---
+
+    **Updated:** July 14, 2026'
+  contact:
+    name: useapi.net support
+    email: support@useapi.net
+    url: https://useapi.net/docs/support
+  x-derived-from: https://useapi.net/assets/postman/mureka-v1.json
+externalDocs:
+  description: mureka documentation
+  url: https://useapi.net/docs/api-mureka-v1
+servers:
+- url: https://api.useapi.net/v1/mureka
+security:
+- bearerAuth: []
+tags:
+- name: mureka
+  description: Mureka API v1 by useapi.net
+paths:
+  /accounts:
+    get:
+      operationId: getAccounts
+      summary: accounts
+      description: '## [Retrieve Mureka API accounts configuration.](https://useapi.net/docs/api-mureka-v1/get-mureka-accounts)'
+      tags:
+      - mureka
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    post:
+      operationId: postAccounts
+      summary: accounts
+      description: '## [Configure Mureka API account](https://useapi.net/docs/api-mureka-v1/post-mureka-accounts)
+
+
+        Two ways to connect — send **one** body.
+
+
+        **Email + password (recommended):** `{ "email", "password" }`. The API stores the password and logs back in automatically
+        whenever Mureka ends the session — no manual re-linking. Create a dedicated Mureka account with email + password via
+        the guided setup page. Reports `authMode: "email"`.
+
+
+        **Session token:** `{ "token", "refresh_token" }` copied from Mureka at sign-in. `refresh_token` is optional but recommended
+        (omit it for a token-only account: ~30 days, no auto-refresh, then re-link). Reports `authMode: "token"`.'
+      tags:
+      - mureka
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+            example:
+              email: you@example.com
+              password: your-mureka-password
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /accounts/{account}:
+    get:
+      operationId: getAccountsByAccount
+      summary: accounts/<account>
+      description: '## [Retrieve Mureka API account configuration for account](https://useapi.net/docs/api-mureka-v1/get-mureka-accounts-account)'
+      tags:
+      - mureka
+      parameters:
+      - name: account
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    delete:
+      operationId: deleteAccountsByAccount
+      summary: accounts/<account>
+      description: '## [Delete Mureka API account](https://useapi.net/docs/api-mureka-v1/del-mureka-accounts-account)'
+      tags:
+      - mureka
+      parameters:
+      - name: account
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /jobs/:
+    get:
+      operationId: getJobs
+      summary: jobs
+      description: '## [List running jobs for an account](https://useapi.net/docs/api-mureka-v1/get-mureka-jobs)'
+      tags:
+      - mureka
+      parameters:
+      - name: account
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional when only one account configured. Required if multiple accounts.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /jobs/{jobId}:
+    get:
+      operationId: getJobsByJobid
+      summary: jobs/<jobId>
+      description: '## [Get job status and results](https://useapi.net/docs/api-mureka-v1/get-mureka-jobs-jobid)'
+      tags:
+      - mureka
+      parameters:
+      - name: jobId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /profile/:
+    get:
+      operationId: getProfile
+      summary: profile
+      description: '## [Retrieve your mureka.ai account information (credits etc)](https://useapi.net/docs/api-mureka-v1/get-mureka-profile)'
+      tags:
+      - mureka
+      parameters:
+      - name: 'account '
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional, when only one account configured. However, if you have multiple accounts configured, this parameter
+          becomes required
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                account:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /music/:
+    get:
+      operationId: getMusic
+      summary: music
+      description: '## [Retrieve generated music](https://useapi.net/docs/api-mureka-v1/get-mureka-music)'
+      tags:
+      - mureka
+      parameters:
+      - name: account
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional, when only one account configured. However, if you have multiple accounts configured, this parameter
+          becomes required
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, specify the number of videos to return. Default 30
+      - name: last_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, specify the last_id from previous response to get next page
+      - name: expand
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Optional, set to true to retrieve complete song details. Default: false'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                account:
+                  type: string
+                expand:
+                  type: string
+                last_id:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /music/{song_id}:
+    get:
+      operationId: getMusicBySongid
+      summary: music/<song_id>
+      description: '## [Retrieve generated song details](https://useapi.net/docs/api-mureka-v1/get-mureka-music-song_id)'
+      tags:
+      - mureka
+      parameters:
+      - name: song_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, specify the number of videos to return. Default 30
+      - name: last_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, specify the last_id from previous response to get next page
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    delete:
+      operationId: deleteMusicBySongid
+      summary: music/<song_id>
+      description: '## [Delete generated song](https://useapi.net/docs/api-mureka-v1/del-mureka-music-song_id)'
+      tags:
+      - mureka
+      parameters:
+      - name: song_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, specify the number of videos to return. Default 30
+      - name: last_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, specify the last_id from previous response to get next page
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /music/create:
+    post:
+      operationId: postMusicCreate
+      summary: music/create
+      description: '## [Create a music using AI-generated lyrics](https://useapi.net/docs/api-mureka-v1/post-mureka-music-create)'
+      tags:
+      - mureka
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                prompt:
+                  type: string
+                account:
+                  type: string
+                model:
+                  type: string
+                async:
+                  type: string
+                replyUrl:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /music/create-advanced:
+    post:
+      operationId: postMusicCreateAdvanced
+      summary: music/create-advanced
+      description: '## [Create a music using custom lyrics, styles, vocals and reference song](https://useapi.net/docs/api-mureka-v1/post-mureka-music-create-advanced)'
+      tags:
+      - mureka
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                lyrics:
+                  type: string
+                account:
+                  type: string
+                title:
+                  type: string
+                desc:
+                  type: string
+                ref_id:
+                  type: string
+                vocal_id:
+                  type: string
+                motif_id:
+                  type: string
+                model:
+                  type: string
+                async:
+                  type: string
+                replyUrl:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /music/create-instrumental:
+    post:
+      operationId: postMusicCreateInstrumental
+      summary: music/create-instrumental
+      description: '## [Create a instrumental music](https://useapi.net/docs/api-mureka-v1/post-mureka-music-create-instrumental)'
+      tags:
+      - mureka
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                prompt:
+                  type: string
+                account:
+                  type: string
+                model:
+                  type: string
+                ref_id:
+                  type: string
+                title:
+                  type: string
+                async:
+                  type: string
+                replyUrl:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /music/extend:
+    post:
+      operationId: postMusicExtend
+      summary: music/extend
+      description: '## [Extend song](https://useapi.net/docs/api-mureka-v1/post-mureka-music-extend)'
+      tags:
+      - mureka
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                song_id:
+                  type: string
+                lyrics:
+                  type: string
+                async:
+                  type: string
+                replyUrl:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /music/regenerate:
+    post:
+      operationId: postMusicRegenerate
+      summary: music/regenerate
+      description: '## [Regenerate song](https://useapi.net/docs/api-mureka-v1/post-mureka-music-regenerate)'
+      tags:
+      - mureka
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                song_id:
+                  type: string
+                start_milliseconds:
+                  type: string
+                async:
+                  type: string
+                replyUrl:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /music/video-generate:
+    post:
+      operationId: postMusicVideoGenerate
+      summary: music/video-generate
+      description: '## [Create an AI-generated video for your song](https://useapi.net/docs/api-mureka-v1/post-mureka-music-video-generate)'
+      tags:
+      - mureka
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                song_id:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /music/lyrics-generate:
+    post:
+      operationId: postMusicLyricsGenerate
+      summary: music/lyrics-generate
+      description: '## [AI-generated lyrics from your prompt](https://useapi.net/docs/api-mureka-v1/post-mureka-music-lyrics-generate)'
+      tags:
+      - mureka
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                prompt:
+                  type: string
+                account:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /music/download:
+    post:
+      operationId: postMusicDownload
+      summary: music/download
+      description: '## [Download song instrumentals&amp;stems and license](https://useapi.net/docs/api-mureka-v1/post-mureka-music-download)'
+      tags:
+      - mureka
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                song_id:
+                  type: string
+                type:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /music/vocals/:
+    get:
+      operationId: getMusicVocals
+      summary: music/vocals
+      description: '## [Retrieve a list of vocal samples including the ones you uploaded](https://useapi.net/docs/api-mureka-v1/get-mureka-music-vocals)'
+      tags:
+      - mureka
+      parameters:
+      - name: account
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional, when only one account configured. However, if you have multiple accounts configured, this parameter
+          becomes required
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, specify the number of videos to return. Default 30
+      - name: last_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, specify the last_id from previous response to get next page
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                account:
+                  type: string
+                last_id:
+                  type: string
+                mine:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /music/refs/:
+    get:
+      operationId: getMusicRefs
+      summary: music/refs
+      description: '## [Retrieve songs for reference](https://useapi.net/docs/api-mureka-v1/get-mureka-music-refs)'
+      tags:
+      - mureka
+      parameters:
+      - name: account
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional, when only one account configured. However, if you have multiple accounts configured, this parameter
+          becomes required
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, specify the number of videos to return. Default 30
+      - name: last_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, specify the last_id from previous response to get next page
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                account:
+                  type: string
+                last_id:
+                  type: string
+                mood:
+                  type: string
+                genre:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /music/moods-and-genres/:
+    get:
+      operationId: getMusicMoodsAndGenres
+      summary: music/moods-and-genres
+      description: '## [Retrieve moods and genres](https://useapi.net/docs/api-mureka-v1/get-mureka-music-moods-and-genres)'
+      tags:
+      - mureka
+      parameters:
+      - name: account
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional, when only one account configured. However, if you have multiple accounts configured, this parameter
+          becomes required
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, specify the number of videos to return. Default 30
+      - name: last_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, specify the last_id from previous response to get next page
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                account:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /files/:
+    get:
+      operationId: getFiles
+      summary: files
+      description: '## [Retrieve your reference tracks](https://useapi.net/docs/api-mureka-v1/get-mureka-files)'
+      tags:
+      - mureka
+      parameters:
+      - name: account
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional, when only one account configured. However, if you have multiple accounts configured, this parameter
+          becomes required
+      - name: last_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional,  use it to retrieve the next page of data
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    post:
+      operationId: postFiles
+      summary: files • use Body » binary to upload .mp3
+      description: '## [Upload mp3 audio track to your music collection](https://useapi.net/docs/api-mureka-v1/post-mureka-files)'
+      tags:
+      - mureka
+      parameters:
+      - name: account
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional, when only one account configured. However, if you have multiple accounts configured, this parameter
+          becomes required
+      - name: title
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Required
+      - name: genre
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Required, provide the genre of your track. See supported values using GET /music/moods-and-genres
+      - name: mood
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Required, provide the mood of your track. See supported values using GET /music/moods-and-genres
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    delete:
+      operationId: deleteFiles
+      summary: files
+      description: '## [Delete track](https://useapi.net/docs/api-mureka-v1/del-mureka-files)'
+      tags:
+      - mureka
+      parameters:
+      - name: account
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional, when only one account configured. However, if you have multiple accounts configured, this parameter
+          becomes required
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Required, to see full list of uploaded tracks use GET /files.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /files/youtube/:
+    get:
+      operationId: getFilesYoutube
+      summary: files/youtube
+      description: '## [Retrieve soundtrack from YouTube url](https://useapi.net/docs/api-mureka-v1/get-mureka-files-youtube)'
+      tags:
+      - mureka
+      parameters:
+      - name: account
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional, when only one account configured. However, if you have multiple accounts configured, this parameter
+          becomes required
+      - name: url
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Required, provide the YouTube url link for which you want to retrieve the soundtrack.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /files/motif/:
+    post:
+      operationId: postFilesMotif
+      summary: files/motif • use Body » binary to upload .mp3
+      description: '## [Upload mp3 melody (motif) track](https://useapi.net/docs/api-mureka-v1/post-mureka-files-motif)'
+      tags:
+      - mureka
+      parameters:
+      - name: account
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional, when only one account configured. However, if you have multiple accounts configured, this parameter
+          becomes required
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /files/vocal/:
+    post:
+      operationId: postFilesVocal
+      summary: files/vocal • use Body » binary to upload .mp3
+      description: '## [Upload mp3 vocal](https://useapi.net/docs/api-mureka-v1/post-mureka-files-vocal)'
+      tags:
+      - mureka
+      parameters:
+      - name: account
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional, when only one account configured. However, if you have multiple accounts configured, this parameter
+          becomes required
+      - name: title
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Requred name of your vocal
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    delete:
+      operationId: deleteFilesVocal
+      summary: files/vocal
+      description: '## [Delete vocal](https://useapi.net/docs/api-mureka-v1/del-mureka-files-vocal)'
+      tags:
+      - mureka
+      parameters:
+      - name: account
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional, when only one account configured. However, if you have multiple accounts configured, this parameter
+          becomes required
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Required, to see full list of uploaded vocals use GET music/vocals/?mine=true
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /speech/:
+    get:
+      operationId: getSpeech
+      summary: speech
+      description: '## [Retrieve generated speech](https://useapi.net/docs/api-mureka-v1/get-mureka-speech)'
+      tags:
+      - mureka
+      parameters:
+      - name: account
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional, when only one account configured. However, if you have multiple accounts configured, this parameter
+          becomes required
+      - name: last_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional. Use it to retrieve the next page of data. Set its value to the last_id returned in the previous
+          response.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    delete:
+      operationId: deleteSpeech
+      summary: speech
+      description: '## [Delete speech](https://useapi.net/docs/api-mureka-v1/del-mureka-speech)'
+      tags:
+      - mureka
+      parameters:
+      - name: account
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional when only one account configured. However, if you have multiple accounts configured, this parameter
+          becomes required.
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Required. The ID of the speech to delete. Get speech IDs from GET /speech.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /speech:
+    post:
+      operationId: postSpeech
+      summary: speech
+      description: '## [Generate speech](https://useapi.net/docs/api-mureka-v1/post-mureka-speech)'
+      tags:
+      - mureka
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                account:
+                  type: string
+                title:
+                  type: string
+                text:
+                  type: string
+                voice_id:
+                  type: string
+                conversation:
+                  type: string
+                async:
+                  type: string
+                replyUrl:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /speech/voices/:
+    get:
+      operationId: getSpeechVoices
+      summary: speech/voices
+      description: '## [Retrieve speech voices](https://useapi.net/docs/api-mureka-v1/get-mureka-speech-voices)'
+      tags:
+      - mureka
+      parameters:
+      - name: account
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional, when only one account configured. However, if you have multiple accounts configured, this parameter
+          becomes required
+      - name: last_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional. Use it to retrieve the next page of data. Set its value to the last_id returned in the previous
+          response.
+      - name: cloned
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Optional. Filter voices by type. Set to true for only cloned voices, false for built-in voices, or omit
+          for all voices. Supported values: true, false.'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /speech/voice/:
+    post:
+      operationId: postSpeechVoice
+      summary: speech/voice • use Body » binary to upload .mp3
+      description: '## [Clone voice for speech](https://useapi.net/docs/api-mureka-v1/post-mureka-speech-voice)'
+      tags:
+      - mureka
+      parameters:
+      - name: account
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional, when only one account configured. However, if you have multiple accounts configured, this parameter
+          becomes required
+      - name: title
+        in: query
+        required: true
+        schema:
+          type: string
+        description: 'Required. Voice title. Length: 1-50 characters.'
+      - name: desc
+        in: query
+        required: true
+        schema:
+          type: string
+        description: 'Required. Voice description. Length: 1-500 characters.'
+      - name: lang
+        in: query
+        required: true
+        schema:
+          type: string
+        description: 'Required. Language code for the voice. Supported values: en (English), zh-Hans (Simplified Chinese),
+          zh-Hant (Traditional Chinese), ja (Japanese), ko (Korean), es (Spanish), pt (Portuguese), de (German), fr (French),
+          it (Italian), ru (Russian).'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    delete:
+      operationId: deleteSpeechVoice
+      summary: speech/voice
+      description: '## [Delete speech voice](https://useapi.net/docs/api-mureka-v1/del-mureka-speech-voice)'
+      tags:
+      - mureka
+      parameters:
+      - name: account
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional when only one account configured. However, if you have multiple accounts configured, this parameter
+          becomes required.
+      - name: voice_id
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Required. The ID of the voice to delete. Get voice IDs from GET /speech/voices.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'useapi.net API token. Header: `Authorization: Bearer user:<number>-<unique-string>`. Use the complete
+        token including the `user:` prefix.'

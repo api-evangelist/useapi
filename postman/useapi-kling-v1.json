@@ -1,0 +1,3193 @@
+{
+  "info": {
+    "_postman_id": "9cb6c7d8-6b22-47cc-bbc5-8f9668483996",
+    "name": "Kling API v1 by useapi.net",
+    "description": "Full documentation available at [useapi.net](https://useapi.net/docs/api-kling-v1/).\n\n---\n**Updated:** July 20, 2026",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "updated": "2026-07-20",
+    "_exporter_id": "29112081"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/accounts",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "accounts"
+          ]
+        },
+        "description": "[Retrieve Kling accounts information.](https://useapi.net/docs/api-kling-v1/get-kling-accounts)"
+      },
+      "response": []
+    },
+    {
+      "name": "accounts/<email>",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/accounts/<email>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "accounts",
+            "<email>"
+          ]
+        },
+        "description": "[Retrieve Kling API account configuration and balance.](https://useapi.net/docs/api-kling-v1/get-kling-accounts-email)"
+      },
+      "response": []
+    },
+    {
+      "name": "accounts",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Required, please refer to https://useapi.net/docs/start-here/setup-kling",
+              "type": "text",
+              "uuid": "afdc1c9a-230f-42db-9977-e59b93ab1ec9"
+            },
+            {
+              "key": "password",
+              "value": "",
+              "description": "Required, please refer to https://useapi.net/docs/start-here/setup-kling",
+              "type": "text",
+              "uuid": "205c80c0-9655-4592-96b6-ac924de86008"
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Required, supported values from 1 to 50",
+              "type": "text",
+              "uuid": "0ec4e28a-0df0-4d2a-91e8-9a0e09a5679b"
+            },
+            {
+              "key": "passToken",
+              "value": "",
+              "description": "Optional. Supply passToken + did + userId together (or none), only when the account hits the Kling login slider captcha. See https://useapi.net/docs/start-here/setup-kling",
+              "type": "text",
+              "uuid": "b1f2a3c4-1111-4a22-8b33-aa0000000001"
+            },
+            {
+              "key": "did",
+              "value": "",
+              "description": "Optional. Supply with passToken + userId (all three). See https://useapi.net/docs/start-here/setup-kling",
+              "type": "text",
+              "uuid": "b1f2a3c4-2222-4a22-8b33-aa0000000002"
+            },
+            {
+              "key": "userId",
+              "value": "",
+              "description": "Optional. Supply with passToken + did (all three). See https://useapi.net/docs/start-here/setup-kling",
+              "type": "text",
+              "uuid": "b1f2a3c4-3333-4a22-8b33-aa0000000003"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/accounts",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "accounts"
+          ]
+        },
+        "description": "[Add or update Kling account.](https://useapi.net/docs/api-kling-v1/post-kling-accounts)"
+      },
+      "response": []
+    },
+    {
+      "name": "accounts/<email>",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/accounts/<email>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "accounts",
+            "<email>"
+          ]
+        },
+        "description": "[Delete Kling account.](https://useapi.net/docs/api-kling-v1/del-kling-accounts-email)"
+      },
+      "response": []
+    },
+    {
+      "name": "scheduler",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/scheduler",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "scheduler"
+          ]
+        },
+        "description": "[Retrieve running tasks](https://useapi.net/docs/api-kling-v1/get-kling-scheduler)"
+      },
+      "response": []
+    },
+    {
+      "name": "scheduler/available",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/scheduler/available",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "scheduler",
+            "available"
+          ]
+        },
+        "description": "[Retrieve available capacity](https://useapi.net/docs/api-kling-v1/get-kling-scheduler-available)"
+      },
+      "response": []
+    },
+    {
+      "name": "scheduler/<task_id>",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/scheduler/<task_id>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "scheduler",
+            "<task_id>"
+          ]
+        },
+        "description": "[Cancel a running task](https://useapi.net/docs/api-kling-v1/del-kling-scheduler-task_id)"
+      },
+      "response": []
+    },
+    {
+      "name": "tasks",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/tasks",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "tasks"
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "pageSize",
+              "value": "",
+              "description": "Optional page size",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "createdBefore",
+              "value": "",
+              "description": "Optional before date (date as a  number of milliseconds elapsed since the epoch, which is defined as the midnight at the beginning of January 1, 1970, UTC)",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "createdAfter",
+              "value": "",
+              "description": "Optional after date (date as a  number of milliseconds elapsed since the epoch, which is defined as the midnight at the beginning of January 1, 1970, UTC)",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "contentType",
+              "value": "video",
+              "description": "Optional task type. Valid values: video,image,audio",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "[Retrieve Kling tasks](https://useapi.net/docs/api-kling-v1/get-kling-tasks)"
+      },
+      "response": []
+    },
+    {
+      "name": "tasks/<task_id>",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/tasks/<task_id>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "tasks",
+            "<task_id>"
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "[Retrieve Kling task](https://useapi.net/docs/api-kling-v1/get-kling-tasks-task_id)"
+      },
+      "response": []
+    },
+    {
+      "name": "tasks/<task_id>",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/tasks/<task_id>?email=",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "tasks",
+            "<task_id>"
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+            }
+          ]
+        },
+        "description": "[Delete Kling task](https://useapi.net/docs/api-kling-v1/del-kling-tasks-task_id)"
+      },
+      "response": []
+    },
+    {
+      "name": "tts/voices",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/tts/voices",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "tts",
+            "voices"
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": null,
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "[Retrieve list of TTS (text-to-speach) voices](https://useapi.net/docs/api-kling-v1/get-kling-tts-voices)"
+      },
+      "response": []
+    },
+    {
+      "name": "tts/create",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "uuid": "5f6e0bb5-d40d-42e6-a71b-8a78fece7d70",
+              "disabled": true
+            },
+            {
+              "key": "speakerId",
+              "value": "",
+              "description": "Required, use GET tts/voices to retrieve list of supported voices.",
+              "type": "text",
+              "uuid": "1942a2a9-2c1c-4ecb-92c9-c52c46be3d00"
+            },
+            {
+              "key": "text",
+              "value": "",
+              "description": "Required, text to be converted to speech. Maximum 150 characters.",
+              "type": "text"
+            },
+            {
+              "key": "speed",
+              "value": "",
+              "description": "Optional, supported range: 0.8-2",
+              "type": "text",
+              "uuid": "7ed773f5-3202-4042-ac9b-024d31fc7490",
+              "disabled": true
+            },
+            {
+              "key": "emotion",
+              "value": "",
+              "description": "Optional emotion, see GET tts/voices ",
+              "type": "text",
+              "uuid": "9781069a-e014-48d2-8333-019371a48ce6",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/tts/create",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "tts",
+            "create"
+          ]
+        },
+        "description": "[Generate speech from text](https://useapi.net/docs/api-kling-v1/post-kling-tts-create)"
+      },
+      "response": []
+    },
+    {
+      "name": "avatars",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/avatars?email=",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "avatars"
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+            }
+          ]
+        },
+        "description": "[Retrieve avatars](https://useapi.net/docs/api-kling-v1/get-kling-avatars)"
+      },
+      "response": []
+    },
+    {
+      "name": "avatars",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "imageUrl",
+              "value": "",
+              "description": "Required, URL of the avatar image. Upload via POST /assets.",
+              "type": "text"
+            },
+            {
+              "key": "nickname",
+              "value": "",
+              "description": "Optional, display name for the avatar. Max 30 chars. AI auto-generates if not provided.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "prompt",
+              "value": "",
+              "description": "Optional, description/prompt for the avatar. Max 2000 chars. Used as default when generating avatar videos. AI auto-generates if not provided.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "scene",
+              "value": "",
+              "description": "Optional, avatar use case. Supported: all, social_media, entertainment, advertising_marketing (default), business, education, virtual_idol. AI auto-detects if not provided.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "ttsSpeaker",
+              "value": "",
+              "description": "Optional, TTS speaker ID. Use GET /tts/voices for available speakers. AI recommends if not provided.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "ttsSpeed",
+              "value": "",
+              "description": "Optional, speech speed. Range: 0.8-2.0. Default: 1.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "ttsEmotionKey",
+              "value": "",
+              "description": "Optional, speech emotion. Supported: neutral (default), happy, angry, sad, fearful, disgusted, surprised.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/avatars",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "avatars"
+          ]
+        },
+        "description": "[Create Avatar 2.0](https://useapi.net/docs/api-kling-v1/post-kling-avatars)\n\nMost fields are optional and will be automatically populated using AI if not provided."
+      },
+      "response": []
+    },
+    {
+      "name": "avatars/video",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "avatarId",
+              "value": "",
+              "description": "Avatar ID from GET /avatars. Provide either avatarId OR imageUrl, not both.",
+              "type": "text"
+            },
+            {
+              "key": "imageUrl",
+              "value": "",
+              "description": "Direct URL to an avatar image. Provide either avatarId OR imageUrl, not both.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "audioUrl",
+              "value": "",
+              "description": "URL of pre-recorded audio file. Provide either audioUrl OR text, not both.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "text",
+              "value": "",
+              "description": "Text to convert to speech. Max 5000 chars. Requires speakerId. Provide either audioUrl OR text, not both.",
+              "type": "text"
+            },
+            {
+              "key": "speakerId",
+              "value": "",
+              "description": "Required when using text. Use GET /tts/voices for available speakers.",
+              "type": "text"
+            },
+            {
+              "key": "speed",
+              "value": "",
+              "description": "Optional, speech speed. Range: 0.8-2.0. Default: 1.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "emotion",
+              "value": "",
+              "description": "Optional, speech emotion. Supported: neutral (default), happy, angry, sad, fearful, disgusted, surprised.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "prompt",
+              "value": "",
+              "description": "Optional, avatar behavior/appearance description. Max 2000 chars. Default: Natural speaking.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "mode",
+              "value": "",
+              "description": "Optional, video generation mode. Supported: std (default), pro.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional, max concurrent jobs. Range: 1-50.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional, callback URL for generation progress/result.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional, reference identifier for callback.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/avatars/video",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "avatars",
+            "video"
+          ]
+        },
+        "description": "[Generate Avatar 2.0 video](https://useapi.net/docs/api-kling-v1/post-kling-avatars-video)\n\nSupports both pre-recorded audio (audioUrl) and text-to-speech (text + speakerId)."
+      },
+      "response": []
+    },
+    {
+      "name": "avatars/<avatarId>",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/avatars/<avatarId>?email=",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "avatars",
+            "<avatarId>"
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+            }
+          ]
+        },
+        "description": "[Delete Avatar 2.0](https://useapi.net/docs/api-kling-v1/del-kling-avatars-avatarId)"
+      },
+      "response": []
+    },
+    {
+      "name": "elements",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/elements?email=",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "elements"
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+            }
+          ]
+        },
+        "description": "[Retrieve elements list](https://useapi.net/docs/api-kling-v1/get-kling-elements)"
+      },
+      "response": []
+    },
+    {
+      "name": "elements/tags",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/elements/tags?email=",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "elements",
+            "tags"
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+            }
+          ]
+        },
+        "description": "[Retrieve element tags](https://useapi.net/docs/api-kling-v1/get-kling-elements-tags)"
+      },
+      "response": []
+    },
+    {
+      "name": "elements/voices",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/elements/voices?email=",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "elements",
+            "voices"
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+            }
+          ]
+        },
+        "description": "[Retrieve element voices](https://useapi.net/docs/api-kling-v1/get-kling-elements-voices)"
+      },
+      "response": []
+    },
+    {
+      "name": "elements/<elementId>",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/elements/<elementId>?email=",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "elements",
+            "<elementId>"
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+            }
+          ]
+        },
+        "description": "[Retrieve element by ID](https://useapi.net/docs/api-kling-v1/get-kling-elements-elementId)"
+      },
+      "response": []
+    },
+    {
+      "name": "elements",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "name",
+              "value": "",
+              "description": "Required, base name for the element. Max 15 chars. A 5-char random suffix is auto-appended.",
+              "type": "text"
+            },
+            {
+              "key": "coverImage",
+              "value": "",
+              "description": "Required, URL of the primary image (or video for VIDEO type). Upload via POST /assets.",
+              "type": "text"
+            },
+            {
+              "key": "type",
+              "value": "",
+              "description": "Optional, element type. Supported values: IMAGE(default), VIDEO. VIDEO elements use video clips as character references.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "voice",
+              "value": "",
+              "description": "Optional, voice for VIDEO elements with character tag. Use official voice name/ID from GET /elements/voices, or a video URL to extract custom voice.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "description",
+              "value": "",
+              "description": "Optional, text description. Max 100 chars. Auto-generated from image if not provided.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "tag",
+              "value": "",
+              "description": "Optional, category tag. Use GET /elements/tags for available tags. Auto-detected if not provided.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "extraImage1",
+              "value": "",
+              "description": "Optional, URL of first additional view. Cannot use with generateViews.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "extraImage2",
+              "value": "",
+              "description": "Optional, URL of second additional view. Cannot use with generateViews.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "extraImage3",
+              "value": "",
+              "description": "Optional, URL of third additional view. Cannot use with generateViews.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "generateViews",
+              "value": "",
+              "description": "Optional, set to true to have AI generate 3 multi-angle variations. Creates up to 3 separate elements. Takes up to 60s. Cannot use with extraImage1/2/3.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/elements",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "elements"
+          ]
+        },
+        "description": "[Create element](https://useapi.net/docs/api-kling-v1/post-kling-elements)\n\nElements are saved character/object references for POST /images/omni and POST /videos/omni using @element_N syntax."
+      },
+      "response": []
+    },
+    {
+      "name": "elements/<elementId>",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/elements/<elementId>?email=",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "elements",
+            "<elementId>"
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+            }
+          ]
+        },
+        "description": "[Delete element](https://useapi.net/docs/api-kling-v1/del-kling-elements-elementId)"
+      },
+      "response": []
+    },
+    {
+      "name": "assets",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/assets",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "assets"
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "pageSize",
+              "value": "",
+              "description": "Optional page size",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "pageNum",
+              "value": "",
+              "description": "Optional page number",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "contentType",
+              "value": null,
+              "description": "Optional asset type, supported values: video, image, audio",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "sort",
+              "value": "",
+              "description": "Optional sort direction by creation time: asc or desc (default: desc).",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "[Retrieve generated assets](https://useapi.net/docs/api-kling-v1/get-kling-assets)"
+      },
+      "response": []
+    },
+    {
+      "name": "assets/download",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/assets/download?workIds",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "assets",
+            "download"
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "fileTypes",
+              "value": null,
+              "description": "Optional, specify comma-separated file types you want to download (e.g., \u201cMP4\u201d or \u201cMP4,WAV\u201d). If not provided, all available files for the given workIds will be downloaded as a singe .zip file. Supported file types: MP4, MP3, WAV, PNG.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "workIds",
+              "value": null,
+              "description": "Required, specify the IDs of works to download. Can be a single numeric string or a comma-separated list of numeric strings (e.g., \u201c123456789\u201d or \u201c123456789,987654321\u201d). These IDs can be obtained from the workId field in the works array returned by the GET /assets, GET /tasks or GET /tasks/task_id endpoint."
+            }
+          ]
+        },
+        "description": "[Download Kling assets without watermarks](https://useapi.net/docs/api-kling-v1/get-kling-assets-download)"
+      },
+      "response": []
+    },
+    {
+      "name": "assets \u2022 use Body \u00bb binary to upload image/video/audio file",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "file",
+          "file": {}
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/assets/",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "assets",
+            ""
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": null,
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "[Upload asset](https://useapi.net/docs/api-kling-v1/post-kling-assets)"
+      },
+      "response": []
+    },
+    {
+      "name": "assets/uploaded",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/assets/uploaded/?email=",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "assets",
+            "uploaded",
+            ""
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+            },
+            {
+              "key": "pageNum",
+              "value": "",
+              "description": "Optional, page number (default: 1).",
+              "disabled": true
+            },
+            {
+              "key": "pageSize",
+              "value": "",
+              "description": "Optional, items per page (default: 20).",
+              "disabled": true
+            },
+            {
+              "key": "contentType",
+              "value": "",
+              "description": "Optional, filter by type: video, image, or audio.",
+              "disabled": true
+            },
+            {
+              "key": "fileName",
+              "value": "",
+              "description": "Optional, filter by file name (keyword search).",
+              "disabled": true
+            },
+            {
+              "key": "sort",
+              "value": "",
+              "description": "Optional sort direction by upload time: asc or desc (default: desc).",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "[Retrieve uploaded assets](https://useapi.net/docs/api-kling-v1/get-kling-assets-uploaded)"
+      },
+      "response": []
+    },
+    {
+      "name": "assets/uploaded",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/assets/uploaded/?email=&id=",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "assets",
+            "uploaded",
+            ""
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Required. Previously configured account email."
+            },
+            {
+              "key": "id",
+              "value": "",
+              "description": "Required. Uploaded asset id, or comma-separated list of up to 10 numeric ids."
+            }
+          ]
+        },
+        "description": "[Delete uploaded Kling assets](https://useapi.net/docs/api-kling-v1/del-kling-assets-uploaded)"
+      },
+      "response": []
+    },
+    {
+      "name": "videos/effects",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/videos/effects",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "videos",
+            "effects"
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "[Get Available Video Effects](https://useapi.net/docs/api-kling-v1/get-kling-videos-effects)"
+      },
+      "response": []
+    },
+    {
+      "name": "videos/text2video",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "uuid": "5f6e0bb5-d40d-42e6-a71b-8a78fece7d70",
+              "disabled": true
+            },
+            {
+              "key": "prompt",
+              "value": "",
+              "description": "Required (unless using multi-shot), max length 2500 characters",
+              "type": "text",
+              "uuid": "335746c3-f75b-4312-b0ab-0daedb4c5404"
+            },
+            {
+              "key": "negative_prompt",
+              "value": "",
+              "description": "Optional, max length 2500 characters",
+              "type": "text",
+              "uuid": "418a30db-c7c0-458b-adc0-f14239145d27",
+              "disabled": true
+            },
+            {
+              "key": "aspect_ratio",
+              "value": "",
+              "description": "Optional, valid values: 16:9(default),9:16,1:1",
+              "type": "text",
+              "uuid": "e0c140f9-46dc-44ba-ab6d-a50b67a63b48",
+              "disabled": true
+            },
+            {
+              "key": "cfg_scale",
+              "value": "",
+              "description": "Optional, valid range: 0...1, default 0.5",
+              "type": "text",
+              "uuid": "1587c58d-cb73-4763-be51-9ccb1090afd7",
+              "disabled": true
+            },
+            {
+              "key": "duration",
+              "value": "",
+              "description": "Optional, valid values: 5(default),10. Model v3: 3-15. Cannot be used with multi-shot.",
+              "type": "text",
+              "uuid": "32b9cadc-66da-488e-b30c-a5889ad10edc",
+              "disabled": true
+            },
+            {
+              "key": "mode",
+              "value": "",
+              "description": "Optional, valid values: std(default),pro. Models 2.1-master and 2.5 only support pro.",
+              "type": "text",
+              "uuid": "0aec8c2a-fc97-45e1-94c9-857115a47186",
+              "disabled": true
+            },
+            {
+              "key": "model_name",
+              "value": "",
+              "description": "Optional, valid values: kling-v3-0,kling-v3-0-turbo,kling-v2-6,kling-v2-5,kling-v2-1-master,kling-v1-6(default),kling-v1-5. v3.0-turbo: std/pro, audio always on, no multi-shot.",
+              "type": "text",
+              "uuid": "05654a62-8c8d-4553-81ec-bf87e48339e3",
+              "disabled": true
+            },
+            {
+              "key": "enable_audio",
+              "value": "",
+              "description": "Optional, add sound effects. Supported values: false(default) or true. Model v3 defaults to audio enabled (incl 4k), set false to disable. Model v2.6 with enable_audio:true requires mode:pro. v3.0-turbo: audio always on, this parameter not supported.",
+              "type": "text",
+              "uuid": "1167f0f6-a663-40d0-b8b9-a35e7db8951a",
+              "disabled": true
+            },
+            {
+              "key": "shot_1_prompt",
+              "value": "",
+              "description": "Optional, multi-shot (v3 only). Per-shot prompt, max 2500 chars. Min 2 shots required.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_1_duration",
+              "value": "",
+              "description": "Optional, per-shot duration in seconds. Total must be 3-15.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_2_prompt",
+              "value": "",
+              "description": "Optional, second shot prompt.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_2_duration",
+              "value": "",
+              "description": "Optional, second shot duration in seconds.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_3_prompt",
+              "value": "",
+              "description": "Optional, third shot prompt.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_3_duration",
+              "value": "",
+              "description": "Optional, third shot duration in seconds.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_4_prompt",
+              "value": "",
+              "description": "Optional, fourth shot prompt.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_4_duration",
+              "value": "",
+              "description": "Optional, fourth shot duration in seconds.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_5_prompt",
+              "value": "",
+              "description": "Optional, fifth shot prompt.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_5_duration",
+              "value": "",
+              "description": "Optional, fifth shot duration in seconds.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_6_prompt",
+              "value": "",
+              "description": "Optional, sixth shot prompt.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_6_duration",
+              "value": "",
+              "description": "Optional, sixth shot duration in seconds.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional overide for account maxJobs",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional reference value passed to webhook",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional webhook",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/videos/text2video",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "videos",
+            "text2video"
+          ]
+        },
+        "description": "[Create Video From Text](https://useapi.net/docs/api-kling-v1/post-kling-videos-text2video)"
+      },
+      "response": []
+    },
+    {
+      "name": "videos/image2video-frames",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "uuid": "5f6e0bb5-d40d-42e6-a71b-8a78fece7d70",
+              "disabled": true
+            },
+            {
+              "key": "image",
+              "value": "",
+              "description": "Optional image URL, use POST /assets to upload image",
+              "type": "text",
+              "uuid": "6d587a04-49f0-4c2a-9863-2fa9ae033313"
+            },
+            {
+              "key": "image_tail",
+              "value": "",
+              "description": "Optional tail image URL, use POST /assets to upload image",
+              "type": "text",
+              "uuid": "50cb36c7-621d-4106-80fd-9c76afa426c9",
+              "disabled": true
+            },
+            {
+              "key": "element_1",
+              "value": "",
+              "description": "Optional, saved element ID (e.g. u_309377170505500) to guide generation alongside the frames. Up to 3 (element_1..element_3). Model v3.0 only.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "element_2",
+              "value": "",
+              "description": "Optional, second element reference. Model v3.0 only.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "element_3",
+              "value": "",
+              "description": "Optional, third element reference. Model v3.0 only.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "prompt",
+              "value": "",
+              "description": "Optional, max length 2500 characters",
+              "type": "text",
+              "uuid": "335746c3-f75b-4312-b0ab-0daedb4c5404",
+              "disabled": true
+            },
+            {
+              "key": "negative_prompt",
+              "value": "",
+              "description": "Optional, max length 2500 characters",
+              "type": "text",
+              "uuid": "418a30db-c7c0-458b-adc0-f14239145d27",
+              "disabled": true
+            },
+            {
+              "key": "cfg_scale",
+              "value": "",
+              "description": "Optional, valid range: 0...1, default 0.5",
+              "type": "text",
+              "uuid": "1587c58d-cb73-4763-be51-9ccb1090afd7",
+              "disabled": true
+            },
+            {
+              "key": "duration",
+              "value": "",
+              "description": "Optional, valid values: 5(default),10. Model v3: 3-15.",
+              "type": "text",
+              "uuid": "32b9cadc-66da-488e-b30c-a5889ad10edc",
+              "disabled": true
+            },
+            {
+              "key": "mode",
+              "value": "",
+              "description": "Optional, valid values: std(default),pro,4k(v3.0 only). Model 2.1-master only supports pro. v3.0-turbo: std/pro only.",
+              "type": "text",
+              "uuid": "0aec8c2a-fc97-45e1-94c9-857115a47186",
+              "disabled": true
+            },
+            {
+              "key": "model_name",
+              "value": "",
+              "description": "Optional, valid values: kling-v3-0,kling-v3-0-turbo,kling-v2-6,kling-v2-5,kling-v2-1(default),kling-v2-1-master,kling-v1-6,kling-v1-5. v3.0-turbo: start frame only, std/pro, audio always on, no elements/multi-shot.",
+              "type": "text",
+              "uuid": "05654a62-8c8d-4553-81ec-bf87e48339e3",
+              "disabled": true
+            },
+            {
+              "key": "enable_audio",
+              "value": "",
+              "description": "Optional, add sound effects. Supported values: false(default) or true. Model v3 defaults to audio enabled (incl 4k), set false to disable. Model v2.6 with enable_audio:true requires mode:pro. v3.0-turbo: audio always on, this parameter not supported.",
+              "type": "text",
+              "uuid": "1167f0f6-a663-40d0-b8b9-a35e7db8951a",
+              "disabled": true
+            },
+            {
+              "key": "shot_1_prompt",
+              "value": "",
+              "description": "Optional, multi-shot (v3 only). Per-shot prompt, max 2500 chars. Min 2 shots required.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_1_duration",
+              "value": "",
+              "description": "Optional, per-shot duration in seconds. Total must be 3-15.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_2_prompt",
+              "value": "",
+              "description": "Optional, second shot prompt.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_2_duration",
+              "value": "",
+              "description": "Optional, second shot duration in seconds.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_3_prompt",
+              "value": "",
+              "description": "Optional, third shot prompt.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_3_duration",
+              "value": "",
+              "description": "Optional, third shot duration in seconds.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_4_prompt",
+              "value": "",
+              "description": "Optional, fourth shot prompt.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_4_duration",
+              "value": "",
+              "description": "Optional, fourth shot duration in seconds.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_5_prompt",
+              "value": "",
+              "description": "Optional, fifth shot prompt.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_5_duration",
+              "value": "",
+              "description": "Optional, fifth shot duration in seconds.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_6_prompt",
+              "value": "",
+              "description": "Optional, sixth shot prompt.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_6_duration",
+              "value": "",
+              "description": "Optional, sixth shot duration in seconds.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional overide for account maxJobs",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional reference value passed to webhook",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional webhook",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/videos/image2video-frames",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "videos",
+            "image2video-frames"
+          ]
+        },
+        "description": "[Create Video From Image Frames](https://useapi.net/docs/api-kling-v1/post-kling-videos-image2video-frames)"
+      },
+      "response": []
+    },
+    {
+      "name": "videos/image2video-elements",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "uuid": "5f6e0bb5-d40d-42e6-a71b-8a78fece7d70",
+              "disabled": true
+            },
+            {
+              "key": "image_0",
+              "value": "",
+              "description": "Required image URL, use POST /assets to upload image",
+              "type": "text",
+              "uuid": "6d587a04-49f0-4c2a-9863-2fa9ae033313"
+            },
+            {
+              "key": "image_1",
+              "value": "",
+              "description": "Optional image URL, use POST /assets to upload image",
+              "type": "text",
+              "uuid": "50cb36c7-621d-4106-80fd-9c76afa426c9",
+              "disabled": true
+            },
+            {
+              "key": "image_2",
+              "value": "",
+              "description": "Optional image URL, use POST /assets to upload image",
+              "type": "text",
+              "uuid": "83a9d85c-7616-448a-95f7-7438e3c808d9",
+              "disabled": true
+            },
+            {
+              "key": "image_3",
+              "value": "",
+              "description": "Optional image URL, use POST /assets to upload image",
+              "type": "text",
+              "uuid": "e30ddec6-32f5-4408-9496-58f8de1ac79f",
+              "disabled": true
+            },
+            {
+              "key": "element_1",
+              "value": "",
+              "description": "Optional, ID of saved element. Model v3 only. Create elements using POST /elements.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "element_2",
+              "value": "",
+              "description": "Optional, ID of saved element. Model v3 only.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "element_3",
+              "value": "",
+              "description": "Optional, ID of saved element. Model v3 only.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "prompt",
+              "value": "",
+              "description": "Required, max length 2500 characters",
+              "type": "text",
+              "uuid": "335746c3-f75b-4312-b0ab-0daedb4c5404"
+            },
+            {
+              "key": "negative_prompt",
+              "value": "",
+              "description": "Optional, max length 2500 characters",
+              "type": "text",
+              "uuid": "418a30db-c7c0-458b-adc0-f14239145d27",
+              "disabled": true
+            },
+            {
+              "key": "aspect_ratio",
+              "value": "",
+              "description": "Optional, valid values: 16:9(default),9:16,1:1. Model v3 does not support this (derived from input image).",
+              "type": "text",
+              "uuid": "e0c140f9-46dc-44ba-ab6d-a50b67a63b48",
+              "disabled": true
+            },
+            {
+              "key": "duration",
+              "value": "",
+              "description": "Optional, valid values: 5(default),10. Model v3: 3-15.",
+              "type": "text",
+              "uuid": "32b9cadc-66da-488e-b30c-a5889ad10edc",
+              "disabled": true
+            },
+            {
+              "key": "mode",
+              "value": "",
+              "description": "Optional, valid values: std(default),pro",
+              "type": "text",
+              "uuid": "0aec8c2a-fc97-45e1-94c9-857115a47186",
+              "disabled": true
+            },
+            {
+              "key": "model_name",
+              "value": "",
+              "description": "Optional, valid values: kling-v3-0,kling-v1-6(default)",
+              "type": "text",
+              "uuid": "05654a62-8c8d-4553-81ec-bf87e48339e3",
+              "disabled": true
+            },
+            {
+              "key": "enable_audio",
+              "value": "",
+              "description": "Optional, add sound effects. Supported values: false (default) or true. Model v3 always has audio enabled.",
+              "type": "text",
+              "uuid": "1167f0f6-a663-40d0-b8b9-a35e7db8951a",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional overide for account maxJobs",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional reference value passed to webhook",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional webhook",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/videos/image2video-elements",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "videos",
+            "image2video-elements"
+          ]
+        },
+        "description": "[Create Video From Multiple Images](https://useapi.net/docs/api-kling-v1/post-kling-videos-image2video-elements)"
+      },
+      "response": []
+    },
+    {
+      "name": "videos/image2video-effects",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "uuid": "5f6e0bb5-d40d-42e6-a71b-8a78fece7d70",
+              "disabled": true
+            },
+            {
+              "key": "effect",
+              "value": "",
+              "description": "Required effect name, user GET vidoes/effects to retrieve list of supported effects",
+              "type": "text",
+              "uuid": "067b4db7-cf51-4909-ae2f-73f2575d7bc4"
+            },
+            {
+              "key": "image",
+              "value": "",
+              "description": "Reuired image URL, use POST /assets to upload image",
+              "type": "text",
+              "uuid": "6d587a04-49f0-4c2a-9863-2fa9ae033313"
+            },
+            {
+              "key": "mode",
+              "value": "",
+              "description": "Optional, supported values: std, pro",
+              "type": "text",
+              "uuid": "50cb36c7-621d-4106-80fd-9c76afa426c9",
+              "disabled": true
+            },
+            {
+              "key": "prompt",
+              "value": "",
+              "description": "Optional, max length 2500 characters",
+              "type": "text",
+              "uuid": "335746c3-f75b-4312-b0ab-0daedb4c5404",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional overide for account maxJobs",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional reference value passed to webhook",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional webhook",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/videos/image2video-effects",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "videos",
+            "image2video-effects"
+          ]
+        },
+        "description": "[Create Video From Image with Effects](https://useapi.net/docs/api-kling-v1/post-kling-videos-image2video-effects)"
+      },
+      "response": []
+    },
+    {
+      "name": "videos/extend",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "uuid": "5f6e0bb5-d40d-42e6-a71b-8a78fece7d70",
+              "disabled": true
+            },
+            {
+              "key": "task_id",
+              "value": "",
+              "description": "Required task id, use GET /tasks to retrieve tasks",
+              "type": "text",
+              "uuid": "e0c140f9-46dc-44ba-ab6d-a50b67a63b48"
+            },
+            {
+              "key": "prompt",
+              "value": "",
+              "description": "Optional, max length 2500 characters",
+              "type": "text",
+              "uuid": "335746c3-f75b-4312-b0ab-0daedb4c5404",
+              "disabled": true
+            },
+            {
+              "key": "negative_prompt",
+              "value": "",
+              "description": "Optional, max length 2500 characters",
+              "type": "text",
+              "uuid": "418a30db-c7c0-458b-adc0-f14239145d27",
+              "disabled": true
+            },
+            {
+              "key": "cfg_scale",
+              "value": "",
+              "description": "Optional, valid range: 0...1, default 0.5",
+              "type": "text",
+              "uuid": "1587c58d-cb73-4763-be51-9ccb1090afd7",
+              "disabled": true
+            },
+            {
+              "key": "enable_audio",
+              "value": "",
+              "description": "Optional, add sound effects. Supported values: false (default) or true.",
+              "type": "text",
+              "uuid": "1167f0f6-a663-40d0-b8b9-a35e7db8951a",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional overide for account maxJobs",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional reference value passed to webhook",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional webhook",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/videos/extend",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "videos",
+            "extend"
+          ]
+        },
+        "description": "[Extend an Existing Video](https://useapi.net/docs/api-kling-v1/post-kling-videos-extend)"
+      },
+      "response": []
+    },
+    {
+      "name": "videos/lipsync",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "uuid": "5f6e0bb5-d40d-42e6-a71b-8a78fece7d70",
+              "disabled": true
+            },
+            {
+              "key": "video",
+              "value": "",
+              "description": "Required video URL, use POST /assets to upload video",
+              "type": "text",
+              "uuid": "e0c140f9-46dc-44ba-ab6d-a50b67a63b48"
+            },
+            {
+              "key": "audio",
+              "value": "",
+              "description": "Required audio URL, use POST /assets to upload audio",
+              "type": "text",
+              "uuid": "335746c3-f75b-4312-b0ab-0daedb4c5404"
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional overide for account maxJobs",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional reference value passed to webhook",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional webhook",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/videos/lipsync",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "videos",
+            "lipsync"
+          ]
+        },
+        "description": "[Apply Lip Sync to Video](https://useapi.net/docs/api-kling-v1/post-kling-videos-lipsync)"
+      },
+      "response": []
+    },
+    {
+      "name": "videos/motions",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/videos/motions?email=",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "videos",
+            "motions"
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+            },
+            {
+              "key": "mine",
+              "value": "",
+              "description": "Optional, boolean. When true, retrieves user's own motion assets. When false/omitted, retrieves official Kling motion templates.",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "[Get available motions](https://useapi.net/docs/api-kling-v1/get-kling-videos-motions)"
+      },
+      "response": []
+    },
+    {
+      "name": "videos/motion-create",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "model_name",
+              "value": "",
+              "description": "Optional, kling-v3-0 (default) or kling-v2-6.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "imageUrl",
+              "value": "",
+              "description": "Required, URL to the image containing the person.",
+              "type": "text"
+            },
+            {
+              "key": "motionUrl",
+              "value": "",
+              "description": "Required, URL to the motion reference video (3-30 seconds).",
+              "type": "text"
+            },
+            {
+              "key": "prompt",
+              "value": "",
+              "description": "Optional, text description to guide generation.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "keepAudio",
+              "value": "",
+              "description": "Optional, boolean. Preserve original audio from motion video.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "motionDirection",
+              "value": "",
+              "description": "Optional, motion_direction or image_direction.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "mode",
+              "value": "",
+              "description": "Optional, std or pro.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "element_1",
+              "value": "",
+              "description": "Optional, element ID for character consistency (v3.0 only).",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/videos/motion-create",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "videos",
+            "motion-create"
+          ]
+        },
+        "description": "[Create video from motion and image](https://useapi.net/docs/api-kling-v1/post-kling-videos-motion-create)"
+      },
+      "response": []
+    },
+    {
+      "name": "videos/motion-upload",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "resourceUrl",
+              "value": "",
+              "description": "Required, URL to the video containing motion to extract.",
+              "type": "text"
+            },
+            {
+              "key": "coverUrl",
+              "value": "",
+              "description": "Required, URL to a cover image for the motion.",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/videos/motion-upload",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "videos",
+            "motion-upload"
+          ]
+        },
+        "description": "[Upload custom motion](https://useapi.net/docs/api-kling-v1/post-kling-videos-motion-upload) (deprecated)"
+      },
+      "response": []
+    },
+    {
+      "name": "videos/add-sound",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "video",
+              "value": "",
+              "description": "Required, URL of the video to add sound to (3-20 seconds).",
+              "type": "text"
+            },
+            {
+              "key": "cropVideoOriginalSound",
+              "value": "",
+              "description": "Optional, boolean. Whether to preserve original video's sound.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/videos/add-sound",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "videos",
+            "add-sound"
+          ]
+        },
+        "description": "[Add sound to video](https://useapi.net/docs/api-kling-v1/post-kling-videos-add-sound)"
+      },
+      "response": []
+    },
+    {
+      "name": "videos/omni",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "prompt",
+              "value": "",
+              "description": "Required (unless using multi-shot), text description. Use @image_1, @element_1, @video_1 to reference inputs.",
+              "type": "text"
+            },
+            {
+              "key": "omni_version",
+              "value": "",
+              "description": "Optional, Omni model version. Supported values: v3(default), o1.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "duration",
+              "value": "",
+              "description": "Optional, default 5. O1: 3-10 (VIP for 7-10). v3: 3-15 (VIP for 7+). Cannot be used with multi-shot.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "aspect_ratio",
+              "value": "",
+              "description": "Optional, 16:9(default), 9:16, 1:1. Frames workflow: auto only.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "mode",
+              "value": "",
+              "description": "Optional, std(default) or pro.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "enable_audio",
+              "value": "",
+              "description": "Optional, generate native audio (soundtrack). Supported values: true(default) or false. Applies to omni_version v3 without video_1. Set false for a silent video at the lower audio-off price. Not valid with video_1 or omni_version o1.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "image_1",
+              "value": "",
+              "description": "Optional, URL of reference image.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "element_1",
+              "value": "",
+              "description": "Optional, ID of saved element (IMAGE or VIDEO type).",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "frame_start",
+              "value": "",
+              "description": "Optional, URL of start frame (enables frames workflow).",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "frame_end",
+              "value": "",
+              "description": "Optional, URL of end frame.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "video_1",
+              "value": "",
+              "description": "Optional, URL of reference video (enables video workflow).",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "video_mode",
+              "value": "",
+              "description": "Optional, reference(default) or transform.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "keep_audio",
+              "value": "",
+              "description": "Optional, keep audio from reference video. Supported values: false(default) or true. Only applies with video_1.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_1_prompt",
+              "value": "",
+              "description": "Optional, multi-shot (v3 only). Per-shot prompt, max 2500 chars. Min 2 shots required.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_1_duration",
+              "value": "",
+              "description": "Optional, per-shot duration in seconds. Total must be 3-15.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_2_prompt",
+              "value": "",
+              "description": "Optional, second shot prompt.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_2_duration",
+              "value": "",
+              "description": "Optional, second shot duration in seconds.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_3_prompt",
+              "value": "",
+              "description": "Optional, third shot prompt.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_3_duration",
+              "value": "",
+              "description": "Optional, third shot duration in seconds.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_4_prompt",
+              "value": "",
+              "description": "Optional, fourth shot prompt.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_4_duration",
+              "value": "",
+              "description": "Optional, fourth shot duration in seconds.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_5_prompt",
+              "value": "",
+              "description": "Optional, fifth shot prompt.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_5_duration",
+              "value": "",
+              "description": "Optional, fifth shot duration in seconds.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_6_prompt",
+              "value": "",
+              "description": "Optional, sixth shot prompt.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "shot_6_duration",
+              "value": "",
+              "description": "Optional, sixth shot duration in seconds.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/videos/omni",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "videos",
+            "omni"
+          ]
+        },
+        "description": "[Generate videos with Omni](https://useapi.net/docs/api-kling-v1/post-kling-videos-omni)"
+      },
+      "response": []
+    },
+    {
+      "name": "images/virtual-try-on",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "uuid": "5f6e0bb5-d40d-42e6-a71b-8a78fece7d70",
+              "disabled": true
+            },
+            {
+              "key": "humanImage",
+              "value": "",
+              "description": "Required human model image URL, use POST /assets to upload image",
+              "type": "text",
+              "uuid": "e0c140f9-46dc-44ba-ab6d-a50b67a63b48"
+            },
+            {
+              "key": "upperInput",
+              "value": "",
+              "description": "Optional upper garment image URL, use POST /assets to upload image",
+              "type": "text",
+              "uuid": "e16da389-4d6c-4e71-8206-fc1f99b62426",
+              "disabled": true
+            },
+            {
+              "key": "dressInput",
+              "value": "",
+              "description": "Optional dress image URL, use POST /assets to upload image",
+              "type": "text",
+              "uuid": "335746c3-f75b-4312-b0ab-0daedb4c5404",
+              "disabled": true
+            },
+            {
+              "key": "lowerInput",
+              "value": "",
+              "description": "Optional lower garment image URL, use POST /assets to upload image",
+              "type": "text",
+              "uuid": "9646cad4-f0a2-4f54-95ed-14999306181e",
+              "disabled": true
+            },
+            {
+              "key": "imageCount",
+              "value": "",
+              "description": "Optional, valid range 1(default)...4",
+              "type": "text",
+              "uuid": "25832e4f-7e93-4331-838b-aea21b923123",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional overide for account maxJobs",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional reference value passed to webhook",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional webhook",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/images/virtual-try-on",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "images",
+            "virtual-try-on"
+          ]
+        },
+        "description": "[Virtual Try-On](https://useapi.net/docs/api-kling-v1/post-kling-images-virtual-try-on)"
+      },
+      "response": []
+    },
+    {
+      "name": "images/kolors",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "uuid": "5f6e0bb5-d40d-42e6-a71b-8a78fece7d70",
+              "disabled": true
+            },
+            {
+              "key": "prompt",
+              "value": "",
+              "description": "Required, the text description of the image to generate. Maximum length: 2500 characters.",
+              "type": "text",
+              "uuid": "e0c140f9-46dc-44ba-ab6d-a50b67a63b48"
+            },
+            {
+              "key": "version",
+              "value": "",
+              "description": "Optional, model version. Supported values: kling-v3-0(default), kling-v2-1, kling-v2-0, kling-v1-6, kling-v1-5.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "reference",
+              "value": "",
+              "description": "Optional, the type of reference to use. Supported values: none (default, uses KOLORS v2.1), subject (uses KOLORS v1.5), face (uses KOLORS v1.5), restyle (uses KOLORS v2.0).",
+              "type": "text",
+              "uuid": "25832e4f-7e93-4331-838b-aea21b923123",
+              "disabled": true
+            },
+            {
+              "key": "imageReference",
+              "value": "",
+              "description": "Optional, required if reference is not none, the URL of the reference image. You can upload images using POST /assets and use the returned URL here.",
+              "type": "text",
+              "uuid": "a3df72ff-7d7c-4b36-90af-39ab386c3797",
+              "disabled": true
+            },
+            {
+              "key": "aspect_ratio",
+              "value": "",
+              "description": "Optional, the aspect ratio of the generated image. Not supported by restyle reference type. Supported values: 1:1, 16:9 (default), 4:3, 3:2, 2:3, 3:4, 9:16, 21:9.",
+              "type": "text",
+              "uuid": "a0968666-93b1-4675-ac5c-074b033de1d7",
+              "disabled": true
+            },
+            {
+              "key": "imageCount",
+              "value": "",
+              "description": "Optional, the number of images to generate. Range: 1 to 9. Default: 1.",
+              "type": "text",
+              "uuid": "5a848c2c-d6e9-48e5-bc9f-7ad42da92931",
+              "disabled": true
+            },
+            {
+              "key": "faceStrength",
+              "value": "",
+              "description": "Optional, the strength of face similarity for both face and subject reference types. Range: 1 to 100. Default: 65.",
+              "type": "text",
+              "uuid": "c2d6049e-5e74-45fd-a19a-67fcf5b84c8b",
+              "disabled": true
+            },
+            {
+              "key": "subjectStrength",
+              "value": "",
+              "description": "Optional, the strength of subject similarity for subject reference type. Range: 1 to 100. Default: 50.",
+              "type": "text",
+              "uuid": "cfd52d78-961a-4629-bbd1-b89038500f09",
+              "disabled": true
+            },
+            {
+              "key": "faceNo",
+              "value": "",
+              "description": "Optional, the index of the face to use in multi-face images for face reference type. Default: 1. You can use POST /images/recognize-faces to detect faces in an image.",
+              "type": "text",
+              "uuid": "95d91c11-0534-4243-a15f-a8c26b414da8",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional webhook",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional reference value passed to webhook",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional overide for account maxJobs",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/images/kolors",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "images",
+            "kolors"
+          ]
+        },
+        "description": "[KOLORS](https://useapi.net/docs/api-kling-v1/post-kling-images-kolors)"
+      },
+      "response": []
+    },
+    {
+      "name": "images/kolors-elements",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "uuid": "5f6e0bb5-d40d-42e6-a71b-8a78fece7d70",
+              "disabled": true
+            },
+            {
+              "key": "prompt",
+              "value": "",
+              "description": "Optional, the text description of the image to generate. Maximum length: 2500 characters.",
+              "type": "text",
+              "uuid": "e0c140f9-46dc-44ba-ab6d-a50b67a63b48",
+              "disabled": true
+            },
+            {
+              "key": "aspect_ratio",
+              "value": "",
+              "description": "Optional, the aspect ratio of the generated image. Supported values: 1:1, 16:9 (default), 4:3, 3:2, 2:3, 3:4, 9:16, 21:9.",
+              "type": "text",
+              "uuid": "a0968666-93b1-4675-ac5c-074b033de1d7",
+              "disabled": true
+            },
+            {
+              "key": "imageCount",
+              "value": "",
+              "description": "Optional, the number of images to generate. Range: 1 to 9. Default: 1.",
+              "type": "text",
+              "uuid": "5a848c2c-d6e9-48e5-bc9f-7ad42da92931",
+              "disabled": true
+            },
+            {
+              "key": "subjectImage1",
+              "value": "",
+              "description": "Optional, the URL of the subject image #1. You can upload images using POST /assets and use the returned URL here.",
+              "type": "text",
+              "uuid": "d2d81b4a-8eab-4c35-924f-a2a96809bc3d",
+              "disabled": true
+            },
+            {
+              "key": "subjectImage2",
+              "value": "",
+              "description": "Optional, the URL of the subject image #2. You can upload images using POST /assets and use the returned URL here.",
+              "type": "text",
+              "uuid": "96e7cf1e-edba-41b9-8368-dcb0c142a60d",
+              "disabled": true
+            },
+            {
+              "key": "subjectImage3",
+              "value": "",
+              "description": "Optional, the URL of the subject image #3. You can upload images using POST /assets and use the returned URL here.",
+              "type": "text",
+              "uuid": "53f10161-00f8-4a9f-9633-f7ca8bd211ae",
+              "disabled": true
+            },
+            {
+              "key": "subjectImage4",
+              "value": "",
+              "description": "Optional, the URL of the subject image #4. You can upload images using POST /assets and use the returned URL here.",
+              "type": "text",
+              "uuid": "86d54f73-8ab8-44e0-9c4c-7701a62e249e",
+              "disabled": true
+            },
+            {
+              "key": "sceneImage",
+              "value": "",
+              "description": "Optional, the URL of the scene image. You can upload images using POST /assets and use the returned URL here.",
+              "type": "text",
+              "uuid": "0f81a0af-7420-4100-ab50-1f152172a1fd",
+              "disabled": true
+            },
+            {
+              "key": "styleImage",
+              "value": "",
+              "description": "Optional, the URL of the style image. You can upload images using POST /assets and use the returned URL here.",
+              "type": "text",
+              "uuid": "6e4bf446-a4a4-4612-8aeb-f52b53f7c18d",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional webhook",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional reference value passed to webhook",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional overide for account maxJobs",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/images/kolors-elements",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "images",
+            "kolors-elements"
+          ]
+        },
+        "description": "[KOLORS - elements](https://useapi.net/docs/api-kling-v1/post-kling-images-kolors-elements)"
+      },
+      "response": []
+    },
+    {
+      "name": "images/recognize-faces",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "uuid": "5f6e0bb5-d40d-42e6-a71b-8a78fece7d70",
+              "disabled": true
+            },
+            {
+              "key": "imageReference",
+              "value": "",
+              "description": "Required, the URL of the image to analyze. You can upload images using POST /assets and use the returned URL here.",
+              "type": "text",
+              "uuid": "a3df72ff-7d7c-4b36-90af-39ab386c3797",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/images/recognize-faces",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "images",
+            "recognize-faces"
+          ]
+        },
+        "description": "[Detect Faces in Images](https://useapi.net/docs/api-kling-v1/post-kling-images-recognize-faces)"
+      },
+      "response": []
+    },
+    {
+      "name": "images/upscale",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "uuid": "5f6e0bb5-d40d-42e6-a71b-8a78fece7d70",
+              "disabled": true
+            },
+            {
+              "key": "task_id",
+              "value": "",
+              "description": "Required, the ID of a completed task that generated the image. Must be in the succeed status, which can be checked using GET /tasks/task_id.",
+              "type": "text",
+              "uuid": "a3df72ff-7d7c-4b36-90af-39ab386c3797"
+            },
+            {
+              "key": "workId",
+              "value": "",
+              "description": "Required, the ID of the specific image from the task to upscale. Can be found in the works array of the GET /tasks/task_id response.",
+              "type": "text",
+              "uuid": "80ef49a1-9cf7-4e14-b9bd-4b83eb37b374"
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional, range from 1 to 10. Specifies the maximum number of concurrent jobs.",
+              "type": "text",
+              "uuid": "95d91c11-0534-4243-a15f-a8c26b414da8",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional webhook",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional reference value passed to webhook",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/images/upscale",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "images",
+            "upscale"
+          ]
+        },
+        "description": "[Upscale Images](https://useapi.net/docs/api-kling-v1/post-kling-images-upscale)"
+      },
+      "response": []
+    },
+    {
+      "name": "images/omni",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "prompt",
+              "value": "",
+              "description": "Required, text description. Use @image_1, @element_1 to reference inputs.",
+              "type": "text"
+            },
+            {
+              "key": "omni_version",
+              "value": "",
+              "description": "Optional, Omni model version. Supported values: v3(default), o1.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "resolution",
+              "value": "",
+              "description": "Optional, 1k(default), 2k, 4k (v3 only, VIP required).",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "aspect_ratio",
+              "value": "",
+              "description": "Optional, auto(v3 default), 16:9(O1 default), 9:16, 1:1, 4:3, 3:4, 3:2, 2:3, 21:9. auto is v3 only.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "imageCount",
+              "value": "",
+              "description": "Optional, 1-9.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "story_mode",
+              "value": "",
+              "description": "Optional, v3 only. Enables Series Mode for coherent multi-image generation. Requires at least one reference image or element. Default: false.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "image_1",
+              "value": "",
+              "description": "Optional, URL of reference image.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "element_1",
+              "value": "",
+              "description": "Optional, ID of saved element.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/kling/images/omni",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "kling",
+            "images",
+            "omni"
+          ]
+        },
+        "description": "[Generate images with Omni](https://useapi.net/docs/api-kling-v1/post-kling-images-omni)"
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "email",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "password",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

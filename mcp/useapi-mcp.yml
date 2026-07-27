@@ -1,0 +1,936 @@
+generated: '2026-07-27'
+method: derived
+status: candidate
+source: openapi/ (derived from the first-party useapi.net Postman collections)
+searched:
+  result: none
+  notes: 'No official or community MCP server for useapi.net was found. Probed: the official MCP registry (registry.modelcontextprotocol.io,
+    0 results for "useapi"), npm, the github.com/useapi organization (22 repos, none MCP), the vendor documentation
+    and llms.txt (no MCP mention), and https://mcp.useapi.net/ which is a Cloudflare wildcard that 302-redirects
+    to the marketing homepage rather than an MCP endpoint. useapi.net addresses agent consumption through llms.txt
+    and a per-service verbatim docs dump instead of MCP.'
+server:
+  name: useapi
+  transport: http
+  url: null
+  note: No published server. The tools below are a derived candidate surface, not a vendor claim.
+authentication:
+  type: bearer
+  header: 'Authorization: Bearer user:<number>-<unique-string>'
+  note: One token authorizes every useapi.net API under the subscription.
+coverage:
+  rest_operations_total: 298
+  tools_candidate: 180
+  excluded: account/credential CRUD operations (POST/GET/DELETE /accounts*) are deliberately left out of the agent
+    surface — they take raw browser cookies and session credentials for the underlying AI services.
+tools:
+- name: google_flow_post_assets_by_email
+  description: Upload assets to Google Flow for use in image and video generation.
+  source_operation: openapi/useapi-google-flow-v1-openapi.yml#postAssetsByEmail
+  method: POST
+  path: /assets/{email}
+- name: google_flow_post_images
+  description: Generate images using Imagen 4 or Nano Banana / Gemini 2.5 Flash Image.
+  source_operation: openapi/useapi-google-flow-v1-openapi.yml#postImages
+  method: POST
+  path: /images
+- name: google_flow_post_videos
+  description: Generate videos using Veo 3.1 (Quality / Fast / Lite / Lite Lower Priority) or Gemini Omni Flash.
+  source_operation: openapi/useapi-google-flow-v1-openapi.yml#postVideos
+  method: POST
+  path: /videos
+- name: google_flow_get_jobs
+  description: Get load balancing statistics across all configured Google Flow accounts.
+  source_operation: openapi/useapi-google-flow-v1-openapi.yml#getJobs
+  method: GET
+  path: /jobs/
+- name: google_flow_get_jobs_by_jobid
+  description: Retrieve job status and results by job ID.
+  source_operation: openapi/useapi-google-flow-v1-openapi.yml#getJobsByJobid
+  method: GET
+  path: /jobs/{jobId}
+- name: google_flow_post_images_upscale
+  description: Upscale a previously generated image to 2K or 4K resolution.
+  source_operation: openapi/useapi-google-flow-v1-openapi.yml#postImagesUpscale
+  method: POST
+  path: /images/upscale
+- name: google_flow_post_videos_upscale
+  description: Upscale a previously generated video to 1080p or 4K resolution.
+  source_operation: openapi/useapi-google-flow-v1-openapi.yml#postVideosUpscale
+  method: POST
+  path: /videos/upscale
+- name: google_flow_post_videos_gif
+  description: Generate an animated GIF preview from a previously generated video.
+  source_operation: openapi/useapi-google-flow-v1-openapi.yml#postVideosGif
+  method: POST
+  path: /videos/gif
+- name: google_flow_post_videos_extend
+  description: Extend a previously generated video with a new prompt.
+  source_operation: openapi/useapi-google-flow-v1-openapi.yml#postVideosExtend
+  method: POST
+  path: /videos/extend
+- name: google_flow_post_videos_concatenate
+  description: Concatenate multiple videos into a single video.
+  source_operation: openapi/useapi-google-flow-v1-openapi.yml#postVideosConcatenate
+  method: POST
+  path: /videos/concatenate
+- name: google_flow_post_voices
+  description: Create a user (custom) voice on the specified account. Captcha-gated.
+  source_operation: openapi/useapi-google-flow-v1-openapi.yml#postVoices
+  method: POST
+  path: /voices
+- name: google_flow_post_characters
+  description: Create a character (1-2 image refs + optional voice). The account is extracted from imageReference_1
+    — no email body field. The returned reference-id encodes the inline imgs:N count.
+  source_operation: openapi/useapi-google-flow-v1-openapi.yml#postCharacters
+  method: POST
+  path: /characters
+- name: flowmusic_post_music
+  description: '## [Generate a song](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-music)'
+  source_operation: openapi/useapi-flowmusic-v1-openapi.yml#postMusic
+  method: POST
+  path: /music
+- name: flowmusic_get_music
+  description: '## [List clips](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-music)'
+  source_operation: openapi/useapi-flowmusic-v1-openapi.yml#getMusic
+  method: GET
+  path: /music
+- name: flowmusic_post_music_edit
+  description: '## [Edit a song](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-music-edit)'
+  source_operation: openapi/useapi-flowmusic-v1-openapi.yml#postMusicEdit
+  method: POST
+  path: /music/edit
+- name: flowmusic_post_music_lyrics
+  description: '## [Generate lyrics (free)](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-music-lyrics)'
+  source_operation: openapi/useapi-flowmusic-v1-openapi.yml#postMusicLyrics
+  method: POST
+  path: /music/lyrics
+- name: flowmusic_get_music_download
+  description: '## [Download a clip](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-music-download)'
+  source_operation: openapi/useapi-flowmusic-v1-openapi.yml#getMusicDownload
+  method: GET
+  path: /music/download
+- name: flowmusic_post_files
+  description: '## [Upload a file](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-files)'
+  source_operation: openapi/useapi-flowmusic-v1-openapi.yml#postFiles
+  method: POST
+  path: /files
+- name: flowmusic_post_files_generate
+  description: '## [Generate an AI image](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-files-generate)'
+  source_operation: openapi/useapi-flowmusic-v1-openapi.yml#postFilesGenerate
+  method: POST
+  path: /files/generate
+- name: flowmusic_get_jobs
+  description: '## [List running jobs](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-jobs)'
+  source_operation: openapi/useapi-flowmusic-v1-openapi.yml#getJobs
+  method: GET
+  path: /jobs
+- name: flowmusic_get_jobs_by_jobid
+  description: '## [Poll a job](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-jobs-jobid)'
+  source_operation: openapi/useapi-flowmusic-v1-openapi.yml#getJobsByJobid
+  method: GET
+  path: /jobs/{jobid}
+- name: dreamina_post_assets_by_account
+  description: Upload images to Dreamina for use as reference frames in video and image generation.
+  source_operation: openapi/useapi-dreamina-v1-openapi.yml#postAssetsByAccount
+  method: POST
+  path: /assets/{account}
+- name: dreamina_post_videos
+  description: Generate videos using Dreamina AI models. Supports text-to-video, first frame (I2V), end frame, and
+    multi-frame keyframe modes.
+  source_operation: openapi/useapi-dreamina-v1-openapi.yml#postVideos
+  method: POST
+  path: /videos
+- name: dreamina_get_videos_by_jobid
+  description: Retrieve the status and result of a video generation job. Poll this endpoint after POST /videos.
+    Jobs are retained for 30 days.
+  source_operation: openapi/useapi-dreamina-v1-openapi.yml#getVideosByJobid
+  method: GET
+  path: /videos/{jobid}
+- name: dreamina_post_videos_upscale
+  description: Upscale a generated video to 2x resolution (super resolution). Doubles width and height — 720p becomes
+    1440p, 1080p becomes 4K. Each video can only be upscaled once.
+  source_operation: openapi/useapi-dreamina-v1-openapi.yml#postVideosUpscale
+  method: POST
+  path: /videos/upscale
+- name: dreamina_post_videos_interpolate
+  description: Interpolate a generated video to 30 or 60 FPS (from 24 FPS source). Works on both original and upscaled
+    videos. Each video can only be interpolated once.
+  source_operation: openapi/useapi-dreamina-v1-openapi.yml#postVideosInterpolate
+  method: POST
+  path: /videos/interpolate
+- name: dreamina_post_images
+  description: Generate images using Dreamina AI models from text prompts with optional reference images. Each generation
+    produces up to 4 images.
+  source_operation: openapi/useapi-dreamina-v1-openapi.yml#postImages
+  method: POST
+  path: /images
+- name: dreamina_get_images_by_jobid
+  description: Retrieve the status and result of an image generation or upscale job. Poll this endpoint after POST
+    /images or POST /images/upscale. Jobs are retained for 30 days.
+  source_operation: openapi/useapi-dreamina-v1-openapi.yml#getImagesByJobid
+  method: GET
+  path: /images/{jobid}
+- name: dreamina_post_images_upscale
+  description: Upscale a generated image to higher resolution (2K, 4K, or 8K). Requires a completed image generation
+    job from POST /images.
+  source_operation: openapi/useapi-dreamina-v1-openapi.yml#postImagesUpscale
+  method: POST
+  path: /images/upscale
+- name: dreamina_get_scheduler
+  description: List all currently executing (in-progress) image and video generation jobs, grouped by account.
+  source_operation: openapi/useapi-dreamina-v1-openapi.yml#getScheduler
+  method: GET
+  path: /scheduler
+- name: kling_get_scheduler
+  description: '[Retrieve running tasks](https://useapi.net/docs/api-kling-v1/get-kling-scheduler)'
+  source_operation: openapi/useapi-kling-v1-openapi.yml#getScheduler
+  method: GET
+  path: /scheduler
+- name: kling_get_scheduler_available
+  description: '[Retrieve available capacity](https://useapi.net/docs/api-kling-v1/get-kling-scheduler-available)'
+  source_operation: openapi/useapi-kling-v1-openapi.yml#getSchedulerAvailable
+  method: GET
+  path: /scheduler/available
+- name: kling_get_tasks
+  description: '[Retrieve Kling tasks](https://useapi.net/docs/api-kling-v1/get-kling-tasks)'
+  source_operation: openapi/useapi-kling-v1-openapi.yml#getTasks
+  method: GET
+  path: /tasks
+- name: kling_get_tasks_by_taskid
+  description: '[Retrieve Kling task](https://useapi.net/docs/api-kling-v1/get-kling-tasks-task_id)'
+  source_operation: openapi/useapi-kling-v1-openapi.yml#getTasksByTaskid
+  method: GET
+  path: /tasks/{task_id}
+- name: kling_post_tts_create
+  description: '[Generate speech from text](https://useapi.net/docs/api-kling-v1/post-kling-tts-create)'
+  source_operation: openapi/useapi-kling-v1-openapi.yml#postTtsCreate
+  method: POST
+  path: /tts/create
+- name: kling_post_avatars
+  description: '[Create Avatar 2.0](https://useapi.net/docs/api-kling-v1/post-kling-avatars)'
+  source_operation: openapi/useapi-kling-v1-openapi.yml#postAvatars
+  method: POST
+  path: /avatars
+- name: kling_post_avatars_video
+  description: '[Generate Avatar 2.0 video](https://useapi.net/docs/api-kling-v1/post-kling-avatars-video)'
+  source_operation: openapi/useapi-kling-v1-openapi.yml#postAvatarsVideo
+  method: POST
+  path: /avatars/video
+- name: kling_post_elements
+  description: '[Create element](https://useapi.net/docs/api-kling-v1/post-kling-elements)'
+  source_operation: openapi/useapi-kling-v1-openapi.yml#postElements
+  method: POST
+  path: /elements
+- name: kling_post_assets
+  description: '[Upload asset](https://useapi.net/docs/api-kling-v1/post-kling-assets)'
+  source_operation: openapi/useapi-kling-v1-openapi.yml#postAssets
+  method: POST
+  path: /assets/
+- name: kling_get_videos_effects
+  description: '[Get Available Video Effects](https://useapi.net/docs/api-kling-v1/get-kling-videos-effects)'
+  source_operation: openapi/useapi-kling-v1-openapi.yml#getVideosEffects
+  method: GET
+  path: /videos/effects
+- name: kling_post_videos_text2video
+  description: '[Create Video From Text](https://useapi.net/docs/api-kling-v1/post-kling-videos-text2video)'
+  source_operation: openapi/useapi-kling-v1-openapi.yml#postVideosText2video
+  method: POST
+  path: /videos/text2video
+- name: kling_post_videos_image2video_frames
+  description: '[Create Video From Image Frames](https://useapi.net/docs/api-kling-v1/post-kling-videos-image2video-frames)'
+  source_operation: openapi/useapi-kling-v1-openapi.yml#postVideosImage2videoFrames
+  method: POST
+  path: /videos/image2video-frames
+- name: kling_post_videos_image2video_elements
+  description: '[Create Video From Multiple Images](https://useapi.net/docs/api-kling-v1/post-kling-videos-image2video-elements)'
+  source_operation: openapi/useapi-kling-v1-openapi.yml#postVideosImage2videoElements
+  method: POST
+  path: /videos/image2video-elements
+- name: kling_post_videos_image2video_effects
+  description: '[Create Video From Image with Effects](https://useapi.net/docs/api-kling-v1/post-kling-videos-image2video-effects)'
+  source_operation: openapi/useapi-kling-v1-openapi.yml#postVideosImage2videoEffects
+  method: POST
+  path: /videos/image2video-effects
+- name: kling_post_videos_extend
+  description: '[Extend an Existing Video](https://useapi.net/docs/api-kling-v1/post-kling-videos-extend)'
+  source_operation: openapi/useapi-kling-v1-openapi.yml#postVideosExtend
+  method: POST
+  path: /videos/extend
+- name: kling_post_videos_lipsync
+  description: '[Apply Lip Sync to Video](https://useapi.net/docs/api-kling-v1/post-kling-videos-lipsync)'
+  source_operation: openapi/useapi-kling-v1-openapi.yml#postVideosLipsync
+  method: POST
+  path: /videos/lipsync
+- name: kling_get_videos_motions
+  description: '[Get available motions](https://useapi.net/docs/api-kling-v1/get-kling-videos-motions)'
+  source_operation: openapi/useapi-kling-v1-openapi.yml#getVideosMotions
+  method: GET
+  path: /videos/motions
+- name: kling_post_videos_motion_create
+  description: '[Create video from motion and image](https://useapi.net/docs/api-kling-v1/post-kling-videos-motion-create)'
+  source_operation: openapi/useapi-kling-v1-openapi.yml#postVideosMotionCreate
+  method: POST
+  path: /videos/motion-create
+- name: kling_post_videos_motion_upload
+  description: '[Upload custom motion](https://useapi.net/docs/api-kling-v1/post-kling-videos-motion-upload) (deprecated)'
+  source_operation: openapi/useapi-kling-v1-openapi.yml#postVideosMotionUpload
+  method: POST
+  path: /videos/motion-upload
+- name: kling_post_videos_add_sound
+  description: '[Add sound to video](https://useapi.net/docs/api-kling-v1/post-kling-videos-add-sound)'
+  source_operation: openapi/useapi-kling-v1-openapi.yml#postVideosAddSound
+  method: POST
+  path: /videos/add-sound
+- name: kling_post_videos_omni
+  description: '[Generate videos with Omni](https://useapi.net/docs/api-kling-v1/post-kling-videos-omni)'
+  source_operation: openapi/useapi-kling-v1-openapi.yml#postVideosOmni
+  method: POST
+  path: /videos/omni
+- name: kling_post_images_virtual_try_on
+  description: '[Virtual Try-On](https://useapi.net/docs/api-kling-v1/post-kling-images-virtual-try-on)'
+  source_operation: openapi/useapi-kling-v1-openapi.yml#postImagesVirtualTryOn
+  method: POST
+  path: /images/virtual-try-on
+- name: kling_post_images_kolors
+  description: '[KOLORS](https://useapi.net/docs/api-kling-v1/post-kling-images-kolors)'
+  source_operation: openapi/useapi-kling-v1-openapi.yml#postImagesKolors
+  method: POST
+  path: /images/kolors
+- name: kling_post_images_kolors_elements
+  description: '[KOLORS - elements](https://useapi.net/docs/api-kling-v1/post-kling-images-kolors-elements)'
+  source_operation: openapi/useapi-kling-v1-openapi.yml#postImagesKolorsElements
+  method: POST
+  path: /images/kolors-elements
+- name: kling_post_images_recognize_faces
+  description: '[Detect Faces in Images](https://useapi.net/docs/api-kling-v1/post-kling-images-recognize-faces)'
+  source_operation: openapi/useapi-kling-v1-openapi.yml#postImagesRecognizeFaces
+  method: POST
+  path: /images/recognize-faces
+- name: kling_post_images_upscale
+  description: '[Upscale Images](https://useapi.net/docs/api-kling-v1/post-kling-images-upscale)'
+  source_operation: openapi/useapi-kling-v1-openapi.yml#postImagesUpscale
+  method: POST
+  path: /images/upscale
+- name: kling_post_images_omni
+  description: '[Generate images with Omni](https://useapi.net/docs/api-kling-v1/post-kling-images-omni)'
+  source_operation: openapi/useapi-kling-v1-openapi.yml#postImagesOmni
+  method: POST
+  path: /images/omni
+- name: minimax_post_videos_create
+  description: '## [Create a video using a text and image prompt](https://useapi.net/docs/api-minimax-v1/post-minimax-videos-create)'
+  source_operation: openapi/useapi-minimax-v1-openapi.yml#postVideosCreate
+  method: POST
+  path: /videos/create
+- name: minimax_post_videos_agent_create
+  description: '## [Create a video using an agent template](https://useapi.net/docs/api-minimax-v1/post-minimax-videos-agent-create)'
+  source_operation: openapi/useapi-minimax-v1-openapi.yml#postVideosAgentCreate
+  method: POST
+  path: /videos/agent-create
+- name: minimax_post_videos_cancel
+  description: '## [Cancel the currently generated video.](https://useapi.net/docs/api-minimax-v1/post-minimax-videos-cancel)'
+  source_operation: openapi/useapi-minimax-v1-openapi.yml#postVideosCancel
+  method: POST
+  path: /videos/cancel
+- name: minimax_get_videos_by_videoid
+  description: '## [Retrieve video](https://useapi.net/docs/api-minimax-v1/get-minimax-videos-videoId)'
+  source_operation: openapi/useapi-minimax-v1-openapi.yml#getVideosByVideoid
+  method: GET
+  path: /videos/{videoId}
+- name: minimax_get_videos
+  description: '## [Retrieve videos](https://useapi.net/docs/api-minimax-v1/get-minimax-videos)'
+  source_operation: openapi/useapi-minimax-v1-openapi.yml#getVideos
+  method: GET
+  path: /videos/
+- name: minimax_get_videos_agent_templates
+  description: '## [Retrieve available agent video templates](https://useapi.net/docs/api-minimax-v1/get-minimax-videos-agent-templates)'
+  source_operation: openapi/useapi-minimax-v1-openapi.yml#getVideosAgentTemplates
+  method: GET
+  path: /videos/agent-templates/
+- name: minimax_get_videos_characters
+  description: '## [Retrieve the list of characters](https://useapi.net/docs/api-minimax-v1/get-minimax-videos-characters)'
+  source_operation: openapi/useapi-minimax-v1-openapi.yml#getVideosCharacters
+  method: GET
+  path: /videos/characters/
+- name: minimax_post_images_create
+  description: '## [Create an image using a text prompt](https://useapi.net/docs/api-minimax-v1/post-minimax-images-create)'
+  source_operation: openapi/useapi-minimax-v1-openapi.yml#postImagesCreate
+  method: POST
+  path: /images/create
+- name: minimax_get_images_by_imageid
+  description: '## [Retrieve image](https://useapi.net/docs/api-minimax-v1/get-minimax-images-imageId)'
+  source_operation: openapi/useapi-minimax-v1-openapi.yml#getImagesByImageid
+  method: GET
+  path: /images/{imageId}
+- name: minimax_get_images
+  description: '## [Retrieve the list of images you have generated](https://useapi.net/docs/api-minimax-v1/get-minimax-images)'
+  source_operation: openapi/useapi-minimax-v1-openapi.yml#getImages
+  method: GET
+  path: /images/
+- name: minimax_get_music_create
+  description: '## [Compose music up to 60 seconds long using a text prompt](https://useapi.net/docs/api-minimax-v1/get-minimax-music-create)'
+  source_operation: openapi/useapi-minimax-v1-openapi.yml#getMusicCreate
+  method: GET
+  path: /music/create
+- name: minimax_get_music
+  description: '## [Retrieve the list of songs you have generated](https://useapi.net/docs/api-minimax-v1/get-minimax-music)'
+  source_operation: openapi/useapi-minimax-v1-openapi.yml#getMusic
+  method: GET
+  path: /music
+- name: minimax_get_music_styles
+  description: '## [Retrieve the list of music styles](https://useapi.net/docs/api-minimax-v1/get-minimax-music-styles)'
+  source_operation: openapi/useapi-minimax-v1-openapi.yml#getMusicStyles
+  method: GET
+  path: /music/styles
+- name: minimax_post_files
+  description: '## [Upload image, audio, or video file](https://useapi.net/docs/api-minimax-v1/post-minimax-files)
+    — Content-Type: image/png, image/jpeg, audio/mpeg, audio/wav, video/mp4'
+  source_operation: openapi/useapi-minimax-v1-openapi.yml#postFiles
+  method: POST
+  path: /files/
+- name: minimax_post_audio_voices_create_mp3
+  description: '## [Create text-to-speech audio](https://useapi.net/docs/api-minimax-v1/post-minimax-audio-create-mp3)'
+  source_operation: openapi/useapi-minimax-v1-openapi.yml#postAudioVoicesCreateMp3
+  method: POST
+  path: /audio/voices/create-mp3
+- name: minimax_post_audio_create_stream
+  description: '## [Create text-to-speech audio stream token and payload](https://useapi.net/docs/api-minimax-v1/post-minimax-audio-create-stream)'
+  source_operation: openapi/useapi-minimax-v1-openapi.yml#postAudioCreateStream
+  method: POST
+  path: /audio/create-stream
+- name: minimax_post_audio_upload_sample
+  description: '## [Upload an MP3 or WAV voice sample to be used for voice cloning](https://useapi.net/docs/api-minimax-v1/post-minimax-audio-upload-sample)'
+  source_operation: openapi/useapi-minimax-v1-openapi.yml#postAudioUploadSample
+  method: POST
+  path: /audio/upload-sample/
+- name: minimax_post_audio_voices_clone_voice
+  description: '## [Clone the voice using the uploaded voice samples](https://useapi.net/docs/api-minimax-v1/post-minimax-audio-clone-voice)'
+  source_operation: openapi/useapi-minimax-v1-openapi.yml#postAudioVoicesCloneVoice
+  method: POST
+  path: /audio/voices/clone-voice
+- name: minimax_post_audio_voices_delete_voice
+  description: '## [Delete cloned voice](https://useapi.net/docs/api-minimax-v1/post-minimax-audio-delete-voice)'
+  source_operation: openapi/useapi-minimax-v1-openapi.yml#postAudioVoicesDeleteVoice
+  method: POST
+  path: /audio/voices/delete-voice
+- name: minimax_post_llm
+  description: '## [Chat with LLM](https://useapi.net/docs/api-minimax-v1/post-minimax-llm)'
+  source_operation: openapi/useapi-minimax-v1-openapi.yml#postLlm
+  method: POST
+  path: /llm
+- name: minimax_post_agent
+  description: '## [Execute AI Agent with Multi-Model Support](https://useapi.net/docs/api-minimax-v1/post-minimax-agent)'
+  source_operation: openapi/useapi-minimax-v1-openapi.yml#postAgent
+  method: POST
+  path: /agent
+- name: minimax_get_agent_jobs
+  description: '## [List Running Agent Jobs](https://useapi.net/docs/api-minimax-v1/get-minimax-agent-jobs)'
+  source_operation: openapi/useapi-minimax-v1-openapi.yml#getAgentJobs
+  method: GET
+  path: /agent/jobs
+- name: minimax_get_agent_by_jobid
+  description: '## [Retrieve Agent Job Status and Results](https://useapi.net/docs/api-minimax-v1/get-minimax-agent-jobId)'
+  source_operation: openapi/useapi-minimax-v1-openapi.yml#getAgentByJobid
+  method: GET
+  path: /agent/{jobId}
+- name: minimax_get_scheduler
+  description: '## [Remove video or image generation from being tracked by the scheduler](https://useapi.net/docs/api-minimax-v1/get-minimax-scheduler)'
+  source_operation: openapi/useapi-minimax-v1-openapi.yml#getScheduler
+  method: GET
+  path: /scheduler
+- name: minimax_get_scheduler_available
+  description: '## [Retrieve the list of videos currently running via the API along with the available account capacity](https://useapi.net/docs/api-minimax-v1/get-minimax-scheduler-available)'
+  source_operation: openapi/useapi-minimax-v1-openapi.yml#getSchedulerAvailable
+  method: GET
+  path: /scheduler/available
+- name: runway_post_frames_create
+  description: '## [Frames](https://useapi.net/docs/api-runwayml-v1/post-runwayml-frames-create)'
+  source_operation: openapi/useapi-runwayml-v1-openapi.yml#postFramesCreate
+  method: POST
+  path: /frames/create
+- name: runway_post_images_create
+  description: '## [Images](https://useapi.net/docs/api-runwayml-v1/post-runwayml-images-create)'
+  source_operation: openapi/useapi-runwayml-v1-openapi.yml#postImagesCreate
+  method: POST
+  path: /images/create
+- name: runway_post_videos_create
+  description: '## [Videos](https://useapi.net/docs/api-runwayml-v1/post-runwayml-videos-create)'
+  source_operation: openapi/useapi-runwayml-v1-openapi.yml#postVideosCreate
+  method: POST
+  path: /videos/create
+- name: runway_post_videos_upscale
+  description: '## [Videos Upscale](https://useapi.net/docs/api-runwayml-v1/post-runwayml-videos-upscale)'
+  source_operation: openapi/useapi-runwayml-v1-openapi.yml#postVideosUpscale
+  method: POST
+  path: /videos/upscale
+- name: runway_post_gen4turbo_create
+  description: '## [Create a video using the first image(s) with a text prompt](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen4turbo-create)'
+  source_operation: openapi/useapi-runwayml-v1-openapi.yml#postGen4turboCreate
+  method: POST
+  path: /gen4turbo/create
+- name: runway_post_gen45_create
+  description: '## [Create a video using text prompt or image](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen4_5-create)'
+  source_operation: openapi/useapi-runwayml-v1-openapi.yml#postGen45Create
+  method: POST
+  path: /gen4_5/create
+- name: runway_post_gen4_create
+  description: '## [Create a video using the first image(s) with a text prompt](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen4-create)'
+  source_operation: openapi/useapi-runwayml-v1-openapi.yml#postGen4Create
+  method: POST
+  path: /gen4/create
+- name: runway_post_gen4_upscale
+  description: '## [Upscale to 4K the Gen-4, Gen-4 Turbo, Gen-3 Alpha and Gen-3 Alpha Turbo videos](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen4-upscale)'
+  source_operation: openapi/useapi-runwayml-v1-openapi.yml#postGen4Upscale
+  method: POST
+  path: /gen4/upscale
+- name: runway_post_gen4_act_two
+  description: '## [Gen4 Act-Two](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen4-act-two)'
+  source_operation: openapi/useapi-runwayml-v1-openapi.yml#postGen4ActTwo
+  method: POST
+  path: /gen4/act-two
+- name: runway_post_gen4_act_two_voice
+  description: '## [Gen4 Act-Two voice swap](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen4-act-two-voice)'
+  source_operation: openapi/useapi-runwayml-v1-openapi.yml#postGen4ActTwoVoice
+  method: POST
+  path: /gen4/act-two-voice
+- name: runway_post_gen4_video
+  description: '## [Create a video using Runway Gen-4 Aleph (video-to-video)](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen4-video)'
+  source_operation: openapi/useapi-runwayml-v1-openapi.yml#postGen4Video
+  method: POST
+  path: /gen4/video
+- name: runway_post_gen3turbo_create
+  description: '## [Create a video using the first and/or last images with a text prompt](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3turbo-create)'
+  source_operation: openapi/useapi-runwayml-v1-openapi.yml#postGen3turboCreate
+  method: POST
+  path: /gen3turbo/create
+- name: runway_post_gen3turbo_video
+  description: '[Gen-3 Alpha Turbo Video to Video](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3turbo-video)'
+  source_operation: openapi/useapi-runwayml-v1-openapi.yml#postGen3turboVideo
+  method: POST
+  path: /gen3turbo/video
+- name: runway_post_gen3turbo_extend
+  description: '## [Extend the Gen-3 Alpha Turbo video by 8 seconds](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3turbo-extend)'
+  source_operation: openapi/useapi-runwayml-v1-openapi.yml#postGen3turboExtend
+  method: POST
+  path: /gen3turbo/extend
+- name: runway_post_gen3turbo_expand
+  description: '## [Gen-3 Alpha Turbo Expand Video](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3turbo-expand)'
+  source_operation: openapi/useapi-runwayml-v1-openapi.yml#postGen3turboExpand
+  method: POST
+  path: /gen3turbo/expand
+- name: runway_post_gen3turbo_actone
+  description: '[Drive your image or video character performance using simple video and audio inputs.](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3turbo-actone)'
+  source_operation: openapi/useapi-runwayml-v1-openapi.yml#postGen3turboActone
+  method: POST
+  path: /gen3turbo/actone
+- name: runway_post_gen3_create
+  description: '## [Create a video using text and/or image prompts](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3-create)'
+  source_operation: openapi/useapi-runwayml-v1-openapi.yml#postGen3Create
+  method: POST
+  path: /gen3/create
+- name: runway_post_gen3_video
+  description: '[Gen-3 Alpha Video to Video](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3-video)'
+  source_operation: openapi/useapi-runwayml-v1-openapi.yml#postGen3Video
+  method: POST
+  path: /gen3/video
+- name: runway_post_gen3_extend
+  description: '## [Extend the Gen-3 Alpha video by 5 or 10 seconds](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3-extend)'
+  source_operation: openapi/useapi-runwayml-v1-openapi.yml#postGen3Extend
+  method: POST
+  path: /gen3/extend
+- name: runway_post_gen3_actone
+  description: '[Drive your image or video character performance using simple video and audio inputs.](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3-actone)'
+  source_operation: openapi/useapi-runwayml-v1-openapi.yml#postGen3Actone
+  method: POST
+  path: /gen3/actone
+- name: runway_post_gen3alpha_upscale
+  description: '## [Upscale Gen-3 Alpha and Gen-3 Alpha Turbo videos to 4K](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3alpha-upscale)'
+  source_operation: openapi/useapi-runwayml-v1-openapi.yml#postGen3alphaUpscale
+  method: POST
+  path: /gen3alpha/upscale
+- name: runway_post_gen2_create
+  description: '## [Create a 4-second-long video using text and/or image prompts](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen2-create)'
+  source_operation: openapi/useapi-runwayml-v1-openapi.yml#postGen2Create
+  method: POST
+  path: /gen2/create
+- name: runway_post_gen2_extend
+  description: '## [Extend the video by 4 seconds](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen2-extend)'
+  source_operation: openapi/useapi-runwayml-v1-openapi.yml#postGen2Extend
+  method: POST
+  path: /gen2/extend
+- name: runway_post_lipsync_create
+  description: '[Lip Sync for both image and video sources with support for a variety of voices (28+ languages supported)
+    or audio file](https://useapi.net/docs/api-runwayml-v1/post-runwayml-lipsync-create)'
+  source_operation: openapi/useapi-runwayml-v1-openapi.yml#postLipsyncCreate
+  method: POST
+  path: /lipsync/create
+- name: runway_post_super_slow_motion
+  description: '[Super Slow Motion](https://useapi.net/docs/api-runwayml-v1/post-runwayml-super_slow_motion)'
+  source_operation: openapi/useapi-runwayml-v1-openapi.yml#postSuperSlowMotion
+  method: POST
+  path: /super_slow_motion
+- name: runway_post_assets
+  description: Upload assed to your RunwayML account asset storage.
+  source_operation: openapi/useapi-runwayml-v1-openapi.yml#postAssets
+  method: POST
+  path: /assets/
+- name: runway_get_scheduler
+  description: Retrieve the list of currently executing tasks.
+  source_operation: openapi/useapi-runwayml-v1-openapi.yml#getScheduler
+  method: GET
+  path: /scheduler
+- name: runway_get_tasks
+  description: Retrieve tasks. Pagination supported via offset and limit parameters.
+  source_operation: openapi/useapi-runwayml-v1-openapi.yml#getTasks
+  method: GET
+  path: /tasks/
+- name: runway_get_tasks_by_taskid
+  description: Retrieve task.
+  source_operation: openapi/useapi-runwayml-v1-openapi.yml#getTasksByTaskid
+  method: GET
+  path: /tasks/{taskId}
+- name: pixverse_post_files
+  description: '## [Upload image/video/audio file](https://useapi.net/docs/api-pixverse-v2/post-pixverse-files)'
+  source_operation: openapi/useapi-pixverse-v2-openapi.yml#postFiles
+  method: POST
+  path: /files/
+- name: pixverse_get_videos
+  description: '## [Retrieve videos](https://useapi.net/docs/api-pixverse-v2/get-pixverse-videos)'
+  source_operation: openapi/useapi-pixverse-v2-openapi.yml#getVideos
+  method: GET
+  path: /videos/
+- name: pixverse_get_videos_by_videoid
+  description: '## [Retrieve video](https://useapi.net/docs/api-pixverse-v2/get-pixverse-videos-video_id)'
+  source_operation: openapi/useapi-pixverse-v2-openapi.yml#getVideosByVideoid
+  method: GET
+  path: /videos/{videoId}
+- name: pixverse_post_videos_create
+  description: '## [Create video](https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-create-v4)'
+  source_operation: openapi/useapi-pixverse-v2-openapi.yml#postVideosCreate
+  method: POST
+  path: /videos/create
+- name: pixverse_post_videos_create_frames
+  description: '## [Create video using first and last frames](https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-create-frames-v4)'
+  source_operation: openapi/useapi-pixverse-v2-openapi.yml#postVideosCreateFrames
+  method: POST
+  path: /videos/create-frames
+- name: pixverse_post_videos_create_transition
+  description: '## [Create transition video](https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-create-transition)'
+  source_operation: openapi/useapi-pixverse-v2-openapi.yml#postVideosCreateTransition
+  method: POST
+  path: /videos/create-transition
+- name: pixverse_post_videos_create_fusion
+  description: '## [Create video using image fusion](https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-create-fusion)'
+  source_operation: openapi/useapi-pixverse-v2-openapi.yml#postVideosCreateFusion
+  method: POST
+  path: /videos/create-fusion
+- name: pixverse_post_videos_motion_control
+  description: '## [Motion Control](https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-motion-control)'
+  source_operation: openapi/useapi-pixverse-v2-openapi.yml#postVideosMotionControl
+  method: POST
+  path: /videos/motion-control
+- name: pixverse_post_videos_extend
+  description: '## [Extend video](https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-extend-v4)'
+  source_operation: openapi/useapi-pixverse-v2-openapi.yml#postVideosExtend
+  method: POST
+  path: /videos/extend
+- name: pixverse_post_videos_modify
+  description: '## [Modify video](https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-modify)'
+  source_operation: openapi/useapi-pixverse-v2-openapi.yml#postVideosModify
+  method: POST
+  path: /videos/modify
+- name: pixverse_post_videos_restyle
+  description: '## [Restyle video](https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-restyle-v4)'
+  source_operation: openapi/useapi-pixverse-v2-openapi.yml#postVideosRestyle
+  method: POST
+  path: /videos/restyle
+- name: pixverse_post_videos_upscale
+  description: '## [Upscale video to 4K](https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-upscale)'
+  source_operation: openapi/useapi-pixverse-v2-openapi.yml#postVideosUpscale
+  method: POST
+  path: /videos/upscale/
+- name: pixverse_post_videos_lipsync
+  description: '## [Lipsync video](https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-lipsync)'
+  source_operation: openapi/useapi-pixverse-v2-openapi.yml#postVideosLipsync
+  method: POST
+  path: /videos/lipsync/
+- name: pixverse_get_videos_voices
+  description: '## [Retrieve lipsync voices](https://useapi.net/docs/api-pixverse-v2/get-pixverse-videos-voices)'
+  source_operation: openapi/useapi-pixverse-v2-openapi.yml#getVideosVoices
+  method: GET
+  path: /videos/voices/
+- name: pixverse_get_videos_effects
+  description: '## [Retrieve effects](https://useapi.net/docs/api-pixverse-v2/get-pixverse-videos-effects)'
+  source_operation: openapi/useapi-pixverse-v2-openapi.yml#getVideosEffects
+  method: GET
+  path: /videos/effects/
+- name: pixverse_get_videos_restyles
+  description: '## [Retrieve restyle options](https://useapi.net/docs/api-pixverse-v2/get-pixverse-videos-restyles)'
+  source_operation: openapi/useapi-pixverse-v2-openapi.yml#getVideosRestyles
+  method: GET
+  path: /videos/restyles/
+- name: pixverse_get_images_by_imageid
+  description: '## [Retrieve generated image](https://useapi.net/docs/api-pixverse-v2/get-pixverse-images-image_id)'
+  source_operation: openapi/useapi-pixverse-v2-openapi.yml#getImagesByImageid
+  method: GET
+  path: /images/{imageId}
+- name: pixverse_post_images_create
+  description: '## [Generate images](https://useapi.net/docs/api-pixverse-v2/post-pixverse-images-create)'
+  source_operation: openapi/useapi-pixverse-v2-openapi.yml#postImagesCreate
+  method: POST
+  path: /images/create
+- name: pixverse_get_music
+  description: '## [Retrieve all generated music](https://useapi.net/docs/api-pixverse-v2/get-pixverse-music)'
+  source_operation: openapi/useapi-pixverse-v2-openapi.yml#getMusic
+  method: GET
+  path: /music
+- name: pixverse_get_music_by_audioid
+  description: '## [Retrieve generated music track](https://useapi.net/docs/api-pixverse-v2/get-pixverse-music-music_id)'
+  source_operation: openapi/useapi-pixverse-v2-openapi.yml#getMusicByAudioid
+  method: GET
+  path: /music/{audioId}
+- name: pixverse_post_music_create
+  description: '## [Generate music](https://useapi.net/docs/api-pixverse-v2/post-pixverse-music-create)'
+  source_operation: openapi/useapi-pixverse-v2-openapi.yml#postMusicCreate
+  method: POST
+  path: /music/create
+- name: pixverse_post_speech_create
+  description: '## [Generate speech from text](https://useapi.net/docs/api-pixverse-v2/post-pixverse-speech-create)'
+  source_operation: openapi/useapi-pixverse-v2-openapi.yml#postSpeechCreate
+  method: POST
+  path: /speech/create
+- name: pixverse_get_scheduler
+  description: '## [Retrieve the list of videos currently being executed by the API](https://useapi.net/docs/api-pixverse-v2/get-pixverse-scheduler)'
+  source_operation: openapi/useapi-pixverse-v2-openapi.yml#getScheduler
+  method: GET
+  path: /scheduler/
+- name: pixverse_get_scheduler_available
+  description: '## [Retrieve the list of videos currently running via the API along with the available account capacity](https://useapi.net/docs/api-pixverse-v2/get-pixverse-scheduler-available)'
+  source_operation: openapi/useapi-pixverse-v2-openapi.yml#getSchedulerAvailable
+  method: GET
+  path: /scheduler/available/
+- name: mureka_get_jobs
+  description: '## [List running jobs for an account](https://useapi.net/docs/api-mureka-v1/get-mureka-jobs)'
+  source_operation: openapi/useapi-mureka-v1-openapi.yml#getJobs
+  method: GET
+  path: /jobs/
+- name: mureka_get_jobs_by_jobid
+  description: '## [Get job status and results](https://useapi.net/docs/api-mureka-v1/get-mureka-jobs-jobid)'
+  source_operation: openapi/useapi-mureka-v1-openapi.yml#getJobsByJobid
+  method: GET
+  path: /jobs/{jobId}
+- name: mureka_get_music
+  description: '## [Retrieve generated music](https://useapi.net/docs/api-mureka-v1/get-mureka-music)'
+  source_operation: openapi/useapi-mureka-v1-openapi.yml#getMusic
+  method: GET
+  path: /music/
+- name: mureka_get_music_by_songid
+  description: '## [Retrieve generated song details](https://useapi.net/docs/api-mureka-v1/get-mureka-music-song_id)'
+  source_operation: openapi/useapi-mureka-v1-openapi.yml#getMusicBySongid
+  method: GET
+  path: /music/{song_id}
+- name: mureka_post_music_create
+  description: '## [Create a music using AI-generated lyrics](https://useapi.net/docs/api-mureka-v1/post-mureka-music-create)'
+  source_operation: openapi/useapi-mureka-v1-openapi.yml#postMusicCreate
+  method: POST
+  path: /music/create
+- name: mureka_post_music_create_advanced
+  description: '## [Create a music using custom lyrics, styles, vocals and reference song](https://useapi.net/docs/api-mureka-v1/post-mureka-music-create-advanced)'
+  source_operation: openapi/useapi-mureka-v1-openapi.yml#postMusicCreateAdvanced
+  method: POST
+  path: /music/create-advanced
+- name: mureka_post_music_create_instrumental
+  description: '## [Create a instrumental music](https://useapi.net/docs/api-mureka-v1/post-mureka-music-create-instrumental)'
+  source_operation: openapi/useapi-mureka-v1-openapi.yml#postMusicCreateInstrumental
+  method: POST
+  path: /music/create-instrumental
+- name: mureka_post_music_extend
+  description: '## [Extend song](https://useapi.net/docs/api-mureka-v1/post-mureka-music-extend)'
+  source_operation: openapi/useapi-mureka-v1-openapi.yml#postMusicExtend
+  method: POST
+  path: /music/extend
+- name: mureka_post_music_regenerate
+  description: '## [Regenerate song](https://useapi.net/docs/api-mureka-v1/post-mureka-music-regenerate)'
+  source_operation: openapi/useapi-mureka-v1-openapi.yml#postMusicRegenerate
+  method: POST
+  path: /music/regenerate
+- name: mureka_post_music_video_generate
+  description: '## [Create an AI-generated video for your song](https://useapi.net/docs/api-mureka-v1/post-mureka-music-video-generate)'
+  source_operation: openapi/useapi-mureka-v1-openapi.yml#postMusicVideoGenerate
+  method: POST
+  path: /music/video-generate
+- name: mureka_post_music_lyrics_generate
+  description: '## [AI-generated lyrics from your prompt](https://useapi.net/docs/api-mureka-v1/post-mureka-music-lyrics-generate)'
+  source_operation: openapi/useapi-mureka-v1-openapi.yml#postMusicLyricsGenerate
+  method: POST
+  path: /music/lyrics-generate
+- name: mureka_post_music_download
+  description: '## [Download song instrumentals&amp;stems and license](https://useapi.net/docs/api-mureka-v1/post-mureka-music-download)'
+  source_operation: openapi/useapi-mureka-v1-openapi.yml#postMusicDownload
+  method: POST
+  path: /music/download
+- name: mureka_get_music_vocals
+  description: '## [Retrieve a list of vocal samples including the ones you uploaded](https://useapi.net/docs/api-mureka-v1/get-mureka-music-vocals)'
+  source_operation: openapi/useapi-mureka-v1-openapi.yml#getMusicVocals
+  method: GET
+  path: /music/vocals/
+- name: mureka_get_music_refs
+  description: '## [Retrieve songs for reference](https://useapi.net/docs/api-mureka-v1/get-mureka-music-refs)'
+  source_operation: openapi/useapi-mureka-v1-openapi.yml#getMusicRefs
+  method: GET
+  path: /music/refs/
+- name: mureka_get_music_moods_and_genres
+  description: '## [Retrieve moods and genres](https://useapi.net/docs/api-mureka-v1/get-mureka-music-moods-and-genres)'
+  source_operation: openapi/useapi-mureka-v1-openapi.yml#getMusicMoodsAndGenres
+  method: GET
+  path: /music/moods-and-genres/
+- name: mureka_post_files
+  description: '## [Upload mp3 audio track to your music collection](https://useapi.net/docs/api-mureka-v1/post-mureka-files)'
+  source_operation: openapi/useapi-mureka-v1-openapi.yml#postFiles
+  method: POST
+  path: /files/
+- name: mureka_post_files_motif
+  description: '## [Upload mp3 melody (motif) track](https://useapi.net/docs/api-mureka-v1/post-mureka-files-motif)'
+  source_operation: openapi/useapi-mureka-v1-openapi.yml#postFilesMotif
+  method: POST
+  path: /files/motif/
+- name: mureka_post_files_vocal
+  description: '## [Upload mp3 vocal](https://useapi.net/docs/api-mureka-v1/post-mureka-files-vocal)'
+  source_operation: openapi/useapi-mureka-v1-openapi.yml#postFilesVocal
+  method: POST
+  path: /files/vocal/
+- name: mureka_post_speech
+  description: '## [Generate speech](https://useapi.net/docs/api-mureka-v1/post-mureka-speech)'
+  source_operation: openapi/useapi-mureka-v1-openapi.yml#postSpeech
+  method: POST
+  path: /speech
+- name: mureka_post_speech_voice
+  description: '## [Clone voice for speech](https://useapi.net/docs/api-mureka-v1/post-mureka-speech-voice)'
+  source_operation: openapi/useapi-mureka-v1-openapi.yml#postSpeechVoice
+  method: POST
+  path: /speech/voice/
+- name: tempolor_post_music_song
+  description: '[Create music with vocals](https://useapi.net/docs/api-tempolor-v1/post-tempolor-music-song)'
+  source_operation: openapi/useapi-tempolor-v1-openapi.yml#postMusicSong
+  method: POST
+  path: /music/song
+- name: tempolor_post_music_instrumental
+  description: '[Create instrumental music](https://useapi.net/docs/api-tempolor-v1/post-tempolor-music-instrumental)'
+  source_operation: openapi/useapi-tempolor-v1-openapi.yml#postMusicInstrumental
+  method: POST
+  path: /music/instrumental
+- name: tempolor_post_music_stems_splitter
+  description: '[Split audio into stems](https://useapi.net/docs/api-tempolor-v1/post-tempolor-music-stems-splitter)'
+  source_operation: openapi/useapi-tempolor-v1-openapi.yml#postMusicStemsSplitter
+  method: POST
+  path: /music/stems-splitter
+- name: tempolor_get_music
+  description: '[Retrieve generated music](https://useapi.net/docs/api-tempolor-v1/get-tempolor-music)'
+  source_operation: openapi/useapi-tempolor-v1-openapi.yml#getMusic
+  method: GET
+  path: /music
+- name: tempolor_get_music_by_jobid
+  description: '[Retrieve music generation job status](https://useapi.net/docs/api-tempolor-v1/get-tempolor-music-job_id)'
+  source_operation: openapi/useapi-tempolor-v1-openapi.yml#getMusicByJobid
+  method: GET
+  path: /music/{job_id}
+- name: tempolor_get_music_download_by_jobid
+  description: '[Download generated music](https://useapi.net/docs/api-tempolor-v1/get-tempolor-music-download-job_id)'
+  source_operation: openapi/useapi-tempolor-v1-openapi.yml#getMusicDownloadByJobid
+  method: GET
+  path: /music/download/{job_id}
+- name: tempolor_get_music_artist_voices
+  description: '[List artist voices](https://useapi.net/docs/api-tempolor-v1/get-tempolor-music-artist-voices)'
+  source_operation: openapi/useapi-tempolor-v1-openapi.yml#getMusicArtistVoices
+  method: GET
+  path: /music/artist-voices
+- name: tempolor_get_music_cloned_voices
+  description: '[List cloned voices](https://useapi.net/docs/api-tempolor-v1/get-tempolor-music-cloned-voices)'
+  source_operation: openapi/useapi-tempolor-v1-openapi.yml#getMusicClonedVoices
+  method: GET
+  path: /music/cloned-voices
+- name: tempolor_post_music_cloned_voices
+  description: '[Upload voice sample for cloning](https://useapi.net/docs/api-tempolor-v1/post-tempolor-music-cloned-voices)'
+  source_operation: openapi/useapi-tempolor-v1-openapi.yml#postMusicClonedVoices
+  method: POST
+  path: /music/cloned-voices
+- name: tempolor_get_music_midi
+  description: '[List uploaded MIDI files](https://useapi.net/docs/api-tempolor-v1/get-tempolor-music-midi)'
+  source_operation: openapi/useapi-tempolor-v1-openapi.yml#getMusicMidi
+  method: GET
+  path: /music/midi
+- name: tempolor_post_music_midi
+  description: '[Upload MIDI file](https://useapi.net/docs/api-tempolor-v1/post-tempolor-music-midi)'
+  source_operation: openapi/useapi-tempolor-v1-openapi.yml#postMusicMidi
+  method: POST
+  path: /music/midi
+- name: tempolor_get_scheduler
+  description: '[List scheduled jobs](https://useapi.net/docs/api-tempolor-v1/get-tempolor-scheduler)'
+  source_operation: openapi/useapi-tempolor-v1-openapi.yml#getScheduler
+  method: GET
+  path: /scheduler
+- name: tempolor_get_scheduler_available
+  description: '[Retrieve available capacity](https://useapi.net/docs/api-tempolor-v1/get-tempolor-scheduler-available)'
+  source_operation: openapi/useapi-tempolor-v1-openapi.yml#getSchedulerAvailable
+  method: GET
+  path: /scheduler/available
+- name: faceswap_post_listid
+  description: faceswap/listid
+  source_operation: openapi/useapi-faceswap-v1-openapi.yml#postListid
+  method: POST
+  path: /listid
+- name: faceswap_post_saveid
+  description: faceswap/saveid
+  source_operation: openapi/useapi-faceswap-v1-openapi.yml#postSaveid
+  method: POST
+  path: /saveid
+- name: faceswap_post_swapid
+  description: faceswap/swapid
+  source_operation: openapi/useapi-faceswap-v1-openapi.yml#postSwapid
+  method: POST
+  path: /swapid
+- name: faceswap_post_setid
+  description: faceswap/setid
+  source_operation: openapi/useapi-faceswap-v1-openapi.yml#postSetid
+  method: POST
+  path: /setid
+- name: faceswap_post_swap
+  description: faceswap/swap
+  source_operation: openapi/useapi-faceswap-v1-openapi.yml#postSwap
+  method: POST
+  path: /swap
+- name: faceswap_post_inswapper
+  description: faceswap/inswapper
+  source_operation: openapi/useapi-faceswap-v1-openapi.yml#postInswapper
+  method: POST
+  path: /inswapper
+- name: faceswap_post_picsi
+  description: faceswap/picsi
+  source_operation: openapi/useapi-faceswap-v1-openapi.yml#postPicsi
+  method: POST
+  path: /picsi
+- name: faceswap_post_changebg
+  description: faceswap/changebg
+  source_operation: openapi/useapi-faceswap-v1-openapi.yml#postChangebg
+  method: POST
+  path: /changebg
+- name: faceswap_post_headshot
+  description: faceswap/headshot
+  source_operation: openapi/useapi-faceswap-v1-openapi.yml#postHeadshot
+  method: POST
+  path: /headshot
+- name: faceswap_get_jobs
+  description: faceswap/jobs/?jobid=<jobid>
+  source_operation: openapi/useapi-faceswap-v1-openapi.yml#getJobs
+  method: GET
+  path: /jobs/
+- name: faceswap_get_jobs_cancel
+  description: faceswap/jobs/cancel/?jobid=<jobid>
+  source_operation: openapi/useapi-faceswap-v1-openapi.yml#getJobsCancel
+  method: GET
+  path: /jobs/cancel/
+- name: faceswap_get_jobs2
+  description: faceswap/jobs
+  source_operation: openapi/useapi-faceswap-v1-openapi.yml#getJobs2
+  method: GET
+  path: /jobs

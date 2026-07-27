@@ -1,0 +1,3530 @@
+{
+  "info": {
+    "_postman_id": "c7d15795-a9f3-49dd-9035-c8e8fc86750f",
+    "name": "Runway API v1 by useapi.net",
+    "description": "Full documentation available at [useapi.net](http://useapi.net/docs/api-runwayml-v1/).\n\nExperimental API for the [Runway](https://runwayml.com/) with full support for:\n\n- Gen-3 Alpha and Gen-3 Alpha Turbo\n    \n    - Text to Video\n        \n    - Image to Video\n        \n    - Video to Video\n        \n    - Extend Video\n        \n- Gen-2 text and image to video, extend video\n    \n- Lip Sync for both image and video sources with support for a variety of voices (28+ languages supported) or audio file\n    \n- Image to Text\n    \n- Image Upscaler\n    \n- Transcribe audio or video to text, multiple languages supported\n    \n\nAPI provides support for webhook callbacks for your convenience.\n\nFor free RunwayML accounts, the following features are unlocked with this Experimental API:\n\n- Watermarks will be removed automatically for Gen-2 generations\n    \n- Unlimited number of Text to Image generations\n    \n- Unlimited number of Image Upscaler generations\n    \n- Unlimited number of Transcribe generations\n\n---\n**Updated:** July 16, 2026",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "updated": "2026-07-06",
+    "_exporter_id": "29112081"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/accounts",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "accounts"
+          ]
+        },
+        "description": "Retrieve RunwayML accounts information."
+      },
+      "response": []
+    },
+    {
+      "name": "accounts/<email>",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/accounts/{{email}}",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "accounts",
+            "{{email}}"
+          ]
+        },
+        "description": "Retrieve RunwayML account information."
+      },
+      "response": []
+    },
+    {
+      "name": "accounts/<email>",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"maxJobs\": \"Required, supported range: 1...10\",\n    \"email\": \"Please refer to https://useapi.net/docs/start-here/setup-runwayml\",\n    \"password\": \"Please refer to https://useapi.net/docs/start-here/setup-runwayml\",\n    \"useWorkspace\": \"Optional, true to auto-select the account's paid workspace, or a team id to pin one (see GET /features teams[])\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/accounts/{{email}}",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "accounts",
+            "{{email}}"
+          ]
+        },
+        "description": "[Add or update RunwayML account.](https://useapi.net/docs/api-runwayml-v1/post-runwayml-accounts-email)"
+      },
+      "response": []
+    },
+    {
+      "name": "accounts/<email>",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/accounts/<email>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "accounts",
+            "<email>"
+          ]
+        },
+        "description": "Delete RunwayML account."
+      },
+      "response": []
+    },
+    {
+      "name": "frames/create",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional, if omitted a randomly selected configured account will be used.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional callback URL",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional callback reference value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional number of jobs (Runway tasks) to be executed in parallel.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "exploreMode",
+              "value": "",
+              "description": "Optional, set to true to use Explore Mode with Unlimited plan",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "seed",
+              "value": "",
+              "description": "Optional seed value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "text_prompt",
+              "value": "",
+              "description": "Required text prompt",
+              "type": "text"
+            },
+            {
+              "key": "style",
+              "value": "",
+              "description": "Optional style",
+              "type": "text",
+              "uuid": "35f09d1d-ae03-45f1-a659-dd496f0d5df3",
+              "disabled": true
+            },
+            {
+              "key": "aspect_ratio",
+              "value": "",
+              "description": "Optional aspect ratio, default 16:9",
+              "type": "text",
+              "uuid": "22df0bc6-10e9-4712-9bfb-09a625c67087",
+              "disabled": true
+            },
+            {
+              "key": "diversity",
+              "value": "",
+              "description": "Optipnal, supported values 0 to 5",
+              "type": "text",
+              "uuid": "dfe224ef-2f5a-4922-9e12-8454f11bbdb0",
+              "disabled": true
+            },
+            {
+              "key": "num_images",
+              "value": "",
+              "description": "Optional. Supported values: 1 (default), 4.",
+              "type": "text",
+              "uuid": "fa8510fa-0e21-4496-b1ee-9df70a0df0e6",
+              "disabled": true
+            },
+            {
+              "key": "imageAssetId1",
+              "value": "",
+              "description": "Optional assetId of the first reference image asset",
+              "type": "text",
+              "uuid": "7df1aa59-4bf1-44a2-ae5c-a6915aeebe01",
+              "disabled": true
+            },
+            {
+              "key": "imageAssetId2",
+              "value": "",
+              "description": "Optional assetId of the second reference image asset",
+              "type": "text",
+              "uuid": "96aa4de2-d5b5-45ad-a1f5-9f0821502dea",
+              "disabled": true
+            },
+            {
+              "key": "imageAssetId3",
+              "value": "",
+              "description": "Optional assetId of the third reference image asset",
+              "type": "text",
+              "uuid": "8fb38e86-9c13-40ee-94e7-f4bbadcb9f9a",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/frames/create",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "frames",
+            "create"
+          ]
+        },
+        "description": "## [Frames](https://useapi.net/docs/api-runwayml-v1/post-runwayml-frames-create)"
+      },
+      "response": []
+    },
+    {
+      "name": "images/create",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "model",
+              "value": "flux-2-max",
+              "description": "Required. Supported values: flux-2-max, flux-2-klein, nano-banana, nano-banana-pro, nano-banana-2, nano-banana-2-lite, gpt-image-1-5, gpt-image-1-mini, seedream-5, gen4, gen4-turbo.",
+              "type": "text"
+            },
+            {
+              "key": "text_prompt",
+              "value": "",
+              "description": "Text prompt. Required for gpt-image-1-5, gpt-image-1-mini. Max 5000 chars (4000 for FLUX.2).",
+              "type": "text"
+            },
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional, if omitted a randomly selected configured account will be used.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "aspect_ratio",
+              "value": "",
+              "description": "Optional aspect ratio. Default auto for Nano Banana models, 1:1 for FLUX.2, 16:9 for the rest. Supported: 16:9, 9:16, 1:1, 4:3, 3:4, 21:9, 4:5, 5:4, 3:2, 2:3, 9:21, plus auto (Nano Banana only). Model-specific: Nano Banana / 2 / 2 Lite / Pro: auto (default) plus all except 9:21. FLUX.2: all. gpt-image-1-5/1-mini: 1:1, 3:2, 2:3. seedream-5: 16:9, 9:16, 1:1, 4:3, 3:4, 21:9, 3:2, 2:3.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "resolution",
+              "value": "",
+              "description": "Optional. FLUX.2 Max: 1K (default), 2K, 4K, 0.6MP. FLUX.2 Klein: 1K (default), 2K, 0.6MP. Gen-4: 1080p, 720p. Gen-4 Turbo: 1080p. Nano Banana Pro/2: 1K, 2K, 4K. Seedream-5: 2K, 3K.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "num_images",
+              "value": "",
+              "description": "Optional. Supported values: 1 (default), 4.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "imageAssetId1",
+              "value": "",
+              "description": "Optional assetId of the first reference image asset",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "imageAssetId2",
+              "value": "",
+              "description": "Optional assetId of the second reference image asset",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "imageAssetId3",
+              "value": "",
+              "description": "Optional assetId of the third reference image asset",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "imageAssetId4",
+              "value": "",
+              "description": "Optional assetId of reference image #4.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "imageAssetId5",
+              "value": "",
+              "description": "Optional assetId of reference image #5. Requires FLUX.2 Max, Nano Banana 2, Nano Banana 2 Lite, Nano Banana Pro, or Seedream 5.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "imageAssetId6",
+              "value": "",
+              "description": "Optional assetId of reference image #6.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "imageAssetId7",
+              "value": "",
+              "description": "Optional assetId of reference image #7.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "imageAssetId8",
+              "value": "",
+              "description": "Optional assetId of reference image #8.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "style",
+              "value": "",
+              "description": "Optional style. Supported by Gen-4 and Gen-4 Turbo.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "diversity",
+              "value": "",
+              "description": "Optional. Supported by Gen-4 only. Valid range: 1-5.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "seed",
+              "value": "",
+              "description": "Optional seed value. Supported by Gen-4, Gen-4 Turbo, FLUX.2 Max, and FLUX.2 Klein. Range 1-4294967294.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "exploreMode",
+              "value": "",
+              "description": "Optional, set to true to use Explore Mode with Unlimited plan",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional callback URL",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional callback reference value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional number of jobs (Runway tasks) to be executed in parallel.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/images/create",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "images",
+            "create"
+          ]
+        },
+        "description": "## [Images](https://useapi.net/docs/api-runwayml-v1/post-runwayml-images-create)"
+      },
+      "response": []
+    },
+    {
+      "name": "videos/create",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "model",
+              "value": "gen4.5",
+              "description": "Required. Supported values: seedance-2, seedance-2-fast, grok-imagine-1.5, happyhorse-1.0, kling-o3-4k, kling-o3-pro, kling-o3-standard, kling-3.0-pro, kling-3.0-standard, kling-3.0-motion-control, kling-2.6-pro, kling-2.6-i2v, wan-2.6-flash, wan-2.2-animate, veo-3.1, sora-2, sora-2-pro, gen4.5, gen4, gen4-turbo.",
+              "type": "text"
+            },
+            {
+              "key": "text_prompt",
+              "value": "",
+              "description": "Text prompt. Max 5000 chars (3500 for seedance-2 / seedance-2-fast; 2500 for grok-imagine-1.5, kling-3.0-motion-control, happyhorse-1.0, and the kling-o3-* models; 512 for gen4/gen4-turbo). Required for gen4, gen4-turbo, kling-2.6-pro, kling-2.6-i2v, wan-2.6-flash. Not supported for wan-2.2-animate. For the kling-o3-* models, use @IMG_1..@IMG_7 (in multishot, @IMG_N inside a shot prompt binds imageAssetIdN to that shot).",
+              "type": "text"
+            },
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional, if omitted a randomly selected configured account will be used.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "duration",
+              "value": "",
+              "description": "Optional duration in seconds. seedance-2 / seedance-2-fast: 4-15. grok-imagine-1.5: 3-15. happyhorse-1.0: 3-15. kling-o3-* Frames: 5, 10, 15 (multishot: sum of per-shot durations; Edit Video: derived from the source video). kling-3.0: 5, 10, 15. kling-2.6: 5, 10. wan-2.6-flash: 5, 10, 15. veo-3.1: 4, 6, 8. sora-2: 4, 8, 12. gen4.5: 2-10. gen4/gen4-turbo: 5, 10. Not supported for kling-3.0-motion-control (output duration inherits from the reference video).",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "aspect_ratio",
+              "value": "",
+              "description": "Optional aspect ratio, default 16:9. Supported: 16:9, 9:16, 1:1, 4:3, 3:4, 21:9, 2:3, 3:2. Model-specific restrictions apply. grok-imagine-1.5 supports 16:9, 9:16, 1:1, 4:3, 3:4, 2:3, 3:2 (the only model accepting 2:3 / 3:2). kling-o3-*: 16:9, 9:16, 1:1. happyhorse-1.0: 16:9, 9:16, 1:1, 4:3, 3:4 (no 21:9). gen4.5 T2V: 16:9 only.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "resolution",
+              "value": "",
+              "description": "Optional. seedance-2 / seedance-2-fast: 480p (default), 720p, 1080p (1080p requires Credits Mode — not supported when exploreMode=true). grok-imagine-1.5: 480p (default), 720p (no 1080p). happyhorse-1.0: 720p (default), 1080p. kling-3.0-motion-control: 720p (default, std mode), 1080p (pro mode). wan-2.6-flash: 720p, 1080p. veo-3.1: 720p, 1080p. sora-2-pro: 720p, 1080p. Not supported for the kling-o3-* models — output resolution is derived from the model tier and aspect_ratio.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "audio",
+              "value": "",
+              "description": "Optional boolean. Enable/disable audio generation. Default true. Supported by seedance-2, seedance-2-fast, kling-o3-*, kling-3.0, kling-3.0-motion-control, kling-2.6-pro, wan-2.6-flash, veo-3.1, gen4.5. Not supported by grok-imagine-1.5 (produces silent video). For kling-3.0-motion-control, controls whether the reference video's original audio is preserved in the output. For the kling-o3-* models in Edit Video mode, controls whether the source video's original sound is kept.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "seed",
+              "value": "",
+              "description": "Optional seed value (1 to 4294967294). Supported by gen4, gen4-turbo, gen4.5 only.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "imageAssetId1",
+              "value": "",
+              "description": "Optional assetId of the first reference image. Required for gen4, gen4-turbo, wan-2.6-flash, wan-2.2-animate, grok-imagine-1.5 (used as the first frame; grok-imagine-1.5 is image-to-video only). For happyhorse-1.0, presence of this field switches the model to image-to-video (i2v) mode. For the kling-o3-* models, imageAssetId1..imageAssetId7 are reference image slots (0-7; max 4 in Edit Video mode).",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "imageAssetId2",
+              "value": "",
+              "description": "Optional assetId of the second reference image. Used as endFrame for veo-3.1 and gen4.5. Reference slot for the seedance-2 family and kling-o3-* multi-reference mode.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "imageAssetId3",
+              "value": "",
+              "description": "Optional assetId for the seedance-2 family / kling-o3-* multi-reference mode (seedance-2 family: slots 3..9 as imageAssetId3..imageAssetId9; kling-o3-*: slots 3..7).",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "imageAssetId4",
+              "value": "",
+              "description": "Optional assetId for the seedance-2 family / kling-o3-* multi-reference mode.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "imageAssetId5",
+              "value": "",
+              "description": "Optional assetId for the seedance-2 family / kling-o3-* multi-reference mode.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "imageAssetId6",
+              "value": "",
+              "description": "Optional assetId for the seedance-2 family / kling-o3-* multi-reference mode.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "imageAssetId7",
+              "value": "",
+              "description": "Optional assetId for the seedance-2 family / kling-o3-* multi-reference mode.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "imageAssetId8",
+              "value": "",
+              "description": "Optional assetId for the seedance-2 family multi-reference mode.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "imageAssetId9",
+              "value": "",
+              "description": "Optional assetId for the seedance-2 family multi-reference mode.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "imageAssetId10",
+              "value": "",
+              "description": "Optional assetId for the seedance-2 family multi-reference mode.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "imageAssetId11",
+              "value": "",
+              "description": "Optional assetId for the seedance-2 family multi-reference mode.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "startFrameAssetId",
+              "value": "",
+              "description": "Optional assetId for keyframe mode — seedance-2 family and the kling-o3-* models (tagged first_frame). For the seedance-2 family it is mutually exclusive with multi-reference mode; for kling-o3-* it may be combined with reference images.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "endFrameAssetId",
+              "value": "",
+              "description": "Optional assetId for keyframe mode — seedance-2 family and the kling-o3-* models (tagged end_frame). Requires startFrameAssetId. For kling-o3-*, cannot be combined with reference images.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "videoAssetId",
+              "value": "",
+              "description": "Optional assetId of a video reference. Required for wan-2.2-animate (source video) and for kling-3.0-motion-control (performance/motion source, 3-30s). For the seedance-2 family, each video must be ≤15s and ≤720p (longest side ≤1280 px); the combined duration of all video refs must also be ≤15s. For kling-o3-pro / kling-o3-standard Edit Video, the source video must be ≤10s (kling-o3-4k has no Edit Video).",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "videoAssetId2",
+              "value": "",
+              "description": "Optional assetId for the seedance-2 family multi-reference mode (up to 3 video references total; combined duration ≤15s).",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "videoAssetId3",
+              "value": "",
+              "description": "Optional assetId for the seedance-2 family multi-reference mode.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "audioAssetId1",
+              "value": "",
+              "description": "Optional assetId of an audio reference. Used only by the seedance-2 family. Supported types: .mp3, .wav, .m4a. Up to 3 audio refs per request; their combined duration must be ≤15s. Audio refs must be combined with at least one image or video reference and are mutually exclusive with keyframe mode.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "audioAssetId2",
+              "value": "",
+              "description": "Optional assetId for the seedance-2 family multi-reference mode (audio).",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "audioAssetId3",
+              "value": "",
+              "description": "Optional assetId for the seedance-2 family multi-reference mode (audio).",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "characterOrientation",
+              "value": "",
+              "description": "Optional. Used only by kling-3.0-motion-control. Supported values: image (default), video.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "multishot_prompt_1",
+              "value": "",
+              "description": "Optional. Multishot prompt for shot 1. Kling 3.0 Pro/Standard (2-5 shots) and kling-o3-* (2-6 shots). Requires at least 2 shots. For kling-o3-*, an @IMG_N reference inside a shot prompt binds imageAssetIdN to that shot.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "multishot_duration_1",
+              "value": "",
+              "description": "Optional. Duration for shot 1 (3-12s). Kling 3.0 Pro/Standard and kling-o3-*. Total across all shots must not exceed 15s.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "multishot_prompt_2",
+              "value": "",
+              "description": "Optional. Multishot prompt for shot 2.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "multishot_duration_2",
+              "value": "",
+              "description": "Optional. Duration for shot 2 (3-12s).",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "multishot_prompt_3",
+              "value": "",
+              "description": "Optional. Multishot prompt for shot 3 (kling-o3-* supports up to 6 shots).",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "multishot_duration_3",
+              "value": "",
+              "description": "Optional. Duration for shot 3 (3-12s).",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "multishot_prompt_4",
+              "value": "",
+              "description": "Optional. Multishot prompt for shot 4 (kling-o3-* supports up to 6 shots).",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "multishot_duration_4",
+              "value": "",
+              "description": "Optional. Duration for shot 4 (3-12s).",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "multishot_prompt_5",
+              "value": "",
+              "description": "Optional. Multishot prompt for shot 5 (kling-o3-* supports up to 6 shots).",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "multishot_duration_5",
+              "value": "",
+              "description": "Optional. Duration for shot 5 (3-12s).",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "multishot_prompt_6",
+              "value": "",
+              "description": "Optional. Multishot prompt for shot 6 (kling-o3-* supports up to 6 shots).",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "multishot_duration_6",
+              "value": "",
+              "description": "Optional. Duration for shot 6 (3-12s).",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "exploreMode",
+              "value": "",
+              "description": "Optional, set to true to use Explore Mode with Unlimited plan.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional callback URL.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional callback reference value.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional number of jobs (Runway tasks) to be executed in parallel.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/videos/create",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "videos",
+            "create"
+          ]
+        },
+        "description": "## [Videos](https://useapi.net/docs/api-runwayml-v1/post-runwayml-videos-create)\n\nUnified video generation endpoint supporting 18 models across Seedance, Kling (incl. O3 omni and Motion Control), Wan, Veo, Sora, and Gen-4 families."
+      },
+      "response": []
+    },
+    {
+      "name": "videos/upscale",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "videoAssetId",
+              "value": "",
+              "description": "Required. assetId of the video to upscale to 4K with Topaz AI. Max source duration 40 seconds. The owning account is auto-selected from the assetId — no email parameter needed.",
+              "type": "text"
+            },
+            {
+              "key": "exploreMode",
+              "value": "",
+              "description": "Optional boolean. Set true with a Runway Unlimited plan to upscale without consuming credits.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional callback URL.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional callback reference value.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional number of jobs (Runway tasks) to be executed in parallel.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/videos/upscale",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "videos",
+            "upscale"
+          ]
+        },
+        "description": "## [Videos Upscale](https://useapi.net/docs/api-runwayml-v1/post-runwayml-videos-upscale)\n\nUpscale a video to 4K using Topaz AI. Output preserves source aspect ratio (e.g. 1280×720 → 4096×2304). Max source duration 40 seconds. Unlimited with exploreMode."
+      },
+      "response": []
+    },
+    {
+      "name": "frames/describe/<image_assetId>",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/frames/describe/<image_assetId>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "frames",
+            "describe",
+            "<image_assetId>"
+          ]
+        },
+        "description": "## [Get image description](https://useapi.net/docs/api-runwayml-v1/get-runwayml-frames-describe)"
+      },
+      "response": []
+    },
+    {
+      "name": "gen4turbo/create",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional callback URL",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional callback reference value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional number of jobs (Runway tasks) to be executed in parallel.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "firstImage_assetId",
+              "value": "",
+              "description": "Required assetId of first image asset",
+              "type": "text"
+            },
+            {
+              "key": "text_prompt",
+              "value": "",
+              "description": "Optional text prompt",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "aspect_ratio",
+              "value": "",
+              "description": "Optional, supported values: 16:9 (default), 9:16, 1:1, 4:3, 3:4, 21:9.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "seconds",
+              "value": "",
+              "description": "Optional, supported values: 5,10",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "seed",
+              "value": "",
+              "description": "Optional seed value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "exploreMode",
+              "value": "",
+              "description": "Optional, set to true to use Explore Mode with Unlimited plan",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/gen4turbo/create",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "gen4turbo",
+            "create"
+          ]
+        },
+        "description": "## [Create a video using the first image(s) with a text prompt](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen4turbo-create)"
+      },
+      "response": []
+    },
+    {
+      "name": "gen4_5/create",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional Runway account email (T2V only). If not specified, API will randomly select an available account. Not used when firstImage_assetId is provided.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "firstImage_assetId",
+              "value": "",
+              "description": "Optional. When provided, enables Image-to-Video (I2V) mode. Use GET /assets/?mediaType=image to see available image assets.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "text_prompt",
+              "value": "",
+              "description": "Required for T2V, optional for I2V. Maximum 5000 characters.",
+              "type": "text"
+            },
+            {
+              "key": "aspect_ratio",
+              "value": "",
+              "description": "Optional (I2V only). Supported values: 16:9 (default), 9:16, 1:1, 4:3, 3:4, 21:9.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "seconds",
+              "value": "",
+              "description": "Optional, supported values: 5 (default), 8, 10.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "seed",
+              "value": "",
+              "description": "Optional seed value (1-4294967294).",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "exploreMode",
+              "value": "",
+              "description": "Optional, set to true to use Explore Mode with Unlimited plan. No credits charged.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional callback URL. Maximum 1024 characters.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional callback reference value. Maximum 1024 characters.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional number of jobs (Runway tasks) to be executed in parallel (1-10).",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/gen4_5/create",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "gen4_5",
+            "create"
+          ]
+        },
+        "description": "## [Create a video using text prompt or image](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen4_5-create)\n\nGen-4.5 supports Text-to-Video (T2V) and Image-to-Video (I2V) modes. T2V generates 720p 16:9 videos from text prompts. I2V generates videos from a first image with optional text prompt, supporting multiple aspect ratios."
+      },
+      "response": []
+    },
+    {
+      "name": "gen4/create",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional callback URL",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional callback reference value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional number of jobs (Runway tasks) to be executed in parallel.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "firstImage_assetId",
+              "value": "",
+              "description": "Required assetId of first image asset",
+              "type": "text"
+            },
+            {
+              "key": "text_prompt",
+              "value": "",
+              "description": "Optional text prompt",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "aspect_ratio",
+              "value": "",
+              "description": "Optional, supported values: 16:9 (default), 9:16, 1:1, 4:3, 3:4, 21:9.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "seconds",
+              "value": "",
+              "description": "Optional, supported values: 5,10",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "seed",
+              "value": "",
+              "description": "Optional seed value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "exploreMode",
+              "value": "",
+              "description": "Optional, set to true to use Explore Mode with Unlimited plan",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/gen4/create",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "gen4",
+            "create"
+          ]
+        },
+        "description": "## [Create a video using the first image(s) with a text prompt](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen4-create)"
+      },
+      "response": []
+    },
+    {
+      "name": "gen4/upscale",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional callback URL",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional callback reference value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional number of jobs (Runway tasks) to be executed in parallel.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "assetId",
+              "value": "",
+              "description": "Required assetId of video asset",
+              "type": "text"
+            },
+            {
+              "key": "exploreMode",
+              "value": "",
+              "description": "Optional, set to true to use Explore Mode with Unlimited plan",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/gen4/upscale",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "gen4",
+            "upscale"
+          ]
+        },
+        "description": "## [Upscale to 4K the Gen-4, Gen-4 Turbo, Gen-3 Alpha and Gen-3 Alpha Turbo videos](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen4-upscale)"
+      },
+      "response": []
+    },
+    {
+      "name": "gen4/act-two",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional callback URL",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional callback reference value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional number of jobs (Runway tasks) to be executed in parallel.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "driving_assetId",
+              "value": "",
+              "description": "Required assetId of the driving video",
+              "type": "text"
+            },
+            {
+              "key": "character_assetId",
+              "value": "",
+              "description": "Required assetId of the character image or video",
+              "type": "text",
+              "uuid": "87a2bf3b-f42c-4797-854e-f2e03d4c8c96"
+            },
+            {
+              "key": "expression_intensity",
+              "value": "",
+              "description": "Optional facial expressiveness, supported values: 1-5, default 3",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "body_control",
+              "value": "",
+              "description": "Optional gestures support, supported values: true (default), false",
+              "type": "text",
+              "uuid": "1134a311-671a-4555-86bc-f13363573dc0",
+              "disabled": true
+            },
+            {
+              "key": "aspect_ratio",
+              "value": "",
+              "description": "Optional, supported values: 16:9 (default), 9:16, 1:1, 4:3, 3:4, 21:9",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "seed",
+              "value": "",
+              "description": "Optional seed value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "exploreMode",
+              "value": "",
+              "description": "Optional, set to true to use Explore Mode with Unlimited plan",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/gen4/act-two",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "gen4",
+            "act-two"
+          ]
+        },
+        "description": "## [Gen4 Act-Two](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen4-act-two)"
+      },
+      "response": []
+    },
+    {
+      "name": "gen4/act-two-voice",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "video_assetId",
+              "value": "",
+              "description": "Required, specify the video asset (3-30 seconds duration) you want to apply voice swap to. Use GET /assets/?mediaType=video to see the list of video assets. To upload a new video asset use POST /assets.",
+              "type": "text"
+            },
+            {
+              "key": "voiceId",
+              "value": "",
+              "description": "Required, specify the voice ID to use for voice swap. Use GET /lipsync/voices to see the list of available voices.",
+              "type": "text",
+              "uuid": "87a2bf3b-f42c-4797-854e-f2e03d4c8c96"
+            },
+            {
+              "key": "exploreMode",
+              "value": "",
+              "description": "Optional, set to true to use Explore Mode with Unlimited plan",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional callback URL",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional callback reference value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional number of jobs (Runway tasks) to be executed in parallel.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/gen4/act-two-voice",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "gen4",
+            "act-two-voice"
+          ]
+        },
+        "description": "## [Gen4 Act-Two voice swap](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen4-act-two-voice)"
+      },
+      "response": []
+    },
+    {
+      "name": "gen4/video",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional callback URL",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional callback reference value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional number of jobs (Runway tasks) to be executed in parallel.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "video_assetId",
+              "value": "",
+              "description": "Required, specify the video assetId you want to transform.",
+              "type": "text"
+            },
+            {
+              "key": "image_assetId",
+              "value": "",
+              "description": "Optional, specify an image assetId to use as additional conditioning for the video transformation.\n",
+              "type": "text",
+              "uuid": "87a2bf3b-f42c-4797-854e-f2e03d4c8c96",
+              "disabled": true
+            },
+            {
+              "key": "text_prompt",
+              "value": "",
+              "description": "Required, describe the desired transformation or style for the video.",
+              "type": "text"
+            },
+            {
+              "key": "seed",
+              "value": "",
+              "description": "Optional seed value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "exploreMode",
+              "value": "",
+              "description": "Optional, set to true to use Explore Mode with Unlimited plan",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/gen4/video",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "gen4",
+            "video"
+          ]
+        },
+        "description": "## [Create a video using Runway Gen-4 Aleph (video-to-video)](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen4-video)"
+      },
+      "response": []
+    },
+    {
+      "name": "gen3turbo/create",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional callback URL",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional callback reference value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional number of jobs (Runway tasks) to be executed in parallel.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "firstImage_assetId",
+              "value": "",
+              "description": "Optional assetId of first image asset",
+              "type": "text"
+            },
+            {
+              "key": "lastImage_assetId",
+              "value": "",
+              "description": "Optional assetId of last image asset",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "text_prompt",
+              "value": "",
+              "description": "Optional text prompt",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "aspect_ratio",
+              "value": "",
+              "description": "Optional, supported values: landscape (default), portrait.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "seconds",
+              "value": "",
+              "description": "Optional, supported values: 5,10",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "seed",
+              "value": "",
+              "description": "Optional seed value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "exploreMode",
+              "value": "",
+              "description": "Optional, set to true to use Explore Mode with Unlimited plan",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "horizontal",
+              "value": "",
+              "description": "Optional horizontal motion, valid range -10...10",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "vertical",
+              "value": "",
+              "description": "Optional vertical motion, valid range -10...10",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "roll",
+              "value": "",
+              "description": "Optional roll motion, valid range -10...10",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "zoom",
+              "value": "",
+              "description": "Optional zoom motion, valid range -10...10",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "pan",
+              "value": "",
+              "description": "Optional pan motion, valid range -10...10",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "tilt",
+              "value": "",
+              "description": "Optional tilt motion, valid range -10...10",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/gen3turbo/create",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "gen3turbo",
+            "create"
+          ]
+        },
+        "description": "## [Create a video using the first and/or last images with a text prompt](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3turbo-create)"
+      },
+      "response": []
+    },
+    {
+      "name": "gen3turbo/video",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional callback URL",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional callback reference value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional number of jobs (Runway tasks) to be executed in parallel.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "exploreMode",
+              "value": "",
+              "description": "Optional, set to true to use Explore Mode with Unlimited plan",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "assetId",
+              "value": "",
+              "description": "Required, provide assetId of video asset you wish process",
+              "type": "text"
+            },
+            {
+              "key": "text_prompt",
+              "value": "",
+              "description": "Required text prompt",
+              "type": "text"
+            },
+            {
+              "key": "structure_transformation",
+              "value": "",
+              "description": "Optional structure transformation value, valid range 0...10, default 3",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "aspect_ratio",
+              "value": "",
+              "description": "Optional, supported values: landscape (default), portrait.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "seed",
+              "value": "",
+              "description": "Optional seed value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "resolution",
+              "value": "",
+              "description": "Optional resolution value, valid value: 720p",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "seconds",
+              "value": "",
+              "description": "Optional, supported values: 5,10 (default)",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/gen3turbo/video",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "gen3turbo",
+            "video"
+          ]
+        },
+        "description": "[Gen-3 Alpha Turbo Video to Video](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3turbo-video)"
+      },
+      "response": []
+    },
+    {
+      "name": "gen3turbo/extend",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional callback URL",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional callback reference value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional number of jobs (Runway tasks) to be executed in parallel.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "exploreMode",
+              "value": "",
+              "description": "Optional, set to true to use Explore Mode with Unlimited plan",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "assetId",
+              "value": "",
+              "description": "Required, provide assetId of Gen-3 Alpha Turbo video asset you wish to extend",
+              "type": "text"
+            },
+            {
+              "key": "seed",
+              "value": "",
+              "description": "Optional seed value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "text_prompt",
+              "value": "",
+              "description": "Optional text prompt",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/gen3turbo/extend",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "gen3turbo",
+            "extend"
+          ]
+        },
+        "description": "## [Extend the Gen-3 Alpha Turbo video by 8 seconds](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3turbo-extend)"
+      },
+      "response": []
+    },
+    {
+      "name": "gen3turbo/expand",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional callback URL",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional callback reference value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional number of jobs (Runway tasks) to be executed in parallel.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "exploreMode",
+              "value": "",
+              "description": "Optional, set to true to use Explore Mode with Unlimited plan",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "videoAssetId",
+              "value": "",
+              "description": "Required, provide assetId of video asset you wish to expand",
+              "type": "text"
+            },
+            {
+              "key": "seed",
+              "value": "",
+              "description": "Optional seed value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "imageAssetId",
+              "value": "",
+              "description": "Optional, provide assetId of image asset you wish to use as a prompt",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "text_prompt",
+              "value": "",
+              "description": "Optional text prompt",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "seconds",
+              "value": "",
+              "description": "Optional. If asset metadata.duration is not provided will default to 10.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "outpaint_aspect_ratio",
+              "value": "",
+              "description": "Optional. Valid values: landscape (default),portrait",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/gen3turbo/expand",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "gen3turbo",
+            "expand"
+          ]
+        },
+        "description": "## [Gen-3 Alpha Turbo Expand Video](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3turbo-expand)"
+      },
+      "response": []
+    },
+    {
+      "name": "gen3turbo/actone",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional callback URL",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional callback reference value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional number of jobs (Runway tasks) to be executed in parallel.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "exploreMode",
+              "value": "",
+              "description": "Optional, set to true to use Explore Mode with Unlimited plan",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "driving_assetId",
+              "value": "",
+              "description": "Required video asset you want to use to drive performance",
+              "type": "text"
+            },
+            {
+              "key": "character_assetId",
+              "value": "",
+              "description": "Required image or vidoe asset for your character reference",
+              "type": "text"
+            },
+            {
+              "key": "motion_multiplier",
+              "value": "",
+              "description": "Optiona, higher values allow for more expressive motion while lower values result in more stability. Valid range: 1…5, default 3.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "aspect_ratio",
+              "value": "",
+              "description": "Optional, supported values: landscape (default), portrait.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/gen3turbo/actone",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "gen3turbo",
+            "actone"
+          ]
+        },
+        "description": "[Drive your image or video character performance using simple video and audio inputs.](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3turbo-actone)"
+      },
+      "response": []
+    },
+    {
+      "name": "gen3/create",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional, if omitted a randomly selected configured account will be used.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional callback URL",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional callback reference value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional number of jobs (Runway tasks) to be executed in parallel.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "exploreMode",
+              "value": "",
+              "description": "Optional, set to true to use Explore Mode with Unlimited plan",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "image_assetId",
+              "value": "",
+              "description": "Optional image prompt, provide image assetId",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "image_as_end_frame",
+              "value": "",
+              "description": "Optional, supported values: true,false. Use image as a last frame.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "text_prompt",
+              "value": "",
+              "description": "Optional text prompt",
+              "type": "text"
+            },
+            {
+              "key": "enhance_prompt",
+              "value": "",
+              "description": "Optional, supported values: true,false",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "seed",
+              "value": "",
+              "description": "Optional seed value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "seconds",
+              "value": "",
+              "description": "Optional, supported values: 5,10",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "resolution",
+              "value": "",
+              "description": "Optional, supported values: 720p",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/gen3/create",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "gen3",
+            "create"
+          ]
+        },
+        "description": "## [Create a video using text and/or image prompts](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3-create)"
+      },
+      "response": []
+    },
+    {
+      "name": "gen3/video",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional callback URL",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional callback reference value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional number of jobs (Runway tasks) to be executed in parallel.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "exploreMode",
+              "value": "",
+              "description": "Optional, set to true to use Explore Mode with Unlimited plan",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "assetId",
+              "value": "",
+              "description": "Required, provide assetId of video asset you wish process",
+              "type": "text"
+            },
+            {
+              "key": "text_prompt",
+              "value": "",
+              "description": "Required text prompt",
+              "type": "text"
+            },
+            {
+              "key": "structure_transformation",
+              "value": "",
+              "description": "Optional structure transformation value, valid range 0...10, default 3",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "resolution",
+              "value": "",
+              "description": "Optional resolution value, valid value: 720p",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "seed",
+              "value": "",
+              "description": "Optional seed value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "seconds",
+              "value": "",
+              "description": "Optional, supported values: 5,10 (default)",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/gen3/video",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "gen3",
+            "video"
+          ]
+        },
+        "description": "[Gen-3 Alpha Video to Video](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3-video)"
+      },
+      "response": []
+    },
+    {
+      "name": "gen3/extend",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional callback URL",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional callback reference value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional number of jobs (Runway tasks) to be executed in parallel.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "exploreMode",
+              "value": "",
+              "description": "Optional, set to true to use Explore Mode with Unlimited plan",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "assetId",
+              "value": "",
+              "description": "Required, provide assetId of Gen-3 Alpha video asset you wish to extend",
+              "type": "text"
+            },
+            {
+              "key": "seed",
+              "value": "",
+              "description": "Optional seed value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "seconds",
+              "value": "",
+              "description": "Optional, supported values: 5,10",
+              "type": "text"
+            },
+            {
+              "key": "text_prompt",
+              "value": "",
+              "description": "Optional text prompt",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/gen3/extend",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "gen3",
+            "extend"
+          ]
+        },
+        "description": "## [Extend the Gen-3 Alpha video by 5 or 10 seconds](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3-extend)"
+      },
+      "response": []
+    },
+    {
+      "name": "gen3/actone",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional callback URL",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional callback reference value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional number of jobs (Runway tasks) to be executed in parallel.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "exploreMode",
+              "value": "",
+              "description": "Optional, set to true to use Explore Mode with Unlimited plan",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "driving_assetId",
+              "value": "",
+              "description": "Required video asset you want to use to drive performance",
+              "type": "text"
+            },
+            {
+              "key": "character_assetId",
+              "value": "",
+              "description": "Required image or vidoe asset for your character reference",
+              "type": "text"
+            },
+            {
+              "key": "motion_multiplier",
+              "value": "",
+              "description": "Optiona, higher values allow for more expressive motion while lower values result in more stability. Valid range: 1…5, default 3.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "aspect_ratio",
+              "value": "",
+              "description": "Optional, supported values: landscape (default), portrait.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/gen3/actone",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "gen3",
+            "actone"
+          ]
+        },
+        "description": "[Drive your image or video character performance using simple video and audio inputs.](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3-actone)"
+      },
+      "response": []
+    },
+    {
+      "name": "gen3alpha/upscale",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "assetId",
+              "value": "",
+              "description": "Required assetId of Gen-3 Alpha or Gen-3 Alpha Turbo video asset to upscale.",
+              "type": "text"
+            },
+            {
+              "key": "exploreMode",
+              "value": "",
+              "description": "Optional, set to true to use Explore Mode with Unlimited plan. No credits charged.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional callback URL. Maximum 1024 characters.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional callback reference value. Maximum 1024 characters.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional number of jobs (Runway tasks) to be executed in parallel (1-10).",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/gen3alpha/upscale",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "gen3alpha",
+            "upscale"
+          ]
+        },
+        "description": "## [Upscale Gen-3 Alpha and Gen-3 Alpha Turbo videos to 4K](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3alpha-upscale)\n\nNote: Runway website no longer supports Gen-3. Consider migrating to Gen-4.x."
+      },
+      "response": []
+    },
+    {
+      "name": "gen2/create",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional, if not provided and parameter image_assetId is not specified API will randomly select available account from GET /accounts.\n",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional callback URL",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional callback reference value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional number of jobs (Runway tasks) to be executed in parallel.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "exploreMode",
+              "value": "",
+              "description": "Optional, set to true to use Explore Mode with Unlimited plan",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "text_prompt",
+              "value": "",
+              "description": "Optional text prompt",
+              "type": "text"
+            },
+            {
+              "key": "image_assetId",
+              "value": "",
+              "description": "Optional image prompt, provide image assetId",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "image_preview",
+              "value": "",
+              "description": "Optional, provide URL of the image generated via runwayml/text_to_image_preview endpoint",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "interpolate",
+              "value": "",
+              "description": "Optional, supported value: true,false",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "upscale",
+              "value": "",
+              "description": "Optional, set to true for 2K upscaling, default is false is for 720p output",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "style",
+              "value": "",
+              "description": "Optional, supported values: cinematic,abandoned,abstract_sculpture,advertising,anime,architectural,cartoon,cine_lens,claymation,concept_art,digital_art,duotone_artistic_photo,forestpunk,frost,graphic_novel,graphite,impressionist_painting,isometric_3d,low_poly_3d,macro_photography,marker_drawing,moody_film,pixel_art,retro_photography,sci-fi_art,stickers,storyboard,actor_casting,thriller,35mm,3d_cartoon,3d_render,80s_vaporwave",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "aspect_ratio",
+              "value": "",
+              "description": "Optional, supported values: 21:9,1:1,9:16,16:9,4:3,3:4",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "seed",
+              "value": "",
+              "description": "Optional seed value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "motion",
+              "value": "",
+              "description": "Optional motion value, valid range 1...10",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "horizontal",
+              "value": "",
+              "description": "Optional horizontal motion, valid range -10...10",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "vertical",
+              "value": "",
+              "description": "Optional vertical motion, valid range -10...10",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "roll",
+              "value": "",
+              "description": "Optional roll motion, valid range -10...10",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "zoom",
+              "value": "",
+              "description": "Optional zoom motion, valid range -10...10",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "pan",
+              "value": "",
+              "description": "Optional pan motion, valid range -10...10",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "tilt",
+              "value": "",
+              "description": "Optional tilt motion, valid range -10...10",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/gen2/create",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "gen2",
+            "create"
+          ]
+        },
+        "description": "## [Create a 4-second-long video using text and/or image prompts](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen2-create)"
+      },
+      "response": []
+    },
+    {
+      "name": "gen2/extend",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional callback URL",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional callback reference value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional number of jobs (Runway tasks) to be executed in parallel.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "exploreMode",
+              "value": "",
+              "description": "Optional, set to true to use Explore Mode with Unlimited plan",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "assetId",
+              "value": "",
+              "description": "Required, provide assetId of video asset you wish to extend",
+              "type": "text"
+            },
+            {
+              "key": "interpolate",
+              "value": "",
+              "description": "Optional, supported value: true,false",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "seed",
+              "value": "",
+              "description": "Optional seed value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "motion",
+              "value": "",
+              "description": "Optional motion value, valid range 1...10",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "horizontal",
+              "value": "",
+              "description": "Optional horizontal motion, valid range -10...10",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "vertical",
+              "value": "",
+              "description": "Optional vertical motion, valid range -10...10",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "roll",
+              "value": "",
+              "description": "Optional roll motion, valid range -10...10",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "zoom",
+              "value": "",
+              "description": "Optional zoom motion, valid range -10...10",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "pan",
+              "value": "",
+              "description": "Optional pan motion, valid range -10...10",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "tilt",
+              "value": "",
+              "description": "Optional tilt motion, valid range -10...10",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/gen2/extend",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "gen2",
+            "extend"
+          ]
+        },
+        "description": "## [Extend the video by 4 seconds](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen2-extend)"
+      },
+      "response": []
+    },
+    {
+      "name": "lipsync/create",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional callback URL",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional callback reference value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional number of jobs (Runway tasks) to be executed in parallel.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "exploreMode",
+              "value": "",
+              "description": "Optional, set to true to use Explore Mode with Unlimited plan",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "image_assetId",
+              "value": "",
+              "description": "Optional, provide assetId of image asset",
+              "type": "text"
+            },
+            {
+              "key": "video_assetId",
+              "value": "",
+              "description": "Optional, provide assetId of video asset",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "audio_assetId",
+              "value": "",
+              "description": "Optional, provide assetId of audio asset",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "voiceId",
+              "value": "",
+              "description": "Optional, provide voiceId from lipsync/voices endpoint",
+              "type": "text"
+            },
+            {
+              "key": "voice_text",
+              "value": "",
+              "description": "Optional lipsync text",
+              "type": "text"
+            },
+            {
+              "key": "model_id",
+              "value": "",
+              "description": "Optional voice model, supported values: eleven_multilingual_v1 (default) and eleven_multilingual_v2 (28+ languages)",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/lipsync/create",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "lipsync",
+            "create"
+          ]
+        },
+        "description": "[Lip Sync for both image and video sources with support for a variety of voices (28+ languages supported) or audio file](https://useapi.net/docs/api-runwayml-v1/post-runwayml-lipsync-create)"
+      },
+      "response": []
+    },
+    {
+      "name": "super_slow_motion",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional callback URL",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional callback reference value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional number of jobs (Runway tasks) to be executed in parallel.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "assetId",
+              "value": "",
+              "description": "Required, provide assetId of video asset",
+              "type": "text"
+            },
+            {
+              "key": "speed",
+              "value": "",
+              "description": "Required, provide speed, valid range 0.1 (ten times slower vs original) ... 1 (same speed as original)",
+              "type": "text"
+            },
+            {
+              "key": "duration",
+              "value": "",
+              "description": "Optional duration in seconds, required if assetId does not contain duration information.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "width",
+              "value": "",
+              "description": "Optional width in pixels, required if assetId does not contain width information.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "height",
+              "value": "",
+              "description": "Optional height in pixels, required if assetId does not contain height information.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "format",
+              "value": "",
+              "description": "Optional output format, valid values: mp4 (default), prores",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "name",
+              "value": "",
+              "description": "Optional name",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/super_slow_motion",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "super_slow_motion"
+          ]
+        },
+        "description": "[Super Slow Motion](https://useapi.net/docs/api-runwayml-v1/post-runwayml-super_slow_motion)"
+      },
+      "response": []
+    },
+    {
+      "name": "lipsync/voices",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/lipsync/voices/",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "lipsync",
+            "voices",
+            ""
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one runwayml/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "[Retrieve list of voices for lipsync/create.](https://useapi.net/docs/api-runwayml-v1/get-runwayml-lipsync-voices)"
+      },
+      "response": []
+    },
+    {
+      "name": "text_to_image_preview",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/text_to_image_preview/?text_prompt",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "text_to_image_preview",
+            ""
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one runwayml/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "disabled": true
+            },
+            {
+              "key": "text_prompt",
+              "value": null,
+              "description": "Required text prompt"
+            },
+            {
+              "key": "negative_prompt",
+              "value": "",
+              "description": "Optional negative prompt",
+              "disabled": true
+            },
+            {
+              "key": "seed",
+              "value": "",
+              "description": "Optional seed value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "style",
+              "value": "",
+              "description": "Optional, supported values: cinematic,abandoned,abstract_sculpture,advertising,anime,architectural,cartoon,cine_lens,claymation,concept_art,digital_art,duotone_artistic_photo,forestpunk,frost,graphic_novel,graphite,impressionist_painting,isometric_3d,low_poly_3d,macro_photography,marker_drawing,moody_film,pixel_art,retro_photography,sci-fi_art,stickers,storyboard,actor_casting,thriller,35mm,3d_cartoon,3d_render,80s_vaporwave",
+              "disabled": true
+            },
+            {
+              "key": "aspect_ratio",
+              "value": "",
+              "description": "Optional, supported values: 21:9,1:1,9:16,16:9,4:3,3:4",
+              "disabled": true
+            },
+            {
+              "key": "prompt_weight",
+              "value": "",
+              "description": "Optional weight of the prompt, supported range 1...30",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "## [Text to Image instant generation (Stable Diffusion)](https://useapi.net/docs/api-runwayml-v1/get-runwayml-text_to_image_preview)"
+      },
+      "response": []
+    },
+    {
+      "name": "image_upscaler",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/image_upscaler/?image_url=&width&height",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "image_upscaler",
+            ""
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one runwayml/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "disabled": true
+            },
+            {
+              "key": "image_url",
+              "value": "",
+              "description": "Required image URL. Provide URL of the image generated via runwayml/text_to_image_preview endpoint or URL of desired image asset to upscale (fied asset.url)"
+            },
+            {
+              "key": "width",
+              "value": null,
+              "description": "Required width value"
+            },
+            {
+              "key": "height",
+              "value": null,
+              "description": "Required height value"
+            }
+          ]
+        },
+        "description": "## [Upscale or Downscale image to specified dimensions](https://useapi.net/docs/api-runwayml-v1/get-runwayml-image_upscaler)"
+      },
+      "response": []
+    },
+    {
+      "name": "transcribe",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/transcribe/?assetId=&language",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "transcribe",
+            ""
+          ],
+          "query": [
+            {
+              "key": "assetId",
+              "value": "",
+              "description": "Required assetId of video or audio asset to transcribe to text"
+            },
+            {
+              "key": "language",
+              "value": null,
+              "description": "Required two letter language id, eg. en, see full list at https://help.elevenlabs.io/hc/en-us/articles/17883183930129-What-models-do-you-offer-and-what-is-the-difference-between-them"
+            }
+          ]
+        },
+        "description": "[Transcribe audio or video to text, multiple laguages supported](https://useapi.net/docs/api-runwayml-v1/get-runwayml-transcribe)"
+      },
+      "response": []
+    },
+    {
+      "name": "assets",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/assets/?offset=&limit=",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "assets",
+            ""
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one runwayml/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "disabled": true
+            },
+            {
+              "key": "offset",
+              "value": "",
+              "description": "Required."
+            },
+            {
+              "key": "limit",
+              "value": "",
+              "description": "Required."
+            },
+            {
+              "key": "mediaType",
+              "value": "",
+              "description": "Optional. Supported values: video,image,audio",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "Retrieve assets. Pagination supported via offset and limit parameters."
+      },
+      "response": []
+    },
+    {
+      "name": "assets/<assetId>",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/assets/<assetId>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "assets",
+            "<assetId>"
+          ]
+        },
+        "description": "Retrieve asset."
+      },
+      "response": []
+    },
+    {
+      "name": "assets",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "file",
+          "file": {}
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/assets/?name=",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "assets",
+            ""
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one runwayml/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "disabled": true
+            },
+            {
+              "key": "name",
+              "value": "",
+              "description": "Requred."
+            },
+            {
+              "key": "duration",
+              "value": null,
+              "description": "Optional. Specify audio or video duration in seconds.",
+              "disabled": true
+            },
+            {
+              "key": "width",
+              "value": null,
+              "description": "Optional. Specify image or video width in pixels.",
+              "disabled": true
+            },
+            {
+              "key": "height",
+              "value": null,
+              "description": "Optional. Specify image or video height in pixels.",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "Upload assed to your RunwayML account asset storage.  \nPost asset as binary content and use headers Content-Type field to specify asset type.\n\nFollowing Content-Type values supported (Content-Type: file extension):\n\n• image/png: png  \n• image/jpeg: jpeg  \n• image/gif: gif  \n• video/mp4: mp4  \n• video/quicktime: mov  \n• video/3gpp: 3gp  \n• video/x-matroska: mkv  \n• video/x-flv: flv  \n• video/mpeg: mpeg  \n• video/MP2T: ts  \n• video/x-msvideo: avi  \n• video/x-motion-jpeg: mjpeg  \n• video/webm: webm  \n• video/ogg: ogv  \n• audio/wav: wav  \n• audio/wave: wav  \n• audio/mpeg: mp3  \n• audio/flac: flac  \n• audio/ogg: ogg  \n• audio/webm: webm"
+      },
+      "response": []
+    },
+    {
+      "name": "assets/<assetId>",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/assets/<assetId>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "assets",
+            "<assetId>"
+          ]
+        },
+        "description": "Delete asset."
+      },
+      "response": []
+    },
+    {
+      "name": "scheduler",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/scheduler",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "scheduler"
+          ]
+        },
+        "description": "Retrieve the list of currently executing tasks."
+      },
+      "response": []
+    },
+    {
+      "name": "scheduler/<taskId>",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/scheduler/<taskId>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "scheduler",
+            "<taskId>"
+          ]
+        },
+        "description": "Remove the provided task from the list of currently executing tasks."
+      },
+      "response": []
+    },
+    {
+      "name": "tasks",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/tasks/?offset=&limit=",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "tasks",
+            ""
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one runwayml/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "disabled": true
+            },
+            {
+              "key": "offset",
+              "value": "",
+              "description": "Required."
+            },
+            {
+              "key": "limit",
+              "value": "",
+              "description": "Required."
+            },
+            {
+              "key": "statuses",
+              "value": "",
+              "description": "Optional. Supported values: PENDING,RUNNING,THROTTLED,SUCCEEDED. Comma-separated values can be provided.",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "Retrieve tasks. Pagination supported via offset and limit parameters."
+      },
+      "response": []
+    },
+    {
+      "name": "tasks/<taskId>",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/tasks/<taskId>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "tasks",
+            "<taskId>"
+          ]
+        },
+        "description": "Retrieve task."
+      },
+      "response": []
+    },
+    {
+      "name": "tasks/<taskId>",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/tasks/{{taskId}}",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "tasks",
+            "{{taskId}}"
+          ]
+        },
+        "description": "Delete task.\n\n[Documentation](https://useapi.net/docs/api-runwayml-v1/del-runwayml-tasks-taskId)"
+      },
+      "response": []
+    },
+    {
+      "name": "features",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/runwayml/features/",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "runwayml",
+            "features",
+            ""
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one runwayml/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "Retrieve account credits information and other details."
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{api-token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "api-token",
+      "value": "Please refer to https://useapi.net/docs/start-here/setup-useapi",
+      "type": "string"
+    }
+  ]
+}

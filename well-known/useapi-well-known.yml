@@ -1,0 +1,46 @@
+generated: '2026-07-27'
+method: searched
+source: live probe of the /.well-known/ surface on the website and API hosts
+notes: >-
+  useapi.net publishes an RFC 9727 /.well-known/api-catalog linkset that enumerates all ten
+  currently-offered APIs, each with a service-desc pointing at a first-party Postman collection
+  and service-doc entries pointing at the HTML documentation and the public Postman docs. There is
+  no security.txt, no OIDC/OAuth discovery document (the platform is bearer-token only, no OAuth),
+  and no ai-plugin.json.
+hosts:
+- host: https://useapi.net
+  documents:
+  - path: /.well-known/api-catalog
+    status: 200
+    content_type: application/linkset+json
+    standard: RFC 9727 (API catalog) / RFC 9264 (linkset)
+    file: useapi-api-catalog.json
+    entries: 10
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://api.useapi.net
+  documents:
+  - path: /openapi.json
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+related:
+- type: llms.txt
+  url: https://useapi.net/llms.txt
+  status: 200
+  file: ../llms/useapi-llms.txt
+- type: llms-full.txt
+  url: https://useapi.net/llms-full.txt
+  status: 200
+  note: >-
+    ~3 MB verbatim docs dump (identical to https://useapi.net/assets/aibot/all.txt). Deliberately
+    NOT committed — see .gitignore *-llms-full.txt.
+- type: sitemap
+  url: https://useapi.net/sitemap.xml
+  status: 200

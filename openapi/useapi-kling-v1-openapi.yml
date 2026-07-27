@@ -1,0 +1,1887 @@
+# Derived from the first-party useapi.net Postman collection: https://useapi.net/assets/postman/kling-v1.json
+# method: derived  |  no operation, path, parameter or example was invented.
+openapi: 3.1.0
+info:
+  title: Kling API v1 by useapi.net
+  version: 1.0.0
+  description: 'Full documentation available at [useapi.net](https://useapi.net/docs/api-kling-v1/).
+
+
+    ---
+
+    **Updated:** July 20, 2026'
+  contact:
+    name: useapi.net support
+    email: support@useapi.net
+    url: https://useapi.net/docs/support
+  x-derived-from: https://useapi.net/assets/postman/kling-v1.json
+externalDocs:
+  description: kling documentation
+  url: https://useapi.net/docs/api-kling-v1
+servers:
+- url: https://api.useapi.net/v1/kling
+security:
+- bearerAuth: []
+tags:
+- name: kling
+  description: Kling API v1 by useapi.net
+paths:
+  /accounts:
+    get:
+      operationId: getAccounts
+      summary: accounts
+      description: '[Retrieve Kling accounts information.](https://useapi.net/docs/api-kling-v1/get-kling-accounts)'
+      tags:
+      - kling
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    post:
+      operationId: postAccounts
+      summary: accounts
+      description: '[Add or update Kling account.](https://useapi.net/docs/api-kling-v1/post-kling-accounts)'
+      tags:
+      - kling
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                maxJobs:
+                  type: string
+                passToken:
+                  type: string
+                did:
+                  type: string
+                userId:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /accounts/{email}:
+    get:
+      operationId: getAccountsByEmail
+      summary: accounts/<email>
+      description: '[Retrieve Kling API account configuration and balance.](https://useapi.net/docs/api-kling-v1/get-kling-accounts-email)'
+      tags:
+      - kling
+      parameters:
+      - name: email
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    delete:
+      operationId: deleteAccountsByEmail
+      summary: accounts/<email>
+      description: '[Delete Kling account.](https://useapi.net/docs/api-kling-v1/del-kling-accounts-email)'
+      tags:
+      - kling
+      parameters:
+      - name: email
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /scheduler:
+    get:
+      operationId: getScheduler
+      summary: scheduler
+      description: '[Retrieve running tasks](https://useapi.net/docs/api-kling-v1/get-kling-scheduler)'
+      tags:
+      - kling
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /scheduler/available:
+    get:
+      operationId: getSchedulerAvailable
+      summary: scheduler/available
+      description: '[Retrieve available capacity](https://useapi.net/docs/api-kling-v1/get-kling-scheduler-available)'
+      tags:
+      - kling
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /scheduler/{task_id}:
+    delete:
+      operationId: deleteSchedulerByTaskid
+      summary: scheduler/<task_id>
+      description: '[Cancel a running task](https://useapi.net/docs/api-kling-v1/del-kling-scheduler-task_id)'
+      tags:
+      - kling
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /tasks:
+    get:
+      operationId: getTasks
+      summary: tasks
+      description: '[Retrieve Kling tasks](https://useapi.net/docs/api-kling-v1/get-kling-tasks)'
+      tags:
+      - kling
+      parameters:
+      - name: email
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional when only one kling/accounts configured. However, if you have multiple accounts configured,
+          this parameter becomes required.
+      - name: pageSize
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional page size
+      - name: createdBefore
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional before date (date as a  number of milliseconds elapsed since the epoch, which is defined as
+          the midnight at the beginning of January 1, 1970, UTC)
+      - name: createdAfter
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional after date (date as a  number of milliseconds elapsed since the epoch, which is defined as the
+          midnight at the beginning of January 1, 1970, UTC)
+      - name: contentType
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Optional task type. Valid values: video,image,audio'
+        example: video
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /tasks/{task_id}:
+    get:
+      operationId: getTasksByTaskid
+      summary: tasks/<task_id>
+      description: '[Retrieve Kling task](https://useapi.net/docs/api-kling-v1/get-kling-tasks-task_id)'
+      tags:
+      - kling
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: email
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional when only one kling/accounts configured. However, if you have multiple accounts configured,
+          this parameter becomes required.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    delete:
+      operationId: deleteTasksByTaskid
+      summary: tasks/<task_id>
+      description: '[Delete Kling task](https://useapi.net/docs/api-kling-v1/del-kling-tasks-task_id)'
+      tags:
+      - kling
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional when only one kling/accounts configured. However, if you have multiple accounts configured,
+          this parameter becomes required.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /tts/voices:
+    get:
+      operationId: getTtsVoices
+      summary: tts/voices
+      description: '[Retrieve list of TTS (text-to-speach) voices](https://useapi.net/docs/api-kling-v1/get-kling-tts-voices)'
+      tags:
+      - kling
+      parameters:
+      - name: email
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional when only one kling/accounts configured. However, if you have multiple accounts configured,
+          this parameter becomes required.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /tts/create:
+    post:
+      operationId: postTtsCreate
+      summary: tts/create
+      description: '[Generate speech from text](https://useapi.net/docs/api-kling-v1/post-kling-tts-create)'
+      tags:
+      - kling
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                speakerId:
+                  type: string
+                text:
+                  type: string
+                speed:
+                  type: string
+                emotion:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /avatars:
+    get:
+      operationId: getAvatars
+      summary: avatars
+      description: '[Retrieve avatars](https://useapi.net/docs/api-kling-v1/get-kling-avatars)'
+      tags:
+      - kling
+      parameters:
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional when only one kling/accounts configured. However, if you have multiple accounts configured,
+          this parameter becomes required.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    post:
+      operationId: postAvatars
+      summary: avatars
+      description: '[Create Avatar 2.0](https://useapi.net/docs/api-kling-v1/post-kling-avatars)
+
+
+        Most fields are optional and will be automatically populated using AI if not provided.'
+      tags:
+      - kling
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                imageUrl:
+                  type: string
+                nickname:
+                  type: string
+                prompt:
+                  type: string
+                scene:
+                  type: string
+                ttsSpeaker:
+                  type: string
+                ttsSpeed:
+                  type: string
+                ttsEmotionKey:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /avatars/video:
+    post:
+      operationId: postAvatarsVideo
+      summary: avatars/video
+      description: '[Generate Avatar 2.0 video](https://useapi.net/docs/api-kling-v1/post-kling-avatars-video)
+
+
+        Supports both pre-recorded audio (audioUrl) and text-to-speech (text + speakerId).'
+      tags:
+      - kling
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                avatarId:
+                  type: string
+                imageUrl:
+                  type: string
+                audioUrl:
+                  type: string
+                text:
+                  type: string
+                speakerId:
+                  type: string
+                speed:
+                  type: string
+                emotion:
+                  type: string
+                prompt:
+                  type: string
+                mode:
+                  type: string
+                maxJobs:
+                  type: string
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /avatars/{avatarId}:
+    delete:
+      operationId: deleteAvatarsByAvatarid
+      summary: avatars/<avatarId>
+      description: '[Delete Avatar 2.0](https://useapi.net/docs/api-kling-v1/del-kling-avatars-avatarId)'
+      tags:
+      - kling
+      parameters:
+      - name: avatarId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional when only one kling/accounts configured. However, if you have multiple accounts configured,
+          this parameter becomes required.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /elements:
+    get:
+      operationId: getElements
+      summary: elements
+      description: '[Retrieve elements list](https://useapi.net/docs/api-kling-v1/get-kling-elements)'
+      tags:
+      - kling
+      parameters:
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional when only one kling/accounts configured. However, if you have multiple accounts configured,
+          this parameter becomes required.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    post:
+      operationId: postElements
+      summary: elements
+      description: '[Create element](https://useapi.net/docs/api-kling-v1/post-kling-elements)
+
+
+        Elements are saved character/object references for POST /images/omni and POST /videos/omni using @element_N syntax.'
+      tags:
+      - kling
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                name:
+                  type: string
+                coverImage:
+                  type: string
+                type:
+                  type: string
+                voice:
+                  type: string
+                description:
+                  type: string
+                tag:
+                  type: string
+                extraImage1:
+                  type: string
+                extraImage2:
+                  type: string
+                extraImage3:
+                  type: string
+                generateViews:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /elements/tags:
+    get:
+      operationId: getElementsTags
+      summary: elements/tags
+      description: '[Retrieve element tags](https://useapi.net/docs/api-kling-v1/get-kling-elements-tags)'
+      tags:
+      - kling
+      parameters:
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional when only one kling/accounts configured. However, if you have multiple accounts configured,
+          this parameter becomes required.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /elements/voices:
+    get:
+      operationId: getElementsVoices
+      summary: elements/voices
+      description: '[Retrieve element voices](https://useapi.net/docs/api-kling-v1/get-kling-elements-voices)'
+      tags:
+      - kling
+      parameters:
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional when only one kling/accounts configured. However, if you have multiple accounts configured,
+          this parameter becomes required.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /elements/{elementId}:
+    get:
+      operationId: getElementsByElementid
+      summary: elements/<elementId>
+      description: '[Retrieve element by ID](https://useapi.net/docs/api-kling-v1/get-kling-elements-elementId)'
+      tags:
+      - kling
+      parameters:
+      - name: elementId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional when only one kling/accounts configured. However, if you have multiple accounts configured,
+          this parameter becomes required.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    delete:
+      operationId: deleteElementsByElementid
+      summary: elements/<elementId>
+      description: '[Delete element](https://useapi.net/docs/api-kling-v1/del-kling-elements-elementId)'
+      tags:
+      - kling
+      parameters:
+      - name: elementId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional when only one kling/accounts configured. However, if you have multiple accounts configured,
+          this parameter becomes required.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /assets:
+    get:
+      operationId: getAssets
+      summary: assets
+      description: '[Retrieve generated assets](https://useapi.net/docs/api-kling-v1/get-kling-assets)'
+      tags:
+      - kling
+      parameters:
+      - name: email
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional when only one kling/accounts configured. However, if you have multiple accounts configured,
+          this parameter becomes required.
+      - name: pageSize
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional page size
+      - name: pageNum
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional page number
+      - name: contentType
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Optional asset type, supported values: video, image, audio'
+      - name: sort
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Optional sort direction by creation time: asc or desc (default: desc).'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /assets/download:
+    get:
+      operationId: getAssetsDownload
+      summary: assets/download
+      description: '[Download Kling assets without watermarks](https://useapi.net/docs/api-kling-v1/get-kling-assets-download)'
+      tags:
+      - kling
+      parameters:
+      - name: email
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional when only one kling/accounts configured. However, if you have multiple accounts configured,
+          this parameter becomes required.
+      - name: fileTypes
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Optional, specify comma-separated file types you want to download (e.g., “MP4” or “MP4,WAV”). If not
+          provided, all available files for the given workIds will be downloaded as a singe .zip file. Supported file types:
+          MP4, MP3, WAV, PNG.'
+      - name: workIds
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Required, specify the IDs of works to download. Can be a single numeric string or a comma-separated list
+          of numeric strings (e.g., “123456789” or “123456789,987654321”). These IDs can be obtained from the workId field
+          in the works array returned by the GET /assets, GET /tasks or GET /tasks/task_id endpoint.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /assets/:
+    post:
+      operationId: postAssets
+      summary: assets • use Body » binary to upload image/video/audio file
+      description: '[Upload asset](https://useapi.net/docs/api-kling-v1/post-kling-assets)'
+      tags:
+      - kling
+      parameters:
+      - name: email
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional when only one kling/accounts configured. However, if you have multiple accounts configured,
+          this parameter becomes required.
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /assets/uploaded/:
+    get:
+      operationId: getAssetsUploaded
+      summary: assets/uploaded
+      description: '[Retrieve uploaded assets](https://useapi.net/docs/api-kling-v1/get-kling-assets-uploaded)'
+      tags:
+      - kling
+      parameters:
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional when only one kling/accounts configured. However, if you have multiple accounts configured,
+          this parameter becomes required.
+      - name: pageNum
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Optional, page number (default: 1).'
+      - name: pageSize
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Optional, items per page (default: 20).'
+      - name: contentType
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Optional, filter by type: video, image, or audio.'
+      - name: fileName
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, filter by file name (keyword search).
+      - name: sort
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Optional sort direction by upload time: asc or desc (default: desc).'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    delete:
+      operationId: deleteAssetsUploaded
+      summary: assets/uploaded
+      description: '[Delete uploaded Kling assets](https://useapi.net/docs/api-kling-v1/del-kling-assets-uploaded)'
+      tags:
+      - kling
+      parameters:
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Required. Previously configured account email.
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Required. Uploaded asset id, or comma-separated list of up to 10 numeric ids.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /videos/effects:
+    get:
+      operationId: getVideosEffects
+      summary: videos/effects
+      description: '[Get Available Video Effects](https://useapi.net/docs/api-kling-v1/get-kling-videos-effects)'
+      tags:
+      - kling
+      parameters:
+      - name: email
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional when only one kling/accounts configured. However, if you have multiple accounts configured,
+          this parameter becomes required.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /videos/text2video:
+    post:
+      operationId: postVideosText2video
+      summary: videos/text2video
+      description: '[Create Video From Text](https://useapi.net/docs/api-kling-v1/post-kling-videos-text2video)'
+      tags:
+      - kling
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                prompt:
+                  type: string
+                negative_prompt:
+                  type: string
+                aspect_ratio:
+                  type: string
+                cfg_scale:
+                  type: string
+                duration:
+                  type: string
+                mode:
+                  type: string
+                model_name:
+                  type: string
+                enable_audio:
+                  type: string
+                shot_1_prompt:
+                  type: string
+                shot_1_duration:
+                  type: string
+                shot_2_prompt:
+                  type: string
+                shot_2_duration:
+                  type: string
+                shot_3_prompt:
+                  type: string
+                shot_3_duration:
+                  type: string
+                shot_4_prompt:
+                  type: string
+                shot_4_duration:
+                  type: string
+                shot_5_prompt:
+                  type: string
+                shot_5_duration:
+                  type: string
+                shot_6_prompt:
+                  type: string
+                shot_6_duration:
+                  type: string
+                maxJobs:
+                  type: string
+                replyRef:
+                  type: string
+                replyUrl:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /videos/image2video-frames:
+    post:
+      operationId: postVideosImage2videoFrames
+      summary: videos/image2video-frames
+      description: '[Create Video From Image Frames](https://useapi.net/docs/api-kling-v1/post-kling-videos-image2video-frames)'
+      tags:
+      - kling
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                image:
+                  type: string
+                image_tail:
+                  type: string
+                element_1:
+                  type: string
+                element_2:
+                  type: string
+                element_3:
+                  type: string
+                prompt:
+                  type: string
+                negative_prompt:
+                  type: string
+                cfg_scale:
+                  type: string
+                duration:
+                  type: string
+                mode:
+                  type: string
+                model_name:
+                  type: string
+                enable_audio:
+                  type: string
+                shot_1_prompt:
+                  type: string
+                shot_1_duration:
+                  type: string
+                shot_2_prompt:
+                  type: string
+                shot_2_duration:
+                  type: string
+                shot_3_prompt:
+                  type: string
+                shot_3_duration:
+                  type: string
+                shot_4_prompt:
+                  type: string
+                shot_4_duration:
+                  type: string
+                shot_5_prompt:
+                  type: string
+                shot_5_duration:
+                  type: string
+                shot_6_prompt:
+                  type: string
+                shot_6_duration:
+                  type: string
+                maxJobs:
+                  type: string
+                replyRef:
+                  type: string
+                replyUrl:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /videos/image2video-elements:
+    post:
+      operationId: postVideosImage2videoElements
+      summary: videos/image2video-elements
+      description: '[Create Video From Multiple Images](https://useapi.net/docs/api-kling-v1/post-kling-videos-image2video-elements)'
+      tags:
+      - kling
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                image_0:
+                  type: string
+                image_1:
+                  type: string
+                image_2:
+                  type: string
+                image_3:
+                  type: string
+                element_1:
+                  type: string
+                element_2:
+                  type: string
+                element_3:
+                  type: string
+                prompt:
+                  type: string
+                negative_prompt:
+                  type: string
+                aspect_ratio:
+                  type: string
+                duration:
+                  type: string
+                mode:
+                  type: string
+                model_name:
+                  type: string
+                enable_audio:
+                  type: string
+                maxJobs:
+                  type: string
+                replyRef:
+                  type: string
+                replyUrl:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /videos/image2video-effects:
+    post:
+      operationId: postVideosImage2videoEffects
+      summary: videos/image2video-effects
+      description: '[Create Video From Image with Effects](https://useapi.net/docs/api-kling-v1/post-kling-videos-image2video-effects)'
+      tags:
+      - kling
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                effect:
+                  type: string
+                image:
+                  type: string
+                mode:
+                  type: string
+                prompt:
+                  type: string
+                maxJobs:
+                  type: string
+                replyRef:
+                  type: string
+                replyUrl:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /videos/extend:
+    post:
+      operationId: postVideosExtend
+      summary: videos/extend
+      description: '[Extend an Existing Video](https://useapi.net/docs/api-kling-v1/post-kling-videos-extend)'
+      tags:
+      - kling
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                task_id:
+                  type: string
+                prompt:
+                  type: string
+                negative_prompt:
+                  type: string
+                cfg_scale:
+                  type: string
+                enable_audio:
+                  type: string
+                maxJobs:
+                  type: string
+                replyRef:
+                  type: string
+                replyUrl:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /videos/lipsync:
+    post:
+      operationId: postVideosLipsync
+      summary: videos/lipsync
+      description: '[Apply Lip Sync to Video](https://useapi.net/docs/api-kling-v1/post-kling-videos-lipsync)'
+      tags:
+      - kling
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                video:
+                  type: string
+                audio:
+                  type: string
+                maxJobs:
+                  type: string
+                replyRef:
+                  type: string
+                replyUrl:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /videos/motions:
+    get:
+      operationId: getVideosMotions
+      summary: videos/motions
+      description: '[Get available motions](https://useapi.net/docs/api-kling-v1/get-kling-videos-motions)'
+      tags:
+      - kling
+      parameters:
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional when only one kling/accounts configured. However, if you have multiple accounts configured,
+          this parameter becomes required.
+      - name: mine
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, boolean. When true, retrieves user's own motion assets. When false/omitted, retrieves official
+          Kling motion templates.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /videos/motion-create:
+    post:
+      operationId: postVideosMotionCreate
+      summary: videos/motion-create
+      description: '[Create video from motion and image](https://useapi.net/docs/api-kling-v1/post-kling-videos-motion-create)'
+      tags:
+      - kling
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                model_name:
+                  type: string
+                imageUrl:
+                  type: string
+                motionUrl:
+                  type: string
+                prompt:
+                  type: string
+                keepAudio:
+                  type: string
+                motionDirection:
+                  type: string
+                mode:
+                  type: string
+                element_1:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /videos/motion-upload:
+    post:
+      operationId: postVideosMotionUpload
+      summary: videos/motion-upload
+      description: '[Upload custom motion](https://useapi.net/docs/api-kling-v1/post-kling-videos-motion-upload) (deprecated)'
+      tags:
+      - kling
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                resourceUrl:
+                  type: string
+                coverUrl:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /videos/add-sound:
+    post:
+      operationId: postVideosAddSound
+      summary: videos/add-sound
+      description: '[Add sound to video](https://useapi.net/docs/api-kling-v1/post-kling-videos-add-sound)'
+      tags:
+      - kling
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                video:
+                  type: string
+                cropVideoOriginalSound:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /videos/omni:
+    post:
+      operationId: postVideosOmni
+      summary: videos/omni
+      description: '[Generate videos with Omni](https://useapi.net/docs/api-kling-v1/post-kling-videos-omni)'
+      tags:
+      - kling
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                prompt:
+                  type: string
+                omni_version:
+                  type: string
+                duration:
+                  type: string
+                aspect_ratio:
+                  type: string
+                mode:
+                  type: string
+                enable_audio:
+                  type: string
+                image_1:
+                  type: string
+                element_1:
+                  type: string
+                frame_start:
+                  type: string
+                frame_end:
+                  type: string
+                video_1:
+                  type: string
+                video_mode:
+                  type: string
+                keep_audio:
+                  type: string
+                shot_1_prompt:
+                  type: string
+                shot_1_duration:
+                  type: string
+                shot_2_prompt:
+                  type: string
+                shot_2_duration:
+                  type: string
+                shot_3_prompt:
+                  type: string
+                shot_3_duration:
+                  type: string
+                shot_4_prompt:
+                  type: string
+                shot_4_duration:
+                  type: string
+                shot_5_prompt:
+                  type: string
+                shot_5_duration:
+                  type: string
+                shot_6_prompt:
+                  type: string
+                shot_6_duration:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /images/virtual-try-on:
+    post:
+      operationId: postImagesVirtualTryOn
+      summary: images/virtual-try-on
+      description: '[Virtual Try-On](https://useapi.net/docs/api-kling-v1/post-kling-images-virtual-try-on)'
+      tags:
+      - kling
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                humanImage:
+                  type: string
+                upperInput:
+                  type: string
+                dressInput:
+                  type: string
+                lowerInput:
+                  type: string
+                imageCount:
+                  type: string
+                maxJobs:
+                  type: string
+                replyRef:
+                  type: string
+                replyUrl:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /images/kolors:
+    post:
+      operationId: postImagesKolors
+      summary: images/kolors
+      description: '[KOLORS](https://useapi.net/docs/api-kling-v1/post-kling-images-kolors)'
+      tags:
+      - kling
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                prompt:
+                  type: string
+                version:
+                  type: string
+                reference:
+                  type: string
+                imageReference:
+                  type: string
+                aspect_ratio:
+                  type: string
+                imageCount:
+                  type: string
+                faceStrength:
+                  type: string
+                subjectStrength:
+                  type: string
+                faceNo:
+                  type: string
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /images/kolors-elements:
+    post:
+      operationId: postImagesKolorsElements
+      summary: images/kolors-elements
+      description: '[KOLORS - elements](https://useapi.net/docs/api-kling-v1/post-kling-images-kolors-elements)'
+      tags:
+      - kling
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                prompt:
+                  type: string
+                aspect_ratio:
+                  type: string
+                imageCount:
+                  type: string
+                subjectImage1:
+                  type: string
+                subjectImage2:
+                  type: string
+                subjectImage3:
+                  type: string
+                subjectImage4:
+                  type: string
+                sceneImage:
+                  type: string
+                styleImage:
+                  type: string
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /images/recognize-faces:
+    post:
+      operationId: postImagesRecognizeFaces
+      summary: images/recognize-faces
+      description: '[Detect Faces in Images](https://useapi.net/docs/api-kling-v1/post-kling-images-recognize-faces)'
+      tags:
+      - kling
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                imageReference:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /images/upscale:
+    post:
+      operationId: postImagesUpscale
+      summary: images/upscale
+      description: '[Upscale Images](https://useapi.net/docs/api-kling-v1/post-kling-images-upscale)'
+      tags:
+      - kling
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                task_id:
+                  type: string
+                workId:
+                  type: string
+                maxJobs:
+                  type: string
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /images/omni:
+    post:
+      operationId: postImagesOmni
+      summary: images/omni
+      description: '[Generate images with Omni](https://useapi.net/docs/api-kling-v1/post-kling-images-omni)'
+      tags:
+      - kling
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                prompt:
+                  type: string
+                omni_version:
+                  type: string
+                resolution:
+                  type: string
+                aspect_ratio:
+                  type: string
+                imageCount:
+                  type: string
+                story_mode:
+                  type: string
+                image_1:
+                  type: string
+                element_1:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'useapi.net API token. Header: `Authorization: Bearer user:<number>-<unique-string>`. Use the complete
+        token including the `user:` prefix.'

@@ -1,0 +1,799 @@
+{
+  "info": {
+    "_postman_id": "3d1cfae1-2bd0-411e-ba31-16d45c447218",
+    "name": "TemPolor API v1 by useapi.net",
+    "description": "[TemPolor API v1 by useapi.net](https://useapi.net/docs/api-tempolor-v1)\n\n---\n**Updated:** March 21, 2026",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "updated": "2026-03-21",
+    "_exporter_id": "29112081"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/tempolor/accounts",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "tempolor",
+            "accounts"
+          ]
+        },
+        "description": "[Retrieve TemPolor accounts information.](https://useapi.net/docs/api-tempolor-v1/get-tempolor-accounts)"
+      },
+      "response": []
+    },
+    {
+      "name": "accounts/<user_id>",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/tempolor/accounts/<user_id>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "tempolor",
+            "accounts",
+            "<user_id>"
+          ]
+        },
+        "description": "[Retrieve TemPolor account information.](https://useapi.net/docs/api-tempolor-v1/get-tempolor-accounts-user_id)"
+      },
+      "response": []
+    },
+    {
+      "name": "accounts",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\t\"requestParams\": {\r\n\t\t// replace with your values\r\n\t},\r\n\t\"maxJobs\": 10\r\n}"
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/tempolor/accounts",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "tempolor",
+            "accounts"
+          ]
+        },
+        "description": "[Create or update TemPolor API account.](https://useapi.net/docs/api-tempolor-v1/post-tempolor-accounts)"
+      },
+      "response": []
+    },
+    {
+      "name": "accounts/<user_id>",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/tempolor/accounts/<user_id>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "tempolor",
+            "accounts",
+            "<user_id>"
+          ]
+        },
+        "description": "[Delete TemPolor account.](https://useapi.net/docs/api-tempolor-v1/del-tempolor-accounts-user_id)"
+      },
+      "response": []
+    },
+    {
+      "name": "music/song",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "user_id",
+              "value": "",
+              "description": "Optional, if not specified, the API will use the account from your request.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "prompt",
+              "value": "A cinematic orchestral piece with dramatic string sections and a powerful crescendo",
+              "description": "Required, a text description of the desired song. Maximum length 2000 characters.",
+              "type": "text"
+            },
+            {
+              "key": "lyrics",
+              "value": "",
+              "description": "Optional, custom lyrics for the song. If not provided, lyrics will be auto-generated based on the prompt. Maximum length 3000 characters.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "model_song",
+              "value": "",
+              "description": "Optional, the model to use for generation. Supported values: v3 (English/Chinese/Japanese, max 2 min), v3.5 (English/Chinese/Japanese/Korean/Spanish/French, max 4.5 min), v4.5+ (16+ languages including Russian/Hindi/Arabic, max 5 min, default)",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "artistVoiceItemId",
+              "value": "",
+              "description": "Optional, ID of a predefined artist voice to use for the vocals. Get available voices using GET artist-voices.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "clonedVoiceItemId",
+              "value": "",
+              "description": "Optional, ID of a previously cloned voice to use for the vocals.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "midiItemId",
+              "value": "",
+              "description": "Optional, ID of a previously uploaded MIDI file to base the composition on.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional, a callback URL that will be called with generation progress updates. Maximum length 1024 characters.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional, a reference ID that will be included in the callback requests. Maximum length 1024 characters.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional override for account maxJobs.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/tempolor/music/song",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "tempolor",
+            "music",
+            "song"
+          ]
+        },
+        "description": "[Create music with vocals](https://useapi.net/docs/api-tempolor-v1/post-tempolor-music-song)"
+      },
+      "response": []
+    },
+    {
+      "name": "music/instrumental",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "user_id",
+              "value": "",
+              "description": "Optional, if not specified, the API will use the account from your request.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "prompt",
+              "value": "A relaxing piano melody with soft ambient background",
+              "description": "Required, a text description of the desired instrumental music. Maximum length 2000 characters.",
+              "type": "text"
+            },
+            {
+              "key": "model_instrumental",
+              "value": "",
+              "description": "Optional, the model to use for generation. Supported values: i3 - Superior music structure, max 2 min, i3.5 beta - Richer arrangements, max 4.5 mins (default)",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "tonality",
+              "value": "",
+              "description": "Optional, the musical key for the composition. Supported values: A:major, A:minor, Ab:major, Ab:minor, B:major, B:minor, Bb:major, Bb:minor, C#:major, C#:minor, C:major, C:minor, D:major, D:minor, E:major, E:minor, Eb:major, Eb:minor, F#:major, F#:minor, F:major, F:minor, G:major, G:minor",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "bpm",
+              "value": "",
+              "description": "Optional, the beats per minute for the generated music. Valid range: 50-190. Default is determined by the prompt and style.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "chord",
+              "value": "",
+              "description": "Optional, chord progression for the composition. Maximum length 200 characters.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional, a callback URL that will be called with generation progress updates. Maximum length 1024 characters.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional, a reference ID that will be included in the callback requests. Maximum length 1024 characters.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional override for account maxJobs.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/tempolor/music/instrumental",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "tempolor",
+            "music",
+            "instrumental"
+          ]
+        },
+        "description": "[Create instrumental music](https://useapi.net/docs/api-tempolor-v1/post-tempolor-music-instrumental)"
+      },
+      "response": []
+    },
+    {
+      "name": "music/stems-splitter • use Body » binary to upload audio file",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "file",
+          "file": {}
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/tempolor/music/stems-splitter",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "tempolor",
+            "music",
+            "stems-splitter"
+          ],
+          "query": [
+            {
+              "key": "user_id",
+              "value": "",
+              "description": "Optional when only one tempolor/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "[Split audio into stems](https://useapi.net/docs/api-tempolor-v1/post-tempolor-music-stems-splitter)"
+      },
+      "response": []
+    },
+    {
+      "name": "music",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/tempolor/music",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "tempolor",
+            "music"
+          ],
+          "query": [
+            {
+              "key": "user_id",
+              "value": "",
+              "description": "Optional when only one tempolor/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "disabled": true
+            },
+            {
+              "key": "cursor",
+              "value": "",
+              "description": "Optional. Pagination cursor for fetching next page of results.",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "[Retrieve generated music](https://useapi.net/docs/api-tempolor-v1/get-tempolor-music)"
+      },
+      "response": []
+    },
+    {
+      "name": "music/<job_id>",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/tempolor/music/<job_id>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "tempolor",
+            "music",
+            "<job_id>"
+          ]
+        },
+        "description": "[Retrieve music generation job status](https://useapi.net/docs/api-tempolor-v1/get-tempolor-music-job_id)"
+      },
+      "response": []
+    },
+    {
+      "name": "music/download/<job_id>",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/tempolor/music/download/<job_id>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "tempolor",
+            "music",
+            "download",
+            "<job_id>"
+          ],
+          "query": [
+            {
+              "key": "file_format",
+              "value": "mp3",
+              "description": "Optional, format of the generated music. Supported values: mp3 (default), wav (higher quality), stems (ZIP archive with separated stems).",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "[Download generated music](https://useapi.net/docs/api-tempolor-v1/get-tempolor-music-download-job_id)"
+      },
+      "response": []
+    },
+    {
+      "name": "music/<job_id>",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/tempolor/music/<job_id>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "tempolor",
+            "music",
+            "<job_id>"
+          ]
+        },
+        "description": "[Delete generated music](https://useapi.net/docs/api-tempolor-v1/delete-tempolor-music-job_id)"
+      },
+      "response": []
+    },
+    {
+      "name": "music/artist-voices",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/tempolor/music/artist-voices",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "tempolor",
+            "music",
+            "artist-voices"
+          ],
+          "query": [
+            {
+              "key": "user_id",
+              "value": "",
+              "description": "Optional when only one tempolor/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "disabled": true
+            },
+            {
+              "key": "cursor",
+              "value": "",
+              "description": "Optional. Pagination cursor for fetching next page of results.",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "[List artist voices](https://useapi.net/docs/api-tempolor-v1/get-tempolor-music-artist-voices)"
+      },
+      "response": []
+    },
+    {
+      "name": "music/cloned-voices",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/tempolor/music/cloned-voices",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "tempolor",
+            "music",
+            "cloned-voices"
+          ],
+          "query": [
+            {
+              "key": "user_id",
+              "value": "",
+              "description": "Optional when only one tempolor/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "disabled": true
+            },
+            {
+              "key": "cursor",
+              "value": "",
+              "description": "Optional. Pagination cursor for fetching next page of results.",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "[List cloned voices](https://useapi.net/docs/api-tempolor-v1/get-tempolor-music-cloned-voices)"
+      },
+      "response": []
+    },
+    {
+      "name": "music/cloned-voices • use Body » binary to upload audio file",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "file",
+          "file": {}
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/tempolor/music/cloned-voices?name=",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "tempolor",
+            "music",
+            "cloned-voices"
+          ],
+          "query": [
+            {
+              "key": "user_id",
+              "value": "",
+              "description": "Optional when only one tempolor/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "disabled": true
+            },
+            {
+              "key": "name",
+              "value": "",
+              "description": "Required, specify a name for your cloned voice."
+            }
+          ]
+        },
+        "description": "[Upload voice sample for cloning](https://useapi.net/docs/api-tempolor-v1/post-tempolor-music-cloned-voices)"
+      },
+      "response": []
+    },
+    {
+      "name": "music/cloned-voices/<clonedVoiceItemId>",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/tempolor/music/cloned-voices/<clonedVoiceItemId>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "tempolor",
+            "music",
+            "cloned-voices",
+            "<clonedVoiceItemId>"
+          ]
+        },
+        "description": "[Delete cloned voice](https://useapi.net/docs/api-tempolor-v1/delete-tempolor-music-cloned-voices-clonedVoiceItemId)"
+      },
+      "response": []
+    },
+    {
+      "name": "music/midi",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/tempolor/music/midi",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "tempolor",
+            "music",
+            "midi"
+          ],
+          "query": [
+            {
+              "key": "user_id",
+              "value": "",
+              "description": "Optional when only one tempolor/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "disabled": true
+            },
+            {
+              "key": "cursor",
+              "value": "",
+              "description": "Optional. Pagination cursor for fetching next page of results.",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "[List uploaded MIDI files](https://useapi.net/docs/api-tempolor-v1/get-tempolor-music-midi)"
+      },
+      "response": []
+    },
+    {
+      "name": "music/midi • use Body » binary to upload MIDI file",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "file",
+          "file": {}
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v1/tempolor/music/midi?name=",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "tempolor",
+            "music",
+            "midi"
+          ],
+          "query": [
+            {
+              "key": "user_id",
+              "value": "",
+              "description": "Optional when only one tempolor/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "disabled": true
+            },
+            {
+              "key": "name",
+              "value": "",
+              "description": "Required, specify a name for your MIDI file."
+            }
+          ]
+        },
+        "description": "[Upload MIDI file](https://useapi.net/docs/api-tempolor-v1/post-tempolor-music-midi)"
+      },
+      "response": []
+    },
+    {
+      "name": "music/midi/<midiItemId>",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/tempolor/music/midi/<midiItemId>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "tempolor",
+            "music",
+            "midi",
+            "<midiItemId>"
+          ]
+        },
+        "description": "[Delete MIDI file](https://useapi.net/docs/api-tempolor-v1/delete-tempolor-music-midi-midiItemId)"
+      },
+      "response": []
+    },
+    {
+      "name": "scheduler",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/tempolor/scheduler",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "tempolor",
+            "scheduler"
+          ]
+        },
+        "description": "[List scheduled jobs](https://useapi.net/docs/api-tempolor-v1/get-tempolor-scheduler)"
+      },
+      "response": []
+    },
+    {
+      "name": "scheduler/available",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/tempolor/scheduler/available",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "tempolor",
+            "scheduler",
+            "available"
+          ]
+        },
+        "description": "[Retrieve available capacity](https://useapi.net/docs/api-tempolor-v1/get-tempolor-scheduler-available)"
+      },
+      "response": []
+    },
+    {
+      "name": "scheduler/<job_id>",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v1/tempolor/scheduler/<job_id>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v1",
+            "tempolor",
+            "scheduler",
+            "<job_id>"
+          ]
+        },
+        "description": "[Cancel a running job](https://useapi.net/docs/api-tempolor-v1/del-tempolor-scheduler-job_id)"
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "user_id",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

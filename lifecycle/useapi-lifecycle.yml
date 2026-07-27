@@ -1,0 +1,124 @@
+generated: '2026-07-27'
+method: searched
+source:
+- https://useapi.net/llms.txt
+- https://useapi.net/docs/api-v1
+- https://useapi.net/docs/api-ltxstudio-v1
+- https://useapi.net/blog
+- https://useapi.net/assets/aibot/all.txt
+- openapi/
+
+versioning:
+  scheme: uri-path
+  pattern: https://api.useapi.net/{version}/{service}
+  per_service: true
+  current:
+  - api: google-flow
+    version: v1
+  - api: flowmusic
+    version: v1
+  - api: dreamina
+    version: v1
+  - api: kling
+    version: v1
+  - api: minimax
+    version: v1
+  - api: runwayml
+    version: v1
+  - api: pixverse
+    version: v2
+  - api: mureka
+    version: v1
+  - api: tempolor
+    version: v1
+  - api: faceswap
+    version: v1
+  - api: account
+    version: v2
+  note: >-
+    Each wrapped service carries its own major version in the path; there is no single platform
+    version. PixVerse is on v2 while every other current generation API is on v1, and the
+    cross-cutting account API is on v2.
+
+deprecation:
+  policy_url: null
+  formal_policy_published: false
+  practice: >-
+    useapi.net publishes no standalone deprecation policy page, but it does publish dated,
+    in-place retirement notices on the documentation page of every API it withdraws, keeps the
+    withdrawn documentation online, and has performed at least one announced major-version cutover
+    with a stated effective date. Backward-compatible model aliases are also kept accepted after the
+    underlying model is withdrawn upstream.
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  events:
+  - api: Midjourney API (v1 + v2)
+    kind: discontinued
+    date: '2026-06-24'
+    notice: Midjourney support was discontinued on June 24, 2026.
+    docs_retained: true
+    docs_url: https://useapi.net/docs/api-v1
+  - api: Midjourney API v1
+    kind: major-version-sunset
+    date: '2024-03-01'
+    notice: >-
+      "We will be officially sunsetting v1. Starting from March 1, 2024 all calls will be routed to
+      v2 endpoints."
+    docs_url: https://useapi.net/docs/api-v1
+  - api: LTX Studio API v1
+    kind: retired
+    date: '2025-06-18'
+    notice: >-
+      "LTX Studio API has been retired due to low demand. If you are interested in using it, this
+      API can be easily resurrected — please contact support@useapi.net with your request."
+    docs_retained: true
+    docs_url: https://useapi.net/docs/api-ltxstudio-v1
+  - api: Google Flow API v1
+    kind: model-alias-deprecation
+    date: '2026-07'
+    notice: >-
+      "Deprecated aliases, still accepted: `nano-banana` maps to `nano-banana-2`, and `imagen-4`
+      maps to `nano-banana-2-lite` (Google removed Imagen from Flow in July 2026)."
+    breaking: false
+  deprecated_operations: []
+  note: >-
+    No operation in any of the twelve captured OpenAPI definitions carries `deprecated: true`.
+    Withdrawal at useapi.net happens at the API level (a whole wrapped service is retired), not at
+    the operation level.
+
+status_page:
+  published: false
+  probed:
+  - url: https://status.useapi.net/
+    result: 302 redirect to https://useapi.net/ — Cloudflare wildcard, not a status page
+  substitute: >-
+    Per-account operational health is exposed through the API itself rather than a public status
+    page: GET /v1/<service>/jobs returns executing / completed / failed / rateLimited counts and
+    quarantine state over the last 15 minutes, and GET /v2/account/stats returns per-bot request
+    counts by HTTP status, endpoint, model and tier with average latency and success rate.
+
+sla:
+  published: false
+  note: >-
+    No uptime target or SLA is published. The service is explicitly and repeatedly described as
+    "experimental", and the terms of service at https://useapi.net/docs/legal carry an "Experimental
+    Nature & Disclaimer of Warranties" section.
+
+retention:
+- resource: generation jobs and their results
+  window: 7 days
+  evidence: '410 Gone — "Job has expired" (jobs are retained for 7 days).'
+- resource: account usage statistics (GET /v2/account/stats)
+  window: 3 months
+  latency: 5-15 minutes
+  evidence: https://useapi.net/docs/account-management/get-account-stats
+
+change_communication:
+  changelog: https://useapi.net/blog
+  artifact: changelog/useapi-changelog.yml
+  cadence: >-
+    Dated announcement posts (slug format /blog/YYMMDD) for new APIs, new models and new endpoints —
+    93 posts published between December 2024 and June 2026.
+  feed: none published (no RSS/Atom feed; /feed.xml and /blog/feed.xml both 404)
+  aggregate: https://useapi.net/assets/aibot/blog.txt (full text of every post, machine-readable)

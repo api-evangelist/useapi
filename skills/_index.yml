@@ -1,0 +1,56 @@
+generated: '2026-07-27'
+method: generated
+source: >-
+  openapi/ (operationIds verified against the derived specs) + https://useapi.net/llms.txt +
+  https://useapi.net/assets/aibot/*.txt. No provider-published Agent Skills or AGENTS.md file was
+  found on the site or in the github.com/useapi organization; these are API Evangelist generated
+  skills grounded in real operationIds.
+searched:
+  result: none
+  probed:
+  - https://useapi.net/ (no AGENTS.md, no /skills surface)
+  - https://github.com/useapi (22 repositories — runnable examples, no packaged agent skills)
+  - https://useapi.net/llms.txt (agent guidance is delivered as llms.txt + verbatim docs dumps)
+skills:
+- file: useapi-operate-accounts-and-webhooks.md
+  name: Operate useapi.net — link accounts, set webhooks, watch usage
+  scope: cross-cutting
+  api: openapi/useapi-google-flow-v1-openapi.yml
+  operations: [getAccounts, postAccounts, deleteAccountsByEmail, getJobs]
+  summary: >-
+    The platform-wide operating skill: bearer auth, the bring-your-own-account model, multi-account
+    load balancing and quarantine, the account-wide replyUrl webhook, the usage-statistics audit
+    surface, and the seven rules that hold across every useapi.net API.
+- file: useapi-generate-video-google-flow.md
+  name: Generate a video with Google Flow (Veo) via useapi.net
+  api: openapi/useapi-google-flow-v1-openapi.yml
+  operations: [postAccounts, getAccounts, postAssetsByEmail, postVideos, getJobsByJobid, getJobs, postVideosExtend]
+  summary: >-
+    End-to-end Veo 3.1 video generation, including correct branching on the four distinct Google 429
+    quota reasons and their different cooldowns.
+- file: useapi-runway-generate-and-upscale.md
+  name: Generate and upscale a Runway video via useapi.net
+  api: openapi/useapi-runwayml-v1-openapi.yml
+  operations: [postAccountsByEmail, getAccounts, getFeatures, postAssets, postGen45Create, postGen4Create,
+    postGen4turboCreate, postVideosCreate, getTasksByTaskid, getTasks, postGen4Upscale, postVideosUpscale,
+    postLipsyncCreate, getLipsyncVoices]
+  summary: >-
+    Gen-4.x generation with raw-body asset upload, taskId-based tracking (not jobid), upscale and
+    lip-sync, plus the account-preservation pacing the vendor recommends.
+- file: useapi-generate-music-mureka.md
+  name: Generate and download a song with Mureka via useapi.net
+  api: openapi/useapi-mureka-v1-openapi.yml
+  operations: [postAccounts, getAccounts, getMusicMoodsAndGenres, postMusicLyricsGenerate, postMusicCreate,
+    postMusicCreateAdvanced, postMusicCreateInstrumental, getJobsByJobid, getMusicBySongid, postMusicExtend,
+    postMusicRegenerate, postMusicDownload]
+  summary: >-
+    Song generation from a prompt or custom lyrics, the moods/genres vocabulary lookup, regenerate
+    and extend, voice cloning, and download inside the 7-day retention window.
+- file: useapi-faceswap-images.md
+  name: Swap and enhance faces with InsightFaceSwap via useapi.net
+  api: openapi/useapi-faceswap-v1-openapi.yml
+  operations: [postAccountByChannelid, getAccount, postSaveid, postListid, postSetid, postSwapid, postSwap,
+    postInswapper, postPicsi, postChangebg, postHeadshot, getJobs, getJobsCancel, deleteDelid]
+  summary: >-
+    Discord-channel-scoped configuration, saved face identities, the four swap entry points,
+    background change and headshot generation — with an explicit consent gate before any operation.

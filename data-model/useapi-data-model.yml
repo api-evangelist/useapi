@@ -1,0 +1,833 @@
+generated: '2026-07-27'
+method: derived
+source: openapi/ (derived from the first-party useapi.net Postman collections) + https://useapi.net/docs
+note: 'useapi.net has no single shared data model. Each of the ten APIs projects the object model of the site it
+  wraps, so entity names, identifier names and lifecycles differ per service. What IS shared is the shape of the
+  graph: a subscription owns linked upstream Accounts, an Account executes Jobs, and a Job produces media Assets.
+  The per-service resources below are derived from the path structure of each captured contract.'
+core_graph:
+  entities:
+  - name: Subscription
+    description: The useapi.net account itself, identified by the bearer token user:<number>-<unique-string>. Carries
+      the default replyUrl webhook. Surfaced by GET /v2/account.
+    id_field: user:<number>
+  - name: LinkedAccount
+    description: A caller-owned account on the wrapped AI service, registered with browser cookies or a session
+      token. Selected per request or chosen by the load balancer. Carries health state (executing / completed /
+      failed / rateLimited) and quarantine state.
+    id_field: 'varies: email (google-flow, flowmusic), account (dreamina, kling), channel_id (faceswap)'
+  - name: Job
+    description: A single generation request executed against a LinkedAccount. Asynchronous on most services. Terminal
+      state fires the replyUrl webhook. Retained 7 days.
+    id_field: 'varies: jobid, jobId, taskId, musicId'
+  - name: Asset
+    description: Input or output media (image, video, audio) uploaded to or produced by a Job.
+    id_field: 'varies: assetId, mediaGenerationId, clip_id'
+  - name: Reference
+    description: Reusable named inputs on the services that support them — Google Flow characters and voices, Kling
+      elements and custom voices, Mureka vocal references.
+    id_field: ref
+  - name: UsageRecord
+    description: A logged API call, queryable via GET /v2/account/stats by bot, date, config, endpoint, model, HTTP
+      status and tier. 5-15 min latency, 3 month retention.
+    id_field: none — aggregate only
+  relationships:
+  - from: Subscription
+    to: LinkedAccount
+    type: has_many
+    via: per-service /accounts collection
+  - from: LinkedAccount
+    to: Job
+    type: has_many
+    via: account selector on the generation request
+  - from: Job
+    to: Asset
+    type: has_many
+    via: job result payload
+  - from: Job
+    to: LinkedAccount
+    type: belongs_to
+    via: email / account / channel_id
+  - from: Asset
+    to: LinkedAccount
+    type: belongs_to
+    via: upload path, e.g. POST /assets/{account}
+  - from: Reference
+    to: Subscription
+    type: belongs_to
+    via: ref namespace scoped to the token
+  - from: Subscription
+    to: UsageRecord
+    type: has_many
+    via: GET /v2/account/stats
+identifier_heterogeneity:
+  warning: The vendor states explicitly that identifier names vary per API. Do not write a generic client that assumes
+    a single id field.
+  observed:
+  - jobid
+  - jobId
+  - taskId
+  - musicId
+  - assetId
+  - mediaGenerationId
+  - clip_id
+  - ref
+  - email
+  - account
+  - channel_id
+per_service:
+- api: useapi:google-flow-v1
+  source: openapi/useapi-google-flow-v1-openapi.yml
+  resources:
+  - entity: accounts
+    operations:
+    - deleteAccountsByEmail
+    - getAccounts
+    - getAccountsByEmail
+    - getAccountsCaptchaProviders
+    - getAccountsCaptchaStats
+    - postAccounts
+    - postAccountsCaptchaProviders
+    identified_by:
+    - email
+    sub_resources:
+    - captcha-providers
+    - captcha-stats
+  - entity: assets
+    operations:
+    - postAssetsByEmail
+    identified_by:
+    - email
+  - entity: images
+    operations:
+    - postImages
+    - postImagesUpscale
+    sub_resources:
+    - upscale
+  - entity: videos
+    operations:
+    - postVideos
+    - postVideosConcatenate
+    - postVideosExtend
+    - postVideosGif
+    - postVideosUpscale
+    sub_resources:
+    - concatenate
+    - extend
+    - gif
+    - upscale
+  - entity: jobs
+    operations:
+    - getJobs
+    - getJobsByJobid
+    identified_by:
+    - jobId
+  - entity: voices
+    operations:
+    - deleteVoicesByRef
+    - getVoices
+    - getVoicesByRef
+    - postVoices
+    identified_by:
+    - ref
+  - entity: characters
+    operations:
+    - deleteCharactersByRef
+    - getCharacters
+    - getCharactersByRef
+    - postCharacters
+    identified_by:
+    - ref
+- api: useapi:flowmusic-v1
+  source: openapi/useapi-flowmusic-v1-openapi.yml
+  resources:
+  - entity: accounts
+    operations:
+    - deleteAccountsByEmail
+    - getAccounts
+    - getAccountsByEmail
+    - getAccountsUsage
+    - postAccounts
+    identified_by:
+    - email
+    sub_resources:
+    - usage
+  - entity: music
+    operations:
+    - getMusic
+    - getMusicDownload
+    - postMusic
+    - postMusicEdit
+    - postMusicLyrics
+    sub_resources:
+    - download
+    - edit
+    - lyrics
+  - entity: files
+    operations:
+    - postFiles
+    - postFilesGenerate
+    sub_resources:
+    - generate
+  - entity: jobs
+    operations:
+    - deleteJobsByJobid
+    - getJobs
+    - getJobsByJobid
+    identified_by:
+    - jobid
+- api: useapi:dreamina-v1
+  source: openapi/useapi-dreamina-v1-openapi.yml
+  resources:
+  - entity: accounts
+    operations:
+    - deleteAccountsByAccount
+    - getAccounts
+    - getAccountsByAccount
+    - postAccounts
+    identified_by:
+    - account
+  - entity: assets
+    operations:
+    - deleteAssetsByAssetid
+    - getAssetsByAccount
+    - postAssetsByAccount
+    identified_by:
+    - account
+    - assetId
+  - entity: videos
+    operations:
+    - getVideosByJobid
+    - postVideos
+    - postVideosInterpolate
+    - postVideosUpscale
+    identified_by:
+    - jobid
+    sub_resources:
+    - interpolate
+    - upscale
+  - entity: images
+    operations:
+    - getImagesByJobid
+    - postImages
+    - postImagesUpscale
+    identified_by:
+    - jobid
+    sub_resources:
+    - upscale
+  - entity: scheduler
+    operations:
+    - deleteSchedulerByJobid
+    - getScheduler
+    identified_by:
+    - jobid
+- api: useapi:kling-v1
+  source: openapi/useapi-kling-v1-openapi.yml
+  resources:
+  - entity: accounts
+    operations:
+    - deleteAccountsByEmail
+    - getAccounts
+    - getAccountsByEmail
+    - postAccounts
+    identified_by:
+    - email
+  - entity: scheduler
+    operations:
+    - deleteSchedulerByTaskid
+    - getScheduler
+    - getSchedulerAvailable
+    identified_by:
+    - task_id
+    sub_resources:
+    - available
+  - entity: tasks
+    operations:
+    - deleteTasksByTaskid
+    - getTasks
+    - getTasksByTaskid
+    identified_by:
+    - task_id
+  - entity: tts
+    operations:
+    - getTtsVoices
+    - postTtsCreate
+    sub_resources:
+    - create
+    - voices
+  - entity: avatars
+    operations:
+    - deleteAvatarsByAvatarid
+    - getAvatars
+    - postAvatars
+    - postAvatarsVideo
+    identified_by:
+    - avatarId
+    sub_resources:
+    - video
+  - entity: elements
+    operations:
+    - deleteElementsByElementid
+    - getElements
+    - getElementsByElementid
+    - getElementsTags
+    - getElementsVoices
+    - postElements
+    identified_by:
+    - elementId
+    sub_resources:
+    - tags
+    - voices
+  - entity: assets
+    operations:
+    - deleteAssetsUploaded
+    - getAssets
+    - getAssetsDownload
+    - getAssetsUploaded
+    - postAssets
+    sub_resources:
+    - download
+    - uploaded
+  - entity: videos
+    operations:
+    - getVideosEffects
+    - getVideosMotions
+    - postVideosAddSound
+    - postVideosExtend
+    - postVideosImage2videoEffects
+    - postVideosImage2videoElements
+    - postVideosImage2videoFrames
+    - postVideosLipsync
+    - postVideosMotionCreate
+    - postVideosMotionUpload
+    - postVideosOmni
+    - postVideosText2video
+    sub_resources:
+    - add-sound
+    - effects
+    - extend
+    - image2video-effects
+    - image2video-elements
+    - image2video-frames
+    - lipsync
+    - motion-create
+    - motion-upload
+    - motions
+    - omni
+    - text2video
+  - entity: images
+    operations:
+    - postImagesKolors
+    - postImagesKolorsElements
+    - postImagesOmni
+    - postImagesRecognizeFaces
+    - postImagesUpscale
+    - postImagesVirtualTryOn
+    sub_resources:
+    - kolors
+    - kolors-elements
+    - omni
+    - recognize-faces
+    - upscale
+    - virtual-try-on
+- api: useapi:minimax-v1
+  source: openapi/useapi-minimax-v1-openapi.yml
+  resources:
+  - entity: accounts
+    operations:
+    - deleteAccountsByAccount
+    - getAccounts
+    - getAccountsByAccount
+    - postAccounts
+    identified_by:
+    - account
+  - entity: features
+    operations:
+    - getFeatures
+  - entity: videos
+    operations:
+    - deleteVideosByVideoid
+    - getVideos
+    - getVideosAgentTemplates
+    - getVideosByVideoid
+    - getVideosCharacters
+    - postVideosAgentCreate
+    - postVideosCancel
+    - postVideosCreate
+    identified_by:
+    - videoId
+    sub_resources:
+    - agent-create
+    - agent-templates
+    - cancel
+    - characters
+    - create
+  - entity: images
+    operations:
+    - deleteImagesByImageid
+    - getImages
+    - getImagesByImageid
+    - postImagesCreate
+    identified_by:
+    - imageId
+    sub_resources:
+    - create
+  - entity: music
+    operations:
+    - getMusic
+    - getMusicCreate
+    - getMusicStyles
+    sub_resources:
+    - create
+    - styles
+  - entity: files
+    operations:
+    - deleteFilesByFileid
+    - getFiles
+    - postFiles
+    identified_by:
+    - file_id
+  - entity: audio
+    operations:
+    - deleteAudioByAudioid
+    - getAudio
+    - getAudioByAudioid
+    - getAudioConfig
+    - getAudioVoices
+    - postAudioCreateStream
+    - postAudioUploadSample
+    - postAudioVoicesCloneVoice
+    - postAudioVoicesCreateMp3
+    - postAudioVoicesDeleteVoice
+    identified_by:
+    - audio_id
+    sub_resources:
+    - config
+    - create-stream
+    - upload-sample
+    - voices
+  - entity: llm
+    operations:
+    - deleteLlm
+    - getLlm
+    - getLlmByChatid
+    - postLlm
+    identified_by:
+    - chatID
+  - entity: agent
+    operations:
+    - getAgentByJobid
+    - getAgentJobs
+    - postAgent
+    identified_by:
+    - jobId
+    sub_resources:
+    - jobs
+  - entity: scheduler
+    operations:
+    - deleteSchedulerById
+    - getScheduler
+    - getSchedulerAvailable
+    identified_by:
+    - id
+    sub_resources:
+    - available
+- api: useapi:runwayml-v1
+  source: openapi/useapi-runwayml-v1-openapi.yml
+  resources:
+  - entity: accounts
+    operations:
+    - deleteAccountsByEmail
+    - getAccounts
+    - getAccountsByEmail
+    - postAccountsByEmail
+    identified_by:
+    - email
+  - entity: frames
+    operations:
+    - getFramesDescribeByImageassetid
+    - postFramesCreate
+    identified_by:
+    - image_assetId
+    sub_resources:
+    - create
+    - describe
+  - entity: images
+    operations:
+    - postImagesCreate
+    sub_resources:
+    - create
+  - entity: videos
+    operations:
+    - postVideosCreate
+    - postVideosUpscale
+    sub_resources:
+    - create
+    - upscale
+  - entity: gen4turbo
+    operations:
+    - postGen4turboCreate
+    sub_resources:
+    - create
+  - entity: gen4_5
+    operations:
+    - postGen45Create
+    sub_resources:
+    - create
+  - entity: gen4
+    operations:
+    - postGen4ActTwo
+    - postGen4ActTwoVoice
+    - postGen4Create
+    - postGen4Upscale
+    - postGen4Video
+    sub_resources:
+    - act-two
+    - act-two-voice
+    - create
+    - upscale
+    - video
+  - entity: gen3turbo
+    operations:
+    - postGen3turboActone
+    - postGen3turboCreate
+    - postGen3turboExpand
+    - postGen3turboExtend
+    - postGen3turboVideo
+    sub_resources:
+    - actone
+    - create
+    - expand
+    - extend
+    - video
+  - entity: gen3
+    operations:
+    - postGen3Actone
+    - postGen3Create
+    - postGen3Extend
+    - postGen3Video
+    sub_resources:
+    - actone
+    - create
+    - extend
+    - video
+  - entity: gen3alpha
+    operations:
+    - postGen3alphaUpscale
+    sub_resources:
+    - upscale
+  - entity: gen2
+    operations:
+    - postGen2Create
+    - postGen2Extend
+    sub_resources:
+    - create
+    - extend
+  - entity: lipsync
+    operations:
+    - getLipsyncVoices
+    - postLipsyncCreate
+    sub_resources:
+    - create
+    - voices
+  - entity: super_slow_motion
+    operations:
+    - postSuperSlowMotion
+  - entity: text_to_image_preview
+    operations:
+    - getTextToImagePreview
+  - entity: image_upscaler
+    operations:
+    - getImageUpscaler
+  - entity: transcribe
+    operations:
+    - getTranscribe
+  - entity: assets
+    operations:
+    - deleteAssetsByAssetid
+    - getAssets
+    - getAssetsByAssetid
+    - postAssets
+    identified_by:
+    - assetId
+  - entity: scheduler
+    operations:
+    - deleteSchedulerByTaskid
+    - getScheduler
+    identified_by:
+    - taskId
+  - entity: tasks
+    operations:
+    - deleteTasksByTaskid
+    - getTasks
+    - getTasksByTaskid
+    identified_by:
+    - taskId
+  - entity: features
+    operations:
+    - getFeatures
+- api: useapi:pixverse-v2
+  source: openapi/useapi-pixverse-v2-openapi.yml
+  resources:
+  - entity: accounts
+    operations:
+    - deleteAccountsByEmail
+    - getAccounts
+    - getAccountsByEmail
+    - postAccountsByEmail
+    identified_by:
+    - email
+  - entity: features
+    operations:
+    - getFeatures
+  - entity: files
+    operations:
+    - postFiles
+  - entity: videos
+    operations:
+    - deleteVideosByVideoid
+    - getVideos
+    - getVideosByVideoid
+    - getVideosEffects
+    - getVideosRestyles
+    - getVideosVoices
+    - postVideosCreate
+    - postVideosCreateFrames
+    - postVideosCreateFusion
+    - postVideosCreateTransition
+    - postVideosExtend
+    - postVideosLipsync
+    - postVideosModify
+    - postVideosMotionControl
+    - postVideosRestyle
+    - postVideosUpscale
+    identified_by:
+    - videoId
+    sub_resources:
+    - create
+    - create-frames
+    - create-fusion
+    - create-transition
+    - effects
+    - extend
+    - lipsync
+    - modify
+    - motion-control
+    - restyle
+    - restyles
+    - upscale
+    - voices
+  - entity: images
+    operations:
+    - deleteImagesByImageid
+    - getImages
+    - getImagesByImageid
+    - postImagesCreate
+    identified_by:
+    - imageId
+    sub_resources:
+    - create
+  - entity: music
+    operations:
+    - getMusic
+    - getMusicByAudioid
+    - postMusicCreate
+    identified_by:
+    - audioId
+    sub_resources:
+    - create
+  - entity: speech
+    operations:
+    - getSpeech
+    - getSpeechByAudioid
+    - getSpeechModels
+    - getSpeechVoices
+    - postSpeechCreate
+    identified_by:
+    - audioId
+    sub_resources:
+    - create
+    - models
+    - voices
+  - entity: scheduler
+    operations:
+    - deleteSchedulerByVideoid
+    - getScheduler
+    - getSchedulerAvailable
+    identified_by:
+    - videoId
+    sub_resources:
+    - available
+- api: useapi:mureka-v1
+  source: openapi/useapi-mureka-v1-openapi.yml
+  resources:
+  - entity: accounts
+    operations:
+    - deleteAccountsByAccount
+    - getAccounts
+    - getAccountsByAccount
+    - postAccounts
+    identified_by:
+    - account
+  - entity: jobs
+    operations:
+    - getJobs
+    - getJobsByJobid
+    identified_by:
+    - jobId
+  - entity: profile
+    operations:
+    - getProfile
+  - entity: music
+    operations:
+    - deleteMusicBySongid
+    - getMusic
+    - getMusicBySongid
+    - getMusicMoodsAndGenres
+    - getMusicRefs
+    - getMusicVocals
+    - postMusicCreate
+    - postMusicCreateAdvanced
+    - postMusicCreateInstrumental
+    - postMusicDownload
+    - postMusicExtend
+    - postMusicLyricsGenerate
+    - postMusicRegenerate
+    - postMusicVideoGenerate
+    identified_by:
+    - song_id
+    sub_resources:
+    - create
+    - create-advanced
+    - create-instrumental
+    - download
+    - extend
+    - lyrics-generate
+    - moods-and-genres
+    - refs
+    - regenerate
+    - video-generate
+    - vocals
+  - entity: files
+    operations:
+    - deleteFiles
+    - deleteFilesVocal
+    - getFiles
+    - getFilesYoutube
+    - postFiles
+    - postFilesMotif
+    - postFilesVocal
+    sub_resources:
+    - motif
+    - vocal
+    - youtube
+  - entity: speech
+    operations:
+    - deleteSpeech
+    - deleteSpeechVoice
+    - getSpeech
+    - getSpeechVoices
+    - postSpeech
+    - postSpeechVoice
+    sub_resources:
+    - voice
+    - voices
+- api: useapi:tempolor-v1
+  source: openapi/useapi-tempolor-v1-openapi.yml
+  resources:
+  - entity: accounts
+    operations:
+    - deleteAccountsByUserid
+    - getAccounts
+    - getAccountsByUserid
+    - postAccounts
+    identified_by:
+    - user_id
+  - entity: music
+    operations:
+    - deleteMusicByJobid
+    - deleteMusicClonedVoicesByClonedvoiceitemid
+    - deleteMusicMidiByMidiitemid
+    - getMusic
+    - getMusicArtistVoices
+    - getMusicByJobid
+    - getMusicClonedVoices
+    - getMusicDownloadByJobid
+    - getMusicMidi
+    - postMusicClonedVoices
+    - postMusicInstrumental
+    - postMusicMidi
+    - postMusicSong
+    - postMusicStemsSplitter
+    identified_by:
+    - clonedVoiceItemId
+    - job_id
+    - midiItemId
+    sub_resources:
+    - artist-voices
+    - cloned-voices
+    - download
+    - instrumental
+    - midi
+    - song
+    - stems-splitter
+  - entity: scheduler
+    operations:
+    - deleteSchedulerByJobid
+    - getScheduler
+    - getSchedulerAvailable
+    identified_by:
+    - job_id
+    sub_resources:
+    - available
+- api: useapi:faceswap-v1
+  source: openapi/useapi-faceswap-v1-openapi.yml
+  resources:
+  - entity: account
+    operations:
+    - deleteAccountByChannelid
+    - getAccount
+    - getAccountByChannelid
+    - postAccountByChannelid
+    identified_by:
+    - channel_id
+  - entity: listid
+    operations:
+    - postListid
+  - entity: saveid
+    operations:
+    - postSaveid
+  - entity: swapid
+    operations:
+    - postSwapid
+  - entity: setid
+    operations:
+    - postSetid
+  - entity: swap
+    operations:
+    - postSwap
+  - entity: inswapper
+    operations:
+    - postInswapper
+  - entity: picsi
+    operations:
+    - postPicsi
+  - entity: changebg
+    operations:
+    - postChangebg
+  - entity: headshot
+    operations:
+    - postHeadshot
+  - entity: jobs
+    operations:
+    - getJobs
+    - getJobs2
+    - getJobsCancel
+    sub_resources:
+    - cancel
+  - entity: delid
+    operations:
+    - deleteDelid
+  - entity: delall
+    operations:
+    - deleteDelall

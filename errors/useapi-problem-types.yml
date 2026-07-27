@@ -1,0 +1,172 @@
+generated: '2026-07-27'
+method: searched
+source:
+- https://useapi.net/assets/aibot/all.txt
+- https://useapi.net/docs/api-google-flow-v1
+- https://useapi.net/docs/api-flowmusic-v1
+- openapi/ (4xx/5xx responses derived from the first-party Postman collections)
+format: vendor
+rfc9457: false
+envelope:
+  content_type: application/json
+  note: >-
+    useapi.net does not use RFC 9457 problem+json. Two envelopes are in play. Platform-level errors
+    use a flat object with an `error` string, sometimes accompanied by a numeric `code` mirroring
+    the HTTP status. Errors that originate at the wrapped AI service are forwarded largely verbatim,
+    so the envelope is that upstream vendor's own (e.g. Google's google.rpc.ErrorInfo shape nested
+    under `error`).
+  shapes:
+  - name: platform
+    schema: '{"error": "<message>"}'
+  - name: platform-with-code
+    schema: '{"error": "<message>", "code": <http-status>}'
+  - name: upstream-passthrough
+    schema: '{"error": {"code": <n>, "message": "<msg>", "status": "<UPPER_SNAKE>", "details": [...]}}'
+
+problems:
+- status: 400
+  title: Bad Request
+  meaning: Invalid, missing or mutually-exclusive request parameter, or an upstream content-policy rejection.
+  remediation: Correct the request body against the service's own endpoint documentation.
+  upstream_example:
+    body: '{"error": {"code": 400, "message": "Request contains an invalid argument.", "status": "INVALID_ARGUMENT", "details": [{"@type": "type.googleapis.com/google.rpc.ErrorInfo", "reason": "PUBLIC_ERROR_TRUMP_FACE_DETECTED"}]}}'
+    note: Google Flow forwards content-policy rejections as INVALID_ARGUMENT with a PUBLIC_ERROR_* reason.
+  occurrences_in_docs: 196
+- status: 401
+  title: Unauthorized
+  meaning: Missing or invalid useapi.net API token.
+  remediation: >-
+    Send the complete token as `Authorization: Bearer user:<number>-<unique-string>` — including the
+    `user:` prefix and the alphanumeric suffix, not URL-encoded.
+  example: '{"error": "Unauthorized"}'
+  occurrences_in_docs: 249
+- status: 402
+  title: Payment Required
+  meaning: The useapi.net subscription is expired, or the linked upstream account has no credits.
+  remediation: Renew the subscription, or top up / link an account with credits on the underlying service.
+  example: '{"error": "Account has no subscription or subscription expired"}'
+  occurrences_in_docs: 25
+- status: 403
+  title: Forbidden
+  meaning: >-
+    The caller referenced a resource owned by a different useapi.net user, or the upstream provider
+    rejected the session (on Google Flow, a captcha token rejected by reCAPTCHA Enterprise).
+  remediation: Reference only your own assets; for captcha rejections configure additional captcha providers.
+  example: '{"error": "Unauthorized access to user:12345 detected in character reference"}'
+  occurrences_in_docs: 13
+- status: 404
+  title: Not Found
+  meaning: The linked service account, job, asset or reference does not exist.
+  remediation: List the resource first (GET /accounts, GET /jobs) and confirm the identifier.
+  example: '{"error": "Google Flow account john@gmail.com not found"}'
+  occurrences_in_docs: 83
+- status: 408
+  title: Request Timeout
+  meaning: A synchronous server-side polling operation exceeded its budget (e.g. video concatenation, ~3 minutes).
+  remediation: Retry, or use async mode with a replyUrl webhook instead of a synchronous call.
+  example: '{"error": "Polling timeout"}'
+  occurrences_in_docs: 4
+- status: 410
+  title: Gone
+  meaning: The job has expired. Jobs are retained for 7 days.
+  remediation: Re-submit the generation; download results before the retention window closes.
+  example: '{"error": "Job has expired", "code": 410}'
+  occurrences_in_docs: 2
+- status: 412
+  title: Insufficient credits
+  meaning: The linked upstream account does not have enough credits for the requested generation.
+  remediation: Top up the upstream account, link additional accounts, or select a cheaper model/tier.
+  example: '{"error": "Not enough credits: requested 3, available 0", "code": 412}'
+  occurrences_in_docs: 28
+- status: 422
+  title: Unprocessable Content
+  meaning: The prompt was moderated or rejected by the upstream service, or is otherwise unusable.
+  remediation: >-
+    Rewrite the prompt. useapi.net performs no prompt pre-validation; screen prompts caller-side
+    (the vendor suggests its free POST /v1/minimax/llm MiniMax-Text-01 endpoint).
+  example: '{"error": "Your prompt is too short, please provide more details"}'
+  occurrences_in_docs: 12
+- status: 429
+  title: Too Many Requests
+  meaning: >-
+    The upstream provider is rate-limiting or quota-limiting the linked account, or every linked
+    account is currently quarantined (useapi.net's own `no_eligible_account` short-circuit).
+  remediation: >-
+    Honor the `Retry-After` header and the `retryAfter` ISO timestamp in the body. Link more accounts
+    so the load balancer can route around a limited one.
+  headers: [Retry-After]
+  body_fields: [retryAfter]
+  reason_codes:
+  - code: PUBLIC_ERROR_UNUSUAL_ACTIVITY_TOO_MUCH_TRAFFIC
+    service: google-flow
+    meaning: reCAPTCHA Enterprise scored the captcha token below threshold; captcha-provider quality issue.
+    quarantines: false
+    remediation: Configure multiple captcha providers and cycle them with captchaOrder; raise captchaRetry.
+  - code: PUBLIC_ERROR_USER_REQUESTS_THROTTLED
+    service: google-flow
+    meaning: Google-side per-user concurrency limit on this account.
+    quarantines: true
+    cooldown: ~30 minutes
+  - code: PUBLIC_ERROR_PER_MODEL_DAILY_QUOTA_REACHED
+    service: google-flow
+    meaning: This account hit the per-model daily quota; other models on the account still work.
+    quarantines: true
+    cooldown: until UTC midnight
+  - code: PUBLIC_ERROR_USER_QUOTA_REACHED
+    service: google-flow
+    meaning: This account hit its overall quota cap; blocks every model on the account.
+    quarantines: true
+    cooldown: ~30 minutes (upstream reset can take 1-2 hours)
+  - code: no_eligible_account
+    service: platform
+    meaning: Every linked account for the requested model is quarantined.
+    remediation: Wait out the earliest cooldown returned in Retry-After, or link additional accounts.
+  occurrences_in_docs: 39
+- status: 500
+  title: Internal Server Error
+  meaning: >-
+    Upstream login failure with the linked account's credentials, or an upstream generation failure
+    (including content moderation on some services).
+  remediation: Re-add the account; retry the generation; check the prompt for policy issues.
+  example: '{"error": "Login failed: invalid credentials"}'
+  occurrences_in_docs: 20
+- status: 502
+  title: Bad Gateway
+  meaning: Upstream provider returned an unusable response.
+  remediation: Retry.
+  occurrences_in_docs: 1
+- status: 503
+  title: Service Unavailable
+  meaning: The upstream service is temporarily unavailable (or, on captcha-backed endpoints, the captcha service failed).
+  remediation: Honor the forwarded Retry-After header and retry after a short wait.
+  example: '{"error": {"code": 503, "message": "Service temporarily unavailable.", "status": "UNAVAILABLE"}}'
+  occurrences_in_docs: 7
+- status: 504
+  title: Gateway Timeout
+  meaning: Upstream provider did not respond in time.
+  remediation: Retry, preferring async mode with a replyUrl webhook.
+  occurrences_in_docs: 1
+- status: 596
+  title: Account Error / Session Error
+  meaning: >-
+    Non-standard useapi.net-specific status. The linked upstream account is in an error state — its
+    session or refresh token was rejected — and cannot be used. Also used for a pending moderation
+    message on some services.
+  remediation: >-
+    Delete the account (DELETE /<service>/accounts/<id>) and re-add it following the service's setup
+    guide. The `error` field carries the recorded reason.
+  examples:
+  - '{"error": "Account user@email.com in error state: refresh token rejected", "code": 596}'
+  - '{"error": "Failed to refresh session: 500 Internal Server Error"}'
+  non_standard: true
+  occurrences_in_docs: 47
+
+notes:
+- >-
+  Status-code semantics are documented per service and are not guaranteed to be identical across
+  the ten APIs — the vendor states this explicitly in llms.txt. Occurrence counts above are the
+  number of times each status heading appears across the combined documentation dump and are a
+  proxy for how broadly the code is used, not a per-endpoint contract.
+- >-
+  596 is outside the registered HTTP status range and will be treated as a generic 5xx by strict
+  clients. Handle it explicitly.

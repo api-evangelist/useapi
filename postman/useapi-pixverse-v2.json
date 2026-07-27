@@ -1,0 +1,2544 @@
+{
+  "info": {
+    "_postman_id": "1932d635-8171-429c-86b7-c7f0ad905f14",
+    "name": "PixVerse API v2 (web) by useapi.net",
+    "description": "Full documentation available at [useapi.net](https://useapi.net/docs/api-pixverse-v2).\n\n**Videos:** native PixVerse v6 (default), v5.6, v5.5, v5, v5-fast, pixverse-c1 with Off-Peak mode; third-party seedance-2.0 / seedance-2.0-fast / seedance-2.0-mini (omni: + up to 3 reference videos + 3 reference audios), kling-o3, kling-v3, grok-imagine, veo-3.1-lite, veo-3.1-standard, veo-3.1-fast, sora-2, sora-2-pro, happyhorse-1.0\n**Motion Control:** v5.6 character-image-driven-by-video pipeline (POST /videos/motion-control)\n**Images:** 10 models including Seedream, Nano Banana, Qwen Image, Kling 3.0 / O3, GPT Image 2.0 (10 aspect ratios at every quality)\n**Music:** music-2.6 (MiniMax, default), music-v1 (ElevenLabs), lyria-3-pro-preview (Google) — songs, instrumentals, custom or model-written lyrics\n\n---\n**Updated:** June 24, 2026",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "updated": "2026-05-13",
+    "_exporter_id": "29112081"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/accounts",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "accounts"
+          ]
+        },
+        "description": "## [Retrieve PixVerse API accounts configuration.](https://useapi.net/docs/api-pixverse-v2/get-pixverse-accounts)"
+      },
+      "response": []
+    },
+    {
+      "name": "accounts/<email>",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/accounts/<email>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "accounts",
+            "<email>"
+          ]
+        },
+        "description": "## [Retrieve PixVerse API account configuration](https://useapi.net/docs/api-pixverse-v2/get-pixverse-accounts-email)"
+      },
+      "response": []
+    },
+    {
+      "name": "accounts/<email>",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"Please refer to https://useapi.net/docs/start-here/setup-pixverse-v2\",\r\n    \"password\": \"Please refer to https://useapi.net/docs/start-here/setup-pixverse-v2\",\r\n    \"maxJobs\": \"Required, supported range: 1...8\",\r\n    \"token\": \"Optional token to syn websession with API session, refer to https://useapi.net/docs/start-here/setup-pixverse-v2\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/accounts/<email>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "accounts",
+            "<email>"
+          ]
+        },
+        "description": "## [Create or update PixVerse API account configuration](https://useapi.net/docs/api-pixverse-v2/post-pixverse-accounts-email)"
+      },
+      "response": []
+    },
+    {
+      "name": "accounts/<email>",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/accounts/<email>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "accounts",
+            "<email>"
+          ]
+        },
+        "description": "## [Delete PixVerse API account](https://useapi.net/docs/api-pixverse-v2/del-pixverse-accounts-email)"
+      },
+      "response": []
+    },
+    {
+      "name": "features",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/features/?email=",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "features",
+            ""
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": ""
+            }
+          ]
+        },
+        "description": "## [Retrieve your PixVerse account information (credits etc)](https://useapi.net/docs/api-pixverse-v2/get-pixverse-features)"
+      },
+      "response": []
+    },
+    {
+      "name": "files • use Body » binary to upload image/video/audio file",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "file",
+          "file": {}
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/files/?email=",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "files",
+            ""
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Required account email"
+            }
+          ]
+        },
+        "description": "## [Upload image/video/audio file](https://useapi.net/docs/api-pixverse-v2/post-pixverse-files)"
+      },
+      "response": []
+    },
+    {
+      "name": "videos",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "account",
+              "value": "",
+              "description": "Optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/videos/?email=",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "videos",
+            ""
+          ],
+          "query": [
+            {
+              "key": "limit",
+              "value": "",
+              "description": "Optional, specify the number of videos to return. Default 40",
+              "disabled": true
+            },
+            {
+              "key": "offset",
+              "value": "",
+              "description": "Optional, specify the video id from where to start",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required."
+            }
+          ]
+        },
+        "description": "## [Retrieve videos](https://useapi.net/docs/api-pixverse-v2/get-pixverse-videos)"
+      },
+      "response": []
+    },
+    {
+      "name": "videos/<videoId>",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/videos/<videoId>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "videos",
+            "<videoId>"
+          ]
+        },
+        "description": "## [Retrieve video](https://useapi.net/docs/api-pixverse-v2/get-pixverse-videos-video_id)"
+      },
+      "response": []
+    },
+    {
+      "name": "videos/<videoId>",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/videos/<videoId>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "videos",
+            "<videoId>"
+          ]
+        },
+        "description": "## [Delete video](https://useapi.net/docs/api-pixverse-v2/del-pixverse-videos-video_id)"
+      },
+      "response": []
+    },
+    {
+      "name": "videos/create",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "model",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional. Native PixVerse: v6 (default), v5.6, v5.5, v5, v5-fast, pixverse-c1. Third-party: seedance-2.0, seedance-2.0-fast, seedance-2.0-mini, kling-o3, kling-v3, grok-imagine, veo-3.1-lite, veo-3.1-standard, veo-3.1-fast, sora-2, sora-2-pro, happyhorse-1.0 (audio always on). See model-capabilities for per-model constraints."
+            },
+            {
+              "key": "prompt",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "template_id",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "first_frame_path",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional. Interchangeable with frame_1_path."
+            },
+            {
+              "key": "last_frame_path",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional. Required when template.effect_type=2. Interchangeable with frame_2_path."
+            },
+            {
+              "key": "frame_1_path",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional. Multi-input alternative to first_frame_path. Mutex with first_frame_path/last_frame_path."
+            },
+            {
+              "key": "frame_2_path",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional. Required (with frame_1_path) when template.effect_type = 2, or as part of frame_1_path..frame_N_path for templates with effect_type > 2."
+            },
+            {
+              "key": "frame_3_path",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional. Use with frame_1_path..frame_2_path when template.effect_type ≥ 3. Templates with effect_type > 2 accept 2 to effect_type inputs (e.g., a 5-input template accepts 2 to 5)."
+            },
+            {
+              "key": "frame_4_path",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional. Use together with frame_1_path..frame_3_path when template.effect_type ≥ 4."
+            },
+            {
+              "key": "frame_5_path",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional. Use together with frame_1_path..frame_4_path when template.effect_type = 5 (e.g., Family Reunion)."
+            },
+            {
+              "key": "seed",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "duration",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional, 1-15 for v6, 1-10 for v5.x (1080p max 8s). Default: 5. Ignored when template_id is set (template's duration is used)."
+            },
+            {
+              "key": "aspect_ratio",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "quality",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional, supported values: 1080p, 720p (v6 default), 540p (v5.x default), 360p. When template_id is set, must be in template.qualities; defaults to template.qualities[0] when omitted."
+            },
+            {
+              "key": "auto_sound",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "sound_effect_prompt",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "lip_sync_tts_prompt",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "lip_sync_tts_speaker_id",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "audio",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional (v5.5, v5.6, v6). Set to true for integrated audio generation"
+            },
+            {
+              "key": "multi_shot",
+              "value": "",
+              "description": "Optional (v6 only). Set to true for multi-shot storytelling",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "preview_mode",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "off_peak_mode",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/videos/create",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "videos",
+            "create"
+          ]
+        },
+        "description": "## [Create video](https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-create-v4)"
+      },
+      "response": []
+    },
+    {
+      "name": "videos/create-frames",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "model",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional. Native PixVerse: v5.6 (default), v5.5, v5, v5-fast, pixverse-c1. Third-party: seedance-2.0, seedance-2.0-fast, seedance-2.0-mini, kling-o3, kling-v3, veo-3.1-lite, veo-3.1-standard, veo-3.1-fast"
+            },
+            {
+              "key": "first_frame_path",
+              "value": "",
+              "type": "text"
+            },
+            {
+              "key": "last_frame_path",
+              "value": "",
+              "type": "text"
+            },
+            {
+              "key": "prompt",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "quality",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "duration",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "seed",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "audio",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "preview_mode",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "auto_sound",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "sound_effect_prompt",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "lip_sync_tts_prompt",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "lip_sync_tts_speaker_id",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "off_peak_mode",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/videos/create-frames",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "videos",
+            "create-frames"
+          ]
+        },
+        "description": "## [Create video using first and last frames](https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-create-frames-v4)"
+      },
+      "response": []
+    },
+    {
+      "name": "videos/create-transition",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "model",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "quality",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "seed",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "audio",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "preview_mode",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "auto_sound",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "sound_effect_prompt",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "lip_sync_tts_prompt",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "lip_sync_tts_speaker_id",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "off_peak_mode",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "frame_1_path",
+              "value": "",
+              "type": "text"
+            },
+            {
+              "key": "frame_2_path",
+              "value": "",
+              "type": "text"
+            },
+            {
+              "key": "frame_3_path",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "frame_4_path",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "frame_5_path",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "frame_6_path",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "frame_7_path",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "duration_1_to_2",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "duration_2_to_3",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "duration_3_to_4",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "duration_4_to_5",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "duration_5_to_6",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "duration_6_to_7",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "prompt_1_to_2",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "prompt_2_to_3",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "prompt_3_to_4",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "prompt_4_to_5",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "prompt_5_to_6",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "prompt_6_to_7",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/videos/create-transition",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "videos",
+            "create-transition"
+          ]
+        },
+        "description": "## [Create transition video](https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-create-transition)"
+      },
+      "response": []
+    },
+    {
+      "name": "videos/create-fusion",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "model",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional. Default: pixverse-c1. Supported: v5 (uses @pic1/2/3), v5.6 (up to 7 frames), pixverse-c1 (up to 7 frames), seedance-2.0 / seedance-2.0-fast / seedance-2.0-mini (up to 9 frames + up to 3 reference videos via video_1_path…video_3_path + up to 3 reference audios via audio_1_path…audio_3_path), kling-o3 (up to 7 frames). Non-v5 models use @image1...@imageN notation."
+            },
+            {
+              "key": "frame_1_path",
+              "value": "",
+              "type": "text"
+            },
+            {
+              "key": "frame_2_path",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "frame_3_path",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "video_1_path",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional (seedance-2.0 family only). Path of uploaded reference video. Reference it in the prompt as @video1. Limits: 2-15 sec, ≤50 MB, 24-60 fps, ≤6000×6000 px. Sum of all reference video durations ≤15 sec."
+            },
+            {
+              "key": "video_2_path",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional (seedance-2.0 family only). Second reference video. Reference as @video2. Requires video_1_path."
+            },
+            {
+              "key": "video_3_path",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional (seedance-2.0 family only). Third reference video. Reference as @video3. Requires video_2_path."
+            },
+            {
+              "key": "audio_1_path",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional (seedance-2.0 family only). Path of uploaded reference audio. Reference it in the prompt as @audio1. Limits: each 2-15 sec, sum of all reference audio durations ≤15 sec. Drives speech or sound onto your character (omni mode)."
+            },
+            {
+              "key": "audio_2_path",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional (seedance-2.0 family only). Second reference audio. Reference as @audio2. Requires audio_1_path."
+            },
+            {
+              "key": "audio_3_path",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional (seedance-2.0 family only). Third reference audio. Reference as @audio3. Requires audio_2_path."
+            },
+            {
+              "key": "prompt",
+              "value": "",
+              "type": "text"
+            },
+            {
+              "key": "quality",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "duration",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "aspect_ratio",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "seed",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "off_peak_mode",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/videos/create-fusion",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "videos",
+            "create-fusion"
+          ]
+        },
+        "description": "## [Create video using image fusion](https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-create-fusion)"
+      },
+      "response": []
+    },
+    {
+      "name": "videos/motion-control",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "model",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional. Default: v5.6 (only supported value today)."
+            },
+            {
+              "key": "frame_1_path",
+              "value": "",
+              "type": "text",
+              "description": "Required. Character image path (uploaded via POST /files). Must contain a clear person or animal subject — rejected with 422 otherwise."
+            },
+            {
+              "key": "video_1_path",
+              "value": "",
+              "type": "text",
+              "description": "Required. Motion video path (uploaded via POST /files). Limits: 1-30 sec, ≤50 MB, ≤1920×1920 px."
+            },
+            {
+              "key": "quality",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional. 360p, 540p, or 720p (default)."
+            },
+            {
+              "key": "off_peak_mode",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/videos/motion-control",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "videos",
+            "motion-control"
+          ]
+        },
+        "description": "## [Motion Control](https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-motion-control)\n\nDrives a character image with motion extracted from a reference video. v5.6 only."
+      },
+      "response": []
+    },
+    {
+      "name": "videos/extend",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Specify the desired account or leave blank for automatic balancing.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "model",
+              "value": "",
+              "description": "Optional, supported values: v6 (default), v5.5, v5",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "prompt",
+              "value": "",
+              "description": "Optional text prompt",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "video_id",
+              "value": "",
+              "description": "Optional video id, use GET /videos to see list of videos",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "video_path",
+              "value": "",
+              "description": "Optional video path, use POST /files to upload video",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "seed",
+              "value": "",
+              "description": "Optional seed value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "duration",
+              "value": "",
+              "description": "Optional, 1-15 for v6, 1-10 for v5.x (1080p max 8s). Default: 5",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "quality",
+              "value": "",
+              "description": "Optional, supported values: 1080p, 720p (v6 default), 540p (v5.x default), 360p",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "audio",
+              "value": "",
+              "description": "Optional (v6 only). Set to true for integrated audio generation on extended segment",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "off_peak_mode",
+              "value": "",
+              "description": "Optional. Set to true to generate videos during low-demand periods with up to 50% credit savings. Results are usually delivered within 24 hours.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional webhook",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional reference value passed to webhook",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional overide for account maxJobs",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/videos/extend",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "videos",
+            "extend"
+          ]
+        },
+        "description": "## [Extend video](https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-extend-v4)"
+      },
+      "response": []
+    },
+    {
+      "name": "videos/modify",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Specify the desired account or leave blank for automatic balancing.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "model",
+              "value": "",
+              "description": "Optional, supported values: v5.5 (default)",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "prompt",
+              "value": "",
+              "description": "Required text prompt describing the modification",
+              "type": "text"
+            },
+            {
+              "key": "video_id",
+              "value": "",
+              "description": "Optional video id, use GET /videos to see list of videos",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "video_path",
+              "value": "",
+              "description": "Optional video path, use POST /files to upload video",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "seed",
+              "value": "",
+              "description": "Optional seed value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "quality",
+              "value": "",
+              "description": "Optional quality, supported values: 720p, 540p (default), 360p",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "off_peak_mode",
+              "value": "",
+              "description": "Optional. Set to true to generate videos during low-demand periods with up to 50% credit savings. Results are usually delivered within 24 hours.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional webhook",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional reference value passed to webhook",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional overide for account maxJobs",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/videos/modify",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "videos",
+            "modify"
+          ]
+        },
+        "description": "## [Modify video](https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-modify)"
+      },
+      "response": []
+    },
+    {
+      "name": "videos/restyle",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Specify the desired account or leave blank for automatic balancing.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "model",
+              "value": "",
+              "description": "Optional, supported values: v4",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "prompt",
+              "value": "",
+              "description": "Required text prompt",
+              "type": "text"
+            },
+            {
+              "key": "video_id",
+              "value": "",
+              "description": "Optional video id, use GET /videos to see list of videos",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "video_path",
+              "value": "",
+              "description": "Optional video path, use POST /files to upload video",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "seed",
+              "value": "",
+              "description": "Optional seed value",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "restyle_id",
+              "value": "",
+              "description": "Optional, retrieve supported styles using GET videos/restyles.",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "off_peak_mode",
+              "value": "",
+              "description": "Optional. Set to true to generate videos during low-demand periods with up to 50% credit savings. Results are usually delivered within 24 hours.",
+              "type": "text",
+              "uuid": "9f967b1c-78a4-4f52-a877-89d92b2ab7e2",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional webhook",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional reference value passed to webhook",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional overide for account maxJobs",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/videos/restyle",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "videos",
+            "restyle"
+          ]
+        },
+        "description": "## [Restyle video](https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-restyle-v4)"
+      },
+      "response": []
+    },
+    {
+      "name": "videos/upscale",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "replyUrl",
+            "value": "",
+            "description": "Optional webhook",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "replyRef",
+            "value": "",
+            "description": "Optional reference value passed to webhook",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "maxJobs",
+            "value": "",
+            "description": "Optional overide for account maxJobs",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "video_id",
+            "value": "",
+            "description": "Required video id, use GET /videos to see list of generated videos",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "video_id",
+              "value": "",
+              "description": "Requred video id, use GET /videos to see list of videos",
+              "type": "text"
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "description": "Optional webhook",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "description": "Optional reference value passed to webhook",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "description": "Optional overide for account maxJobs",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/videos/upscale/",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "videos",
+            "upscale",
+            ""
+          ]
+        },
+        "description": "## [Upscale video to 4K](https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-upscale)"
+      },
+      "response": []
+    },
+    {
+      "name": "videos/lipsync",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "prompt",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "video_id",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "video_path",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "audio_path",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "speaker_id",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "original_sound_switch",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "off_peak_mode",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/videos/lipsync/",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "videos",
+            "lipsync",
+            ""
+          ]
+        },
+        "description": "## [Lipsync video](https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-lipsync)"
+      },
+      "response": []
+    },
+    {
+      "name": "videos/voices",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/videos/voices/?email=",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "videos",
+            "voices",
+            ""
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required."
+            }
+          ]
+        },
+        "description": "## [Retrieve lipsync voices](https://useapi.net/docs/api-pixverse-v2/get-pixverse-videos-voices)"
+      },
+      "response": []
+    },
+    {
+      "name": "videos/effects",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/videos/effects/?email=",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "videos",
+            "effects",
+            ""
+          ],
+          "query": [
+            {
+              "key": "limit",
+              "value": "",
+              "description": "Optional, specify the number of videos to return. Default 40",
+              "disabled": true
+            },
+            {
+              "key": "offset",
+              "value": "",
+              "description": "Optional, specify the video id from where to start",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required."
+            }
+          ]
+        },
+        "description": "## [Retrieve effects](https://useapi.net/docs/api-pixverse-v2/get-pixverse-videos-effects)"
+      },
+      "response": []
+    },
+    {
+      "name": "videos/restyles",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/videos/restyles/?email=",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "videos",
+            "restyles",
+            ""
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "",
+              "description": "Optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required."
+            }
+          ]
+        },
+        "description": "## [Retrieve restyle options](https://useapi.net/docs/api-pixverse-v2/get-pixverse-videos-restyles)"
+      },
+      "response": []
+    },
+    {
+      "name": "images",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/images",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "images"
+          ]
+        },
+        "description": "## [Retrieve all generated images](https://useapi.net/docs/api-pixverse-v2/get-pixverse-images)"
+      },
+      "response": []
+    },
+    {
+      "name": "images/<imageId>",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/images/<imageId>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "images",
+            "<imageId>"
+          ]
+        },
+        "description": "## [Retrieve generated image](https://useapi.net/docs/api-pixverse-v2/get-pixverse-images-image_id)"
+      },
+      "response": []
+    },
+    {
+      "name": "images/create",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "prompt",
+              "value": "",
+              "type": "text"
+            },
+            {
+              "key": "model",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional. Supported: qwen-image (default), nano-banana, nano-banana-2, nano-banana-2-lite, nano-banana-pro, seedream-4.0, seedream-4.5, seedream-5.0-pro, seedream-5.0-lite, kling-3.0, kling-o3, gpt-image-2.0 (gpt-image-2.0 added April 24, 2026 — requires detail_level); nano-banana-2-lite added July 6, 2026 — 1080p only, up to 14 refs, free/unlimited on Pro+; seedream-5.0-pro added July 15, 2026 — 1080p/1440p, up to 10 refs; seedream-5.0-lite now supports 2160p"
+            },
+            {
+              "key": "quality",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "aspect_ratio",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional. auto (default), 1:1, 16:9, 9:16, 4:3, 3:4, 5:4, 4:5, 3:2, 2:3, 21:9, 2:1, 1:2. qwen-image / kling-3.0 / kling-o3 / gpt-image-2.0 do not support auto. gpt-image-2.0 accepts the same 10-ratio flat list at every quality (1:1, 1:2, 4:3, 3:4, 3:2, 2:3, 16:9, 9:16, 2:1, 21:9), default 1:1."
+            },
+            {
+              "key": "detail_level",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Required for gpt-image-2.0, rejected for other models. Supported: low, medium, high. Affects credit cost: low=0.5x, medium=1x, high=2x of the per-quality base."
+            },
+            {
+              "key": "create_count",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "seed",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "image_path_1",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "image_path_2",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "image_path_3",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "image_path_4",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "image_path_5",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "image_path_6",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "image_path_7",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "image_path_8",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "image_path_9",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "image_path_10",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "image_path_11",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "image_path_12",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "image_path_13",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "image_path_14",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/images/create",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "images",
+            "create"
+          ]
+        },
+        "description": "## [Generate images](https://useapi.net/docs/api-pixverse-v2/post-pixverse-images-create)"
+      },
+      "response": []
+    },
+    {
+      "name": "images/<imageId>",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/images/<imageId>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "images",
+            "<imageId>"
+          ]
+        },
+        "description": "## [Delete generated image](https://useapi.net/docs/api-pixverse-v2/del-pixverse-images-image_id)"
+      },
+      "response": []
+    },
+    {
+      "name": "music",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/music",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "music"
+          ]
+        },
+        "description": "## [Retrieve all generated music](https://useapi.net/docs/api-pixverse-v2/get-pixverse-music)"
+      },
+      "response": []
+    },
+    {
+      "name": "music/<audioId>",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/music/<audioId>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "music",
+            "<audioId>"
+          ]
+        },
+        "description": "## [Retrieve generated music track](https://useapi.net/docs/api-pixverse-v2/get-pixverse-music-music_id)"
+      },
+      "response": []
+    },
+    {
+      "name": "music/create",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "prompt",
+              "value": "",
+              "type": "text"
+            },
+            {
+              "key": "model",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional. Supported: music-2.6 (MiniMax, default, 40 credits), music-v1 (ElevenLabs, 150 credits), lyria-3-pro-preview (Google, 20 credits)"
+            },
+            {
+              "key": "instrumental",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional boolean (true/false), default false. When true the track has no vocals. Cannot be combined with lyrics."
+            },
+            {
+              "key": "lyrics",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional, music-2.6 / music-v1 only (rejected on lyria-3-pro-preview). Vocals sung from your lyrics, max 3500 chars. Cannot be combined with instrumental."
+            },
+            {
+              "key": "image_path_1",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional, lyria-3-pro-preview only. Reference image path uploaded via POST files. image_path_1 .. image_path_10, sequential."
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional callback URL, max 1024 chars. Body has the same JSON shape as GET music/audio_id."
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional reference id, max 1024 chars."
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional, 1..8."
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/music/create",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "music",
+            "create"
+          ]
+        },
+        "description": "## [Generate music](https://useapi.net/docs/api-pixverse-v2/post-pixverse-music-create)"
+      },
+      "response": []
+    },
+    {
+      "name": "speech",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/speech",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "speech"
+          ]
+        },
+        "description": "## [List all text-to-speech](https://useapi.net/docs/api-pixverse-v2/get-pixverse-speech)"
+      },
+      "response": []
+    },
+    {
+      "name": "speech/<audioId>",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/speech/<audioId>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "speech",
+            "<audioId>"
+          ]
+        },
+        "description": "## [Retrieve generated speech](https://useapi.net/docs/api-pixverse-v2/get-pixverse-speech-speech_id)"
+      },
+      "response": []
+    },
+    {
+      "name": "speech/create",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional PixVerse account email"
+            },
+            {
+              "key": "model",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional, default speech-2.8-hd. Supported: speech-2.8-hd, speech-2.8-turbo (MiniMax), eleven-multilingual-v2, eleven-v3, eleven-turbo-v2.5 (ElevenLabs)"
+            },
+            {
+              "key": "text",
+              "value": "",
+              "type": "text",
+              "description": "Required. The words to speak. Max chars per model (eleven-v3 5000, eleven-turbo-v2.5 40000, others 10000). For eleven-v3 you may embed audio tags like [excited] [whispers]."
+            },
+            {
+              "key": "voice_id",
+              "value": "",
+              "type": "text",
+              "description": "Required. A voice from GET speech/voices."
+            },
+            {
+              "key": "language_code",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional, validated per model against GET speech/models. Rejected for eleven-v3 (auto-detects)."
+            },
+            {
+              "key": "speed",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional voice setting. MiniMax 0.5-2, ElevenLabs 0.7-1.2."
+            },
+            {
+              "key": "volume",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional MiniMax voice setting, 0-10."
+            },
+            {
+              "key": "pitch",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional MiniMax voice setting, integer -12 to 12."
+            },
+            {
+              "key": "emotion",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional MiniMax voice setting: auto, happy, sad, angry, fearful, disgusted, surprised, neutral, calm."
+            },
+            {
+              "key": "stability",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional ElevenLabs voice setting, 0-1."
+            },
+            {
+              "key": "similarity_boost",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional ElevenLabs voice setting, 0-1."
+            },
+            {
+              "key": "style",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional, eleven-multilingual-v2 only, 0-1."
+            },
+            {
+              "key": "use_speaker_boost",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional boolean, eleven-multilingual-v2 only."
+            },
+            {
+              "key": "replyUrl",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional callback URL, max 1024 chars."
+            },
+            {
+              "key": "replyRef",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional reference id, max 1024 chars."
+            },
+            {
+              "key": "maxJobs",
+              "value": "",
+              "type": "text",
+              "disabled": true,
+              "description": "Optional, 1-8."
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/speech/create",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "speech",
+            "create"
+          ]
+        },
+        "description": "## [Generate speech from text](https://useapi.net/docs/api-pixverse-v2/post-pixverse-speech-create)"
+      },
+      "response": []
+    },
+    {
+      "name": "speech/voices",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/speech/voices?model=speech-2.8-hd&language=en",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "speech",
+            "voices"
+          ],
+          "query": [
+            {
+              "key": "model",
+              "value": "speech-2.8-hd"
+            },
+            {
+              "key": "language",
+              "value": "en"
+            }
+          ]
+        },
+        "description": "## [List text-to-speech voices](https://useapi.net/docs/api-pixverse-v2/get-pixverse-speech-voices)"
+      },
+      "response": []
+    },
+    {
+      "name": "speech/models",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/speech/models",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "speech",
+            "models"
+          ]
+        },
+        "description": "## [List text-to-speech models](https://useapi.net/docs/api-pixverse-v2/get-pixverse-speech-models)"
+      },
+      "response": []
+    },
+    {
+      "name": "scheduler",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/scheduler/",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "scheduler",
+            ""
+          ]
+        },
+        "description": "## [Retrieve the list of videos currently being executed by the API](https://useapi.net/docs/api-pixverse-v2/get-pixverse-scheduler)"
+      },
+      "response": []
+    },
+    {
+      "name": "scheduler/available",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/scheduler/available/",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "scheduler",
+            "available",
+            ""
+          ]
+        },
+        "description": "## [Retrieve the list of videos currently running via the API along with the available account capacity](https://useapi.net/docs/api-pixverse-v2/get-pixverse-scheduler-available)"
+      },
+      "response": []
+    },
+    {
+      "name": "scheduler/<videoId>",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://api.useapi.net/v2/pixverse/scheduler/<videoId>",
+          "protocol": "https",
+          "host": [
+            "api",
+            "useapi",
+            "net"
+          ],
+          "path": [
+            "v2",
+            "pixverse",
+            "scheduler",
+            "<videoId>"
+          ]
+        },
+        "description": "## [Cancel video currently being executed by the API](https://useapi.net/docs/api-pixverse-v2/del-pixverse-scheduler-videoId)"
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{api-token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "api-token",
+      "value": "Please refer to https://useapi.net/docs/start-here/setup-useapi",
+      "type": "string"
+    }
+  ]
+}

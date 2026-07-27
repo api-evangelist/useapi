@@ -1,0 +1,74 @@
+generated: '2026-07-27'
+method: searched
+source:
+- https://useapi.net/docs/api-google-flow-v1/post-google-flow-videos
+- https://useapi.net/docs/api-google-flow-v1/post-google-flow-accounts
+- https://useapi.net/docs/questions-and-answers
+- https://useapi.net/demo
+type: Console
+
+summary: >-
+  useapi.net publishes no sandbox environment, no test mode, no test credentials and no fixture or
+  simulation tooling. What it does publish is an in-page interactive console on every endpoint
+  reference page, which executes against the real production API with the caller's real token and
+  real upstream account. Treat every "try it" as a live, credit-consuming call.
+
+sandbox_environment:
+  exists: false
+  test_mode: false
+  test_credentials: false
+  test_key_prefix: none — there is one token format, `user:<number>-<unique-string>`, and it is live
+  magic_test_values: none published
+  fixtures_or_triggers: none published
+  time_simulation: none published
+  note: >-
+    Because useapi.net proxies consumer accounts on third-party AI platforms rather than running its
+    own models, there is no test tier to offer — a generation either runs on the caller's real
+    upstream account and consumes its credits, or it does not run.
+
+console:
+  exists: true
+  kind: inline try-it console embedded in the endpoint reference pages
+  location: every endpoint page under https://useapi.net/docs/api-<service>-<version>/<operation>
+  example: https://useapi.net/docs/api-google-flow-v1/post-google-flow-videos
+  mechanics:
+  - An `input-token` field takes the caller's live useapi.net bearer token.
+  - Each documented query parameter and body field is rendered as an `input-element` form control.
+  - A submit button invokes a per-endpoint JS executor (e.g. `apiExecutePostGoogleFlowVideos()`)
+    that calls the production host https://api.useapi.net directly from the browser and renders the
+    real response.
+  warning: >-
+    This is a production console, not a sandbox. Submitting a generation from the docs page creates
+    a real job and consumes credits on the linked upstream account.
+
+credential_validation:
+  parameter: dryRun
+  observed_on: the POST /<service>/accounts console on google-flow, dreamina, kling and others
+  behavior: >-
+    The account-registration console sends `{"dryRun": true}` when the user chooses to test rather
+    than add — the API validates the supplied cookies/credentials and reports whether the account
+    would work, without persisting it. This is the closest thing to a safe rehearsal call on the
+    platform.
+  documented_in_prose: false
+  caveat: >-
+    `dryRun` appears in the console's own JavaScript (`if (!addAccount) body.dryRun = true;`) rather
+    than in the written parameter tables, so it is observed behavior rather than a documented
+    contract. Do not depend on it.
+
+demo:
+  url: https://useapi.net/demo
+  kind: marketing walkthrough, not a hosted playground
+  note: >-
+    Presents runnable JavaScript and Python samples plus a video. The samples are executed locally
+    with real environment variables (USEAPI_TOKEN, USEAPI_DISCORD, USEAPI_SERVER, USEAPI_CHANNEL),
+    not in a hosted sandbox. The page also carries the Midjourney discontinuation notice.
+
+safer_alternatives_for_testing:
+- Use `dryRun` on POST /<service>/accounts to validate credentials without persisting an account.
+- Read-only endpoints (GET /accounts, GET /jobs, GET /features/, GET /v2/account,
+  GET /v2/account/stats) are free of generation cost and safe to exercise first.
+- Link a free-tier upstream account for smoke tests where the wrapped service offers one — the
+  vendor notes free Google accounts work for Google Flow image generation, and free
+  hailuoai.video accounts get a daily credit top-up.
+- Prefer `replyUrl` webhooks over polling loops when exercising async flows, per the vendor's own
+  guidance.

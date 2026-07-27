@@ -1,0 +1,45 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Kling AI API v1
+  version: 1.0.0
+extends: openapi/useapi-kling-v1-openapi.yml
+x-generated: '2026-07-27'
+x-method: generated
+x-source: https://useapi.net/assets/postman/kling-v1.json + https://useapi.net/llms.txt
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: useapi.net
+    x-apievangelist-aid: useapi:kling-v1
+    x-apievangelist-contract-origin: derived-from-first-party-postman-collection
+    x-apievangelist-catalog: https://useapi.net/.well-known/api-catalog
+    x-apievangelist-llms-txt: https://useapi.net/llms.txt
+    x-apievangelist-model-matrix: https://useapi.net/model-matrix
+    x-apievangelist-access-model: 'bring-your-own-account: an active subscription on the wrapped AI service is required
+      in addition to the useapi.net subscription'
+    x-apievangelist-status: experimental — the vendor describes every API as experimental and reverse-engineered
+- target: $.info
+  update:
+    x-artifacts:
+      conventions: conventions/useapi-conventions.yml
+      errors: errors/useapi-problem-types.yml
+      authentication: authentication/useapi-authentication.yml
+      lifecycle: lifecycle/useapi-lifecycle.yml
+      webhooks: asyncapi/useapi-jobs-webhooks.yml
+      data_model: data-model/useapi-data-model.yml
+      changelog: changelog/useapi-changelog.yml
+      skills: skills/_index.yml
+- target: $.components.securitySchemes.bearerAuth
+  update:
+    x-token-format: user:<number>-<unique-string>
+    x-scope: one token authorizes every useapi.net API on the subscription
+    x-obtain: https://useapi.net/docs/start-here/setup-useapi
+- target: $.paths.*.*[?(@.responses)]
+  update:
+    x-error-catalog: errors/useapi-problem-types.yml
+    x-retry-after: 429 responses carry a Retry-After header and a retryAfter ISO-8601 body field
+    x-idempotency: none — this API documents no idempotency key; a retried generation POST creates a second job
+- target: $.externalDocs
+  update:
+    x-verbatim-docs: https://useapi.net/assets/aibot/api-kling-v1.txt
+    x-postman-collection: postman/useapi-kling-v1.json
