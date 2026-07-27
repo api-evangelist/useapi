@@ -1,0 +1,34 @@
+aid: useapi
+name: useapi.net
+description: useapi.net is a unified, experimental REST API platform that fronts a set of consumer AI
+  content-generation services — video, image, music, speech and face-swap models — behind one subscription
+  and one API surface, so developers do not have to hold an account with each underlying provider. Added
+  to the API Evangelist network as a stub for full-pipeline profiling.
+url: https://raw.githubusercontent.com/api-evangelist/useapi/refs/heads/main/apis.yml
+x-type: company
+x-source: manual:request
+x-tier: stub
+x-tier-reason: harvest
+specificationVersion: '0.20'
+created: '2026-07-27'
+modified: '2026-07-27'
+tags:
+- Company
+- AI
+- Generative AI
+- Video Generation
+- Image Generation
+- Music Generation
+apis: []
+common:
+- type: Website
+  url: https://useapi.net/
+- type: Documentation
+  url: https://useapi.net/docs/subscription
+- type: GitHubOrganization
+  url: https://github.com/useapi
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+- FN: APIs.json
+  email: info@apis.io
