@@ -14,7 +14,7 @@ description: useapi.net is an experimental, unified REST API platform that front
 url: https://raw.githubusercontent.com/api-evangelist/useapi/refs/heads/main/apis.yml
 x-type: company
 x-source: manual:request
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-07-27'
 modified: '2026-07-27'
 image: https://useapi.net/assets/images/logo.png
