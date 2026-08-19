@@ -1,0 +1,2390 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Runway API v1 by useapi.net",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "runwayml",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/runwayml/accounts"
+          },
+          "docs": "Retrieve RunwayML accounts information."
+        },
+        {
+          "info": {
+            "name": "accounts/<email>",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/runwayml/accounts/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve RunwayML account information."
+        },
+        {
+          "info": {
+            "name": "accounts/<email>",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/runwayml/accounts/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "[Add or update RunwayML account.](https://useapi.net/docs/api-runwayml-v1/post-runwayml-accounts-email)"
+        },
+        {
+          "info": {
+            "name": "accounts/<email>",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.useapi.net/v1/runwayml/accounts/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete RunwayML account."
+        },
+        {
+          "info": {
+            "name": "frames/create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/runwayml/frames/create",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "exploreMode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "seed",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "text_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "style",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "aspect_ratio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "diversity",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "num_images",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageAssetId1",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageAssetId2",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageAssetId3",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Frames](https://useapi.net/docs/api-runwayml-v1/post-runwayml-frames-create)"
+        },
+        {
+          "info": {
+            "name": "images/create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/runwayml/images/create",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "model",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "text_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "aspect_ratio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "resolution",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "num_images",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageAssetId1",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageAssetId2",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageAssetId3",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageAssetId4",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageAssetId5",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageAssetId6",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageAssetId7",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageAssetId8",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "style",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "diversity",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "seed",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "exploreMode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Images](https://useapi.net/docs/api-runwayml-v1/post-runwayml-images-create)"
+        },
+        {
+          "info": {
+            "name": "videos/create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/runwayml/videos/create",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "model",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "text_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "duration",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "aspect_ratio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "resolution",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "audio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "seed",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageAssetId1",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageAssetId2",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageAssetId3",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageAssetId4",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageAssetId5",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageAssetId6",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageAssetId7",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageAssetId8",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageAssetId9",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageAssetId10",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageAssetId11",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "startFrameAssetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "endFrameAssetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "videoAssetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "videoAssetId2",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "videoAssetId3",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "audioAssetId1",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "audioAssetId2",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "audioAssetId3",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "characterOrientation",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "multishot_prompt_1",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "multishot_duration_1",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "multishot_prompt_2",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "multishot_duration_2",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "multishot_prompt_3",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "multishot_duration_3",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "multishot_prompt_4",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "multishot_duration_4",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "multishot_prompt_5",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "multishot_duration_5",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "multishot_prompt_6",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "multishot_duration_6",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "exploreMode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Videos](https://useapi.net/docs/api-runwayml-v1/post-runwayml-videos-create)\n\nUnified video generation endpoint supporting 18 models across Seedance, Kling (incl. O3 omni and Motion Control), Wan, Veo, Sora, and Gen-4 families."
+        },
+        {
+          "info": {
+            "name": "videos/upscale",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/runwayml/videos/upscale",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "videoAssetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "exploreMode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Videos Upscale](https://useapi.net/docs/api-runwayml-v1/post-runwayml-videos-upscale)\n\nUpscale a video to 4K using Topaz AI. Output preserves source aspect ratio (e.g. 1280×720 → 4096×2304). Max source duration 40 seconds. Unlimited with exploreMode."
+        },
+        {
+          "info": {
+            "name": "frames/describe/<image_assetId>",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/runwayml/frames/describe/:image_assetId",
+            "params": [
+              {
+                "name": "image_assetId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "## [Get image description](https://useapi.net/docs/api-runwayml-v1/get-runwayml-frames-describe)"
+        },
+        {
+          "info": {
+            "name": "gen4turbo/create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/runwayml/gen4turbo/create",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "firstImage_assetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "text_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "aspect_ratio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "seconds",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "seed",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "exploreMode",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Create a video using the first image(s) with a text prompt](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen4turbo-create)"
+        },
+        {
+          "info": {
+            "name": "gen4_5/create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/runwayml/gen4_5/create",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "firstImage_assetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "text_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "aspect_ratio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "seconds",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "seed",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "exploreMode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Create a video using text prompt or image](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen4_5-create)\n\nGen-4.5 supports Text-to-Video (T2V) and Image-to-Video (I2V) modes. T2V generates 720p 16:9 videos from text prompts. I2V generates videos from a first image with optional text prompt, supporting multiple aspect ratios."
+        },
+        {
+          "info": {
+            "name": "gen4/create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/runwayml/gen4/create",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "firstImage_assetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "text_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "aspect_ratio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "seconds",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "seed",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "exploreMode",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Create a video using the first image(s) with a text prompt](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen4-create)"
+        },
+        {
+          "info": {
+            "name": "gen4/upscale",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/runwayml/gen4/upscale",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "assetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "exploreMode",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Upscale to 4K the Gen-4, Gen-4 Turbo, Gen-3 Alpha and Gen-3 Alpha Turbo videos](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen4-upscale)"
+        },
+        {
+          "info": {
+            "name": "gen4/act-two",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/runwayml/gen4/act-two",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "driving_assetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "character_assetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "expression_intensity",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "body_control",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "aspect_ratio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "seed",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "exploreMode",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Gen4 Act-Two](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen4-act-two)"
+        },
+        {
+          "info": {
+            "name": "gen4/act-two-voice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/runwayml/gen4/act-two-voice",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "video_assetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "voiceId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "exploreMode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Gen4 Act-Two voice swap](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen4-act-two-voice)"
+        },
+        {
+          "info": {
+            "name": "gen4/video",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/runwayml/gen4/video",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "video_assetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "image_assetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "text_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "seed",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "exploreMode",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Create a video using Runway Gen-4 Aleph (video-to-video)](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen4-video)"
+        },
+        {
+          "info": {
+            "name": "gen3turbo/create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/runwayml/gen3turbo/create",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "firstImage_assetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "lastImage_assetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "text_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "aspect_ratio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "seconds",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "seed",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "exploreMode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "horizontal",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "vertical",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "roll",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "zoom",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "pan",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "tilt",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Create a video using the first and/or last images with a text prompt](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3turbo-create)"
+        },
+        {
+          "info": {
+            "name": "gen3turbo/video",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/runwayml/gen3turbo/video",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "exploreMode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "assetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "text_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "structure_transformation",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "aspect_ratio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "seed",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "resolution",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "seconds",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "[Gen-3 Alpha Turbo Video to Video](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3turbo-video)"
+        },
+        {
+          "info": {
+            "name": "gen3turbo/extend",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/runwayml/gen3turbo/extend",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "exploreMode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "assetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "seed",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "text_prompt",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Extend the Gen-3 Alpha Turbo video by 8 seconds](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3turbo-extend)"
+        },
+        {
+          "info": {
+            "name": "gen3turbo/expand",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/runwayml/gen3turbo/expand",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "exploreMode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "videoAssetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "seed",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageAssetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "text_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "seconds",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "outpaint_aspect_ratio",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Gen-3 Alpha Turbo Expand Video](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3turbo-expand)"
+        },
+        {
+          "info": {
+            "name": "gen3turbo/actone",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/runwayml/gen3turbo/actone",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "exploreMode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "driving_assetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "character_assetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "motion_multiplier",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "aspect_ratio",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "[Drive your image or video character performance using simple video and audio inputs.](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3turbo-actone)"
+        },
+        {
+          "info": {
+            "name": "gen3/create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/runwayml/gen3/create",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "exploreMode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "image_assetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "image_as_end_frame",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "text_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "enhance_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "seed",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "seconds",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "resolution",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Create a video using text and/or image prompts](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3-create)"
+        },
+        {
+          "info": {
+            "name": "gen3/video",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/runwayml/gen3/video",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "exploreMode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "assetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "text_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "structure_transformation",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "resolution",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "seed",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "seconds",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "[Gen-3 Alpha Video to Video](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3-video)"
+        },
+        {
+          "info": {
+            "name": "gen3/extend",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/runwayml/gen3/extend",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "exploreMode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "assetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "seed",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "seconds",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "text_prompt",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Extend the Gen-3 Alpha video by 5 or 10 seconds](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3-extend)"
+        },
+        {
+          "info": {
+            "name": "gen3/actone",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/runwayml/gen3/actone",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "exploreMode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "driving_assetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "character_assetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "motion_multiplier",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "aspect_ratio",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "[Drive your image or video character performance using simple video and audio inputs.](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3-actone)"
+        },
+        {
+          "info": {
+            "name": "gen3alpha/upscale",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/runwayml/gen3alpha/upscale",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "assetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "exploreMode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Upscale Gen-3 Alpha and Gen-3 Alpha Turbo videos to 4K](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3alpha-upscale)\n\nNote: Runway website no longer supports Gen-3. Consider migrating to Gen-4.x."
+        },
+        {
+          "info": {
+            "name": "gen2/create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/runwayml/gen2/create",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "exploreMode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "text_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "image_assetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "image_preview",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "interpolate",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "upscale",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "style",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "aspect_ratio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "seed",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "motion",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "horizontal",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "vertical",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "roll",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "zoom",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "pan",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "tilt",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Create a 4-second-long video using text and/or image prompts](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen2-create)"
+        },
+        {
+          "info": {
+            "name": "gen2/extend",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/runwayml/gen2/extend",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "exploreMode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "assetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "interpolate",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "seed",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "motion",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "horizontal",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "vertical",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "roll",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "zoom",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "pan",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "tilt",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Extend the video by 4 seconds](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen2-extend)"
+        },
+        {
+          "info": {
+            "name": "lipsync/create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/runwayml/lipsync/create",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "exploreMode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "image_assetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "video_assetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "audio_assetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "voiceId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "voice_text",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "model_id",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "[Lip Sync for both image and video sources with support for a variety of voices (28+ languages supported) or audio file](https://useapi.net/docs/api-runwayml-v1/post-runwayml-lipsync-create)"
+        },
+        {
+          "info": {
+            "name": "super_slow_motion",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/runwayml/super_slow_motion",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "assetId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "speed",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "duration",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "width",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "height",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "format",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "name",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "[Super Slow Motion](https://useapi.net/docs/api-runwayml-v1/post-runwayml-super_slow_motion)"
+        },
+        {
+          "info": {
+            "name": "lipsync/voices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/runwayml/lipsync/voices/",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one runwayml/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "[Retrieve list of voices for lipsync/create.](https://useapi.net/docs/api-runwayml-v1/get-runwayml-lipsync-voices)"
+        },
+        {
+          "info": {
+            "name": "text_to_image_preview",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/runwayml/text_to_image_preview/",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one runwayml/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              },
+              {
+                "name": "text_prompt",
+                "value": "",
+                "type": "query",
+                "description": "Required text prompt"
+              },
+              {
+                "name": "negative_prompt",
+                "value": "",
+                "type": "query",
+                "description": "Optional negative prompt"
+              },
+              {
+                "name": "seed",
+                "value": "",
+                "type": "query",
+                "description": "Optional seed value"
+              },
+              {
+                "name": "style",
+                "value": "",
+                "type": "query",
+                "description": "Optional, supported values: cinematic,abandoned,abstract_sculpture,advertising,anime,architectural,cartoon,cine_lens,claymation,concept_art,digital_art,duotone_artistic_photo,forestpunk,frost,graphic_novel,graphite,impressionist_painting,isometric_3d,low_poly_3d,macro_photography,marker_drawing,moody_film,pixel_art,retro_photography,sci-fi_art,stickers,storyboard,actor_casting,thriller,35mm,3d_cartoon,3d_render,80s_vaporwave"
+              },
+              {
+                "name": "aspect_ratio",
+                "value": "",
+                "type": "query",
+                "description": "Optional, supported values: 21:9,1:1,9:16,16:9,4:3,3:4"
+              },
+              {
+                "name": "prompt_weight",
+                "value": "",
+                "type": "query",
+                "description": "Optional weight of the prompt, supported range 1...30"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "## [Text to Image instant generation (Stable Diffusion)](https://useapi.net/docs/api-runwayml-v1/get-runwayml-text_to_image_preview)"
+        },
+        {
+          "info": {
+            "name": "image_upscaler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/runwayml/image_upscaler/",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one runwayml/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              },
+              {
+                "name": "image_url",
+                "value": "",
+                "type": "query",
+                "description": "Required image URL. Provide URL of the image generated via runwayml/text_to_image_preview endpoint or URL of desired image asset to upscale (fied asset.url)"
+              },
+              {
+                "name": "width",
+                "value": "",
+                "type": "query",
+                "description": "Required width value"
+              },
+              {
+                "name": "height",
+                "value": "",
+                "type": "query",
+                "description": "Required height value"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "## [Upscale or Downscale image to specified dimensions](https://useapi.net/docs/api-runwayml-v1/get-runwayml-image_upscaler)"
+        },
+        {
+          "info": {
+            "name": "transcribe",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/runwayml/transcribe/",
+            "params": [
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "query",
+                "description": "Required assetId of video or audio asset to transcribe to text"
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "Required two letter language id, eg. en, see full list at https://help.elevenlabs.io/hc/en-us/articles/17883183930129-What-models-do-you-offer-and-what-is-the-difference-between-them"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "[Transcribe audio or video to text, multiple laguages supported](https://useapi.net/docs/api-runwayml-v1/get-runwayml-transcribe)"
+        },
+        {
+          "info": {
+            "name": "assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/runwayml/assets/",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one runwayml/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Required."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Required."
+              },
+              {
+                "name": "mediaType",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Supported values: video,image,audio"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Retrieve assets. Pagination supported via offset and limit parameters."
+        },
+        {
+          "info": {
+            "name": "assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/runwayml/assets/",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one runwayml/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Requred."
+              },
+              {
+                "name": "duration",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Specify audio or video duration in seconds."
+              },
+              {
+                "name": "width",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Specify image or video width in pixels."
+              },
+              {
+                "name": "height",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Specify image or video height in pixels."
+              }
+            ]
+          },
+          "docs": "Upload assed to your RunwayML account asset storage.  \nPost asset as binary content and use headers Content-Type field to specify asset type.\n\nFollowing Content-Type values supported (Content-Type: file extension):\n\n• image/png: png  \n• image/jpeg: jpeg  \n• image/gif: gif  \n• video/mp4: mp4  \n• video/quicktime: mov  \n• video/3gpp: 3gp  \n• video/x-matroska: mkv  \n• video/x-flv: flv  \n• video/mpeg: mpeg  \n• video/MP2T: ts  \n• video/x-msvideo: avi  \n• video/x-motion-jpeg: mjpeg  \n• video/webm: webm"
+        },
+        {
+          "info": {
+            "name": "assets/<assetId>",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/runwayml/assets/:assetId",
+            "params": [
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Retrieve asset."
+        },
+        {
+          "info": {
+            "name": "assets/<assetId>",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.useapi.net/v1/runwayml/assets/:assetId",
+            "params": [
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Delete asset."
+        },
+        {
+          "info": {
+            "name": "scheduler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/runwayml/scheduler",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Retrieve the list of currently executing tasks."
+        },
+        {
+          "info": {
+            "name": "scheduler/<taskId>",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.useapi.net/v1/runwayml/scheduler/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Remove the provided task from the list of currently executing tasks."
+        },
+        {
+          "info": {
+            "name": "tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/runwayml/tasks/",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one runwayml/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Required."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Required."
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Supported values: PENDING,RUNNING,THROTTLED,SUCCEEDED. Comma-separated values can be provided."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Retrieve tasks. Pagination supported via offset and limit parameters."
+        },
+        {
+          "info": {
+            "name": "tasks/<taskId>",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/runwayml/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Retrieve task."
+        },
+        {
+          "info": {
+            "name": "tasks/<taskId>",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.useapi.net/v1/runwayml/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Delete task.\n\n[Documentation](https://useapi.net/docs/api-runwayml-v1/del-runwayml-tasks-taskId)"
+        },
+        {
+          "info": {
+            "name": "features",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/runwayml/features/",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one runwayml/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Retrieve account credits information and other details."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

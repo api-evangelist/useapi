@@ -1,0 +1,843 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Google Flow API v1 by useapi.net",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "google-flow",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/google-flow/accounts"
+          },
+          "docs": "List all configured Google Flow accounts for your API token.\n\nReturns an object with account emails as keys and their health status.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/get-google-flow-accounts)"
+        },
+        {
+          "info": {
+            "name": "POST accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/google-flow/accounts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Configure your Google account for Google Flow API access.\n\nRequires cookies from accounts.google.com. The email is automatically extracted from the cookies.\n\nSee [Setup Google Flow](https://useapi.net/docs/start-here/setup-google-flow) for detailed instructions on how to obtain these cookies.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-accounts)"
+        },
+        {
+          "info": {
+            "name": "GET accounts/<email>",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/google-flow/accounts/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get configuration and health status for a specific Google Flow account.\n\nReturns health status, credits information, and available video models when account is healthy.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/get-google-flow-accounts-email)"
+        },
+        {
+          "info": {
+            "name": "DELETE accounts/<email>",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.useapi.net/v1/google-flow/accounts/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove Google Flow account configuration.\n\nCancels any scheduled refresh operations automatically.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/delete-google-flow-accounts-email)"
+        },
+        {
+          "info": {
+            "name": "POST assets/<email>",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/google-flow/assets/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Upload assets to Google Flow for use in image and video generation.\n\nSupports PNG/JPEG/WebP (image, up to 20 MB) and MP4 (video, up to 100 MB — for Omni Flash V2V edit via referenceVideo_1).\n\nReturns mediaGenerationId for use in reference parameters. Video uploads also return durationSeconds.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-assets-email)"
+        },
+        {
+          "info": {
+            "name": "POST images",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/google-flow/images",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "model",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "reference_1",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "reference_2",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "reference_3",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "reference_4",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "reference_5",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "reference_6",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "reference_7",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "reference_8",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "reference_9",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "reference_10",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "character_1",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "character_2",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "character_3",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "character_4",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "character_5",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "character_6",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "character_7",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "count",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "seed",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "aspectRatio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "captchaToken",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "captchaRetry",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "captchaOrder",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Generate images using Imagen 4 or Nano Banana / Gemini 2.5 Flash Image.\n\nSupports up to 3 reference images and generates 1-4 variations.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-images)"
+        },
+        {
+          "info": {
+            "name": "POST videos",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/google-flow/videos",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "model",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "startImage",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "endImage",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "referenceImage_1",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "referenceImage_2",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "referenceImage_3",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "referenceImage_4",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "referenceImage_5",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "referenceImage_6",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "referenceImage_7",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "character_1",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "character_2",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "character_3",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "character_4",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "character_5",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "character_6",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "character_7",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "referenceAudio_1",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "referenceAudio_2",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "referenceAudio_3",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "referenceAudio_4",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "referenceAudio_5",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "referenceVideo_1",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "startFrameIndex_1",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "endFrameIndex_1",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "count",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "seed",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "aspectRatio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "duration",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "async",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "captchaToken",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "captchaRetry",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "captchaOrder",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Generate videos using Veo 3.1 (Quality / Fast / Lite / Lite Lower Priority) or Gemini Omni Flash.\n\nSupports T2V, I2V, I2V-FL, and R2V (Veo + Omni Flash) and V2V edit (Omni Flash only — via referenceVideo_1). Typical generation time: 60-180 seconds.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-videos)"
+        },
+        {
+          "info": {
+            "name": "GET jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/google-flow/jobs/",
+            "params": [
+              {
+                "name": "options",
+                "value": "summary",
+                "type": "query",
+                "description": "Level of detail: summary (default), executing, or history. Optional."
+              }
+            ]
+          },
+          "docs": "Get load balancing statistics across all configured Google Flow accounts.\n\nProvides real-time visibility into job distribution, account health, and performance metrics.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/get-google-flow-jobs)"
+        },
+        {
+          "info": {
+            "name": "GET jobs/<jobId>",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/google-flow/jobs/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve job status and results by job ID.\n\nReturns complete job information including generated images/videos with download URLs.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/get-google-flow-jobs-jobid)"
+        },
+        {
+          "info": {
+            "name": "POST images/upscale",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/google-flow/images/upscale",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upscale a previously generated image to 2K or 4K resolution.\n\n- 4K resolution requires a paid Google account (free accounts fail with 403 captcha_quality: PUBLIC_ERROR_UNUSUAL_ACTIVITY).\n\n**Body Parameters:**\n- `mediaGenerationId` (required) - The mediaGenerationId from POST /images\n- `resolution` (optional) - Target resolution: 2k (default), 4k\n- `captchaToken` (optional) - Your own reCAPTCHA v3 Enterprise token. Single attempt, no retry\n- `captchaRetry` (optional) - Number of captcha retry att"
+        },
+        {
+          "info": {
+            "name": "POST videos/upscale",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/google-flow/videos/upscale",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upscale a previously generated video to 1080p or 4K resolution.\n\n- Requires paid Google AI subscription or remaining credits.\n- 4K requires Google AI Ultra subscription.\n- 1080p is free, 4K costs 50 credits.\n\n**Body Parameters:**\n- `mediaGenerationId` (required) - The mediaGenerationId from POST /videos\n- `resolution` (optional) - Target resolution: 1080p (default), 4k\n- `async` (optional) - true: Returns 201 immediately with jobId. false: Waits for completion. Default: false\n- `replyUrl` (optio"
+        },
+        {
+          "info": {
+            "name": "POST videos/gif",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/google-flow/videos/gif",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate an animated GIF preview from a previously generated video.\n\n- No captcha required.\n- Can take up to 90 seconds.\n- Returns base64-encoded GIF data.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-videos-gif)"
+        },
+        {
+          "info": {
+            "name": "POST videos/extend",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/google-flow/videos/extend",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Extend a previously generated video with a new prompt.\n\nCreates an additional 8-second segment that continues from the last ~1 second of the source video.\n\n**Body Parameters:**\n- `mediaGenerationId` (required) - The mediaGenerationId from POST /videos or POST /videos/extend\n- `prompt` (required) - Text description for what happens next\n- `model` (optional) - Video model: veo-3.1-fast (default), veo-3.1-fast-relaxed (Ultra only), veo-3.1-quality\n- `count` (optional) - Number of variations (1-4, d"
+        },
+        {
+          "info": {
+            "name": "POST videos/concatenate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/google-flow/videos/concatenate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Concatenate multiple videos into a single video.\n\nCombines 2-10 videos with optional trimming for smooth transitions. Returns base64-encoded video (~7MB per input).\n\n**Body Parameters:**\n- `media` (required) - Array of 2-10 video objects:\n  - `mediaGenerationId` (required) - Video reference from POST /videos\n  - `trimStart` (optional) - Seconds to trim from start (0-8). Use 1 for extended videos to remove overlap.\n  - `trimEnd` (optional) - Seconds to trim from end (0-8)\n\n- No captcha required.\n"
+        },
+        {
+          "info": {
+            "name": "GET accounts/captcha-providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/google-flow/accounts/captcha-providers"
+          },
+          "docs": "Retrieve configured captcha provider API keys (masked for security).\n\nReturns masked keys for AntiCaptcha, EzCaptcha, CapSolver, and YesCaptcha if configured.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/get-google-flow-accounts-captcha-providers)"
+        },
+        {
+          "info": {
+            "name": "POST accounts/captcha-providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/google-flow/accounts/captcha-providers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Configure captcha provider API keys for image and video generation.\n\nSupported providers: AntiCaptcha, EzCaptcha, CapSolver (promo code useapi for 8% discount), YesCaptcha.\n\nSet a field to empty string to remove that provider.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-accounts-captcha-providers)"
+        },
+        {
+          "info": {
+            "name": "GET accounts/captcha-stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/google-flow/accounts/captcha-stats",
+            "params": [
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Filter by date (YYYY-MM-DD). Defaults to today if limit not specified. Optional."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return (max 50000). If specified, date filter is ignored. Optional."
+              },
+              {
+                "name": "provider",
+                "value": "",
+                "type": "query",
+                "description": "Filter by captcha provider: AntiCaptcha, EzCaptcha, CapSolver, YesCaptcha, UserProvided. Optional."
+              }
+            ]
+          },
+          "docs": "Query captcha solving statistics for your account.\n\nReturns detailed information about captcha token requests including success/failure rates, solve times, and provider breakdowns.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/get-google-flow-accounts-captcha-stats)"
+        },
+        {
+          "info": {
+            "name": "GET voices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/google-flow/voices",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Account email. Required."
+              },
+              {
+                "name": "source",
+                "value": "",
+                "type": "query",
+                "description": "Filter by 'system' or 'user'. Omit for both. Optional."
+              }
+            ]
+          },
+          "docs": "List system + user voices on the account. Fast — no audioUrl resolution. Use GET /voices/<ref> to play a specific voice."
+        },
+        {
+          "info": {
+            "name": "POST voices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/google-flow/voices",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "voice",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "displayName",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "dialog",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "voicePerformance",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "captchaToken",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "captchaRetry",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "captchaOrder",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Create a user (custom) voice on the specified account. Captcha-gated."
+        },
+        {
+          "info": {
+            "name": "GET voices/<ref>",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/google-flow/voices/:ref",
+            "params": [
+              {
+                "name": "ref",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Resolve a single voice with playback URL. System voice -> static sampleUrl. User voice -> signed audioUrl (~6h). CF-cached 1h."
+        },
+        {
+          "info": {
+            "name": "DELETE voices/<ref>",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.useapi.net/v1/google-flow/voices/:ref",
+            "params": [
+              {
+                "name": "ref",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a user voice. Busts CF caches for this voice + any character that referenced it. System voices -> 400."
+        },
+        {
+          "info": {
+            "name": "GET characters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/google-flow/characters",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Account email. Required."
+              }
+            ]
+          },
+          "docs": "List all characters on the account. Fast — no previewUrl/thumbnailUrl/audioUrl resolution. Use GET /characters/<ref> for previews."
+        },
+        {
+          "info": {
+            "name": "POST characters",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/google-flow/characters",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "displayName",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageReference_1",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageReference_2",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "personalityNotes",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "voice",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Create a character (1-2 image refs + optional voice). The account is extracted from imageReference_1 — no email body field. The returned reference-id encodes the inline imgs:N count."
+        },
+        {
+          "info": {
+            "name": "GET characters/<ref>",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/google-flow/characters/:ref",
+            "params": [
+              {
+                "name": "ref",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Resolve a single character with all media URLs: imageReferences[].previewUrl, thumbnailUrl, voice.audioUrl. CF-cached 1h."
+        },
+        {
+          "info": {
+            "name": "DELETE characters/<ref>",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.useapi.net/v1/google-flow/characters/:ref",
+            "params": [
+              {
+                "name": "ref",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a character. The attached voice (if any) is not deleted — voices have their own lifecycle."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

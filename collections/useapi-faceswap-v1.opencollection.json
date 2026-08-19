@@ -1,0 +1,580 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "InsightFaceSwap API v1 by useapi.net",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "faceswap",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "faceswap/account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/faceswap/account",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "faceswap/account"
+        },
+        {
+          "info": {
+            "name": "faceswap/account/<channel>",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/faceswap/account/:channel_id",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "faceswap/account/<channel>"
+        },
+        {
+          "info": {
+            "name": "faceswap/account/<channel>",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/faceswap/account/:channel_id",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "faceswap/account/<channel>"
+        },
+        {
+          "info": {
+            "name": "faceswap/account/<channel>",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.useapi.net/v1/faceswap/account/:channel_id",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "faceswap/account/<channel>"
+        },
+        {
+          "info": {
+            "name": "faceswap/listid",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/faceswap/listid",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "channel",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "faceswap/listid"
+        },
+        {
+          "info": {
+            "name": "faceswap/saveid",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/faceswap/saveid",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "channel",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "idname",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "image",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "faceswap/saveid"
+        },
+        {
+          "info": {
+            "name": "faceswap/swapid",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/faceswap/swapid",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "channel",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "idname",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "image",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "faceswap/swapid"
+        },
+        {
+          "info": {
+            "name": "faceswap/setid",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/faceswap/setid",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "channel",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "idname",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "faceswap/setid"
+        },
+        {
+          "info": {
+            "name": "faceswap/swap",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/faceswap/swap",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "channel",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "saveid_idname",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "saveid_image",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "swapid_idname",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "swapid_image",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "faceswap/swap"
+        },
+        {
+          "info": {
+            "name": "faceswap/inswapper",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/faceswap/inswapper",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "channel",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "targetMessageId",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "faceswap/inswapper"
+        },
+        {
+          "info": {
+            "name": "faceswap/picsi",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/faceswap/picsi",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "channel",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "options",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "source_image",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "target_image_gif_or_video",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "faceswap/picsi"
+        },
+        {
+          "info": {
+            "name": "faceswap/changebg",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/faceswap/changebg",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "channel",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "options",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "a_background_photo_of",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "image",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "faceswap/changebg"
+        },
+        {
+          "info": {
+            "name": "faceswap/headshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/faceswap/headshot",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "channel",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "options",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "prompt",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "faceswap/headshot"
+        },
+        {
+          "info": {
+            "name": "faceswap/jobs/?jobid=<jobid>",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/faceswap/jobs/",
+            "params": [
+              {
+                "name": "jobid",
+                "value": "<jobid>",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "faceswap/jobs/?jobid=<jobid>"
+        },
+        {
+          "info": {
+            "name": "faceswap/jobs/cancel/?jobid=<jobid>",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/faceswap/jobs/cancel/",
+            "params": [
+              {
+                "name": "jobid",
+                "value": "<jobid>",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "faceswap/jobs/cancel/?jobid=<jobid>"
+        },
+        {
+          "info": {
+            "name": "faceswap/jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/faceswap/jobs"
+          },
+          "docs": "faceswap/jobs"
+        },
+        {
+          "info": {
+            "name": "faceswap/delid",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.useapi.net/v1/faceswap/delid",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "channel",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "idname",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "faceswap/delid"
+        },
+        {
+          "info": {
+            "name": "faceswap/delall",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.useapi.net/v1/faceswap/delall",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "channel",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "faceswap/delall"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

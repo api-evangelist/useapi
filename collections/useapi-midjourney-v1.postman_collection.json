@@ -1,0 +1,2303 @@
+{
+  "item": [
+    {
+      "id": "4370ce8d-c687-4a0d-9cac-dbbf58529fee",
+      "name": "Submit the Midjourney /imagine command",
+      "request": {
+        "name": "Submit the Midjourney /imagine command",
+        "description": {
+          "content": "Submit the Midjourney /imagine command",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "jobs",
+            "imagine"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"prompt\": \"<string>\",\n  \"discord\": \"<string>\",\n  \"server\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"maxJobs\": \"<integer>\",\n  \"replyUrl\": \"<string>\",\n  \"replyRef\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "03aef45e-3b3f-40f9-9127-d72d5fbdc37b",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "imagine"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"prompt\": \"<string>\",\n  \"discord\": \"<string>\",\n  \"server\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"maxJobs\": \"<integer>\",\n  \"replyUrl\": \"<string>\",\n  \"replyRef\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"jobid\": \"string\",\n  \"verb\": \"imagine\",\n  \"status\": \"started\",\n  \"created\": \"string\",\n  \"updated\": \"string\",\n  \"prompt\": \"string\",\n  \"channel\": \"string\",\n  \"server\": \"string\",\n  \"maxJobs\": 8357,\n  \"messageId\": \"string\",\n  \"content\": \"string\",\n  \"timestamp\": \"string\",\n  \"code\": 200\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "ef09713f-d245-491c-b597-71d8408b49e9",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "imagine"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"prompt\": \"<string>\",\n  \"discord\": \"<string>\",\n  \"server\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"maxJobs\": \"<integer>\",\n  \"replyUrl\": \"<string>\",\n  \"replyRef\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"string\",\n  \"code\": 400\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "fe71ce83-0218-4217-a9a6-33bf5cef2f11",
+          "name": "prompt, discord, server or channel value is missing",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "imagine"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"prompt\": \"<string>\",\n  \"discord\": \"<string>\",\n  \"server\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"maxJobs\": \"<integer>\",\n  \"replyUrl\": \"<string>\",\n  \"replyRef\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Precondition Failed",
+          "code": 412,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"string\",\n  \"code\": 400\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "f39d6f94-2fb1-4b60-adc6-8ecb53affb60",
+          "name": "prompt, replyRef or replyUrl is too long",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "imagine"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"prompt\": \"<string>\",\n  \"discord\": \"<string>\",\n  \"server\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"maxJobs\": \"<integer>\",\n  \"replyUrl\": \"<string>\",\n  \"replyRef\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Request Entity Too Large",
+          "code": 413,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"string\",\n  \"code\": 400\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "a749ecd2-fd13-4412-8add-eee940a953f3",
+          "name": "Unable to find posted message, likely moderated or invalid prompt",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "imagine"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"prompt\": \"<string>\",\n  \"discord\": \"<string>\",\n  \"server\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"maxJobs\": \"<integer>\",\n  \"replyUrl\": \"<string>\",\n  \"replyRef\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+          "code": 422,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"string\",\n  \"jobid\": \"string\",\n  \"status\": \"moderated\",\n  \"code\": 422\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "bc8c6e98-e6e8-41c9-a11b-d89fb2764eee",
+          "name": "API query is full and can not accept new jobs/imagine requests",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "imagine"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"prompt\": \"<string>\",\n  \"discord\": \"<string>\",\n  \"server\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"maxJobs\": \"<integer>\",\n  \"replyUrl\": \"<string>\",\n  \"replyRef\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Too Many Requests",
+          "code": 429,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"string\",\n  \"executingJobs\": [\n    \"string\",\n    \"string\"\n  ],\n  \"code\": 429\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "bb176e06-84df-45ab-b43e-2f526d6ccecb",
+      "name": "Midjourney upscale or create variations and enhance or modify buttons",
+      "request": {
+        "name": "Midjourney upscale or create variations and enhance or modify buttons",
+        "description": {
+          "content": "Midjourney upscale or create variations and enhance or modify buttons",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "jobs",
+            "button"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"jobid\": \"<string>\",\n  \"button\": \"<string>\",\n  \"discord\": \"<string>\",\n  \"maxJobs\": \"<integer>\",\n  \"replyUrl\": \"<string>\",\n  \"replyRef\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "e2aef20b-9aae-4e2a-8659-8f541006e1a4",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "button"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jobid\": \"<string>\",\n  \"button\": \"<string>\",\n  \"discord\": \"<string>\",\n  \"maxJobs\": \"<integer>\",\n  \"replyUrl\": \"<string>\",\n  \"replyRef\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"jobid\": \"string\",\n  \"verb\": \"button\",\n  \"status\": \"started\",\n  \"created\": \"string\",\n  \"updated\": \"string\",\n  \"button\": \"Upscale (2x)\",\n  \"parentJobId\": \"string\",\n  \"channel\": \"string\",\n  \"server\": \"string\",\n  \"maxJobs\": 1878,\n  \"code\": 200\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "00ee2419-b513-4789-93c7-991fcfd78e17",
+          "name": "Button not supported or not found in jobid buttons array",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "button"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jobid\": \"<string>\",\n  \"button\": \"<string>\",\n  \"discord\": \"<string>\",\n  \"maxJobs\": \"<integer>\",\n  \"replyUrl\": \"<string>\",\n  \"replyRef\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"string\",\n  \"code\": 400\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "4c7898a6-5733-4ce1-b497-93e7e6ece11b",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "button"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jobid\": \"<string>\",\n  \"button\": \"<string>\",\n  \"discord\": \"<string>\",\n  \"maxJobs\": \"<integer>\",\n  \"replyUrl\": \"<string>\",\n  \"replyRef\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"string\",\n  \"code\": 400\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "0a286672-7abd-451e-82fb-bb319b0739f4",
+          "name": "Unable to locate jobid",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "button"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jobid\": \"<string>\",\n  \"button\": \"<string>\",\n  \"discord\": \"<string>\",\n  \"maxJobs\": \"<integer>\",\n  \"replyUrl\": \"<string>\",\n  \"replyRef\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"string\",\n  \"code\": 400\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "ed2fb980-8953-40fd-ab15-f7ab2e66ddfd",
+          "name": "Upscale button already executed by jobid",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "button"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jobid\": \"<string>\",\n  \"button\": \"<string>\",\n  \"discord\": \"<string>\",\n  \"maxJobs\": \"<integer>\",\n  \"replyUrl\": \"<string>\",\n  \"replyRef\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"string\",\n  \"button\": \"U3\",\n  \"jobid\": \"string\",\n  \"code\": 409\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "59876c70-4154-49d0-ad61-cd1abffe188e",
+          "name": "jobid or button value is missing",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "button"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jobid\": \"<string>\",\n  \"button\": \"<string>\",\n  \"discord\": \"<string>\",\n  \"maxJobs\": \"<integer>\",\n  \"replyUrl\": \"<string>\",\n  \"replyRef\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Precondition Failed",
+          "code": 412,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"string\",\n  \"code\": 400\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "be5190f4-15fc-4060-8975-5e9b99e605fe",
+          "name": "replyRef or replyUrl is too long",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "button"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jobid\": \"<string>\",\n  \"button\": \"<string>\",\n  \"discord\": \"<string>\",\n  \"maxJobs\": \"<integer>\",\n  \"replyUrl\": \"<string>\",\n  \"replyRef\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Request Entity Too Large",
+          "code": 413,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"string\",\n  \"code\": 400\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "9f97b6ca-0b13-4782-a9a4-a2674f829c6a",
+          "name": "API query is full and can not accept new jobs/button requests",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "button"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jobid\": \"<string>\",\n  \"button\": \"<string>\",\n  \"discord\": \"<string>\",\n  \"maxJobs\": \"<integer>\",\n  \"replyUrl\": \"<string>\",\n  \"replyRef\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Too Many Requests",
+          "code": 429,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"string\",\n  \"executingJobs\": [\n    \"string\",\n    \"string\"\n  ],\n  \"code\": 429\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "a05bedca-af18-473f-81cf-c3daa5ab6270",
+      "name": "Submit the Midjourney /blend command",
+      "request": {
+        "name": "Submit the Midjourney /blend command",
+        "description": {
+          "content": "Submit the Midjourney /blend command",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "jobs",
+            "blend"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"blendUrls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"discord\": \"<string>\",\n  \"server\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"blendDimensions\": \"<string>\",\n  \"maxJobs\": \"<integer>\",\n  \"replyUrl\": \"<string>\",\n  \"replyRef\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "91371584-935d-4ac3-b90c-0ddd0f21138e",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "blend"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"blendUrls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"discord\": \"<string>\",\n  \"server\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"blendDimensions\": \"<string>\",\n  \"maxJobs\": \"<integer>\",\n  \"replyUrl\": \"<string>\",\n  \"replyRef\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"jobid\": \"string\",\n  \"verb\": \"blend\",\n  \"status\": \"started\",\n  \"created\": \"string\",\n  \"updated\": \"string\",\n  \"blendUrls\": [\n    \"string\",\n    \"string\"\n  ],\n  \"channel\": \"string\",\n  \"server\": \"string\",\n  \"maxJobs\": 579,\n  \"messageId\": \"string\",\n  \"content\": \"string\",\n  \"timestamp\": \"string\",\n  \"code\": 200,\n  \"blendDimensions\": \"Square\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "0a5c0994-6348-4414-8e63-c815b4ad3e18",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "blend"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"blendUrls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"discord\": \"<string>\",\n  \"server\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"blendDimensions\": \"<string>\",\n  \"maxJobs\": \"<integer>\",\n  \"replyUrl\": \"<string>\",\n  \"replyRef\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"string\",\n  \"code\": 400\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "d75a7588-789c-4f02-b092-1c937106ca1f",
+          "name": "blendUrls, discord, server or channel value is missing, one of blendUrls values not a valid URL or URL which can not be retrieved",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "blend"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"blendUrls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"discord\": \"<string>\",\n  \"server\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"blendDimensions\": \"<string>\",\n  \"maxJobs\": \"<integer>\",\n  \"replyUrl\": \"<string>\",\n  \"replyRef\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Precondition Failed",
+          "code": 412,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"string\",\n  \"code\": 400\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "1d79f9e4-badb-42db-b5ce-0a57c9e1d958",
+          "name": "replyRef or replyUrl is too long",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "blend"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"blendUrls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"discord\": \"<string>\",\n  \"server\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"blendDimensions\": \"<string>\",\n  \"maxJobs\": \"<integer>\",\n  \"replyUrl\": \"<string>\",\n  \"replyRef\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Request Entity Too Large",
+          "code": 413,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"string\",\n  \"code\": 400\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "2ffc08d1-2db3-4496-8470-7deef5749c52",
+          "name": "Unable to find posted message, likely moderated or invalid url",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "blend"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"blendUrls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"discord\": \"<string>\",\n  \"server\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"blendDimensions\": \"<string>\",\n  \"maxJobs\": \"<integer>\",\n  \"replyUrl\": \"<string>\",\n  \"replyRef\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+          "code": 422,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"string\",\n  \"jobid\": \"string\",\n  \"status\": \"moderated\",\n  \"code\": 422\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "1227c6e5-3f95-4029-8a6a-815e648e7c2f",
+          "name": "API query is full and can not accept new jobs/blend requests",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "blend"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"blendUrls\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"discord\": \"<string>\",\n  \"server\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"blendDimensions\": \"<string>\",\n  \"maxJobs\": \"<integer>\",\n  \"replyUrl\": \"<string>\",\n  \"replyRef\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Too Many Requests",
+          "code": 429,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"string\",\n  \"executingJobs\": [\n    \"string\",\n    \"string\"\n  ],\n  \"code\": 429\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "bf51fb6c-19cc-4302-8b5a-4ef2005dacd7",
+      "name": "Submit the Midjourney /describe command",
+      "request": {
+        "name": "Submit the Midjourney /describe command",
+        "description": {
+          "content": "Submit the Midjourney /describe command",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "jobs",
+            "describe"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"describeUrl\": \"<string>\",\n  \"discord\": \"<string>\",\n  \"server\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"maxJobs\": \"<integer>\",\n  \"replyUrl\": \"<string>\",\n  \"replyRef\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "16882b4b-324b-457b-b71b-fe5c16faea5a",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "describe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"describeUrl\": \"<string>\",\n  \"discord\": \"<string>\",\n  \"server\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"maxJobs\": \"<integer>\",\n  \"replyUrl\": \"<string>\",\n  \"replyRef\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"jobid\": \"string\",\n  \"verb\": \"describe\",\n  \"status\": \"started\",\n  \"created\": \"string\",\n  \"updated\": \"string\",\n  \"describeUrl\": \"string\",\n  \"channel\": \"string\",\n  \"server\": \"string\",\n  \"maxJobs\": 9573,\n  \"messageId\": \"string\",\n  \"content\": \"string\",\n  \"timestamp\": \"string\",\n  \"code\": 200,\n  \"embeds\": [\n    {\n      \"type\": \"string\",\n      \"description\": \"string\",\n      \"image\": {\n        \"url\": \"string\",\n        \"proxy_url\": \"string\",\n        \"width\": 7734.07260487048,\n        \"height\": 8014.870775144575\n      }\n    },\n    {\n      \"type\": \"string\",\n      \"description\": \"string\",\n      \"image\": {\n        \"url\": \"string\",\n        \"proxy_url\": \"string\",\n        \"width\": 7019.272034599348,\n        \"height\": 7720.507721488474\n      }\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "37f5370a-3aca-4cad-b79a-3e238f220e87",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "describe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"describeUrl\": \"<string>\",\n  \"discord\": \"<string>\",\n  \"server\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"maxJobs\": \"<integer>\",\n  \"replyUrl\": \"<string>\",\n  \"replyRef\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"string\",\n  \"code\": 400\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "ce63e115-3c30-4467-b693-fa071018cecf",
+          "name": "describeUrl, discord, server or channel value is missing, describeUrl value not a valid URL or URL which can not be retrieved",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "describe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"describeUrl\": \"<string>\",\n  \"discord\": \"<string>\",\n  \"server\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"maxJobs\": \"<integer>\",\n  \"replyUrl\": \"<string>\",\n  \"replyRef\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Precondition Failed",
+          "code": 412,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"string\",\n  \"code\": 400\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "ce7f1e41-23ca-4d3d-9635-2fa29a553950",
+          "name": "replyRef or replyUrl is too long",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "describe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"describeUrl\": \"<string>\",\n  \"discord\": \"<string>\",\n  \"server\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"maxJobs\": \"<integer>\",\n  \"replyUrl\": \"<string>\",\n  \"replyRef\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Request Entity Too Large",
+          "code": 413,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"string\",\n  \"code\": 400\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "1d1e5cb3-179c-4b5f-aac1-91811718376b",
+          "name": "Unable to find posted message, likely moderated or invalid url",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "describe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"describeUrl\": \"<string>\",\n  \"discord\": \"<string>\",\n  \"server\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"maxJobs\": \"<integer>\",\n  \"replyUrl\": \"<string>\",\n  \"replyRef\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+          "code": 422,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"string\",\n  \"jobid\": \"string\",\n  \"status\": \"moderated\",\n  \"code\": 422\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "d745bd83-5743-4aa6-b9cf-5b7486d91388",
+          "name": "API query is full and can not accept new jobs/blend requests",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "describe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"describeUrl\": \"<string>\",\n  \"discord\": \"<string>\",\n  \"server\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"maxJobs\": \"<integer>\",\n  \"replyUrl\": \"<string>\",\n  \"replyRef\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Too Many Requests",
+          "code": 429,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"string\",\n  \"executingJobs\": [\n    \"string\",\n    \"string\"\n  ],\n  \"code\": 429\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "69523859-5876-416a-a191-4db151cbac94",
+      "name": "Retrieve status and results of jobs/imagine, jobs/button, jobs/blend or jobs/describe",
+      "request": {
+        "name": "Retrieve status and results of jobs/imagine, jobs/button, jobs/blend or jobs/describe",
+        "description": {
+          "content": "Retrieve status and results of jobs/imagine, jobs/button, jobs/blend or jobs/describe",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "jobs",
+            ""
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "jobid",
+              "value": "<string>",
+              "description": "(Required) jobid value returned by jobs/imagine, jobs/button, jobs/blend or jobs/describe"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "aa3fe622-9068-4920-8d49-e3420127b797",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "jobid",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"jobid\": \"string\",\n  \"verb\": \"imagine\",\n  \"status\": \"cancelled\",\n  \"created\": \"string\",\n  \"channel\": \"string\",\n  \"server\": \"string\",\n  \"maxJobs\": 1773,\n  \"code\": 200,\n  \"parentJobId\": \"string\",\n  \"updated\": \"string\",\n  \"prompt\": \"string\",\n  \"blendUrls\": [\n    \"string\",\n    \"string\"\n  ],\n  \"blendDimensions\": \"Landscape\",\n  \"describeUrl\": \"string\",\n  \"button\": \"Redo Upscale (4x)\",\n  \"children\": [\n    {\n      \"messageId\": \"string\",\n      \"button\": \"U2\",\n      \"jobid\": \"string\"\n    },\n    {\n      \"messageId\": \"string\",\n      \"button\": \"U2\",\n      \"jobid\": \"string\"\n    }\n  ],\n  \"buttons\": [\n    \"➡️\",\n    \"Remaster\"\n  ],\n  \"messageId\": \"string\",\n  \"content\": \"string\",\n  \"timestamp\": \"string\",\n  \"attachments\": [\n    {\n      \"proxy_url\": \"string\",\n      \"size\": 9539,\n      \"url\": \"string\",\n      \"width\": 2943,\n      \"content_type\": \"string\",\n      \"filename\": \"string\",\n      \"height\": 1414,\n      \"id\": \"string\"\n    },\n    {\n      \"proxy_url\": \"string\",\n      \"size\": 8986,\n      \"url\": \"string\",\n      \"width\": 206,\n      \"content_type\": \"string\",\n      \"filename\": \"string\",\n      \"height\": 493,\n      \"id\": \"string\"\n    }\n  ],\n  \"embeds\": [\n    {\n      \"type\": \"string\",\n      \"description\": \"string\",\n      \"image\": {\n        \"url\": \"string\",\n        \"proxy_url\": \"string\",\n        \"width\": 6001.09416918041,\n        \"height\": 6015.770651233574\n      }\n    },\n    {\n      \"type\": \"string\",\n      \"description\": \"string\",\n      \"image\": {\n        \"url\": \"string\",\n        \"proxy_url\": \"string\",\n        \"width\": 7542.984058671539,\n        \"height\": 9209.379423454458\n      }\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "85f237ca-19fb-464f-9d9a-3ded5970c0aa",
+          "name": "Query param jobid not provided",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "jobid",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"string\",\n  \"code\": 400\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "0885fa6e-d4cc-4e46-9dca-09b744af6813",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "jobid",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"string\",\n  \"code\": 400\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "2fcfe694-1e1c-4f76-9c8e-cf5085e61d38",
+          "name": "Unable to locate jobid",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "jobid",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"string\",\n  \"code\": 400\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "82d5cc83-0a83-4dc0-8c54-2fbcc1929693",
+      "name": "Cancel execution of job created by jobs/imagine, jobs/button, jobs/blend or jobs/describe",
+      "request": {
+        "name": "Cancel execution of job created by jobs/imagine, jobs/button, jobs/blend or jobs/describe",
+        "description": {
+          "content": "Cancel execution of job created by jobs/imagine, jobs/button, jobs/blend or jobs/describe",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "jobs",
+            "cancel",
+            ""
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "jobid",
+              "value": "<string>",
+              "description": "(Required) jobid value returned by jobs/imagine, jobs/button, jobs/blend or jobs/describe"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "e32d4415-6423-4f9d-aab1-4cce1a5beda9",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "cancel",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "jobid",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"jobid\": \"string\",\n  \"status\": \"started\",\n  \"code\": 200\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "67ced360-176d-4a3d-9945-72554426a421",
+          "name": "Query param jobid not provided",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "cancel",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "jobid",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"string\",\n  \"code\": 400\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "dc745d36-c2d1-4620-a931-2db56e7b3358",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "cancel",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "jobid",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"string\",\n  \"code\": 400\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "645bb7ee-40a9-4f6a-91fa-80c6845c5077",
+          "name": "Unable to locate jobid",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "cancel",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "jobid",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"string\",\n  \"code\": 400\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "53ba3d1b-5040-4b69-9a63-beb396ae879c",
+      "name": "Get list of currently executing jobs",
+      "request": {
+        "name": "Get list of currently executing jobs",
+        "description": {
+          "content": "Get list of currently executing jobs",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "jobs"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "3004bb1e-b39e-4ffd-8fa6-ab8fe46f1852",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  \"string\",\n  \"string\"\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "f2d37391-d2ea-4ed6-9c64-f6f387a35998",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"string\",\n  \"code\": 400\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "f2dfa928-bba0-49b7-a1b3-43529a8c09b2",
+      "name": "Retrieve account information",
+      "request": {
+        "name": "Retrieve account information",
+        "description": {
+          "content": "Retrieve account information",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "account"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "45ff401e-dce1-4c1c-afd2-7e38c9f7bcb2",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "account"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"email\": \"string\",\n  \"created\": \"string\",\n  \"name\": \"string\",\n  \"verified\": \"string\",\n  \"sub\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "d309990e-e4fc-4f22-926a-9d9ca4fd7d44",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "account"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"string\",\n  \"code\": 400\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.useapi.net/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5f45bfa0-43a0-44f5-bd6d-1f712278bae0",
+    "name": "Midjourney REST API by useapi.net",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Simple, reliable and affordable way to use Midjourney via standard REST API",
+      "type": "text/plain"
+    }
+  }
+}

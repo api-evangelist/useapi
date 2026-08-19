@@ -1,0 +1,518 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TemPolor API v1 by useapi.net",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "tempolor",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/tempolor/accounts"
+          },
+          "docs": "[Retrieve TemPolor accounts information.](https://useapi.net/docs/api-tempolor-v1/get-tempolor-accounts)"
+        },
+        {
+          "info": {
+            "name": "accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/tempolor/accounts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "[Create or update TemPolor API account.](https://useapi.net/docs/api-tempolor-v1/post-tempolor-accounts)"
+        },
+        {
+          "info": {
+            "name": "accounts/<user_id>",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/tempolor/accounts/:user_id",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "[Retrieve TemPolor account information.](https://useapi.net/docs/api-tempolor-v1/get-tempolor-accounts-user_id)"
+        },
+        {
+          "info": {
+            "name": "accounts/<user_id>",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.useapi.net/v1/tempolor/accounts/:user_id",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "[Delete TemPolor account.](https://useapi.net/docs/api-tempolor-v1/del-tempolor-accounts-user_id)"
+        },
+        {
+          "info": {
+            "name": "music/song",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/tempolor/music/song",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "user_id",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "lyrics",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "model_song",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "artistVoiceItemId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "clonedVoiceItemId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "midiItemId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "[Create music with vocals](https://useapi.net/docs/api-tempolor-v1/post-tempolor-music-song)"
+        },
+        {
+          "info": {
+            "name": "music/instrumental",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/tempolor/music/instrumental",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "user_id",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "model_instrumental",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "tonality",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "bpm",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "chord",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "[Create instrumental music](https://useapi.net/docs/api-tempolor-v1/post-tempolor-music-instrumental)"
+        },
+        {
+          "info": {
+            "name": "music/stems-splitter • use Body » binary to upload audio file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/tempolor/music/stems-splitter",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one tempolor/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              }
+            ]
+          },
+          "docs": "[Split audio into stems](https://useapi.net/docs/api-tempolor-v1/post-tempolor-music-stems-splitter)"
+        },
+        {
+          "info": {
+            "name": "music",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/tempolor/music",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one tempolor/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Pagination cursor for fetching next page of results."
+              }
+            ]
+          },
+          "docs": "[Retrieve generated music](https://useapi.net/docs/api-tempolor-v1/get-tempolor-music)"
+        },
+        {
+          "info": {
+            "name": "music/<job_id>",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/tempolor/music/:job_id",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "[Retrieve music generation job status](https://useapi.net/docs/api-tempolor-v1/get-tempolor-music-job_id)"
+        },
+        {
+          "info": {
+            "name": "music/<job_id>",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.useapi.net/v1/tempolor/music/:job_id",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "[Delete generated music](https://useapi.net/docs/api-tempolor-v1/delete-tempolor-music-job_id)"
+        },
+        {
+          "info": {
+            "name": "music/download/<job_id>",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/tempolor/music/download/:job_id",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "file_format",
+                "value": "mp3",
+                "type": "query",
+                "description": "Optional, format of the generated music. Supported values: mp3 (default), wav (higher quality), stems (ZIP archive with separated stems)."
+              }
+            ]
+          },
+          "docs": "[Download generated music](https://useapi.net/docs/api-tempolor-v1/get-tempolor-music-download-job_id)"
+        },
+        {
+          "info": {
+            "name": "music/artist-voices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/tempolor/music/artist-voices",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one tempolor/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Pagination cursor for fetching next page of results."
+              }
+            ]
+          },
+          "docs": "[List artist voices](https://useapi.net/docs/api-tempolor-v1/get-tempolor-music-artist-voices)"
+        },
+        {
+          "info": {
+            "name": "music/cloned-voices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/tempolor/music/cloned-voices",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one tempolor/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Pagination cursor for fetching next page of results."
+              }
+            ]
+          },
+          "docs": "[List cloned voices](https://useapi.net/docs/api-tempolor-v1/get-tempolor-music-cloned-voices)"
+        },
+        {
+          "info": {
+            "name": "music/cloned-voices • use Body » binary to upload audio file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/tempolor/music/cloned-voices",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one tempolor/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Required, specify a name for your cloned voice."
+              }
+            ]
+          },
+          "docs": "[Upload voice sample for cloning](https://useapi.net/docs/api-tempolor-v1/post-tempolor-music-cloned-voices)"
+        },
+        {
+          "info": {
+            "name": "music/cloned-voices/<clonedVoiceItemId>",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.useapi.net/v1/tempolor/music/cloned-voices/:clonedVoiceItemId",
+            "params": [
+              {
+                "name": "clonedVoiceItemId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "[Delete cloned voice](https://useapi.net/docs/api-tempolor-v1/delete-tempolor-music-cloned-voices-clonedVoiceItemId)"
+        },
+        {
+          "info": {
+            "name": "music/midi",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/tempolor/music/midi",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one tempolor/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Pagination cursor for fetching next page of results."
+              }
+            ]
+          },
+          "docs": "[List uploaded MIDI files](https://useapi.net/docs/api-tempolor-v1/get-tempolor-music-midi)"
+        },
+        {
+          "info": {
+            "name": "music/midi • use Body » binary to upload MIDI file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/tempolor/music/midi",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one tempolor/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Required, specify a name for your MIDI file."
+              }
+            ]
+          },
+          "docs": "[Upload MIDI file](https://useapi.net/docs/api-tempolor-v1/post-tempolor-music-midi)"
+        },
+        {
+          "info": {
+            "name": "music/midi/<midiItemId>",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.useapi.net/v1/tempolor/music/midi/:midiItemId",
+            "params": [
+              {
+                "name": "midiItemId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "[Delete MIDI file](https://useapi.net/docs/api-tempolor-v1/delete-tempolor-music-midi-midiItemId)"
+        },
+        {
+          "info": {
+            "name": "scheduler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/tempolor/scheduler"
+          },
+          "docs": "[List scheduled jobs](https://useapi.net/docs/api-tempolor-v1/get-tempolor-scheduler)"
+        },
+        {
+          "info": {
+            "name": "scheduler/available",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/tempolor/scheduler/available"
+          },
+          "docs": "[Retrieve available capacity](https://useapi.net/docs/api-tempolor-v1/get-tempolor-scheduler-available)"
+        },
+        {
+          "info": {
+            "name": "scheduler/<job_id>",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.useapi.net/v1/tempolor/scheduler/:job_id",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "[Cancel a running job](https://useapi.net/docs/api-tempolor-v1/del-tempolor-scheduler-job_id)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

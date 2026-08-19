@@ -1,0 +1,478 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FlowMusic API v1 by useapi.net",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "flowmusic",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/flowmusic/accounts"
+          },
+          "docs": "## [List accounts](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-accounts)"
+        },
+        {
+          "info": {
+            "name": "POST accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/flowmusic/accounts",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "refresh_token",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Configure a Flow Music account](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-accounts)"
+        },
+        {
+          "info": {
+            "name": "GET accounts/{email}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/flowmusic/accounts/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "## [Get one account](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-accounts-email)"
+        },
+        {
+          "info": {
+            "name": "DELETE accounts/{email}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.useapi.net/v1/flowmusic/accounts/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "## [Remove an account](https://useapi.net/docs/api-flowmusic-v1/delete-flowmusic-accounts-email)"
+        },
+        {
+          "info": {
+            "name": "GET accounts/usage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/flowmusic/accounts/usage",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Required. Which configured account to report on."
+              }
+            ]
+          },
+          "docs": "## [Account usage](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-accounts-usage)"
+        },
+        {
+          "info": {
+            "name": "GET music",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/flowmusic/music",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Filter clips by configured account."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Number of clips to return, 1-100 (default 30)."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Page offset (default 0)."
+              }
+            ]
+          },
+          "docs": "## [List clips](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-music)"
+        },
+        {
+          "info": {
+            "name": "POST music",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/flowmusic/music",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "instrumental",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "lyrics",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "ghostwriter",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "refImage1",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "refAudio1",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "mode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Generate a song](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-music)"
+        },
+        {
+          "info": {
+            "name": "POST music/edit (effect)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/flowmusic/music/edit",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "operation",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "clip",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "effect",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "mix",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "room_size",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "gain_db",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "pan",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "bass_db",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "mid_db",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "treble_db",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "fade_in_s",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "fade_out_s",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "start_s",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "end_s",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "title",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "seed",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "mode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Edit a song](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-music-edit)"
+        },
+        {
+          "info": {
+            "name": "POST music/lyrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/flowmusic/music/lyrics",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "structure",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Generate lyrics (free)](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-music-lyrics)"
+        },
+        {
+          "info": {
+            "name": "GET music/download",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/flowmusic/music/download",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Required. Encoded clip asset id (user:<id>-<email>-clip:<uuid>) or a completed jobid (resolves to its first clip)."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Only mp3 is supported (the default)."
+              }
+            ]
+          },
+          "docs": "## [Download a clip](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-music-download)"
+        },
+        {
+          "info": {
+            "name": "POST files (raw body upload)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/flowmusic/files",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Which configured account to use."
+              },
+              {
+                "name": "stripMetadata",
+                "value": "",
+                "type": "query",
+                "description": "Optional, default true. Strip AI-provenance/EXIF metadata before upload. Set false to keep original bytes."
+              }
+            ]
+          },
+          "docs": "## [Upload a file](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-files)"
+        },
+        {
+          "info": {
+            "name": "POST files/generate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/flowmusic/files/generate",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Generate an AI image](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-files-generate)"
+        },
+        {
+          "info": {
+            "name": "GET jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/flowmusic/jobs"
+          },
+          "docs": "## [List running jobs](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-jobs)"
+        },
+        {
+          "info": {
+            "name": "GET jobs/{jobid}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/flowmusic/jobs/:jobid",
+            "params": [
+              {
+                "name": "jobid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "## [Poll a job](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-jobs-jobid)"
+        },
+        {
+          "info": {
+            "name": "DELETE jobs/{jobid}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.useapi.net/v1/flowmusic/jobs/:jobid",
+            "params": [
+              {
+                "name": "jobid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "## [Cancel a job](https://useapi.net/docs/api-flowmusic-v1/delete-flowmusic-jobs-jobid)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

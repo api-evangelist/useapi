@@ -1,0 +1,1496 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MiniMax API v1 by useapi.net",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "minimax",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/minimax/accounts"
+          },
+          "docs": "## [Retrieve MiniMax API accounts configuration.](https://useapi.net/docs/api-minimax-v1/get-minimax-accounts)"
+        },
+        {
+          "info": {
+            "name": "accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/minimax/accounts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "## [Create or update MiniMax API account configuration](https://useapi.net/docs/api-minimax-v1/post-minimax-accounts-account)"
+        },
+        {
+          "info": {
+            "name": "accounts/<account>",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/minimax/accounts/:account",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "## [Retrieve MiniMax API account configuration for <code>account</code>](https://useapi.net/docs/api-minimax-v1/get-minimax-accounts-account)"
+        },
+        {
+          "info": {
+            "name": "accounts/<account>",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.useapi.net/v1/minimax/accounts/:account",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "## [Delete MiniMax API account](https://useapi.net/docs/api-minimax-v1/del-minimax-accounts-account)"
+        },
+        {
+          "info": {
+            "name": "features",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/minimax/features/",
+            "params": [
+              {
+                "name": "account ",
+                "value": "",
+                "type": "query",
+                "description": "Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "account",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Retrieve your hailuoai.video account information](https://useapi.net/docs/api-minimax-v1/get-minimax-features)"
+        },
+        {
+          "info": {
+            "name": "videos/create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/minimax/videos/create",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "account",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "promptOptimization",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "fileID",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "end_frame_fileID",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "fileID2",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "videoFileID1",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "audioFileID1",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "aspectRatio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "model",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "options",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "resolution",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "duration",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Create a video using a text and image prompt](https://useapi.net/docs/api-minimax-v1/post-minimax-videos-create)"
+        },
+        {
+          "info": {
+            "name": "videos/agent-create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/minimax/videos/agent-create",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "account",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "templateId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "fileID",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "ossPath",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Create a video using an agent template](https://useapi.net/docs/api-minimax-v1/post-minimax-videos-agent-create)"
+        },
+        {
+          "info": {
+            "name": "videos/cancel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/minimax/videos/cancel",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "videoId",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Cancel the currently generated video.](https://useapi.net/docs/api-minimax-v1/post-minimax-videos-cancel)"
+        },
+        {
+          "info": {
+            "name": "videos/<videoId>",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/minimax/videos/:videoId",
+            "params": [
+              {
+                "name": "videoId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "## [Retrieve video](https://useapi.net/docs/api-minimax-v1/get-minimax-videos-videoId)"
+        },
+        {
+          "info": {
+            "name": "videos/<videoId>",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.useapi.net/v1/minimax/videos/:videoId",
+            "params": [
+              {
+                "name": "videoId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "## [Delete video](https://useapi.net/docs/api-minimax-v1/del-minimax-videos-videoId)"
+        },
+        {
+          "info": {
+            "name": "videos",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/minimax/videos/",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "query",
+                "description": "Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Optional, specify the number of videos to return. Default 30"
+              },
+              {
+                "name": "lastVideoId",
+                "value": "",
+                "type": "query",
+                "description": "Optional, specify the video id from where to start"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "## [Retrieve videos](https://useapi.net/docs/api-minimax-v1/get-minimax-videos)"
+        },
+        {
+          "info": {
+            "name": "videos/agent-templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/minimax/videos/agent-templates/",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "query",
+                "description": "Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Optional, specify the number of videos to return. Default 30"
+              },
+              {
+                "name": "lastId",
+                "value": "",
+                "type": "query",
+                "description": "Optional, specify the template id from where to start pagination."
+              },
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "query",
+                "description": "Optional, specify a template ID to get detailed information for a specific template including input requirements."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "## [Retrieve available agent video templates](https://useapi.net/docs/api-minimax-v1/get-minimax-videos-agent-templates)"
+        },
+        {
+          "info": {
+            "name": "videos/characters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/minimax/videos/characters/",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "query",
+                "description": "Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Optional, specify the number of videos to return. Default 30"
+              },
+              {
+                "name": "lastVideoId",
+                "value": "",
+                "type": "query",
+                "description": "Optional, specify the video id from where to start"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "account",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "page",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "pageSize",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Retrieve the list of characters](https://useapi.net/docs/api-minimax-v1/get-minimax-videos-characters)"
+        },
+        {
+          "info": {
+            "name": "images/create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/minimax/images/create",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "account",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "promptOptimization",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "characterFileId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "referenceFileId1",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "model",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "aspectRatio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "resolution",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "quality",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "quantity",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Create an image using a text prompt](https://useapi.net/docs/api-minimax-v1/post-minimax-images-create)"
+        },
+        {
+          "info": {
+            "name": "images/<imageId>",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/minimax/images/:imageId",
+            "params": [
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "## [Retrieve image](https://useapi.net/docs/api-minimax-v1/get-minimax-images-imageId)"
+        },
+        {
+          "info": {
+            "name": "images/<imageId>",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.useapi.net/v1/minimax/images/:imageId",
+            "params": [
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "## [Delete image](https://useapi.net/docs/api-minimax-v1/del-minimax-images-imageId)"
+        },
+        {
+          "info": {
+            "name": "images",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/minimax/images/",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "query",
+                "description": "Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Optional, specify the number of images to return. Default 30"
+              },
+              {
+                "name": "lastImageId",
+                "value": "",
+                "type": "query",
+                "description": "Optional, specify the image id from where to start"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "## [Retrieve the list of images you have generated](https://useapi.net/docs/api-minimax-v1/get-minimax-images)"
+        },
+        {
+          "info": {
+            "name": "music/create",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/minimax/music/create",
+            "params": [
+              {
+                "name": "styleId",
+                "value": "",
+                "type": "query",
+                "description": "Required styleId"
+              },
+              {
+                "name": "prompt",
+                "value": "",
+                "type": "query",
+                "description": "Required prompt (lyrics)"
+              },
+              {
+                "name": "account",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required."
+              },
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Optional song title"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "## [Compose music up to 60 seconds long using a text prompt](https://useapi.net/docs/api-minimax-v1/get-minimax-music-create)"
+        },
+        {
+          "info": {
+            "name": "music",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/minimax/music",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Optional, specify the number of songs to return. Default 20."
+              },
+              {
+                "name": "lastMusicId",
+                "value": "",
+                "type": "query",
+                "description": "Optional, specify the music id from where to start."
+              },
+              {
+                "name": "account",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "## [Retrieve the list of songs you have generated](https://useapi.net/docs/api-minimax-v1/get-minimax-music)"
+        },
+        {
+          "info": {
+            "name": "music/styles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/minimax/music/styles",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "## [Retrieve the list of music styles](https://useapi.net/docs/api-minimax-v1/get-minimax-music-styles)"
+        },
+        {
+          "info": {
+            "name": "files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/minimax/files/",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "query",
+                "description": "Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Optional, specify the number of files to return. Default 10"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "account",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Retrieve the list of images you have uploaded](https://useapi.net/docs/api-minimax-v1/get-minimax-files)"
+        },
+        {
+          "info": {
+            "name": "files • use Body » binary to upload .png/.jpeg/.mp3/.wav/.mp4",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/minimax/files/",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "query",
+                "description": "optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required"
+              }
+            ]
+          },
+          "docs": "## [Upload image, audio, or video file](https://useapi.net/docs/api-minimax-v1/post-minimax-files) — Content-Type: image/png, image/jpeg, audio/mpeg, audio/wav, video/mp4"
+        },
+        {
+          "info": {
+            "name": "files/<file_id>",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.useapi.net/v1/minimax/files/:file_id",
+            "params": [
+              {
+                "name": "file_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "## [Delete file](https://useapi.net/docs/api-minimax-v1/del-minimax-files-fileID)"
+        },
+        {
+          "info": {
+            "name": "audio",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/minimax/audio/",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "query",
+                "description": "Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Optional, specify the page number"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Optional, specify the number of items to return. Default 100"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "## [Retrieve the list of text-to-speech audio clips you have generated](https://useapi.net/docs/api-minimax-v1/get-minimax-audio)"
+        },
+        {
+          "info": {
+            "name": "audio/<audio_id>",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/minimax/audio/:audio_id",
+            "params": [
+              {
+                "name": "audio_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "## [Retrieve text-to-speech audio clip](https://useapi.net/docs/api-minimax-v1/get-minimax-audio_audio_id)"
+        },
+        {
+          "info": {
+            "name": "audio/<audio_id>",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.useapi.net/v1/minimax/audio/:audio_id",
+            "params": [
+              {
+                "name": "audio_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "## [Delete text-to-speech audio clip](https://useapi.net/docs/api-minimax-v1/del-minimax-audio-audio_id)"
+        },
+        {
+          "info": {
+            "name": "audio/config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/minimax/audio/config/",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "query",
+                "description": "Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "## [Retrieve audio configuration parameters](https://useapi.net/docs/api-minimax-v1/get-minimax-audio-config)"
+        },
+        {
+          "info": {
+            "name": "audio/voices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/minimax/audio/voices/",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "query",
+                "description": "Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Optional, specify the page number"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Optional, specify the number of items to return. Default 500"
+              },
+              {
+                "name": "tag_list",
+                "value": "",
+                "type": "query",
+                "description": "Optional, comma-seprated filter of tags"
+              },
+              {
+                "name": "is_system",
+                "value": "",
+                "type": "query",
+                "description": "Optional, set to false to retrieve cloned voices. Default true"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "## [Retrieve the list of system and cloned audio voices](https://useapi.net/docs/api-minimax-v1/get-minimax-audio-voices)"
+        },
+        {
+          "info": {
+            "name": "audio/create-mp3",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/minimax/audio/voices/create-mp3",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "account",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "text",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "voice_id",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "emotion",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "language_boost",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "vol",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "speed",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "pitch",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "deepen_lighten",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "stronger_softer",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "nasal_crisp",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "spacious_echo",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "lofi_telephone",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "robotic",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "auditorium_echo",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "model",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Create text-to-speech audio](https://useapi.net/docs/api-minimax-v1/post-minimax-audio-create-mp3)"
+        },
+        {
+          "info": {
+            "name": "audio/create-stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/minimax/audio/create-stream",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "account",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "text",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "voice_id",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "emotion",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "language_boost",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "vol",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "speed",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "pitch",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "deepen_lighten",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "stronger_softer",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "nasal_crisp",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "spacious_echo",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "lofi_telephone",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "robotic",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "auditorium_echo",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "model",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Create text-to-speech audio stream token and payload](https://useapi.net/docs/api-minimax-v1/post-minimax-audio-create-stream)"
+        },
+        {
+          "info": {
+            "name": "audio/upload-sample • use Body » binary to upload .mp3 and . wav",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/minimax/audio/upload-sample/",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required."
+              }
+            ]
+          },
+          "docs": "## [Upload an MP3 or WAV voice sample to be used for voice cloning](https://useapi.net/docs/api-minimax-v1/post-minimax-audio-upload-sample)"
+        },
+        {
+          "info": {
+            "name": "audio/clone-voice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/minimax/audio/voices/clone-voice",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "voice_name",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "language_tag",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "files",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "need_noise_reduction",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Clone the voice using the uploaded voice samples](https://useapi.net/docs/api-minimax-v1/post-minimax-audio-clone-voice)"
+        },
+        {
+          "info": {
+            "name": "audio/delete-voice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/minimax/audio/voices/delete-voice",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "account",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "voice_id",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Delete cloned voice](https://useapi.net/docs/api-minimax-v1/post-minimax-audio-delete-voice)"
+        },
+        {
+          "info": {
+            "name": "llm",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/minimax/llm",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "query",
+                "description": "optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "optional, specify the number of records to return. Default 20."
+              },
+              {
+                "name": "lastChatID",
+                "value": "",
+                "type": "query",
+                "description": "optional, specify the chatID from where to start"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "## [Retrieve the list of LLM chats](https://useapi.net/docs/api-minimax-v1/get-minimax-llm)"
+        },
+        {
+          "info": {
+            "name": "llm",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/minimax/llm",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "account",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "model",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "chatID",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "stream",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "searchWeb",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Chat with LLM](https://useapi.net/docs/api-minimax-v1/post-minimax-llm)"
+        },
+        {
+          "info": {
+            "name": "llm",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.useapi.net/v1/minimax/llm",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "query",
+                "description": "optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required"
+              },
+              {
+                "name": "chatIDs",
+                "value": "",
+                "type": "query",
+                "description": "optional, specify comma-separated list of chatID values that you want to delete. Set it to all to delete all chats for your account"
+              },
+              {
+                "name": "msgIDs",
+                "value": "",
+                "type": "query",
+                "description": "optional, specify a comma-separated list of msgID values that you want to delete"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "## [Delete LLM chats and/or messages](https://useapi.net/docs/api-minimax-v1/del-minimax-llm)"
+        },
+        {
+          "info": {
+            "name": "llm/<chatID>",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/minimax/llm/:chatID",
+            "params": [
+              {
+                "name": "chatID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "account",
+                "value": "",
+                "type": "query",
+                "description": "optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "## [Retrieve the messages from the LLM chat](https://useapi.net/docs/api-minimax-v1/get-minimax-llm-chatID)"
+        },
+        {
+          "info": {
+            "name": "agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/minimax/agent",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "account",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "models",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "async",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## [Execute AI Agent with Multi-Model Support](https://useapi.net/docs/api-minimax-v1/post-minimax-agent)"
+        },
+        {
+          "info": {
+            "name": "agent/jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/minimax/agent/jobs"
+          },
+          "docs": "## [List Running Agent Jobs](https://useapi.net/docs/api-minimax-v1/get-minimax-agent-jobs)"
+        },
+        {
+          "info": {
+            "name": "agent/<jobId>",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/minimax/agent/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "## [Retrieve Agent Job Status and Results](https://useapi.net/docs/api-minimax-v1/get-minimax-agent-jobId)"
+        },
+        {
+          "info": {
+            "name": "scheduler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/minimax/scheduler",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "## [Remove video or image generation from being tracked by the scheduler](https://useapi.net/docs/api-minimax-v1/get-minimax-scheduler)"
+        },
+        {
+          "info": {
+            "name": "scheduler/available",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/minimax/scheduler/available",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "## [Retrieve the list of videos currently running via the API along with the available account capacity](https://useapi.net/docs/api-minimax-v1/get-minimax-scheduler-available)"
+        },
+        {
+          "info": {
+            "name": "scheduler/<id>",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.useapi.net/v1/minimax/scheduler/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "## [Remove video or image generation from being tracked by the scheduler](https://useapi.net/docs/api-minimax-v1/del-minimax-scheduler-videoId)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

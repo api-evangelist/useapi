@@ -1,0 +1,2085 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kling API v1 by useapi.net",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "kling",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/kling/accounts"
+          },
+          "docs": "[Retrieve Kling accounts information.](https://useapi.net/docs/api-kling-v1/get-kling-accounts)"
+        },
+        {
+          "info": {
+            "name": "accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/kling/accounts",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "password",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "passToken",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "did",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "userId",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "[Add or update Kling account.](https://useapi.net/docs/api-kling-v1/post-kling-accounts)"
+        },
+        {
+          "info": {
+            "name": "accounts/<email>",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/kling/accounts/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "[Retrieve Kling API account configuration and balance.](https://useapi.net/docs/api-kling-v1/get-kling-accounts-email)"
+        },
+        {
+          "info": {
+            "name": "accounts/<email>",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.useapi.net/v1/kling/accounts/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "[Delete Kling account.](https://useapi.net/docs/api-kling-v1/del-kling-accounts-email)"
+        },
+        {
+          "info": {
+            "name": "scheduler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/kling/scheduler"
+          },
+          "docs": "[Retrieve running tasks](https://useapi.net/docs/api-kling-v1/get-kling-scheduler)"
+        },
+        {
+          "info": {
+            "name": "scheduler/available",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/kling/scheduler/available"
+          },
+          "docs": "[Retrieve available capacity](https://useapi.net/docs/api-kling-v1/get-kling-scheduler-available)"
+        },
+        {
+          "info": {
+            "name": "scheduler/<task_id>",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.useapi.net/v1/kling/scheduler/:task_id",
+            "params": [
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "[Cancel a running task](https://useapi.net/docs/api-kling-v1/del-kling-scheduler-task_id)"
+        },
+        {
+          "info": {
+            "name": "tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/kling/tasks",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Optional page size"
+              },
+              {
+                "name": "createdBefore",
+                "value": "",
+                "type": "query",
+                "description": "Optional before date (date as a  number of milliseconds elapsed since the epoch, which is defined as the midnight at the beginning of January 1, 1970, UTC)"
+              },
+              {
+                "name": "createdAfter",
+                "value": "",
+                "type": "query",
+                "description": "Optional after date (date as a  number of milliseconds elapsed since the epoch, which is defined as the midnight at the beginning of January 1, 1970, UTC)"
+              },
+              {
+                "name": "contentType",
+                "value": "video",
+                "type": "query",
+                "description": "Optional task type. Valid values: video,image,audio"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "[Retrieve Kling tasks](https://useapi.net/docs/api-kling-v1/get-kling-tasks)"
+        },
+        {
+          "info": {
+            "name": "tasks/<task_id>",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/kling/tasks/:task_id",
+            "params": [
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "[Retrieve Kling task](https://useapi.net/docs/api-kling-v1/get-kling-tasks-task_id)"
+        },
+        {
+          "info": {
+            "name": "tasks/<task_id>",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.useapi.net/v1/kling/tasks/:task_id",
+            "params": [
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              }
+            ]
+          },
+          "docs": "[Delete Kling task](https://useapi.net/docs/api-kling-v1/del-kling-tasks-task_id)"
+        },
+        {
+          "info": {
+            "name": "tts/voices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/kling/tts/voices",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "[Retrieve list of TTS (text-to-speach) voices](https://useapi.net/docs/api-kling-v1/get-kling-tts-voices)"
+        },
+        {
+          "info": {
+            "name": "tts/create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/kling/tts/create",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "speakerId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "text",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "speed",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "emotion",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "[Generate speech from text](https://useapi.net/docs/api-kling-v1/post-kling-tts-create)"
+        },
+        {
+          "info": {
+            "name": "avatars",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/kling/avatars",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              }
+            ]
+          },
+          "docs": "[Retrieve avatars](https://useapi.net/docs/api-kling-v1/get-kling-avatars)"
+        },
+        {
+          "info": {
+            "name": "avatars",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/kling/avatars",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "nickname",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "scene",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "ttsSpeaker",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "ttsSpeed",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "ttsEmotionKey",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "[Create Avatar 2.0](https://useapi.net/docs/api-kling-v1/post-kling-avatars)\n\nMost fields are optional and will be automatically populated using AI if not provided."
+        },
+        {
+          "info": {
+            "name": "avatars/video",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/kling/avatars/video",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "avatarId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "audioUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "text",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "speakerId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "speed",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "emotion",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "mode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "[Generate Avatar 2.0 video](https://useapi.net/docs/api-kling-v1/post-kling-avatars-video)\n\nSupports both pre-recorded audio (audioUrl) and text-to-speech (text + speakerId)."
+        },
+        {
+          "info": {
+            "name": "avatars/<avatarId>",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.useapi.net/v1/kling/avatars/:avatarId",
+            "params": [
+              {
+                "name": "avatarId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              }
+            ]
+          },
+          "docs": "[Delete Avatar 2.0](https://useapi.net/docs/api-kling-v1/del-kling-avatars-avatarId)"
+        },
+        {
+          "info": {
+            "name": "elements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/kling/elements",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              }
+            ]
+          },
+          "docs": "[Retrieve elements list](https://useapi.net/docs/api-kling-v1/get-kling-elements)"
+        },
+        {
+          "info": {
+            "name": "elements",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/kling/elements",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "name",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "coverImage",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "type",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "voice",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "description",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "tag",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "extraImage1",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "extraImage2",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "extraImage3",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "generateViews",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "[Create element](https://useapi.net/docs/api-kling-v1/post-kling-elements)\n\nElements are saved character/object references for POST /images/omni and POST /videos/omni using @element_N syntax."
+        },
+        {
+          "info": {
+            "name": "elements/tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/kling/elements/tags",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              }
+            ]
+          },
+          "docs": "[Retrieve element tags](https://useapi.net/docs/api-kling-v1/get-kling-elements-tags)"
+        },
+        {
+          "info": {
+            "name": "elements/voices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/kling/elements/voices",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              }
+            ]
+          },
+          "docs": "[Retrieve element voices](https://useapi.net/docs/api-kling-v1/get-kling-elements-voices)"
+        },
+        {
+          "info": {
+            "name": "elements/<elementId>",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/kling/elements/:elementId",
+            "params": [
+              {
+                "name": "elementId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              }
+            ]
+          },
+          "docs": "[Retrieve element by ID](https://useapi.net/docs/api-kling-v1/get-kling-elements-elementId)"
+        },
+        {
+          "info": {
+            "name": "elements/<elementId>",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.useapi.net/v1/kling/elements/:elementId",
+            "params": [
+              {
+                "name": "elementId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              }
+            ]
+          },
+          "docs": "[Delete element](https://useapi.net/docs/api-kling-v1/del-kling-elements-elementId)"
+        },
+        {
+          "info": {
+            "name": "assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/kling/assets",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Optional page size"
+              },
+              {
+                "name": "pageNum",
+                "value": "",
+                "type": "query",
+                "description": "Optional page number"
+              },
+              {
+                "name": "contentType",
+                "value": "",
+                "type": "query",
+                "description": "Optional asset type, supported values: video, image, audio"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Optional sort direction by creation time: asc or desc (default: desc)."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "[Retrieve generated assets](https://useapi.net/docs/api-kling-v1/get-kling-assets)"
+        },
+        {
+          "info": {
+            "name": "assets/download",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/kling/assets/download",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              },
+              {
+                "name": "fileTypes",
+                "value": "",
+                "type": "query",
+                "description": "Optional, specify comma-separated file types you want to download (e.g., “MP4” or “MP4,WAV”). If not provided, all available files for the given workIds will be downloaded as a singe .zip file. Supported file types: MP4, MP3, WAV, PNG."
+              },
+              {
+                "name": "workIds",
+                "value": "",
+                "type": "query",
+                "description": "Required, specify the IDs of works to download. Can be a single numeric string or a comma-separated list of numeric strings (e.g., “123456789” or “123456789,987654321”). These IDs can be obtained from the workId field in the works array returned by the GET /assets, GET /tasks or GET /tasks/task_id endpoint."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "[Download Kling assets without watermarks](https://useapi.net/docs/api-kling-v1/get-kling-assets-download)"
+        },
+        {
+          "info": {
+            "name": "assets • use Body » binary to upload image/video/audio file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/kling/assets/",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              }
+            ]
+          },
+          "docs": "[Upload asset](https://useapi.net/docs/api-kling-v1/post-kling-assets)"
+        },
+        {
+          "info": {
+            "name": "assets/uploaded",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/kling/assets/uploaded/",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              },
+              {
+                "name": "pageNum",
+                "value": "",
+                "type": "query",
+                "description": "Optional, page number (default: 1)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Optional, items per page (default: 20)."
+              },
+              {
+                "name": "contentType",
+                "value": "",
+                "type": "query",
+                "description": "Optional, filter by type: video, image, or audio."
+              },
+              {
+                "name": "fileName",
+                "value": "",
+                "type": "query",
+                "description": "Optional, filter by file name (keyword search)."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Optional sort direction by upload time: asc or desc (default: desc)."
+              }
+            ]
+          },
+          "docs": "[Retrieve uploaded assets](https://useapi.net/docs/api-kling-v1/get-kling-assets-uploaded)"
+        },
+        {
+          "info": {
+            "name": "assets/uploaded",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.useapi.net/v1/kling/assets/uploaded/",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Required. Previously configured account email."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Required. Uploaded asset id, or comma-separated list of up to 10 numeric ids."
+              }
+            ]
+          },
+          "docs": "[Delete uploaded Kling assets](https://useapi.net/docs/api-kling-v1/del-kling-assets-uploaded)"
+        },
+        {
+          "info": {
+            "name": "videos/effects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/kling/videos/effects",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "[Get Available Video Effects](https://useapi.net/docs/api-kling-v1/get-kling-videos-effects)"
+        },
+        {
+          "info": {
+            "name": "videos/text2video",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/kling/videos/text2video",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "negative_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "aspect_ratio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "cfg_scale",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "duration",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "mode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "model_name",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "enable_audio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_1_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_1_duration",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_2_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_2_duration",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_3_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_3_duration",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_4_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_4_duration",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_5_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_5_duration",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_6_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_6_duration",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "[Create Video From Text](https://useapi.net/docs/api-kling-v1/post-kling-videos-text2video)"
+        },
+        {
+          "info": {
+            "name": "videos/image2video-frames",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/kling/videos/image2video-frames",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "image",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "image_tail",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "element_1",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "element_2",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "element_3",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "negative_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "cfg_scale",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "duration",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "mode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "model_name",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "enable_audio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_1_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_1_duration",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_2_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_2_duration",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_3_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_3_duration",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_4_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_4_duration",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_5_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_5_duration",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_6_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_6_duration",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "[Create Video From Image Frames](https://useapi.net/docs/api-kling-v1/post-kling-videos-image2video-frames)"
+        },
+        {
+          "info": {
+            "name": "videos/image2video-elements",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/kling/videos/image2video-elements",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "image_0",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "image_1",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "image_2",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "image_3",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "element_1",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "element_2",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "element_3",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "negative_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "aspect_ratio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "duration",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "mode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "model_name",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "enable_audio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "[Create Video From Multiple Images](https://useapi.net/docs/api-kling-v1/post-kling-videos-image2video-elements)"
+        },
+        {
+          "info": {
+            "name": "videos/image2video-effects",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/kling/videos/image2video-effects",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "effect",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "image",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "mode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "[Create Video From Image with Effects](https://useapi.net/docs/api-kling-v1/post-kling-videos-image2video-effects)"
+        },
+        {
+          "info": {
+            "name": "videos/extend",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/kling/videos/extend",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "task_id",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "negative_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "cfg_scale",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "enable_audio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "[Extend an Existing Video](https://useapi.net/docs/api-kling-v1/post-kling-videos-extend)"
+        },
+        {
+          "info": {
+            "name": "videos/lipsync",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/kling/videos/lipsync",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "video",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "audio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "[Apply Lip Sync to Video](https://useapi.net/docs/api-kling-v1/post-kling-videos-lipsync)"
+        },
+        {
+          "info": {
+            "name": "videos/motions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.useapi.net/v1/kling/videos/motions",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Optional when only one kling/accounts configured. However, if you have multiple accounts configured, this parameter becomes required."
+              },
+              {
+                "name": "mine",
+                "value": "",
+                "type": "query",
+                "description": "Optional, boolean. When true, retrieves user's own motion assets. When false/omitted, retrieves official Kling motion templates."
+              }
+            ]
+          },
+          "docs": "[Get available motions](https://useapi.net/docs/api-kling-v1/get-kling-videos-motions)"
+        },
+        {
+          "info": {
+            "name": "videos/motion-create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/kling/videos/motion-create",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "model_name",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "motionUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "keepAudio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "motionDirection",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "mode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "element_1",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "[Create video from motion and image](https://useapi.net/docs/api-kling-v1/post-kling-videos-motion-create)"
+        },
+        {
+          "info": {
+            "name": "videos/motion-upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/kling/videos/motion-upload",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "resourceUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "coverUrl",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "[Upload custom motion](https://useapi.net/docs/api-kling-v1/post-kling-videos-motion-upload) (deprecated)"
+        },
+        {
+          "info": {
+            "name": "videos/add-sound",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/kling/videos/add-sound",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "video",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "cropVideoOriginalSound",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "[Add sound to video](https://useapi.net/docs/api-kling-v1/post-kling-videos-add-sound)"
+        },
+        {
+          "info": {
+            "name": "videos/omni",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/kling/videos/omni",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "omni_version",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "duration",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "aspect_ratio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "mode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "enable_audio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "image_1",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "element_1",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "frame_start",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "frame_end",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "video_1",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "video_mode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "keep_audio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_1_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_1_duration",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_2_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_2_duration",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_3_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_3_duration",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_4_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_4_duration",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_5_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_5_duration",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_6_prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "shot_6_duration",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "[Generate videos with Omni](https://useapi.net/docs/api-kling-v1/post-kling-videos-omni)"
+        },
+        {
+          "info": {
+            "name": "images/virtual-try-on",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/kling/images/virtual-try-on",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "humanImage",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "upperInput",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "dressInput",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "lowerInput",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageCount",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "[Virtual Try-On](https://useapi.net/docs/api-kling-v1/post-kling-images-virtual-try-on)"
+        },
+        {
+          "info": {
+            "name": "images/kolors",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/kling/images/kolors",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "version",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "reference",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageReference",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "aspect_ratio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageCount",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "faceStrength",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "subjectStrength",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "faceNo",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "[KOLORS](https://useapi.net/docs/api-kling-v1/post-kling-images-kolors)"
+        },
+        {
+          "info": {
+            "name": "images/kolors-elements",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/kling/images/kolors-elements",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "aspect_ratio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageCount",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "subjectImage1",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "subjectImage2",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "subjectImage3",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "subjectImage4",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "sceneImage",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "styleImage",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "[KOLORS - elements](https://useapi.net/docs/api-kling-v1/post-kling-images-kolors-elements)"
+        },
+        {
+          "info": {
+            "name": "images/recognize-faces",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/kling/images/recognize-faces",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageReference",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "[Detect Faces in Images](https://useapi.net/docs/api-kling-v1/post-kling-images-recognize-faces)"
+        },
+        {
+          "info": {
+            "name": "images/upscale",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/kling/images/upscale",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "task_id",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "workId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "maxJobs",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyUrl",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replyRef",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "[Upscale Images](https://useapi.net/docs/api-kling-v1/post-kling-images-upscale)"
+        },
+        {
+          "info": {
+            "name": "images/omni",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.useapi.net/v1/kling/images/omni",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "omni_version",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "resolution",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "aspect_ratio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "imageCount",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "story_mode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "image_1",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "element_1",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "[Generate images with Omni](https://useapi.net/docs/api-kling-v1/post-kling-images-omni)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

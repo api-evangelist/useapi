@@ -4,11 +4,12 @@ status: candidate
 source: openapi/ (derived from the first-party useapi.net Postman collections)
 searched:
   result: none
-  notes: 'No official or community MCP server for useapi.net was found. Probed: the official MCP registry (registry.modelcontextprotocol.io,
-    0 results for "useapi"), npm, the github.com/useapi organization (22 repos, none MCP), the vendor documentation
-    and llms.txt (no MCP mention), and https://mcp.useapi.net/ which is a Cloudflare wildcard that 302-redirects
-    to the marketing homepage rather than an MCP endpoint. useapi.net addresses agent consumption through llms.txt
-    and a per-service verbatim docs dump instead of MCP.'
+  notes: 'No official or community MCP server for useapi.net was found. Probed: the official MCP registry
+    (registry.modelcontextprotocol.io, 0 results for "useapi"), npm, the github.com/useapi organization
+    (22 repos, none MCP), the vendor documentation and llms.txt (no MCP mention), and https://mcp.useapi.net/
+    which is a Cloudflare wildcard that 302-redirects to the marketing homepage rather than an MCP endpoint.
+    useapi.net addresses agent consumption through llms.txt and a per-service verbatim docs dump instead
+    of MCP.'
 server:
   name: useapi
   transport: http
@@ -21,8 +22,9 @@ authentication:
 coverage:
   rest_operations_total: 298
   tools_candidate: 180
-  excluded: account/credential CRUD operations (POST/GET/DELETE /accounts*) are deliberately left out of the agent
-    surface — they take raw browser cookies and session credentials for the underlying AI services.
+  excluded: account/credential CRUD operations (POST/GET/DELETE /accounts*) are deliberately left out
+    of the agent surface — they take raw browser cookies and session credentials for the underlying AI
+    services.
 tools:
 - name: google_flow_post_assets_by_email
   description: Upload assets to Google Flow for use in image and video generation.
@@ -35,7 +37,8 @@ tools:
   method: POST
   path: /images
 - name: google_flow_post_videos
-  description: Generate videos using Veo 3.1 (Quality / Fast / Lite / Lite Lower Priority) or Gemini Omni Flash.
+  description: Generate videos using Veo 3.1 (Quality / Fast / Lite / Lite Lower Priority) or Gemini Omni
+    Flash.
   source_operation: openapi/useapi-google-flow-v1-openapi.yml#postVideos
   method: POST
   path: /videos
@@ -136,49 +139,50 @@ tools:
   method: POST
   path: /assets/{account}
 - name: dreamina_post_videos
-  description: Generate videos using Dreamina AI models. Supports text-to-video, first frame (I2V), end frame, and
-    multi-frame keyframe modes.
+  description: Generate videos using Dreamina AI models. Supports text-to-video, first frame (I2V), end
+    frame, and multi-frame keyframe modes.
   source_operation: openapi/useapi-dreamina-v1-openapi.yml#postVideos
   method: POST
   path: /videos
 - name: dreamina_get_videos_by_jobid
-  description: Retrieve the status and result of a video generation job. Poll this endpoint after POST /videos.
-    Jobs are retained for 30 days.
+  description: Retrieve the status and result of a video generation job. Poll this endpoint after POST
+    /videos. Jobs are retained for 30 days.
   source_operation: openapi/useapi-dreamina-v1-openapi.yml#getVideosByJobid
   method: GET
   path: /videos/{jobid}
 - name: dreamina_post_videos_upscale
-  description: Upscale a generated video to 2x resolution (super resolution). Doubles width and height — 720p becomes
-    1440p, 1080p becomes 4K. Each video can only be upscaled once.
+  description: Upscale a generated video to 2x resolution (super resolution). Doubles width and height
+    — 720p becomes 1440p, 1080p becomes 4K. Each video can only be upscaled once.
   source_operation: openapi/useapi-dreamina-v1-openapi.yml#postVideosUpscale
   method: POST
   path: /videos/upscale
 - name: dreamina_post_videos_interpolate
-  description: Interpolate a generated video to 30 or 60 FPS (from 24 FPS source). Works on both original and upscaled
-    videos. Each video can only be interpolated once.
+  description: Interpolate a generated video to 30 or 60 FPS (from 24 FPS source). Works on both original
+    and upscaled videos. Each video can only be interpolated once.
   source_operation: openapi/useapi-dreamina-v1-openapi.yml#postVideosInterpolate
   method: POST
   path: /videos/interpolate
 - name: dreamina_post_images
-  description: Generate images using Dreamina AI models from text prompts with optional reference images. Each generation
-    produces up to 4 images.
+  description: Generate images using Dreamina AI models from text prompts with optional reference images.
+    Each generation produces up to 4 images.
   source_operation: openapi/useapi-dreamina-v1-openapi.yml#postImages
   method: POST
   path: /images
 - name: dreamina_get_images_by_jobid
-  description: Retrieve the status and result of an image generation or upscale job. Poll this endpoint after POST
-    /images or POST /images/upscale. Jobs are retained for 30 days.
+  description: Retrieve the status and result of an image generation or upscale job. Poll this endpoint
+    after POST /images or POST /images/upscale. Jobs are retained for 30 days.
   source_operation: openapi/useapi-dreamina-v1-openapi.yml#getImagesByJobid
   method: GET
   path: /images/{jobid}
 - name: dreamina_post_images_upscale
-  description: Upscale a generated image to higher resolution (2K, 4K, or 8K). Requires a completed image generation
-    job from POST /images.
+  description: Upscale a generated image to higher resolution (2K, 4K, or 8K). Requires a completed image
+    generation job from POST /images.
   source_operation: openapi/useapi-dreamina-v1-openapi.yml#postImagesUpscale
   method: POST
   path: /images/upscale
 - name: dreamina_get_scheduler
-  description: List all currently executing (in-progress) image and video generation jobs, grouped by account.
+  description: List all currently executing (in-progress) image and video generation jobs, grouped by
+    account.
   source_operation: openapi/useapi-dreamina-v1-openapi.yml#getScheduler
   method: GET
   path: /scheduler
@@ -273,7 +277,8 @@ tools:
   method: POST
   path: /videos/motion-create
 - name: kling_post_videos_motion_upload
-  description: '[Upload custom motion](https://useapi.net/docs/api-kling-v1/post-kling-videos-motion-upload) (deprecated)'
+  description: '[Upload custom motion](https://useapi.net/docs/api-kling-v1/post-kling-videos-motion-upload)
+    (deprecated)'
   source_operation: openapi/useapi-kling-v1-openapi.yml#postVideosMotionUpload
   method: POST
   path: /videos/motion-upload
@@ -439,7 +444,8 @@ tools:
   method: GET
   path: /scheduler
 - name: minimax_get_scheduler_available
-  description: '## [Retrieve the list of videos currently running via the API along with the available account capacity](https://useapi.net/docs/api-minimax-v1/get-minimax-scheduler-available)'
+  description: '## [Retrieve the list of videos currently running via the API along with the available
+    account capacity](https://useapi.net/docs/api-minimax-v1/get-minimax-scheduler-available)'
   source_operation: openapi/useapi-minimax-v1-openapi.yml#getSchedulerAvailable
   method: GET
   path: /scheduler/available
@@ -559,8 +565,8 @@ tools:
   method: POST
   path: /gen2/extend
 - name: runway_post_lipsync_create
-  description: '[Lip Sync for both image and video sources with support for a variety of voices (28+ languages supported)
-    or audio file](https://useapi.net/docs/api-runwayml-v1/post-runwayml-lipsync-create)'
+  description: '[Lip Sync for both image and video sources with support for a variety of voices (28+ languages
+    supported) or audio file](https://useapi.net/docs/api-runwayml-v1/post-runwayml-lipsync-create)'
   source_operation: openapi/useapi-runwayml-v1-openapi.yml#postLipsyncCreate
   method: POST
   path: /lipsync/create
@@ -705,7 +711,8 @@ tools:
   method: GET
   path: /scheduler/
 - name: pixverse_get_scheduler_available
-  description: '## [Retrieve the list of videos currently running via the API along with the available account capacity](https://useapi.net/docs/api-pixverse-v2/get-pixverse-scheduler-available)'
+  description: '## [Retrieve the list of videos currently running via the API along with the available
+    account capacity](https://useapi.net/docs/api-pixverse-v2/get-pixverse-scheduler-available)'
   source_operation: openapi/useapi-pixverse-v2-openapi.yml#getSchedulerAvailable
   method: GET
   path: /scheduler/available/
@@ -934,3 +941,9 @@ tools:
   source_operation: openapi/useapi-faceswap-v1-openapi.yml#getJobs2
   method: GET
   path: /jobs
+deployment:
+  mode: none
+  verified: derived
+  tools: 180
+  checked: '2026-08-12'
+  source: catalog MCP census

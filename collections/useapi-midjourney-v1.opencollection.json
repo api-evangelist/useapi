@@ -1,0 +1,136 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Midjourney REST API by useapi.net",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "POST /jobs/imagine",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.useapi.net/v1/jobs/imagine",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Submit the Midjourney /imagine command"
+    },
+    {
+      "info": {
+        "name": "POST /jobs/button",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.useapi.net/v1/jobs/button",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Midjourney upscale or create variations and enhance or modify buttons"
+    },
+    {
+      "info": {
+        "name": "POST /jobs/blend",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.useapi.net/v1/jobs/blend",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Submit the Midjourney /blend command"
+    },
+    {
+      "info": {
+        "name": "POST /jobs/describe",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.useapi.net/v1/jobs/describe",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Submit the Midjourney /describe command"
+    },
+    {
+      "info": {
+        "name": "GET /jobs/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.useapi.net/v1/jobs/",
+        "params": [
+          {
+            "name": "jobid",
+            "value": "",
+            "type": "query",
+            "description": "jobid value returned by jobs/imagine, jobs/button, jobs/blend or jobs/describe"
+          }
+        ]
+      },
+      "docs": "Retrieve status and results of jobs/imagine, jobs/button, jobs/blend or jobs/describe"
+    },
+    {
+      "info": {
+        "name": "GET /jobs/cancel/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.useapi.net/v1/jobs/cancel/",
+        "params": [
+          {
+            "name": "jobid",
+            "value": "",
+            "type": "query",
+            "description": "jobid value returned by jobs/imagine, jobs/button, jobs/blend or jobs/describe"
+          }
+        ]
+      },
+      "docs": "Cancel execution of job created by jobs/imagine, jobs/button, jobs/blend or jobs/describe"
+    },
+    {
+      "info": {
+        "name": "GET /jobs",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.useapi.net/v1/jobs"
+      },
+      "docs": "Get list of currently executing jobs"
+    },
+    {
+      "info": {
+        "name": "GET /account",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.useapi.net/v1/account"
+      },
+      "docs": "Retrieve account information"
+    }
+  ],
+  "bundled": true
+}
