@@ -20,6 +20,19 @@ modified: '2026-07-27'
 image: https://useapi.net/assets/images/logo.png
 tags:
 - Company
+- Artificial Intelligence
+- Generative AI
+- Video Generation
+- Image-Generation
+- Music Generation
+- Text-to-Speech
+- Face Swap
+- API Aggregator
+- Machine-Learning
+- Media
+- Webhook
+tags_raw:
+- Company
 - AI
 - Generative AI
 - Video Generation
@@ -40,6 +53,11 @@ apis:
   humanURL: https://useapi.net/docs/api-google-flow-v1
   baseURL: https://api.useapi.net/v1/google-flow
   tags:
+  - Video Generation
+  - Image-Generation
+  - Google Flow
+  - Veo
+  tags_raw:
   - Video Generation
   - Image Generation
   - Google Flow
@@ -81,6 +99,11 @@ apis:
   baseURL: https://api.useapi.net/v1/dreamina
   tags:
   - Video Generation
+  - Image-Generation
+  - Seedance
+  - Seedream
+  tags_raw:
+  - Video Generation
   - Image Generation
   - Seedance
   - Seedream
@@ -121,6 +144,11 @@ apis:
   baseURL: https://api.useapi.net/v1/minimax
   tags:
   - Video Generation
+  - Image-Generation
+  - Text-to-Speech
+  - MiniMax
+  tags_raw:
+  - Video Generation
   - Image Generation
   - Text to Speech
   - MiniMax
@@ -142,6 +170,11 @@ apis:
   baseURL: https://api.useapi.net/v1/runwayml
   tags:
   - Video Generation
+  - Image-Generation
+  - Runway
+  - Upscaling
+  tags_raw:
+  - Video Generation
   - Image Generation
   - Runway
   - Upscaling
@@ -162,6 +195,11 @@ apis:
   humanURL: https://useapi.net/docs/api-pixverse-v2
   baseURL: https://api.useapi.net/v2/pixverse
   tags:
+  - Video Generation
+  - Image-Generation
+  - Text-to-Speech
+  - PixVerse
+  tags_raw:
   - Video Generation
   - Image Generation
   - Text to Speech
@@ -203,6 +241,10 @@ apis:
   baseURL: https://api.useapi.net/v1/tempolor
   tags:
   - Music Generation
+  - Royalty-Free
+  - TemPolor
+  tags_raw:
+  - Music Generation
   - Royalty Free
   - TemPolor
   properties:
@@ -222,6 +264,10 @@ apis:
   humanURL: https://useapi.net/docs/api-faceswap-v1
   baseURL: https://api.useapi.net/v1/faceswap
   tags:
+  - Face Swap
+  - Image-Generation
+  - InsightFaceSwap
+  tags_raw:
   - Face Swap
   - Image Generation
   - InsightFaceSwap
@@ -245,6 +291,10 @@ apis:
   tags:
   - Account Management
   - Usage Statistics
+  - Webhook
+  tags_raw:
+  - Account Management
+  - Usage Statistics
   - Webhooks
   properties:
   - type: Documentation
@@ -262,6 +312,10 @@ apis:
   x-status: retired
   x-retired: '2026-06-24'
   tags:
+  - Image-Generation
+  - Midjourney
+  - Retired
+  tags_raw:
   - Image Generation
   - Midjourney
   - Retired
