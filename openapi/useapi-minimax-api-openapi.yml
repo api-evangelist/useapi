@@ -1,0 +1,1698 @@
+openapi: 3.2.0
+info:
+  title: v1 by useapi.net Minimax API
+  version: 1.0.0
+  description: 'Full documentation available at [useapi.net](http://useapi.net/docs/api-minimax-v1/).
+
+
+    ---
+
+    **Updated:** February 24, 2026'
+  contact:
+    name: useapi.net support
+    email: support@useapi.net
+    url: https://useapi.net/docs/support
+  x-derived-from: https://useapi.net/assets/postman/minimax-v1.json
+servers:
+- url: https://api.useapi.net/v1/minimax
+security:
+- bearerAuth: []
+tags:
+- name: minimax
+  description: MiniMax API v1 by useapi.net
+paths:
+  /accounts:
+    get:
+      operationId: getAccounts
+      summary: accounts
+      description: '## [Retrieve MiniMax API accounts configuration.](https://useapi.net/docs/api-minimax-v1/get-minimax-accounts)'
+      tags:
+      - minimax
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    post:
+      operationId: postAccounts
+      summary: accounts
+      description: '## [Create or update MiniMax API account configuration](https://useapi.net/docs/api-minimax-v1/post-minimax-accounts-account)'
+      tags:
+      - minimax
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                url:
+                  type: string
+                maxJobs:
+                  type: string
+            example:
+              token: Please refer to https://useapi.net/docs/start-here/setup-minimax
+              url: Please refer to https://useapi.net/docs/start-here/setup-minimax
+              maxJobs: 'Required, supported range: 1...10'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /accounts/{account}:
+    get:
+      operationId: getAccountsByAccount
+      summary: accounts/<account>
+      description: '## [Retrieve MiniMax API account configuration for <code>account</code>](https://useapi.net/docs/api-minimax-v1/get-minimax-accounts-account)'
+      tags:
+      - minimax
+      parameters:
+      - name: account
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    delete:
+      operationId: deleteAccountsByAccount
+      summary: accounts/<account>
+      description: '## [Delete MiniMax API account](https://useapi.net/docs/api-minimax-v1/del-minimax-accounts-account)'
+      tags:
+      - minimax
+      parameters:
+      - name: account
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /features/:
+    get:
+      operationId: getFeatures
+      summary: features
+      description: '## [Retrieve your hailuoai.video account information](https://useapi.net/docs/api-minimax-v1/get-minimax-features)'
+      tags:
+      - minimax
+      parameters:
+      - name: 'account '
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                account:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /videos/create:
+    post:
+      operationId: postVideosCreate
+      summary: videos/create
+      description: '## [Create a video using a text and image prompt](https://useapi.net/docs/api-minimax-v1/post-minimax-videos-create)'
+      tags:
+      - minimax
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                account:
+                  type: string
+                prompt:
+                  type: string
+                promptOptimization:
+                  type: string
+                fileID:
+                  type: string
+                end_frame_fileID:
+                  type: string
+                fileID2:
+                  type: string
+                videoFileID1:
+                  type: string
+                audioFileID1:
+                  type: string
+                aspectRatio:
+                  type: string
+                model:
+                  type: string
+                options:
+                  type: string
+                resolution:
+                  type: string
+                duration:
+                  type: string
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /videos/agent-create:
+    post:
+      operationId: postVideosAgentCreate
+      summary: videos/agent-create
+      description: '## [Create a video using an agent template](https://useapi.net/docs/api-minimax-v1/post-minimax-videos-agent-create)'
+      tags:
+      - minimax
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                account:
+                  type: string
+                templateId:
+                  type: string
+                prompt:
+                  type: string
+                fileID:
+                  type: string
+                ossPath:
+                  type: string
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /videos/cancel:
+    post:
+      operationId: postVideosCancel
+      summary: videos/cancel
+      description: '## [Cancel the currently generated video.](https://useapi.net/docs/api-minimax-v1/post-minimax-videos-cancel)'
+      tags:
+      - minimax
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                videoId:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /videos/{videoId}:
+    get:
+      operationId: getVideosByVideoid
+      summary: videos/<videoId>
+      description: '## [Retrieve video](https://useapi.net/docs/api-minimax-v1/get-minimax-videos-videoId)'
+      tags:
+      - minimax
+      parameters:
+      - name: videoId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    delete:
+      operationId: deleteVideosByVideoid
+      summary: videos/<videoId>
+      description: '## [Delete video](https://useapi.net/docs/api-minimax-v1/del-minimax-videos-videoId)'
+      tags:
+      - minimax
+      parameters:
+      - name: videoId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /videos/:
+    get:
+      operationId: getVideos
+      summary: videos
+      description: '## [Retrieve videos](https://useapi.net/docs/api-minimax-v1/get-minimax-videos)'
+      tags:
+      - minimax
+      parameters:
+      - name: account
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, specify the number of videos to return. Default 30
+      - name: lastVideoId
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, specify the video id from where to start
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /videos/agent-templates/:
+    get:
+      operationId: getVideosAgentTemplates
+      summary: videos/agent-templates
+      description: '## [Retrieve available agent video templates](https://useapi.net/docs/api-minimax-v1/get-minimax-videos-agent-templates)'
+      tags:
+      - minimax
+      parameters:
+      - name: account
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, specify the number of videos to return. Default 30
+      - name: lastId
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, specify the template id from where to start pagination.
+      - name: templateId
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, specify a template ID to get detailed information for a specific template including input requirements.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /videos/characters/:
+    get:
+      operationId: getVideosCharacters
+      summary: videos/characters
+      description: '## [Retrieve the list of characters](https://useapi.net/docs/api-minimax-v1/get-minimax-videos-characters)'
+      tags:
+      - minimax
+      parameters:
+      - name: account
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, specify the number of videos to return. Default 30
+      - name: lastVideoId
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, specify the video id from where to start
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                account:
+                  type: string
+                page:
+                  type: string
+                pageSize:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /images/create:
+    post:
+      operationId: postImagesCreate
+      summary: images/create
+      description: '## [Create an image using a text prompt](https://useapi.net/docs/api-minimax-v1/post-minimax-images-create)'
+      tags:
+      - minimax
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                account:
+                  type: string
+                prompt:
+                  type: string
+                promptOptimization:
+                  type: string
+                characterFileId:
+                  type: string
+                referenceFileId1:
+                  type: string
+                model:
+                  type: string
+                aspectRatio:
+                  type: string
+                resolution:
+                  type: string
+                quality:
+                  type: string
+                quantity:
+                  type: string
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /images/{imageId}:
+    get:
+      operationId: getImagesByImageid
+      summary: images/<imageId>
+      description: '## [Retrieve image](https://useapi.net/docs/api-minimax-v1/get-minimax-images-imageId)'
+      tags:
+      - minimax
+      parameters:
+      - name: imageId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    delete:
+      operationId: deleteImagesByImageid
+      summary: images/<imageId>
+      description: '## [Delete image](https://useapi.net/docs/api-minimax-v1/del-minimax-images-imageId)'
+      tags:
+      - minimax
+      parameters:
+      - name: imageId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /images/:
+    get:
+      operationId: getImages
+      summary: images
+      description: '## [Retrieve the list of images you have generated](https://useapi.net/docs/api-minimax-v1/get-minimax-images)'
+      tags:
+      - minimax
+      parameters:
+      - name: account
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, specify the number of images to return. Default 30
+      - name: lastImageId
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, specify the image id from where to start
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /music/create:
+    get:
+      operationId: getMusicCreate
+      summary: music/create
+      description: '## [Compose music up to 60 seconds long using a text prompt](https://useapi.net/docs/api-minimax-v1/get-minimax-music-create)'
+      tags:
+      - minimax
+      parameters:
+      - name: styleId
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Required styleId
+      - name: prompt
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Required prompt (lyrics)
+      - name: account
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required.
+      - name: title
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional song title
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+      x-request-variants:
+      - name: music/<musicId>
+        description: '## [Retrieve music](https://useapi.net/docs/api-minimax-v1/get-minimax-music-musicId)'
+  /music:
+    get:
+      operationId: getMusic
+      summary: music
+      description: '## [Retrieve the list of songs you have generated](https://useapi.net/docs/api-minimax-v1/get-minimax-music)'
+      tags:
+      - minimax
+      parameters:
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional, specify the number of songs to return. Default 20.
+      - name: lastMusicId
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional, specify the music id from where to start.
+      - name: account
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /music/styles:
+    get:
+      operationId: getMusicStyles
+      summary: music/styles
+      description: '## [Retrieve the list of music styles](https://useapi.net/docs/api-minimax-v1/get-minimax-music-styles)'
+      tags:
+      - minimax
+      parameters:
+      - name: account
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /files/:
+    get:
+      operationId: getFiles
+      summary: files
+      description: '## [Retrieve the list of images you have uploaded](https://useapi.net/docs/api-minimax-v1/get-minimax-files)'
+      tags:
+      - minimax
+      parameters:
+      - name: account
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, specify the number of files to return. Default 10
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                account:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    post:
+      operationId: postFiles
+      summary: files • use Body » binary to upload .png/.jpeg/.mp3/.wav/.mp4
+      description: '## [Upload image, audio, or video file](https://useapi.net/docs/api-minimax-v1/post-minimax-files) — Content-Type: image/png, image/jpeg, audio/mpeg, audio/wav, video/mp4'
+      tags:
+      - minimax
+      parameters:
+      - name: account
+        in: query
+        required: true
+        schema:
+          type: string
+        description: optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /files/{file_id}:
+    delete:
+      operationId: deleteFilesByFileid
+      summary: files/<file_id>
+      description: '## [Delete file](https://useapi.net/docs/api-minimax-v1/del-minimax-files-fileID)'
+      tags:
+      - minimax
+      parameters:
+      - name: file_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /audio/:
+    get:
+      operationId: getAudio
+      summary: audio
+      description: '## [Retrieve the list of text-to-speech audio clips you have generated](https://useapi.net/docs/api-minimax-v1/get-minimax-audio)'
+      tags:
+      - minimax
+      parameters:
+      - name: account
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, specify the page number
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, specify the number of items to return. Default 100
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /audio/{audio_id}:
+    get:
+      operationId: getAudioByAudioid
+      summary: audio/<audio_id>
+      description: '## [Retrieve text-to-speech audio clip](https://useapi.net/docs/api-minimax-v1/get-minimax-audio_audio_id)'
+      tags:
+      - minimax
+      parameters:
+      - name: audio_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    delete:
+      operationId: deleteAudioByAudioid
+      summary: audio/<audio_id>
+      description: '## [Delete text-to-speech audio clip](https://useapi.net/docs/api-minimax-v1/del-minimax-audio-audio_id)'
+      tags:
+      - minimax
+      parameters:
+      - name: audio_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /audio/config/:
+    get:
+      operationId: getAudioConfig
+      summary: audio/config
+      description: '## [Retrieve audio configuration parameters](https://useapi.net/docs/api-minimax-v1/get-minimax-audio-config)'
+      tags:
+      - minimax
+      parameters:
+      - name: account
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /audio/voices/:
+    get:
+      operationId: getAudioVoices
+      summary: audio/voices
+      description: '## [Retrieve the list of system and cloned audio voices](https://useapi.net/docs/api-minimax-v1/get-minimax-audio-voices)'
+      tags:
+      - minimax
+      parameters:
+      - name: account
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, when only one account configured. However, if you have multiple accounts configured, this parameter becomes required
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, specify the page number
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, specify the number of items to return. Default 500
+      - name: tag_list
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, comma-seprated filter of tags
+      - name: is_system
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional, set to false to retrieve cloned voices. Default true
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /audio/voices/create-mp3:
+    post:
+      operationId: postAudioVoicesCreateMp3
+      summary: audio/create-mp3
+      description: '## [Create text-to-speech audio](https://useapi.net/docs/api-minimax-v1/post-minimax-audio-create-mp3)'
+      tags:
+      - minimax
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                account:
+                  type: string
+                text:
+                  type: string
+                voice_id:
+                  type: string
+                emotion:
+                  type: string
+                language_boost:
+                  type: string
+                vol:
+                  type: string
+                speed:
+                  type: string
+                pitch:
+                  type: string
+                deepen_lighten:
+                  type: string
+                stronger_softer:
+                  type: string
+                nasal_crisp:
+                  type: string
+                spacious_echo:
+                  type: string
+                lofi_telephone:
+                  type: string
+                robotic:
+                  type: string
+                auditorium_echo:
+                  type: string
+                model:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /audio/create-stream:
+    post:
+      operationId: postAudioCreateStream
+      summary: audio/create-stream
+      description: '## [Create text-to-speech audio stream token and payload](https://useapi.net/docs/api-minimax-v1/post-minimax-audio-create-stream)'
+      tags:
+      - minimax
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                account:
+                  type: string
+                text:
+                  type: string
+                voice_id:
+                  type: string
+                emotion:
+                  type: string
+                language_boost:
+                  type: string
+                vol:
+                  type: string
+                speed:
+                  type: string
+                pitch:
+                  type: string
+                deepen_lighten:
+                  type: string
+                stronger_softer:
+                  type: string
+                nasal_crisp:
+                  type: string
+                spacious_echo:
+                  type: string
+                lofi_telephone:
+                  type: string
+                robotic:
+                  type: string
+                auditorium_echo:
+                  type: string
+                model:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /audio/upload-sample/:
+    post:
+      operationId: postAudioUploadSample
+      summary: audio/upload-sample • use Body » binary to upload .mp3 and . wav
+      description: '## [Upload an MP3 or WAV voice sample to be used for voice cloning](https://useapi.net/docs/api-minimax-v1/post-minimax-audio-upload-sample)'
+      tags:
+      - minimax
+      parameters:
+      - name: account
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required.
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /audio/voices/clone-voice:
+    post:
+      operationId: postAudioVoicesCloneVoice
+      summary: audio/clone-voice
+      description: '## [Clone the voice using the uploaded voice samples](https://useapi.net/docs/api-minimax-v1/post-minimax-audio-clone-voice)'
+      tags:
+      - minimax
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                voice_name:
+                  type: string
+                language_tag:
+                  type: string
+                files:
+                  type: string
+                need_noise_reduction:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /audio/voices/delete-voice:
+    post:
+      operationId: postAudioVoicesDeleteVoice
+      summary: audio/delete-voice
+      description: '## [Delete cloned voice](https://useapi.net/docs/api-minimax-v1/post-minimax-audio-delete-voice)'
+      tags:
+      - minimax
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                account:
+                  type: string
+                voice_id:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /llm:
+    get:
+      operationId: getLlm
+      summary: llm
+      description: '## [Retrieve the list of LLM chats](https://useapi.net/docs/api-minimax-v1/get-minimax-llm)'
+      tags:
+      - minimax
+      parameters:
+      - name: account
+        in: query
+        required: false
+        schema:
+          type: string
+        description: optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required.
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        description: optional, specify the number of records to return. Default 20.
+      - name: lastChatID
+        in: query
+        required: false
+        schema:
+          type: string
+        description: optional, specify the chatID from where to start
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    post:
+      operationId: postLlm
+      summary: llm
+      description: '## [Chat with LLM](https://useapi.net/docs/api-minimax-v1/post-minimax-llm)'
+      tags:
+      - minimax
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                account:
+                  type: string
+                prompt:
+                  type: string
+                model:
+                  type: string
+                chatID:
+                  type: string
+                stream:
+                  type: string
+                searchWeb:
+                  type: string
+                file:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    delete:
+      operationId: deleteLlm
+      summary: llm
+      description: '## [Delete LLM chats and/or messages](https://useapi.net/docs/api-minimax-v1/del-minimax-llm)'
+      tags:
+      - minimax
+      parameters:
+      - name: account
+        in: query
+        required: false
+        schema:
+          type: string
+        description: optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required
+      - name: chatIDs
+        in: query
+        required: false
+        schema:
+          type: string
+        description: optional, specify comma-separated list of chatID values that you want to delete. Set it to all to delete all chats for your account
+      - name: msgIDs
+        in: query
+        required: false
+        schema:
+          type: string
+        description: optional, specify a comma-separated list of msgID values that you want to delete
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /llm/{chatID}:
+    get:
+      operationId: getLlmByChatid
+      summary: llm/<chatID>
+      description: '## [Retrieve the messages from the LLM chat](https://useapi.net/docs/api-minimax-v1/get-minimax-llm-chatID)'
+      tags:
+      - minimax
+      parameters:
+      - name: chatID
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: account
+        in: query
+        required: false
+        schema:
+          type: string
+        description: optional when only one account configured. However, if you have multiple accounts configured, this parameter becomes required.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /agent:
+    post:
+      operationId: postAgent
+      summary: agent
+      description: '## [Execute AI Agent with Multi-Model Support](https://useapi.net/docs/api-minimax-v1/post-minimax-agent)'
+      tags:
+      - minimax
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                account:
+                  type: string
+                prompt:
+                  type: string
+                models:
+                  type: string
+                file:
+                  type: string
+                async:
+                  type: string
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /agent/jobs:
+    get:
+      operationId: getAgentJobs
+      summary: agent/jobs
+      description: '## [List Running Agent Jobs](https://useapi.net/docs/api-minimax-v1/get-minimax-agent-jobs)'
+      tags:
+      - minimax
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /agent/{jobId}:
+    get:
+      operationId: getAgentByJobid
+      summary: agent/<jobId>
+      description: '## [Retrieve Agent Job Status and Results](https://useapi.net/docs/api-minimax-v1/get-minimax-agent-jobId)'
+      tags:
+      - minimax
+      parameters:
+      - name: jobId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /scheduler:
+    get:
+      operationId: getScheduler
+      summary: scheduler
+      description: '## [Remove video or image generation from being tracked by the scheduler](https://useapi.net/docs/api-minimax-v1/get-minimax-scheduler)'
+      tags:
+      - minimax
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /scheduler/available:
+    get:
+      operationId: getSchedulerAvailable
+      summary: scheduler/available
+      description: '## [Retrieve the list of videos currently running via the API along with the available account capacity](https://useapi.net/docs/api-minimax-v1/get-minimax-scheduler-available)'
+      tags:
+      - minimax
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /scheduler/{id}:
+    delete:
+      operationId: deleteSchedulerById
+      summary: scheduler/<id>
+      description: '## [Remove video or image generation from being tracked by the scheduler](https://useapi.net/docs/api-minimax-v1/del-minimax-scheduler-videoId)'
+      tags:
+      - minimax
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'useapi.net API token. Header: `Authorization: Bearer user:<number>-<unique-string>`. Use the complete token including the `user:` prefix.'
+externalDocs:
+  description: minimax documentation
+  url: https://useapi.net/docs/api-minimax-v1

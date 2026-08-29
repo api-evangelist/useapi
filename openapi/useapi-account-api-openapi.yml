@@ -1,0 +1,299 @@
+openapi: 3.2.0
+info:
+  title: Useapi Account API
+  version: '1.0'
+  description: 'Operations tagged Account across 2 of this provider''s published API definitions: useapi-midjourney-v1-openapi.yml, useapi-midjourney-v2-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.useapi.net/v1
+- url: https://api.useapi.net/v2
+security:
+- apiToken: []
+tags:
+- name: Account
+paths:
+  /account:
+    get:
+      description: Retrieve account information
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/accountResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/responseError'
+      tags:
+      - Account
+    post:
+      description: Update account information
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  description: User name
+                  type: string
+                replyUrl:
+                  description: Default callback URL, API will call the provided replyUrl once generation completed to be used for all API endpoints
+                  type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: replyUrl is too long
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/accountResponse_2'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/accountResponse_2'
+      tags:
+      - Account
+    servers:
+    - url: https://api.useapi.net/v1
+  /account/midjourney:
+    get:
+      description: Retrieve Midjourney accounts information, see https://useapi.net/docs/api-v2/get-account-midjourney
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/midjourneyResponse'
+      tags:
+      - Account
+    servers:
+    - url: https://api.useapi.net/v2
+  /account/midjourney/{channel}:
+    get:
+      description: Retrieve Midjourney account information for specified channel
+      parameters:
+      - in: path
+        name: channel
+        schema:
+          type: string
+        required: true
+        description: Midjourney channel id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/midjourneyResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/midjourneyResponse'
+        '404':
+          description: Configuration not found for provided channel
+      tags:
+      - Account
+    delete:
+      description: Delete Midjourney account information for specified channel
+      parameters:
+      - in: path
+        name: channel
+        schema:
+          type: string
+        required: true
+        description: Midjourney channel id
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/midjourneyResponse'
+        '404':
+          description: Configuration not found for provided channel
+      tags:
+      - Account
+    post:
+      description: Create or update Midjourney account information for specified channel
+      parameters:
+      - in: path
+        name: channel
+        schema:
+          type: string
+        required: true
+        description: Midjourney channel id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                discord:
+                  description: Discord token
+                  type: string
+                server:
+                  description: Discord server id
+                  type: string
+                channel:
+                  description: Discord channel id
+                  type: string
+                maxJobs:
+                  description: Maximum Concurrent Jobs
+                  type: integer
+                  minimum: 1
+                  maximum: 15
+              required:
+              - discord
+              - server
+              - channel
+              - maxJobs
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: One of the required params is missing, has an incorrect value, or is duplicated across another account
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/accountResponse_2'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/accountResponse_2'
+      tags:
+      - Account
+    servers:
+    - url: https://api.useapi.net/v2
+  /account/midjourney/{channel}/reset:
+    post:
+      description: Reset the pendingModMessage field for the Midjourney account specified by the channel
+      parameters:
+      - in: path
+        name: channel
+        schema:
+          type: string
+        required: true
+        description: Midjourney channel id
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/accountResponse_2'
+        '404':
+          description: Configuration not found for provided channel
+      tags:
+      - Account
+    servers:
+    - url: https://api.useapi.net/v2
+components:
+  schemas:
+    responseError:
+      type: object
+      properties:
+        error:
+          type: string
+        code:
+          type: integer
+          enum:
+          - 400
+          - 401
+          - 404
+          - 412
+          - 413
+      additionalProperties: false
+      required:
+      - error
+      - code
+    accountResponse:
+      type: object
+      properties:
+        email:
+          type: string
+        created:
+          type: string
+        name:
+          type: string
+        verified:
+          type: string
+        sub:
+          type: string
+      additionalProperties: false
+      required:
+      - email
+      - created
+      - name
+      - verified
+      - sub
+    accountResponse_2:
+      type: object
+      properties:
+        email:
+          type: string
+        created:
+          description: YYYY-MM-DDTHH:mm:ss.sssZ, IS0 8601, UTC
+          type: string
+        name:
+          type: string
+        verified:
+          description: YYYY-MM-DDTHH:mm:ss.sssZ, IS0 8601, UTC
+          type: string
+        sub:
+          type: string
+        replyUrl:
+          type: string
+        error:
+          type: string
+        errorDetails:
+          type: string
+        code:
+          type: integer
+    midjourneyResponse:
+      type: object
+      properties:
+        discord:
+          type: string
+        channel:
+          type: string
+        server:
+          type: string
+        maxJobs:
+          type: integer
+        pendingModMessage:
+          description: Your Discord account has received a pending moderation message from Midjourney. Please address this issue and reset pendingModMessage before making any new API calls
+          type: string
+        error:
+          type: string
+        errorDetails:
+          type: string
+        code:
+          type: integer
+  securitySchemes:
+    apiToken:
+      type: http
+      scheme: bearer
+      description: API Token
+x-refined-from:
+- useapi-midjourney-v1-openapi.yml
+- useapi-midjourney-v2-openapi.yml

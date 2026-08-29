@@ -1,0 +1,1091 @@
+openapi: 3.2.0
+info:
+  title: v1 by useapi.net Google Flow API
+  version: 1.0.0
+  description: "Experimental API for Google Flow with full support for Veo, Imagen 4, and Nano Banana.\n\n**Features:**\n\n- Multiple Google accounts with automated load balancing\n    \n- Real-time webhooks for job events (replyUrl parameter)\n    \n- Async mode for fire-and-forget video generation\n    \n- Dynamic concurrency management\n    \n- Image and video generation with reference image support\n    \n\n**Key Features:**\n\n- Generate images with Imagen 4 and Nano Banana / Gemini 2.5 Flash Image\n    \n- Generate videos with Veo 3.1 Quality and Fast models\n    \n- T2V, I2V, I2V-FL, and R2V generation modes\n    \n- Reference images support (style and context references)\n    \n- Use free Google accounts for unlimited image generations\n    \n- Use Google AI Ultra subscription for unlimited Veo 3.1 Fast video generations\n    \n\n**Commands:**\n\n- [POST /images](https://useapi.net/docs/api-google-flow-v1/post-google-flow-images) - Generate images with Imagen 4 or Nano Banana\n    \n- [POST /videos](https://useapi.net/docs/api-google-flow-v1/post-google-flow-videos) - Generate videos with Veo 3.1 Quality or Fast\n    \n- [POST /assets/<email>](https://useapi.net/docs/api-google-flow-v1/post-google-flow-assets-email) - Upload assets (PNG, JPEG)\n    \n- [POST /videos/extend](https://useapi.net/docs/api-google-flow-v1/post-google-flow-videos-extend) - Extend video with a new prompt\n    \n- [POST /videos/concatenate](https://useapi.net/docs/api-google-flow-v1/post-google-flow-videos-concatenate) - Concatenate multiple videos\n    \n- [GET /jobs](https://useapi.net/docs/api-google-flow-v1/get-google-flow-jobs) - Get load balancing statistics\n    \n- [GET /jobs/<jobid>](https://useapi.net/docs/api-google-flow-v1/get-google-flow-jobs-jobid) - Get job status and results\n    \n- [GET /accounts](https://useapi.net/docs/api-google-flow-v1/get-google-flow-accounts) - List all configured accounts\n    \n- [GET /accounts/<email>](https://useapi.net/docs/api-google-flow-v1/get-google-flow-accounts-email) - Get specific account configuration\n    \n- [POST /accounts](https://useapi.net/docs/api-google-flow-v1/post-google-flow-accounts) - Configure Google Flow account\n    \n- [DELETE /accounts/<email>](https://useapi.net/docs/api-google-flow-v1/delete-google-flow-accounts-email) - Delete account configuration\n    \n- [GET /accounts/captcha-stats](https://useapi.net/docs/api-google-flow-v1/get-google-flow-accounts-captcha-stats) - Query captcha solving statistics\n    \n\nVisit [https://useapi.net/docs/api-google-flow-v1](https://useapi.net/docs/api-google-flow-v1) for complete documentation.\n\n---\n**Updated:** June 9, 2026"
+  contact:
+    name: useapi.net support
+    email: support@useapi.net
+    url: https://useapi.net/docs/support
+  x-derived-from: https://useapi.net/assets/postman/google-flow-v1.json
+servers:
+- url: https://api.useapi.net/v1/google-flow
+security:
+- bearerAuth: []
+tags:
+- name: google-flow
+  description: Google Flow API v1 by useapi.net
+paths:
+  /accounts:
+    get:
+      operationId: getAccounts
+      summary: GET accounts
+      description: 'List all configured Google Flow accounts for your API token.
+
+
+        Returns an object with account emails as keys and their health status.
+
+
+        [Documentation](https://useapi.net/docs/api-google-flow-v1/get-google-flow-accounts)'
+      tags:
+      - google-flow
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    post:
+      operationId: postAccounts
+      summary: POST accounts
+      description: 'Configure your Google account for Google Flow API access.
+
+
+        Requires cookies from accounts.google.com. The email is automatically extracted from the cookies.
+
+
+        See [Setup Google Flow](https://useapi.net/docs/start-here/setup-google-flow) for detailed instructions on how to obtain these cookies.
+
+
+        [Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-accounts)'
+      tags:
+      - google-flow
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cookies:
+                  type: string
+            example:
+              cookies: Cookies copied from Chrome DevTools in table format. See Setup Google Flow guide for details.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /accounts/{email}:
+    get:
+      operationId: getAccountsByEmail
+      summary: GET accounts/<email>
+      description: 'Get configuration and health status for a specific Google Flow account.
+
+
+        Returns health status, credits information, and available video models when account is healthy.
+
+
+        [Documentation](https://useapi.net/docs/api-google-flow-v1/get-google-flow-accounts-email)'
+      tags:
+      - google-flow
+      parameters:
+      - name: email
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    delete:
+      operationId: deleteAccountsByEmail
+      summary: DELETE accounts/<email>
+      description: 'Remove Google Flow account configuration.
+
+
+        Cancels any scheduled refresh operations automatically.
+
+
+        [Documentation](https://useapi.net/docs/api-google-flow-v1/delete-google-flow-accounts-email)'
+      tags:
+      - google-flow
+      parameters:
+      - name: email
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /assets/{email}:
+    post:
+      operationId: postAssetsByEmail
+      summary: POST assets/<email>
+      description: 'Upload assets to Google Flow for use in image and video generation.
+
+
+        Supports PNG/JPEG/WebP (image, up to 20 MB) and MP4 (video, up to 100 MB — for Omni Flash V2V edit via referenceVideo_1).
+
+
+        Returns mediaGenerationId for use in reference parameters. Video uploads also return durationSeconds.
+
+
+        [Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-assets-email)'
+      tags:
+      - google-flow
+      parameters:
+      - name: email
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /images:
+    post:
+      operationId: postImages
+      summary: POST images
+      description: 'Generate images using Imagen 4 or Nano Banana / Gemini 2.5 Flash Image.
+
+
+        Supports up to 3 reference images and generates 1-4 variations.
+
+
+        [Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-images)'
+      tags:
+      - google-flow
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                prompt:
+                  type: string
+                email:
+                  type: string
+                model:
+                  type: string
+                reference_1:
+                  type: string
+                reference_2:
+                  type: string
+                reference_3:
+                  type: string
+                reference_4:
+                  type: string
+                reference_5:
+                  type: string
+                reference_6:
+                  type: string
+                reference_7:
+                  type: string
+                reference_8:
+                  type: string
+                reference_9:
+                  type: string
+                reference_10:
+                  type: string
+                character_1:
+                  type: string
+                character_2:
+                  type: string
+                character_3:
+                  type: string
+                character_4:
+                  type: string
+                character_5:
+                  type: string
+                character_6:
+                  type: string
+                character_7:
+                  type: string
+                count:
+                  type: string
+                seed:
+                  type: string
+                aspectRatio:
+                  type: string
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                captchaToken:
+                  type: string
+                captchaRetry:
+                  type: string
+                captchaOrder:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /videos:
+    post:
+      operationId: postVideos
+      summary: POST videos
+      description: 'Generate videos using Veo 3.1 (Quality / Fast / Lite / Lite Lower Priority) or Gemini Omni Flash.
+
+
+        Supports T2V, I2V, I2V-FL, and R2V (Veo + Omni Flash) and V2V edit (Omni Flash only — via referenceVideo_1). Typical generation time: 60-180 seconds.
+
+
+        [Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-videos)'
+      tags:
+      - google-flow
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                prompt:
+                  type: string
+                email:
+                  type: string
+                model:
+                  type: string
+                startImage:
+                  type: string
+                endImage:
+                  type: string
+                referenceImage_1:
+                  type: string
+                referenceImage_2:
+                  type: string
+                referenceImage_3:
+                  type: string
+                referenceImage_4:
+                  type: string
+                referenceImage_5:
+                  type: string
+                referenceImage_6:
+                  type: string
+                referenceImage_7:
+                  type: string
+                character_1:
+                  type: string
+                character_2:
+                  type: string
+                character_3:
+                  type: string
+                character_4:
+                  type: string
+                character_5:
+                  type: string
+                character_6:
+                  type: string
+                character_7:
+                  type: string
+                referenceAudio_1:
+                  type: string
+                referenceAudio_2:
+                  type: string
+                referenceAudio_3:
+                  type: string
+                referenceAudio_4:
+                  type: string
+                referenceAudio_5:
+                  type: string
+                referenceVideo_1:
+                  type: string
+                startFrameIndex_1:
+                  type: string
+                endFrameIndex_1:
+                  type: string
+                count:
+                  type: string
+                seed:
+                  type: string
+                aspectRatio:
+                  type: string
+                duration:
+                  type: string
+                async:
+                  type: string
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                captchaToken:
+                  type: string
+                captchaRetry:
+                  type: string
+                captchaOrder:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /jobs/:
+    get:
+      operationId: getJobs
+      summary: GET jobs
+      description: 'Get load balancing statistics across all configured Google Flow accounts.
+
+
+        Provides real-time visibility into job distribution, account health, and performance metrics.
+
+
+        [Documentation](https://useapi.net/docs/api-google-flow-v1/get-google-flow-jobs)'
+      tags:
+      - google-flow
+      parameters:
+      - name: options
+        in: query
+        required: true
+        schema:
+          type: string
+        description: 'Level of detail: summary (default), executing, or history. Optional.'
+        example: summary
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /jobs/{jobId}:
+    get:
+      operationId: getJobsByJobid
+      summary: GET jobs/<jobId>
+      description: 'Retrieve job status and results by job ID.
+
+
+        Returns complete job information including generated images/videos with download URLs.
+
+
+        [Documentation](https://useapi.net/docs/api-google-flow-v1/get-google-flow-jobs-jobid)'
+      tags:
+      - google-flow
+      parameters:
+      - name: jobId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /images/upscale:
+    post:
+      operationId: postImagesUpscale
+      summary: POST images/upscale
+      description: 'Upscale a previously generated image to 2K or 4K resolution.
+
+
+        - 4K resolution requires a paid Google account (free accounts fail with 403 captcha_quality: PUBLIC_ERROR_UNUSUAL_ACTIVITY).
+
+
+        **Body Parameters:**
+
+        - `mediaGenerationId` (required) - The mediaGenerationId from POST /images
+
+        - `resolution` (optional) - Target resolution: 2k (default), 4k
+
+        - `captchaToken` (optional) - Your own reCAPTCHA v3 Enterprise token. Single attempt, no retry
+
+        - `captchaRetry` (optional) - Number of captcha retry attempts (1-10, default: 3)
+
+        - `captchaOrder` (optional) - Explicit captcha provider sequence as comma-separated string
+
+
+        Note: captchaToken, captchaRetry, and captchaOrder are mutually exclusive.
+
+
+        [Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-images-upscale)'
+      tags:
+      - google-flow
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mediaGenerationId:
+                  type: string
+                resolution:
+                  type: string
+                captchaRetry:
+                  type: integer
+            example:
+              mediaGenerationId: user:12345-email:6a6f...-image:CAMaJDMx...
+              resolution: 2k
+              captchaRetry: 3
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /videos/upscale:
+    post:
+      operationId: postVideosUpscale
+      summary: POST videos/upscale
+      description: 'Upscale a previously generated video to 1080p or 4K resolution.
+
+
+        - Requires paid Google AI subscription or remaining credits.
+
+        - 4K requires Google AI Ultra subscription.
+
+        - 1080p is free, 4K costs 50 credits.
+
+
+        **Body Parameters:**
+
+        - `mediaGenerationId` (required) - The mediaGenerationId from POST /videos
+
+        - `resolution` (optional) - Target resolution: 1080p (default), 4k
+
+        - `async` (optional) - true: Returns 201 immediately with jobId. false: Waits for completion. Default: false
+
+        - `replyUrl` (optional) - Webhook URL for job event callbacks. Max 1024 characters
+
+        - `replyRef` (optional) - Your reference ID stored with job. Max 1024 characters
+
+        - `captchaToken` (optional) - Your own reCAPTCHA v3 Enterprise token. Single attempt, no retry
+
+        - `captchaRetry` (optional) - Number of captcha retry attempts (1-10, default: 3)
+
+        - `captchaOrder` (optional) - Explicit captcha provider sequence as comma-separated string
+
+
+        Note: captchaToken, captchaRetry, and captchaOrder are mutually exclusive.
+
+
+        [Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-videos-upscale)'
+      tags:
+      - google-flow
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mediaGenerationId:
+                  type: string
+                resolution:
+                  type: string
+                async:
+                  type: boolean
+                captchaRetry:
+                  type: integer
+            example:
+              mediaGenerationId: user:12345-email:6a6f...-video:CAMaJDMx...
+              resolution: 1080p
+              async: false
+              captchaRetry: 3
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /videos/gif:
+    post:
+      operationId: postVideosGif
+      summary: POST videos/gif
+      description: 'Generate an animated GIF preview from a previously generated video.
+
+
+        - No captcha required.
+
+        - Can take up to 90 seconds.
+
+        - Returns base64-encoded GIF data.
+
+
+        [Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-videos-gif)'
+      tags:
+      - google-flow
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mediaGenerationId:
+                  type: string
+            example:
+              mediaGenerationId: user:12345-email:6a6f...-video:CAMaJDMx...
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /videos/extend:
+    post:
+      operationId: postVideosExtend
+      summary: POST videos/extend
+      description: 'Extend a previously generated video with a new prompt.
+
+
+        Creates an additional 8-second segment that continues from the last ~1 second of the source video.
+
+
+        **Body Parameters:**
+
+        - `mediaGenerationId` (required) - The mediaGenerationId from POST /videos or POST /videos/extend
+
+        - `prompt` (required) - Text description for what happens next
+
+        - `model` (optional) - Video model: veo-3.1-fast (default), veo-3.1-fast-relaxed (Ultra only), veo-3.1-quality
+
+        - `count` (optional) - Number of variations (1-4, default: 1)
+
+        - `seed` (optional) - Seed for reproducible results
+
+        - `async` (optional) - true: Returns 201 immediately. false: Waits for completion. Default: false
+
+        - `replyUrl` (optional) - Webhook URL for callbacks
+
+        - `replyRef` (optional) - Your reference ID
+
+        - `captchaToken` (optional) - Your own reCAPTCHA v3 Enterprise token. Single attempt, no retry
+
+        - `captchaRetry` (optional) - Retry attempts (1-10, default: 3)
+
+        - `captchaOrder` (optional) - Explicit provider sequence
+
+
+        Note: captchaToken, captchaRetry, and captchaOrder are mutually exclusive.
+
+
+        [Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-videos-extend)'
+      tags:
+      - google-flow
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mediaGenerationId:
+                  type: string
+                prompt:
+                  type: string
+            example:
+              mediaGenerationId: user:12345-email:6a6f...-video:CAMaJDMx...
+              prompt: The camera slowly pans right revealing a majestic waterfall
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /videos/concatenate:
+    post:
+      operationId: postVideosConcatenate
+      summary: POST videos/concatenate
+      description: "Concatenate multiple videos into a single video.\n\nCombines 2-10 videos with optional trimming for smooth transitions. Returns base64-encoded video (~7MB per input).\n\n**Body Parameters:**\n- `media` (required) - Array of 2-10 video objects:\n  - `mediaGenerationId` (required) - Video reference from POST /videos\n  - `trimStart` (optional) - Seconds to trim from start (0-8). Use 1 for extended videos to remove overlap.\n  - `trimEnd` (optional) - Seconds to trim from end (0-8)\n\n- No captcha required.\n- All videos must have the same aspect ratio.\n- Synchronous - waits for completion.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-videos-concatenate)"
+      tags:
+      - google-flow
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                media:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      mediaGenerationId:
+                        type: string
+            example:
+              media:
+              - mediaGenerationId: user:12345-email:...-video:...
+              - mediaGenerationId: user:12345-email:...-video:...
+                trimStart: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /accounts/captcha-providers:
+    get:
+      operationId: getAccountsCaptchaProviders
+      summary: GET accounts/captcha-providers
+      description: 'Retrieve configured captcha provider API keys (masked for security).
+
+
+        Returns masked keys for AntiCaptcha, EzCaptcha, CapSolver, and YesCaptcha if configured.
+
+
+        [Documentation](https://useapi.net/docs/api-google-flow-v1/get-google-flow-accounts-captcha-providers)'
+      tags:
+      - google-flow
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    post:
+      operationId: postAccountsCaptchaProviders
+      summary: POST accounts/captcha-providers
+      description: 'Configure captcha provider API keys for image and video generation.
+
+
+        Supported providers: AntiCaptcha, EzCaptcha, CapSolver (promo code useapi for 8% discount), YesCaptcha.
+
+
+        Set a field to empty string to remove that provider.
+
+
+        [Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-accounts-captcha-providers)'
+      tags:
+      - google-flow
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                AntiCaptcha:
+                  type: string
+                CapSolver:
+                  type: string
+            example:
+              AntiCaptcha: <your AntiCaptcha API key>
+              CapSolver: <your CapSolver API key>
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /accounts/captcha-stats:
+    get:
+      operationId: getAccountsCaptchaStats
+      summary: GET accounts/captcha-stats
+      description: 'Query captcha solving statistics for your account.
+
+
+        Returns detailed information about captcha token requests including success/failure rates, solve times, and provider breakdowns.
+
+
+        [Documentation](https://useapi.net/docs/api-google-flow-v1/get-google-flow-accounts-captcha-stats)'
+      tags:
+      - google-flow
+      parameters:
+      - name: date
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by date (YYYY-MM-DD). Defaults to today if limit not specified. Optional.
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Number of records to return (max 50000). If specified, date filter is ignored. Optional.
+      - name: provider
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Filter by captcha provider: AntiCaptcha, EzCaptcha, CapSolver, YesCaptcha, UserProvided. Optional.'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /voices:
+    post:
+      operationId: postVoices
+      summary: POST voices
+      description: Create a user (custom) voice on the specified account. Captcha-gated.
+      tags:
+      - google-flow
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                voice:
+                  type: string
+                displayName:
+                  type: string
+                dialog:
+                  type: string
+                voicePerformance:
+                  type: string
+                captchaToken:
+                  type: string
+                captchaRetry:
+                  type: string
+                captchaOrder:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    get:
+      operationId: getVoices
+      summary: GET voices
+      description: List system + user voices on the account. Fast — no audioUrl resolution. Use GET /voices/<ref> to play a specific voice.
+      tags:
+      - google-flow
+      parameters:
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Account email. Required.
+      - name: source
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by 'system' or 'user'. Omit for both. Optional.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /voices/{ref}:
+    get:
+      operationId: getVoicesByRef
+      summary: GET voices/<ref>
+      description: Resolve a single voice with playback URL. System voice -> static sampleUrl. User voice -> signed audioUrl (~6h). CF-cached 1h.
+      tags:
+      - google-flow
+      parameters:
+      - name: ref
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    delete:
+      operationId: deleteVoicesByRef
+      summary: DELETE voices/<ref>
+      description: Delete a user voice. Busts CF caches for this voice + any character that referenced it. System voices -> 400.
+      tags:
+      - google-flow
+      parameters:
+      - name: ref
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /characters:
+    post:
+      operationId: postCharacters
+      summary: POST characters
+      description: Create a character (1-2 image refs + optional voice). The account is extracted from imageReference_1 — no email body field. The returned reference-id encodes the inline imgs:N count.
+      tags:
+      - google-flow
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                displayName:
+                  type: string
+                imageReference_1:
+                  type: string
+                imageReference_2:
+                  type: string
+                personalityNotes:
+                  type: string
+                voice:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    get:
+      operationId: getCharacters
+      summary: GET characters
+      description: List all characters on the account. Fast — no previewUrl/thumbnailUrl/audioUrl resolution. Use GET /characters/<ref> for previews.
+      tags:
+      - google-flow
+      parameters:
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Account email. Required.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /characters/{ref}:
+    get:
+      operationId: getCharactersByRef
+      summary: GET characters/<ref>
+      description: 'Resolve a single character with all media URLs: imageReferences[].previewUrl, thumbnailUrl, voice.audioUrl. CF-cached 1h.'
+      tags:
+      - google-flow
+      parameters:
+      - name: ref
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    delete:
+      operationId: deleteCharactersByRef
+      summary: DELETE characters/<ref>
+      description: Delete a character. The attached voice (if any) is not deleted — voices have their own lifecycle.
+      tags:
+      - google-flow
+      parameters:
+      - name: ref
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'useapi.net API token. Header: `Authorization: Bearer user:<number>-<unique-string>`. Use the complete token including the `user:` prefix.'
+externalDocs:
+  description: google-flow documentation
+  url: https://useapi.net/docs/api-google-flow-v1

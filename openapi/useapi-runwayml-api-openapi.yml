@@ -1,0 +1,2027 @@
+openapi: 3.2.0
+info:
+  title: Runway API v1 by useapi.net Runwayml API
+  version: 1.0.0
+  description: "Full documentation available at [useapi.net](http://useapi.net/docs/api-runwayml-v1/).\n\nExperimental API for the [Runway](https://runwayml.com/) with full support for:\n\n- Gen-3 Alpha and Gen-3 Alpha Turbo\n    \n    - Text to Video\n        \n    - Image to Video\n        \n    - Video to Video\n        \n    - Extend Video\n        \n- Gen-2 text and image to video, extend video\n    \n- Lip Sync for both image and video sources with support for a variety of voices (28+ languages supported) or audio file\n    \n- Image to Text\n    \n- Image Upscaler\n    \n- Transcribe audio or video to text, multiple languages supported\n    \n\nAPI provides support for webhook callbacks for your convenience.\n\nFor free RunwayML accounts, the following features are unlocked with this Experimental API:\n\n- Watermarks will be removed automatically for Gen-2 generations\n    \n- Unlimited number of Text to Image generations\n    \n- Unlimited number of Image Upscaler generations\n    \n- Unlimited number of Transcribe generations\n\n---\n**Updated:** July 16, 2026"
+  contact:
+    name: useapi.net support
+    email: support@useapi.net
+    url: https://useapi.net/docs/support
+  x-derived-from: https://useapi.net/assets/postman/runwayml-v1.json
+servers:
+- url: https://api.useapi.net/v1/runwayml
+security:
+- bearerAuth: []
+tags:
+- name: runwayml
+  description: Runway API v1 by useapi.net
+paths:
+  /accounts:
+    get:
+      operationId: getAccounts
+      summary: accounts
+      description: Retrieve RunwayML accounts information.
+      tags:
+      - runwayml
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /accounts/{email}:
+    get:
+      operationId: getAccountsByEmail
+      summary: accounts/<email>
+      description: Retrieve RunwayML account information.
+      tags:
+      - runwayml
+      parameters:
+      - name: email
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    post:
+      operationId: postAccountsByEmail
+      summary: accounts/<email>
+      description: '[Add or update RunwayML account.](https://useapi.net/docs/api-runwayml-v1/post-runwayml-accounts-email)'
+      tags:
+      - runwayml
+      parameters:
+      - name: email
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                maxJobs:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                useWorkspace:
+                  type: string
+            example:
+              maxJobs: 'Required, supported range: 1...10'
+              email: Please refer to https://useapi.net/docs/start-here/setup-runwayml
+              password: Please refer to https://useapi.net/docs/start-here/setup-runwayml
+              useWorkspace: Optional, true to auto-select the account's paid workspace, or a team id to pin one (see GET /features teams[])
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    delete:
+      operationId: deleteAccountsByEmail
+      summary: accounts/<email>
+      description: Delete RunwayML account.
+      tags:
+      - runwayml
+      parameters:
+      - name: email
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /frames/create:
+    post:
+      operationId: postFramesCreate
+      summary: frames/create
+      description: '## [Frames](https://useapi.net/docs/api-runwayml-v1/post-runwayml-frames-create)'
+      tags:
+      - runwayml
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+                exploreMode:
+                  type: string
+                seed:
+                  type: string
+                text_prompt:
+                  type: string
+                style:
+                  type: string
+                aspect_ratio:
+                  type: string
+                diversity:
+                  type: string
+                num_images:
+                  type: string
+                imageAssetId1:
+                  type: string
+                imageAssetId2:
+                  type: string
+                imageAssetId3:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /images/create:
+    post:
+      operationId: postImagesCreate
+      summary: images/create
+      description: '## [Images](https://useapi.net/docs/api-runwayml-v1/post-runwayml-images-create)'
+      tags:
+      - runwayml
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                model:
+                  type: string
+                text_prompt:
+                  type: string
+                email:
+                  type: string
+                aspect_ratio:
+                  type: string
+                resolution:
+                  type: string
+                num_images:
+                  type: string
+                imageAssetId1:
+                  type: string
+                imageAssetId2:
+                  type: string
+                imageAssetId3:
+                  type: string
+                imageAssetId4:
+                  type: string
+                imageAssetId5:
+                  type: string
+                imageAssetId6:
+                  type: string
+                imageAssetId7:
+                  type: string
+                imageAssetId8:
+                  type: string
+                style:
+                  type: string
+                diversity:
+                  type: string
+                seed:
+                  type: string
+                exploreMode:
+                  type: string
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /videos/create:
+    post:
+      operationId: postVideosCreate
+      summary: videos/create
+      description: '## [Videos](https://useapi.net/docs/api-runwayml-v1/post-runwayml-videos-create)
+
+
+        Unified video generation endpoint supporting 18 models across Seedance, Kling (incl. O3 omni and Motion Control), Wan, Veo, Sora, and Gen-4 families.'
+      tags:
+      - runwayml
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                model:
+                  type: string
+                text_prompt:
+                  type: string
+                email:
+                  type: string
+                duration:
+                  type: string
+                aspect_ratio:
+                  type: string
+                resolution:
+                  type: string
+                audio:
+                  type: string
+                seed:
+                  type: string
+                imageAssetId1:
+                  type: string
+                imageAssetId2:
+                  type: string
+                imageAssetId3:
+                  type: string
+                imageAssetId4:
+                  type: string
+                imageAssetId5:
+                  type: string
+                imageAssetId6:
+                  type: string
+                imageAssetId7:
+                  type: string
+                imageAssetId8:
+                  type: string
+                imageAssetId9:
+                  type: string
+                imageAssetId10:
+                  type: string
+                imageAssetId11:
+                  type: string
+                startFrameAssetId:
+                  type: string
+                endFrameAssetId:
+                  type: string
+                videoAssetId:
+                  type: string
+                videoAssetId2:
+                  type: string
+                videoAssetId3:
+                  type: string
+                audioAssetId1:
+                  type: string
+                audioAssetId2:
+                  type: string
+                audioAssetId3:
+                  type: string
+                characterOrientation:
+                  type: string
+                multishot_prompt_1:
+                  type: string
+                multishot_duration_1:
+                  type: string
+                multishot_prompt_2:
+                  type: string
+                multishot_duration_2:
+                  type: string
+                multishot_prompt_3:
+                  type: string
+                multishot_duration_3:
+                  type: string
+                multishot_prompt_4:
+                  type: string
+                multishot_duration_4:
+                  type: string
+                multishot_prompt_5:
+                  type: string
+                multishot_duration_5:
+                  type: string
+                multishot_prompt_6:
+                  type: string
+                multishot_duration_6:
+                  type: string
+                exploreMode:
+                  type: string
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /videos/upscale:
+    post:
+      operationId: postVideosUpscale
+      summary: videos/upscale
+      description: '## [Videos Upscale](https://useapi.net/docs/api-runwayml-v1/post-runwayml-videos-upscale)
+
+
+        Upscale a video to 4K using Topaz AI. Output preserves source aspect ratio (e.g. 1280×720 → 4096×2304). Max source duration 40 seconds. Unlimited with exploreMode.'
+      tags:
+      - runwayml
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                videoAssetId:
+                  type: string
+                exploreMode:
+                  type: string
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /frames/describe/{image_assetId}:
+    get:
+      operationId: getFramesDescribeByImageassetid
+      summary: frames/describe/<image_assetId>
+      description: '## [Get image description](https://useapi.net/docs/api-runwayml-v1/get-runwayml-frames-describe)'
+      tags:
+      - runwayml
+      parameters:
+      - name: image_assetId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /gen4turbo/create:
+    post:
+      operationId: postGen4turboCreate
+      summary: gen4turbo/create
+      description: '## [Create a video using the first image(s) with a text prompt](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen4turbo-create)'
+      tags:
+      - runwayml
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+                firstImage_assetId:
+                  type: string
+                text_prompt:
+                  type: string
+                aspect_ratio:
+                  type: string
+                seconds:
+                  type: string
+                seed:
+                  type: string
+                exploreMode:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /gen4_5/create:
+    post:
+      operationId: postGen45Create
+      summary: gen4_5/create
+      description: '## [Create a video using text prompt or image](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen4_5-create)
+
+
+        Gen-4.5 supports Text-to-Video (T2V) and Image-to-Video (I2V) modes. T2V generates 720p 16:9 videos from text prompts. I2V generates videos from a first image with optional text prompt, supporting multiple aspect ratios.'
+      tags:
+      - runwayml
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                firstImage_assetId:
+                  type: string
+                text_prompt:
+                  type: string
+                aspect_ratio:
+                  type: string
+                seconds:
+                  type: string
+                seed:
+                  type: string
+                exploreMode:
+                  type: string
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /gen4/create:
+    post:
+      operationId: postGen4Create
+      summary: gen4/create
+      description: '## [Create a video using the first image(s) with a text prompt](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen4-create)'
+      tags:
+      - runwayml
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+                firstImage_assetId:
+                  type: string
+                text_prompt:
+                  type: string
+                aspect_ratio:
+                  type: string
+                seconds:
+                  type: string
+                seed:
+                  type: string
+                exploreMode:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /gen4/upscale:
+    post:
+      operationId: postGen4Upscale
+      summary: gen4/upscale
+      description: '## [Upscale to 4K the Gen-4, Gen-4 Turbo, Gen-3 Alpha and Gen-3 Alpha Turbo videos](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen4-upscale)'
+      tags:
+      - runwayml
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+                assetId:
+                  type: string
+                exploreMode:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /gen4/act-two:
+    post:
+      operationId: postGen4ActTwo
+      summary: gen4/act-two
+      description: '## [Gen4 Act-Two](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen4-act-two)'
+      tags:
+      - runwayml
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+                driving_assetId:
+                  type: string
+                character_assetId:
+                  type: string
+                expression_intensity:
+                  type: string
+                body_control:
+                  type: string
+                aspect_ratio:
+                  type: string
+                seed:
+                  type: string
+                exploreMode:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /gen4/act-two-voice:
+    post:
+      operationId: postGen4ActTwoVoice
+      summary: gen4/act-two-voice
+      description: '## [Gen4 Act-Two voice swap](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen4-act-two-voice)'
+      tags:
+      - runwayml
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                video_assetId:
+                  type: string
+                voiceId:
+                  type: string
+                exploreMode:
+                  type: string
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /gen4/video:
+    post:
+      operationId: postGen4Video
+      summary: gen4/video
+      description: '## [Create a video using Runway Gen-4 Aleph (video-to-video)](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen4-video)'
+      tags:
+      - runwayml
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+                video_assetId:
+                  type: string
+                image_assetId:
+                  type: string
+                text_prompt:
+                  type: string
+                seed:
+                  type: string
+                exploreMode:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /gen3turbo/create:
+    post:
+      operationId: postGen3turboCreate
+      summary: gen3turbo/create
+      description: '## [Create a video using the first and/or last images with a text prompt](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3turbo-create)'
+      tags:
+      - runwayml
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+                firstImage_assetId:
+                  type: string
+                lastImage_assetId:
+                  type: string
+                text_prompt:
+                  type: string
+                aspect_ratio:
+                  type: string
+                seconds:
+                  type: string
+                seed:
+                  type: string
+                exploreMode:
+                  type: string
+                horizontal:
+                  type: string
+                vertical:
+                  type: string
+                roll:
+                  type: string
+                zoom:
+                  type: string
+                pan:
+                  type: string
+                tilt:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /gen3turbo/video:
+    post:
+      operationId: postGen3turboVideo
+      summary: gen3turbo/video
+      description: '[Gen-3 Alpha Turbo Video to Video](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3turbo-video)'
+      tags:
+      - runwayml
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+                exploreMode:
+                  type: string
+                assetId:
+                  type: string
+                text_prompt:
+                  type: string
+                structure_transformation:
+                  type: string
+                aspect_ratio:
+                  type: string
+                seed:
+                  type: string
+                resolution:
+                  type: string
+                seconds:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /gen3turbo/extend:
+    post:
+      operationId: postGen3turboExtend
+      summary: gen3turbo/extend
+      description: '## [Extend the Gen-3 Alpha Turbo video by 8 seconds](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3turbo-extend)'
+      tags:
+      - runwayml
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+                exploreMode:
+                  type: string
+                assetId:
+                  type: string
+                seed:
+                  type: string
+                text_prompt:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /gen3turbo/expand:
+    post:
+      operationId: postGen3turboExpand
+      summary: gen3turbo/expand
+      description: '## [Gen-3 Alpha Turbo Expand Video](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3turbo-expand)'
+      tags:
+      - runwayml
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+                exploreMode:
+                  type: string
+                videoAssetId:
+                  type: string
+                seed:
+                  type: string
+                imageAssetId:
+                  type: string
+                text_prompt:
+                  type: string
+                seconds:
+                  type: string
+                outpaint_aspect_ratio:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /gen3turbo/actone:
+    post:
+      operationId: postGen3turboActone
+      summary: gen3turbo/actone
+      description: '[Drive your image or video character performance using simple video and audio inputs.](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3turbo-actone)'
+      tags:
+      - runwayml
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+                exploreMode:
+                  type: string
+                driving_assetId:
+                  type: string
+                character_assetId:
+                  type: string
+                motion_multiplier:
+                  type: string
+                aspect_ratio:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /gen3/create:
+    post:
+      operationId: postGen3Create
+      summary: gen3/create
+      description: '## [Create a video using text and/or image prompts](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3-create)'
+      tags:
+      - runwayml
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+                exploreMode:
+                  type: string
+                image_assetId:
+                  type: string
+                image_as_end_frame:
+                  type: string
+                text_prompt:
+                  type: string
+                enhance_prompt:
+                  type: string
+                seed:
+                  type: string
+                seconds:
+                  type: string
+                resolution:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /gen3/video:
+    post:
+      operationId: postGen3Video
+      summary: gen3/video
+      description: '[Gen-3 Alpha Video to Video](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3-video)'
+      tags:
+      - runwayml
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+                exploreMode:
+                  type: string
+                assetId:
+                  type: string
+                text_prompt:
+                  type: string
+                structure_transformation:
+                  type: string
+                resolution:
+                  type: string
+                seed:
+                  type: string
+                seconds:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /gen3/extend:
+    post:
+      operationId: postGen3Extend
+      summary: gen3/extend
+      description: '## [Extend the Gen-3 Alpha video by 5 or 10 seconds](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3-extend)'
+      tags:
+      - runwayml
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+                exploreMode:
+                  type: string
+                assetId:
+                  type: string
+                seed:
+                  type: string
+                seconds:
+                  type: string
+                text_prompt:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /gen3/actone:
+    post:
+      operationId: postGen3Actone
+      summary: gen3/actone
+      description: '[Drive your image or video character performance using simple video and audio inputs.](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3-actone)'
+      tags:
+      - runwayml
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+                exploreMode:
+                  type: string
+                driving_assetId:
+                  type: string
+                character_assetId:
+                  type: string
+                motion_multiplier:
+                  type: string
+                aspect_ratio:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /gen3alpha/upscale:
+    post:
+      operationId: postGen3alphaUpscale
+      summary: gen3alpha/upscale
+      description: '## [Upscale Gen-3 Alpha and Gen-3 Alpha Turbo videos to 4K](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen3alpha-upscale)
+
+
+        Note: Runway website no longer supports Gen-3. Consider migrating to Gen-4.x.'
+      tags:
+      - runwayml
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                assetId:
+                  type: string
+                exploreMode:
+                  type: string
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /gen2/create:
+    post:
+      operationId: postGen2Create
+      summary: gen2/create
+      description: '## [Create a 4-second-long video using text and/or image prompts](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen2-create)'
+      tags:
+      - runwayml
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+                exploreMode:
+                  type: string
+                text_prompt:
+                  type: string
+                image_assetId:
+                  type: string
+                image_preview:
+                  type: string
+                interpolate:
+                  type: string
+                upscale:
+                  type: string
+                style:
+                  type: string
+                aspect_ratio:
+                  type: string
+                seed:
+                  type: string
+                motion:
+                  type: string
+                horizontal:
+                  type: string
+                vertical:
+                  type: string
+                roll:
+                  type: string
+                zoom:
+                  type: string
+                pan:
+                  type: string
+                tilt:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /gen2/extend:
+    post:
+      operationId: postGen2Extend
+      summary: gen2/extend
+      description: '## [Extend the video by 4 seconds](https://useapi.net/docs/api-runwayml-v1/post-runwayml-gen2-extend)'
+      tags:
+      - runwayml
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+                exploreMode:
+                  type: string
+                assetId:
+                  type: string
+                interpolate:
+                  type: string
+                seed:
+                  type: string
+                motion:
+                  type: string
+                horizontal:
+                  type: string
+                vertical:
+                  type: string
+                roll:
+                  type: string
+                zoom:
+                  type: string
+                pan:
+                  type: string
+                tilt:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /lipsync/create:
+    post:
+      operationId: postLipsyncCreate
+      summary: lipsync/create
+      description: '[Lip Sync for both image and video sources with support for a variety of voices (28+ languages supported) or audio file](https://useapi.net/docs/api-runwayml-v1/post-runwayml-lipsync-create)'
+      tags:
+      - runwayml
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+                exploreMode:
+                  type: string
+                image_assetId:
+                  type: string
+                video_assetId:
+                  type: string
+                audio_assetId:
+                  type: string
+                voiceId:
+                  type: string
+                voice_text:
+                  type: string
+                model_id:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /super_slow_motion:
+    post:
+      operationId: postSuperSlowMotion
+      summary: super_slow_motion
+      description: '[Super Slow Motion](https://useapi.net/docs/api-runwayml-v1/post-runwayml-super_slow_motion)'
+      tags:
+      - runwayml
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+                assetId:
+                  type: string
+                speed:
+                  type: string
+                duration:
+                  type: string
+                width:
+                  type: string
+                height:
+                  type: string
+                format:
+                  type: string
+                name:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /lipsync/voices/:
+    get:
+      operationId: getLipsyncVoices
+      summary: lipsync/voices
+      description: '[Retrieve list of voices for lipsync/create.](https://useapi.net/docs/api-runwayml-v1/get-runwayml-lipsync-voices)'
+      tags:
+      - runwayml
+      parameters:
+      - name: email
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional when only one runwayml/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /text_to_image_preview/:
+    get:
+      operationId: getTextToImagePreview
+      summary: text_to_image_preview
+      description: '## [Text to Image instant generation (Stable Diffusion)](https://useapi.net/docs/api-runwayml-v1/get-runwayml-text_to_image_preview)'
+      tags:
+      - runwayml
+      parameters:
+      - name: email
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional when only one runwayml/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.
+      - name: text_prompt
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Required text prompt
+      - name: negative_prompt
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional negative prompt
+      - name: seed
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional seed value
+      - name: style
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Optional, supported values: cinematic,abandoned,abstract_sculpture,advertising,anime,architectural,cartoon,cine_lens,claymation,concept_art,digital_art,duotone_artistic_photo,forestpunk,frost,graphic_novel,graphite,impressionist_painting,isometric_3d,low_poly_3d,macro_photography,marker_drawing,moody_film,pixel_art,retro_photography,sci-fi_art,stickers,storyboard,actor_casting,thriller,35mm,3d_cartoon,3d_render,80s_vaporwave'
+      - name: aspect_ratio
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Optional, supported values: 21:9,1:1,9:16,16:9,4:3,3:4'
+      - name: prompt_weight
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional weight of the prompt, supported range 1...30
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /image_upscaler/:
+    get:
+      operationId: getImageUpscaler
+      summary: image_upscaler
+      description: '## [Upscale or Downscale image to specified dimensions](https://useapi.net/docs/api-runwayml-v1/get-runwayml-image_upscaler)'
+      tags:
+      - runwayml
+      parameters:
+      - name: email
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional when only one runwayml/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.
+      - name: image_url
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Required image URL. Provide URL of the image generated via runwayml/text_to_image_preview endpoint or URL of desired image asset to upscale (fied asset.url)
+      - name: width
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Required width value
+      - name: height
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Required height value
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /transcribe/:
+    get:
+      operationId: getTranscribe
+      summary: transcribe
+      description: '[Transcribe audio or video to text, multiple laguages supported](https://useapi.net/docs/api-runwayml-v1/get-runwayml-transcribe)'
+      tags:
+      - runwayml
+      parameters:
+      - name: assetId
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Required assetId of video or audio asset to transcribe to text
+      - name: language
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Required two letter language id, eg. en, see full list at https://help.elevenlabs.io/hc/en-us/articles/17883183930129-What-models-do-you-offer-and-what-is-the-difference-between-them
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /assets/:
+    get:
+      operationId: getAssets
+      summary: assets
+      description: Retrieve assets. Pagination supported via offset and limit parameters.
+      tags:
+      - runwayml
+      parameters:
+      - name: email
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional when only one runwayml/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.
+      - name: offset
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Required.
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Required.
+      - name: mediaType
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Optional. Supported values: video,image,audio'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    post:
+      operationId: postAssets
+      summary: assets
+      description: "Upload assed to your RunwayML account asset storage.  \nPost asset as binary content and use headers Content-Type field to specify asset type.\n\nFollowing Content-Type values supported (Content-Type: file extension):\n\n• image/png: png  \n• image/jpeg: jpeg  \n• image/gif: gif  \n• video/mp4: mp4  \n• video/quicktime: mov  \n• video/3gpp: 3gp  \n• video/x-matroska: mkv  \n• video/x-flv: flv  \n• video/mpeg: mpeg  \n• video/MP2T: ts  \n• video/x-msvideo: avi  \n• video/x-motion-jpeg: mjpeg  \n• video/webm: webm  \n• video/ogg: ogv  \n• audio/wav: wav  \n• audio/wave: wav  \n• audio/mpeg: mp3  \n• audio/flac: flac  \n• audio/ogg: ogg  \n• audio/webm: webm"
+      tags:
+      - runwayml
+      parameters:
+      - name: email
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional when only one runwayml/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.
+      - name: name
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Requred.
+      - name: duration
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional. Specify audio or video duration in seconds.
+      - name: width
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional. Specify image or video width in pixels.
+      - name: height
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional. Specify image or video height in pixels.
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /assets/{assetId}:
+    get:
+      operationId: getAssetsByAssetid
+      summary: assets/<assetId>
+      description: Retrieve asset.
+      tags:
+      - runwayml
+      parameters:
+      - name: assetId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    delete:
+      operationId: deleteAssetsByAssetid
+      summary: assets/<assetId>
+      description: Delete asset.
+      tags:
+      - runwayml
+      parameters:
+      - name: assetId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /scheduler:
+    get:
+      operationId: getScheduler
+      summary: scheduler
+      description: Retrieve the list of currently executing tasks.
+      tags:
+      - runwayml
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /scheduler/{taskId}:
+    delete:
+      operationId: deleteSchedulerByTaskid
+      summary: scheduler/<taskId>
+      description: Remove the provided task from the list of currently executing tasks.
+      tags:
+      - runwayml
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /tasks/:
+    get:
+      operationId: getTasks
+      summary: tasks
+      description: Retrieve tasks. Pagination supported via offset and limit parameters.
+      tags:
+      - runwayml
+      parameters:
+      - name: email
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional when only one runwayml/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.
+      - name: offset
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Required.
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Required.
+      - name: statuses
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Optional. Supported values: PENDING,RUNNING,THROTTLED,SUCCEEDED. Comma-separated values can be provided.'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /tasks/{taskId}:
+    get:
+      operationId: getTasksByTaskid
+      summary: tasks/<taskId>
+      description: Retrieve task.
+      tags:
+      - runwayml
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    delete:
+      operationId: deleteTasksByTaskid
+      summary: tasks/<taskId>
+      description: 'Delete task.
+
+
+        [Documentation](https://useapi.net/docs/api-runwayml-v1/del-runwayml-tasks-taskId)'
+      tags:
+      - runwayml
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /features/:
+    get:
+      operationId: getFeatures
+      summary: features
+      description: Retrieve account credits information and other details.
+      tags:
+      - runwayml
+      parameters:
+      - name: email
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional when only one runwayml/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'useapi.net API token. Header: `Authorization: Bearer user:<number>-<unique-string>`. Use the complete token including the `user:` prefix.'
+externalDocs:
+  description: runwayml documentation
+  url: https://useapi.net/docs/api-runwayml-v1

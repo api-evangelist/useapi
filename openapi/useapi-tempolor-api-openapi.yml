@@ -1,0 +1,666 @@
+openapi: 3.2.0
+info:
+  title: v1 by useapi.net Tempolor API
+  version: 1.0.0
+  description: '[TemPolor API v1 by useapi.net](https://useapi.net/docs/api-tempolor-v1)
+
+
+    ---
+
+    **Updated:** March 21, 2026'
+  contact:
+    name: useapi.net support
+    email: support@useapi.net
+    url: https://useapi.net/docs/support
+  x-derived-from: https://useapi.net/assets/postman/tempolor-v1.json
+servers:
+- url: https://api.useapi.net/v1/tempolor
+security:
+- bearerAuth: []
+tags:
+- name: tempolor
+  description: TemPolor API v1 by useapi.net
+paths:
+  /accounts:
+    get:
+      operationId: getAccounts
+      summary: accounts
+      description: '[Retrieve TemPolor accounts information.](https://useapi.net/docs/api-tempolor-v1/get-tempolor-accounts)'
+      tags:
+      - tempolor
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    post:
+      operationId: postAccounts
+      summary: accounts
+      description: '[Create or update TemPolor API account.](https://useapi.net/docs/api-tempolor-v1/post-tempolor-accounts)'
+      tags:
+      - tempolor
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /accounts/{user_id}:
+    get:
+      operationId: getAccountsByUserid
+      summary: accounts/<user_id>
+      description: '[Retrieve TemPolor account information.](https://useapi.net/docs/api-tempolor-v1/get-tempolor-accounts-user_id)'
+      tags:
+      - tempolor
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    delete:
+      operationId: deleteAccountsByUserid
+      summary: accounts/<user_id>
+      description: '[Delete TemPolor account.](https://useapi.net/docs/api-tempolor-v1/del-tempolor-accounts-user_id)'
+      tags:
+      - tempolor
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /music/song:
+    post:
+      operationId: postMusicSong
+      summary: music/song
+      description: '[Create music with vocals](https://useapi.net/docs/api-tempolor-v1/post-tempolor-music-song)'
+      tags:
+      - tempolor
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                prompt:
+                  type: string
+                lyrics:
+                  type: string
+                model_song:
+                  type: string
+                artistVoiceItemId:
+                  type: string
+                clonedVoiceItemId:
+                  type: string
+                midiItemId:
+                  type: string
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /music/instrumental:
+    post:
+      operationId: postMusicInstrumental
+      summary: music/instrumental
+      description: '[Create instrumental music](https://useapi.net/docs/api-tempolor-v1/post-tempolor-music-instrumental)'
+      tags:
+      - tempolor
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                prompt:
+                  type: string
+                model_instrumental:
+                  type: string
+                tonality:
+                  type: string
+                bpm:
+                  type: string
+                chord:
+                  type: string
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /music/stems-splitter:
+    post:
+      operationId: postMusicStemsSplitter
+      summary: music/stems-splitter • use Body » binary to upload audio file
+      description: '[Split audio into stems](https://useapi.net/docs/api-tempolor-v1/post-tempolor-music-stems-splitter)'
+      tags:
+      - tempolor
+      parameters:
+      - name: user_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional when only one tempolor/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /music:
+    get:
+      operationId: getMusic
+      summary: music
+      description: '[Retrieve generated music](https://useapi.net/docs/api-tempolor-v1/get-tempolor-music)'
+      tags:
+      - tempolor
+      parameters:
+      - name: user_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional when only one tempolor/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.
+      - name: cursor
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional. Pagination cursor for fetching next page of results.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /music/{job_id}:
+    get:
+      operationId: getMusicByJobid
+      summary: music/<job_id>
+      description: '[Retrieve music generation job status](https://useapi.net/docs/api-tempolor-v1/get-tempolor-music-job_id)'
+      tags:
+      - tempolor
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    delete:
+      operationId: deleteMusicByJobid
+      summary: music/<job_id>
+      description: '[Delete generated music](https://useapi.net/docs/api-tempolor-v1/delete-tempolor-music-job_id)'
+      tags:
+      - tempolor
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /music/download/{job_id}:
+    get:
+      operationId: getMusicDownloadByJobid
+      summary: music/download/<job_id>
+      description: '[Download generated music](https://useapi.net/docs/api-tempolor-v1/get-tempolor-music-download-job_id)'
+      tags:
+      - tempolor
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: file_format
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Optional, format of the generated music. Supported values: mp3 (default), wav (higher quality), stems (ZIP archive with separated stems).'
+        example: mp3
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /music/artist-voices:
+    get:
+      operationId: getMusicArtistVoices
+      summary: music/artist-voices
+      description: '[List artist voices](https://useapi.net/docs/api-tempolor-v1/get-tempolor-music-artist-voices)'
+      tags:
+      - tempolor
+      parameters:
+      - name: user_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional when only one tempolor/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.
+      - name: cursor
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional. Pagination cursor for fetching next page of results.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /music/cloned-voices:
+    get:
+      operationId: getMusicClonedVoices
+      summary: music/cloned-voices
+      description: '[List cloned voices](https://useapi.net/docs/api-tempolor-v1/get-tempolor-music-cloned-voices)'
+      tags:
+      - tempolor
+      parameters:
+      - name: user_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional when only one tempolor/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.
+      - name: cursor
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional. Pagination cursor for fetching next page of results.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    post:
+      operationId: postMusicClonedVoices
+      summary: music/cloned-voices • use Body » binary to upload audio file
+      description: '[Upload voice sample for cloning](https://useapi.net/docs/api-tempolor-v1/post-tempolor-music-cloned-voices)'
+      tags:
+      - tempolor
+      parameters:
+      - name: user_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional when only one tempolor/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.
+      - name: name
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Required, specify a name for your cloned voice.
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /music/cloned-voices/{clonedVoiceItemId}:
+    delete:
+      operationId: deleteMusicClonedVoicesByClonedvoiceitemid
+      summary: music/cloned-voices/<clonedVoiceItemId>
+      description: '[Delete cloned voice](https://useapi.net/docs/api-tempolor-v1/delete-tempolor-music-cloned-voices-clonedVoiceItemId)'
+      tags:
+      - tempolor
+      parameters:
+      - name: clonedVoiceItemId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /music/midi:
+    get:
+      operationId: getMusicMidi
+      summary: music/midi
+      description: '[List uploaded MIDI files](https://useapi.net/docs/api-tempolor-v1/get-tempolor-music-midi)'
+      tags:
+      - tempolor
+      parameters:
+      - name: user_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional when only one tempolor/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.
+      - name: cursor
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional. Pagination cursor for fetching next page of results.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    post:
+      operationId: postMusicMidi
+      summary: music/midi • use Body » binary to upload MIDI file
+      description: '[Upload MIDI file](https://useapi.net/docs/api-tempolor-v1/post-tempolor-music-midi)'
+      tags:
+      - tempolor
+      parameters:
+      - name: user_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional when only one tempolor/accounts configured. However, if you have multiple accounts configured, this parameter becomes required.
+      - name: name
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Required, specify a name for your MIDI file.
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /music/midi/{midiItemId}:
+    delete:
+      operationId: deleteMusicMidiByMidiitemid
+      summary: music/midi/<midiItemId>
+      description: '[Delete MIDI file](https://useapi.net/docs/api-tempolor-v1/delete-tempolor-music-midi-midiItemId)'
+      tags:
+      - tempolor
+      parameters:
+      - name: midiItemId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /scheduler:
+    get:
+      operationId: getScheduler
+      summary: scheduler
+      description: '[List scheduled jobs](https://useapi.net/docs/api-tempolor-v1/get-tempolor-scheduler)'
+      tags:
+      - tempolor
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /scheduler/available:
+    get:
+      operationId: getSchedulerAvailable
+      summary: scheduler/available
+      description: '[Retrieve available capacity](https://useapi.net/docs/api-tempolor-v1/get-tempolor-scheduler-available)'
+      tags:
+      - tempolor
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /scheduler/{job_id}:
+    delete:
+      operationId: deleteSchedulerByJobid
+      summary: scheduler/<job_id>
+      description: '[Cancel a running job](https://useapi.net/docs/api-tempolor-v1/del-tempolor-scheduler-job_id)'
+      tags:
+      - tempolor
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'useapi.net API token. Header: `Authorization: Bearer user:<number>-<unique-string>`. Use the complete token including the `user:` prefix.'
+externalDocs:
+  description: tempolor documentation
+  url: https://useapi.net/docs/api-tempolor-v1

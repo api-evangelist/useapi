@@ -1,0 +1,625 @@
+openapi: 3.2.0
+info:
+  title: v1 by useapi.net Dreamina API
+  version: 1.0.0
+  description: "Experimental API for Dreamina by ByteDance. Video models: Seedance 2.0 (US+CA; 1080p CA-only), 2.0 Fast (US+CA), 1.5 Pro (US+CA), 1.0 Pro (CA), 1.0 Mini (US+CA), 1.0 Fast (CA), Sora2 (CA). Image models: Seedream 5.0 Lite, 4.6, 4.5, 4.1, 4.0, Nano Banana, 3.0, GPT Image 2 (CA only). Supports US and CA regions, 720p/1080p resolution, video upscale (2x super resolution).\n\n**Features:**\n\n- Multiple Dreamina accounts with automated load balancing\n    \n- Real-time webhooks for job events (replyUrl parameter)\n    \n- Async image and video generation with job polling\n    \n- Dynamic concurrency management\n    \n- Image upload for reference frame and image generation support\n    \n\n**Commands:**\n\n- [POST /accounts](https://useapi.net/docs/api-dreamina-v1/post-dreamina-accounts) - Configure Dreamina account\n    \n- [GET /accounts](https://useapi.net/docs/api-dreamina-v1/get-dreamina-accounts) - List all configured accounts\n    \n- [GET /accounts/<account>](https://useapi.net/docs/api-dreamina-v1/get-dreamina-accounts-account) - Get account details, models, credits\n    \n- [DELETE /accounts/<account>](https://useapi.net/docs/api-dreamina-v1/delete-dreamina-accounts-account) - Delete account configuration\n    \n- [POST /assets/<account>](https://useapi.net/docs/api-dreamina-v1/post-dreamina-assets-account) - Upload images (JPEG, PNG, WebP)\n    \n- [GET /assets/<account>](https://useapi.net/docs/api-dreamina-v1/get-dreamina-assets-account) - List generation history\n    \n- [DELETE /assets/<assetId>](https://useapi.net/docs/api-dreamina-v1/delete-dreamina-assets-assetid) - Delete asset from history\n    \n- [POST /videos](https://useapi.net/docs/api-dreamina-v1/post-dreamina-videos) - Generate videos\n    \n- [GET /videos/<jobid>](https://useapi.net/docs/api-dreamina-v1/get-dreamina-videos-jobid) - Get video job status and results\n    \n- [POST /images](https://useapi.net/docs/api-dreamina-v1/post-dreamina-images) - Generate images\n    \n- [GET /images/<jobid>](https://useapi.net/docs/api-dreamina-v1/get-dreamina-images-jobid) - Get image job status and results\n    \n- [POST /videos/upscale](https://useapi.net/docs/api-dreamina-v1/post-dreamina-videos-upscale) - Upscale video (2x super resolution)\n    \n- [POST /videos/interpolate](https://useapi.net/docs/api-dreamina-v1/post-dreamina-videos-interpolate) - Frame interpolation (30/60 FPS)\n    \n- [POST /images/upscale](https://useapi.net/docs/api-dreamina-v1/post-dreamina-images-upscale) - Upscale generated image\n    \n- [GET /scheduler](https://useapi.net/docs/api-dreamina-v1/get-dreamina-scheduler) - List executing jobs\n    \n- [DELETE /scheduler/<jobid>](https://useapi.net/docs/api-dreamina-v1/delete-dreamina-scheduler-jobid) - Cancel executing job\n    \n\nVisit [https://useapi.net/docs/api-dreamina-v1](https://useapi.net/docs/api-dreamina-v1) for complete documentation.\n\n---\n**Updated:** February 23, 2026 (April 17, 2026)"
+  contact:
+    name: useapi.net support
+    email: support@useapi.net
+    url: https://useapi.net/docs/support
+  x-derived-from: https://useapi.net/assets/postman/dreamina-v1.json
+servers:
+- url: https://api.useapi.net/v1/dreamina
+security:
+- bearerAuth: []
+tags:
+- name: dreamina
+  description: Dreamina API v1 by useapi.net
+paths:
+  /accounts:
+    post:
+      operationId: postAccounts
+      summary: POST accounts
+      description: 'Configure your Dreamina account for API access using email and password credentials.
+
+
+        See [Setup Dreamina](https://useapi.net/docs/start-here/setup-dreamina) for detailed instructions.
+
+
+        [Documentation](https://useapi.net/docs/api-dreamina-v1/post-dreamina-accounts)'
+      tags:
+      - dreamina
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                region:
+                  type: string
+            example:
+              email: your-dreamina-email@example.com
+              password: your-dreamina-password
+              region: US
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    get:
+      operationId: getAccounts
+      summary: GET accounts
+      description: 'List all configured Dreamina accounts.
+
+
+        [Documentation](https://useapi.net/docs/api-dreamina-v1/get-dreamina-accounts)'
+      tags:
+      - dreamina
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /accounts/{account}:
+    get:
+      operationId: getAccountsByAccount
+      summary: GET accounts/<account>
+      description: 'Get configuration details for a specific Dreamina account, including session status, available models, and credit balance. Can also be called once a day to claim free daily credits.
+
+
+        [Documentation](https://useapi.net/docs/api-dreamina-v1/get-dreamina-accounts-account)'
+      tags:
+      - dreamina
+      parameters:
+      - name: account
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    delete:
+      operationId: deleteAccountsByAccount
+      summary: DELETE accounts/<account>
+      description: 'Delete a configured Dreamina account. Removes the account from your configuration and cleans up any executing job entries.
+
+
+        [Documentation](https://useapi.net/docs/api-dreamina-v1/delete-dreamina-accounts-account)'
+      tags:
+      - dreamina
+      parameters:
+      - name: account
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /assets/{account}:
+    post:
+      operationId: postAssetsByAccount
+      summary: POST assets/<account>
+      description: 'Upload images to Dreamina for use as reference frames in video and image generation.
+
+
+        Supports JPEG, PNG, and WebP formats up to 10 MB. Returns assetRef for use in POST /videos and POST /images.
+
+
+        [Documentation](https://useapi.net/docs/api-dreamina-v1/post-dreamina-assets-account)'
+      tags:
+      - dreamina
+      parameters:
+      - name: account
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+    get:
+      operationId: getAssetsByAccount
+      summary: GET assets/<account>
+      description: 'List generation history (images and videos) for a specific account. Returns assets with their URLs, dimensions, and reusable assetRef values for POST /images or as in POST /videos.
+
+
+        [Documentation](https://useapi.net/docs/api-dreamina-v1/get-dreamina-assets-account)'
+      tags:
+      - dreamina
+      parameters:
+      - name: account
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: count
+        in: query
+        required: true
+        schema:
+          type: string
+        description: 'Number of assets to return (1-100, default: 20). Optional.'
+        example: '20'
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Pagination cursor from previous response's nextOffset. Optional.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /assets/{assetId}:
+    delete:
+      operationId: deleteAssetsByAssetid
+      summary: DELETE assets/<assetId>
+      description: 'Delete a specific asset (image or video) from generation history.
+
+
+        [Documentation](https://useapi.net/docs/api-dreamina-v1/delete-dreamina-assets-assetid)'
+      tags:
+      - dreamina
+      parameters:
+      - name: assetId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /videos:
+    post:
+      operationId: postVideos
+      summary: POST videos
+      description: 'Generate videos using Dreamina AI models. Supports text-to-video, first frame (I2V), end frame, and multi-frame keyframe modes.
+
+
+        Async by default — returns immediately with a job ID. Poll GET /videos/<jobid> for completion.
+
+
+        [Documentation](https://useapi.net/docs/api-dreamina-v1/post-dreamina-videos)'
+      tags:
+      - dreamina
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                prompt:
+                  type: string
+                model:
+                  type: string
+                account:
+                  type: string
+                ratio:
+                  type: string
+                duration:
+                  type: string
+                resolution:
+                  type: string
+                firstFrameRef:
+                  type: string
+                endFrameRef:
+                  type: string
+                frame_1_imageRef:
+                  type: string
+                frame_1_prompt:
+                  type: string
+                frame_1_duration:
+                  type: string
+                frame_2_imageRef:
+                  type: string
+                frame_2_prompt:
+                  type: string
+                frame_2_duration:
+                  type: string
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /videos/{jobid}:
+    get:
+      operationId: getVideosByJobid
+      summary: GET videos/<jobid>
+      description: 'Retrieve the status and result of a video generation job. Poll this endpoint after POST /videos. Jobs are retained for 30 days.
+
+
+        When status is ''completed'', response.videoUrl contains the download URL.
+
+
+        [Documentation](https://useapi.net/docs/api-dreamina-v1/get-dreamina-videos-jobid)'
+      tags:
+      - dreamina
+      parameters:
+      - name: jobid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /videos/upscale:
+    post:
+      operationId: postVideosUpscale
+      summary: POST videos/upscale
+      description: 'Upscale a generated video to 2x resolution (super resolution). Doubles width and height — 720p becomes 1440p, 1080p becomes 4K. Each video can only be upscaled once.
+
+
+        Poll GET /videos/<jobid> for the upscaled result.
+
+
+        [Documentation](https://useapi.net/docs/api-dreamina-v1/post-dreamina-videos-upscale)'
+      tags:
+      - dreamina
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                jobid:
+                  type: string
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /videos/interpolate:
+    post:
+      operationId: postVideosInterpolate
+      summary: POST videos/interpolate
+      description: 'Interpolate a generated video to 30 or 60 FPS (from 24 FPS source). Works on both original and upscaled videos. Each video can only be interpolated once.
+
+
+        Poll GET /videos/<jobid> for the interpolated result.
+
+
+        [Documentation](https://useapi.net/docs/api-dreamina-v1/post-dreamina-videos-interpolate)'
+      tags:
+      - dreamina
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                jobid:
+                  type: string
+                fps:
+                  type: string
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /images:
+    post:
+      operationId: postImages
+      summary: POST images
+      description: 'Generate images using Dreamina AI models from text prompts with optional reference images. Each generation produces up to 4 images.
+
+
+        Async by default — returns immediately with a job ID. Poll GET /images/<jobid> for completion.
+
+
+        [Documentation](https://useapi.net/docs/api-dreamina-v1/post-dreamina-images)'
+      tags:
+      - dreamina
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                prompt:
+                  type: string
+                model:
+                  type: string
+                account:
+                  type: string
+                ratio:
+                  type: string
+                resolution:
+                  type: string
+                imageRef_1:
+                  type: string
+                imageRef_2:
+                  type: string
+                imageRef_3:
+                  type: string
+                imageStrength:
+                  type: string
+                replyUrl:
+                  type: string
+                replyRef:
+                  type: string
+                maxJobs:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /images/{jobid}:
+    get:
+      operationId: getImagesByJobid
+      summary: GET images/<jobid>
+      description: 'Retrieve the status and result of an image generation or upscale job. Poll this endpoint after POST /images or POST /images/upscale. Jobs are retained for 30 days.
+
+
+        When status is ''completed'', response.images contains the generated images with URLs and assetRef values.
+
+
+        [Documentation](https://useapi.net/docs/api-dreamina-v1/get-dreamina-images-jobid)'
+      tags:
+      - dreamina
+      parameters:
+      - name: jobid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /images/upscale:
+    post:
+      operationId: postImagesUpscale
+      summary: POST images/upscale
+      description: 'Upscale a generated image to higher resolution (2K, 4K, or 8K). Requires a completed image generation job from POST /images.
+
+
+        Poll GET /images/<jobid> for the result.
+
+
+        [Documentation](https://useapi.net/docs/api-dreamina-v1/post-dreamina-images-upscale)'
+      tags:
+      - dreamina
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                jobid:
+                  type: string
+                imageIndex:
+                  type: integer
+                upscaleResolution:
+                  type: string
+            example:
+              jobid: ''
+              imageIndex: 0
+              upscaleResolution: 4k
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /scheduler:
+    get:
+      operationId: getScheduler
+      summary: GET scheduler
+      description: 'List all currently executing (in-progress) image and video generation jobs, grouped by account.
+
+
+        [Documentation](https://useapi.net/docs/api-dreamina-v1/get-dreamina-scheduler)'
+      tags:
+      - dreamina
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+  /scheduler/{jobid}:
+    delete:
+      operationId: deleteSchedulerByJobid
+      summary: DELETE scheduler/<jobid>
+      description: 'Cancel an executing job. If the job is still in ''created'' status, it will be marked as failed with reason ''Cancelled by user''.
+
+
+        [Documentation](https://useapi.net/docs/api-dreamina-v1/delete-dreamina-scheduler-jobid)'
+      tags:
+      - dreamina
+      parameters:
+      - name: jobid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request — invalid or missing parameter
+        '401':
+          description: Unauthorized — invalid useapi.net API token
+        '429':
+          description: Too Many Requests — see the Retry-After header
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'useapi.net API token. Header: `Authorization: Bearer user:<number>-<unique-string>`. Use the complete token including the `user:` prefix.'
+externalDocs:
+  description: dreamina documentation
+  url: https://useapi.net/docs/api-dreamina-v1
