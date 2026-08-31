@@ -37,7 +37,7 @@ tags:
 - Video Generation
 - Image-Generation
 - Music Generation
-- Text-to-Speech
+- Text to Speech
 - Face Swap
 - API Aggregator
 - Machine-Learning
@@ -189,6 +189,8 @@ apis:
   humanURL: https://useapi.net/docs/api-google-flow-v1
   baseURL: https://api.useapi.net/v1/google-flow
   tags:
+  - Face Swap
+  tags_raw:
   - faceswap
   properties:
   - type: OpenAPI
@@ -345,6 +347,8 @@ apis:
   humanURL: https://useapi.net/docs/api-google-flow-v1
   baseURL: https://api.useapi.net/v1/google-flow
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
@@ -397,6 +401,8 @@ apis:
   humanURL: https://useapi.net/docs/api-google-flow-v1
   baseURL: https://api.useapi.net/v1/google-flow
   tags:
+  - Kling
+  tags_raw:
   - kling
   properties:
   - type: OpenAPI
@@ -449,6 +455,8 @@ apis:
   humanURL: https://useapi.net/docs/api-google-flow-v1
   baseURL: https://api.useapi.net/v1/google-flow
   tags:
+  - MiniMax
+  tags_raw:
   - minimax
   properties:
   - type: OpenAPI
