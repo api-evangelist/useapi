@@ -197,60 +197,6 @@ apis:
     url: https://useapi.net/docs/api-faceswap-v1
   - type: Documentation
     url: https://useapi.net/docs/api-v2
-- aid: useapi:useapi-faceswap-api
-  name: useapi.net Faceswap API
-  description: InsightFaceSwap API v1 by useapi.net
-  humanURL: https://useapi.net/docs/api-google-flow-v1
-  baseURL: https://api.useapi.net/v1/google-flow
-  tags:
-  - Face Swap
-  tags_raw:
-  - faceswap
-  properties:
-  - type: OpenAPI
-    url: openapi/useapi-faceswap-api-openapi.yml
-  - type: PostmanCollection
-    url: postman/useapi-google-flow-v1.json
-  - type: Documentation
-    url: https://useapi.net/docs/api-google-flow-v1
-  - type: PostmanCollection
-    url: postman/useapi-flowmusic-v1.json
-  - type: Documentation
-    url: https://useapi.net/docs/api-flowmusic-v1
-  - type: PostmanCollection
-    url: postman/useapi-dreamina-v1.json
-  - type: Documentation
-    url: https://useapi.net/docs/api-dreamina-v1
-  - type: PostmanCollection
-    url: postman/useapi-kling-v1.json
-  - type: Documentation
-    url: https://useapi.net/docs/api-kling-v1
-  - type: PostmanCollection
-    url: postman/useapi-minimax-v1.json
-  - type: Documentation
-    url: https://useapi.net/docs/api-minimax-v1
-  - type: PostmanCollection
-    url: postman/useapi-runwayml-v1.json
-  - type: Documentation
-    url: https://useapi.net/docs/api-runwayml-v1
-  - type: PostmanCollection
-    url: postman/useapi-pixverse-v2.json
-  - type: Documentation
-    url: https://useapi.net/docs/api-pixverse-v2
-  - type: PostmanCollection
-    url: postman/useapi-mureka-v1.json
-  - type: Documentation
-    url: https://useapi.net/docs/api-mureka-v1
-  - type: PostmanCollection
-    url: postman/useapi-tempolor-v1.json
-  - type: Documentation
-    url: https://useapi.net/docs/api-tempolor-v1
-  - type: PostmanCollection
-    url: postman/useapi-faceswap-v1.json
-  - type: Documentation
-    url: https://useapi.net/docs/api-faceswap-v1
-  - type: Documentation
-    url: https://useapi.net/docs/api-v2
 - aid: useapi:useapi-flowmusic-api
   name: useapi.net Flowmusic API
   description: FlowMusic API v1 by useapi.net
@@ -463,60 +409,6 @@ apis:
     url: https://useapi.net/docs/api-faceswap-v1
   - type: Documentation
     url: https://useapi.net/docs/api-v2
-- aid: useapi:useapi-minimax-api
-  name: useapi.net Minimax API
-  description: MiniMax API v1 by useapi.net
-  humanURL: https://useapi.net/docs/api-google-flow-v1
-  baseURL: https://api.useapi.net/v1/google-flow
-  tags:
-  - MiniMax
-  tags_raw:
-  - minimax
-  properties:
-  - type: OpenAPI
-    url: openapi/useapi-minimax-api-openapi.yml
-  - type: PostmanCollection
-    url: postman/useapi-google-flow-v1.json
-  - type: Documentation
-    url: https://useapi.net/docs/api-google-flow-v1
-  - type: PostmanCollection
-    url: postman/useapi-flowmusic-v1.json
-  - type: Documentation
-    url: https://useapi.net/docs/api-flowmusic-v1
-  - type: PostmanCollection
-    url: postman/useapi-dreamina-v1.json
-  - type: Documentation
-    url: https://useapi.net/docs/api-dreamina-v1
-  - type: PostmanCollection
-    url: postman/useapi-kling-v1.json
-  - type: Documentation
-    url: https://useapi.net/docs/api-kling-v1
-  - type: PostmanCollection
-    url: postman/useapi-minimax-v1.json
-  - type: Documentation
-    url: https://useapi.net/docs/api-minimax-v1
-  - type: PostmanCollection
-    url: postman/useapi-runwayml-v1.json
-  - type: Documentation
-    url: https://useapi.net/docs/api-runwayml-v1
-  - type: PostmanCollection
-    url: postman/useapi-pixverse-v2.json
-  - type: Documentation
-    url: https://useapi.net/docs/api-pixverse-v2
-  - type: PostmanCollection
-    url: postman/useapi-mureka-v1.json
-  - type: Documentation
-    url: https://useapi.net/docs/api-mureka-v1
-  - type: PostmanCollection
-    url: postman/useapi-tempolor-v1.json
-  - type: Documentation
-    url: https://useapi.net/docs/api-tempolor-v1
-  - type: PostmanCollection
-    url: postman/useapi-faceswap-v1.json
-  - type: Documentation
-    url: https://useapi.net/docs/api-faceswap-v1
-  - type: Documentation
-    url: https://useapi.net/docs/api-v2
 - aid: useapi:useapi-mureka-api
   name: useapi.net Mureka API
   description: Mureka API v1 by useapi.net
@@ -683,6 +575,110 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/useapi-tempolor-api-openapi.yml
+  - type: PostmanCollection
+    url: postman/useapi-google-flow-v1.json
+  - type: Documentation
+    url: https://useapi.net/docs/api-google-flow-v1
+  - type: PostmanCollection
+    url: postman/useapi-flowmusic-v1.json
+  - type: Documentation
+    url: https://useapi.net/docs/api-flowmusic-v1
+  - type: PostmanCollection
+    url: postman/useapi-dreamina-v1.json
+  - type: Documentation
+    url: https://useapi.net/docs/api-dreamina-v1
+  - type: PostmanCollection
+    url: postman/useapi-kling-v1.json
+  - type: Documentation
+    url: https://useapi.net/docs/api-kling-v1
+  - type: PostmanCollection
+    url: postman/useapi-minimax-v1.json
+  - type: Documentation
+    url: https://useapi.net/docs/api-minimax-v1
+  - type: PostmanCollection
+    url: postman/useapi-runwayml-v1.json
+  - type: Documentation
+    url: https://useapi.net/docs/api-runwayml-v1
+  - type: PostmanCollection
+    url: postman/useapi-pixverse-v2.json
+  - type: Documentation
+    url: https://useapi.net/docs/api-pixverse-v2
+  - type: PostmanCollection
+    url: postman/useapi-mureka-v1.json
+  - type: Documentation
+    url: https://useapi.net/docs/api-mureka-v1
+  - type: PostmanCollection
+    url: postman/useapi-tempolor-v1.json
+  - type: Documentation
+    url: https://useapi.net/docs/api-tempolor-v1
+  - type: PostmanCollection
+    url: postman/useapi-faceswap-v1.json
+  - type: Documentation
+    url: https://useapi.net/docs/api-faceswap-v1
+  - type: Documentation
+    url: https://useapi.net/docs/api-v2
+- aid: useapi:useapi-face-swap-api
+  name: useapi.net Face Swap API
+  description: InsightFaceSwap API v1 by useapi.net
+  humanURL: https://useapi.net/docs/account-management
+  baseURL: https://api.useapi.net/v2/account
+  tags:
+  - Face Swap
+  properties:
+  - type: OpenAPI
+    url: openapi/useapi-face-swap-api-openapi.yml
+  - type: PostmanCollection
+    url: postman/useapi-google-flow-v1.json
+  - type: Documentation
+    url: https://useapi.net/docs/api-google-flow-v1
+  - type: PostmanCollection
+    url: postman/useapi-flowmusic-v1.json
+  - type: Documentation
+    url: https://useapi.net/docs/api-flowmusic-v1
+  - type: PostmanCollection
+    url: postman/useapi-dreamina-v1.json
+  - type: Documentation
+    url: https://useapi.net/docs/api-dreamina-v1
+  - type: PostmanCollection
+    url: postman/useapi-kling-v1.json
+  - type: Documentation
+    url: https://useapi.net/docs/api-kling-v1
+  - type: PostmanCollection
+    url: postman/useapi-minimax-v1.json
+  - type: Documentation
+    url: https://useapi.net/docs/api-minimax-v1
+  - type: PostmanCollection
+    url: postman/useapi-runwayml-v1.json
+  - type: Documentation
+    url: https://useapi.net/docs/api-runwayml-v1
+  - type: PostmanCollection
+    url: postman/useapi-pixverse-v2.json
+  - type: Documentation
+    url: https://useapi.net/docs/api-pixverse-v2
+  - type: PostmanCollection
+    url: postman/useapi-mureka-v1.json
+  - type: Documentation
+    url: https://useapi.net/docs/api-mureka-v1
+  - type: PostmanCollection
+    url: postman/useapi-tempolor-v1.json
+  - type: Documentation
+    url: https://useapi.net/docs/api-tempolor-v1
+  - type: PostmanCollection
+    url: postman/useapi-faceswap-v1.json
+  - type: Documentation
+    url: https://useapi.net/docs/api-faceswap-v1
+  - type: Documentation
+    url: https://useapi.net/docs/api-v2
+- aid: useapi:useapi-mini-max-api
+  name: useapi.net Mini Max API
+  description: MiniMax API v1 by useapi.net
+  humanURL: https://useapi.net/docs/account-management
+  baseURL: https://api.useapi.net/v2/account
+  tags:
+  - Mini Max
+  properties:
+  - type: OpenAPI
+    url: openapi/useapi-mini-max-api-openapi.yml
   - type: PostmanCollection
     url: postman/useapi-google-flow-v1.json
   - type: Documentation
