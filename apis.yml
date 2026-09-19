@@ -675,6 +675,8 @@ apis:
   humanURL: https://useapi.net/docs/account-management
   baseURL: https://api.useapi.net/v2/account
   tags:
+  - MiniMax
+  tags_raw:
   - Mini Max
   properties:
   - type: OpenAPI
