@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: v1 by useapi.net Google Flow API
   version: 1.0.0
-  description: "Experimental API for Google Flow with full support for Veo, Imagen 4, and Nano Banana.\n\n**Features:**\n\n- Multiple Google accounts with automated load balancing\n    \n- Real-time webhooks for job events (replyUrl parameter)\n    \n- Async mode for fire-and-forget video generation\n    \n- Dynamic concurrency management\n    \n- Image and video generation with reference image support\n    \n\n**Key Features:**\n\n- Generate images with Imagen 4 and Nano Banana / Gemini 2.5 Flash Image\n    \n- Generate videos with Veo 3.1 Quality and Fast models\n    \n- T2V, I2V, I2V-FL, and R2V generation modes\n    \n- Reference images support (style and context references)\n    \n- Use free Google accounts for unlimited image generations\n    \n- Use Google AI Ultra subscription for unlimited Veo 3.1 Fast video generations\n    \n\n**Commands:**\n\n- [POST /images](https://useapi.net/docs/api-google-flow-v1/post-google-flow-images) - Generate images with Imagen 4 or Nano Banana\n    \n- [POST /videos](https://useapi.net/docs/api-google-flow-v1/post-google-flow-videos) - Generate videos with Veo 3.1 Quality or Fast\n    \n- [POST /assets/<email>](https://useapi.net/docs/api-google-flow-v1/post-google-flow-assets-email) - Upload assets (PNG, JPEG)\n    \n- [POST /videos/extend](https://useapi.net/docs/api-google-flow-v1/post-google-flow-videos-extend) - Extend video with a new prompt\n    \n- [POST /videos/concatenate](https://useapi.net/docs/api-google-flow-v1/post-google-flow-videos-concatenate) - Concatenate multiple videos\n    \n- [GET /jobs](https://useapi.net/docs/api-google-flow-v1/get-google-flow-jobs) - Get load balancing statistics\n    \n- [GET /jobs/<jobid>](https://useapi.net/docs/api-google-flow-v1/get-google-flow-jobs-jobid) - Get job status and results\n    \n- [GET /accounts](https://useapi.net/docs/api-google-flow-v1/get-google-flow-accounts) - List all configured accounts\n    \n- [GET /accounts/<email>](https://useapi.net/docs/api-google-flow-v1/get-google-flow-accounts-email) - Get specific account configuration\n    \n- [POST /accounts](https://useapi.net/docs/api-google-flow-v1/post-google-flow-accounts) - Configure Google Flow account\n    \n- [DELETE /accounts/<email>](https://useapi.net/docs/api-google-flow-v1/delete-google-flow-accounts-email) - Delete account configuration\n    \n- [GET /accounts/captcha-stats](https://useapi.net/docs/api-google-flow-v1/get-google-flow-accounts-captcha-stats) - Query captcha solving statistics\n    \n\nVisit [https://useapi.net/docs/api-google-flow-v1](https://useapi.net/docs/api-google-flow-v1) for complete documentation.\n\n---\n**Updated:** June 9, 2026"
+  description: Experimental API for Google Flow with full support for Veo, Imagen 4, and Nano Banana.
   contact:
     name: useapi.net support
     email: support@useapi.net
@@ -26,7 +26,7 @@ paths:
         Returns an object with account emails as keys and their health status.
 
 
-        [Documentation](https://useapi.net/docs/api-google-flow-v1/get-google-flow-accounts)'
+        Documentation'
       tags:
       - google-flow
       responses:
@@ -51,10 +51,10 @@ paths:
         Requires cookies from accounts.google.com. The email is automatically extracted from the cookies.
 
 
-        See [Setup Google Flow](https://useapi.net/docs/start-here/setup-google-flow) for detailed instructions on how to obtain these cookies.
+        See Setup Google Flow for detailed instructions on how to obtain these cookies.
 
 
-        [Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-accounts)'
+        Documentation'
       tags:
       - google-flow
       requestBody:
@@ -84,14 +84,14 @@ paths:
   /accounts/{email}:
     get:
       operationId: getAccountsByEmail
-      summary: GET accounts/<email>
+      summary: GET accounts/
       description: 'Get configuration and health status for a specific Google Flow account.
 
 
         Returns health status, credits information, and available video models when account is healthy.
 
 
-        [Documentation](https://useapi.net/docs/api-google-flow-v1/get-google-flow-accounts-email)'
+        Documentation'
       tags:
       - google-flow
       parameters:
@@ -115,14 +115,14 @@ paths:
           description: Too Many Requests — see the Retry-After header
     delete:
       operationId: deleteAccountsByEmail
-      summary: DELETE accounts/<email>
+      summary: DELETE accounts/
       description: 'Remove Google Flow account configuration.
 
 
         Cancels any scheduled refresh operations automatically.
 
 
-        [Documentation](https://useapi.net/docs/api-google-flow-v1/delete-google-flow-accounts-email)'
+        Documentation'
       tags:
       - google-flow
       parameters:
@@ -147,7 +147,7 @@ paths:
   /assets/{email}:
     post:
       operationId: postAssetsByEmail
-      summary: POST assets/<email>
+      summary: POST assets/
       description: 'Upload assets to Google Flow for use in image and video generation.
 
 
@@ -157,7 +157,7 @@ paths:
         Returns mediaGenerationId for use in reference parameters. Video uploads also return durationSeconds.
 
 
-        [Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-assets-email)'
+        Documentation'
       tags:
       - google-flow
       parameters:
@@ -196,7 +196,7 @@ paths:
         Supports up to 3 reference images and generates 1-4 variations.
 
 
-        [Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-images)'
+        Documentation'
       tags:
       - google-flow
       requestBody:
@@ -285,7 +285,7 @@ paths:
         Supports T2V, I2V, I2V-FL, and R2V (Veo + Omni Flash) and V2V edit (Omni Flash only — via referenceVideo_1). Typical generation time: 60-180 seconds.
 
 
-        [Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-videos)'
+        Documentation'
       tags:
       - google-flow
       requestBody:
@@ -392,7 +392,7 @@ paths:
         Provides real-time visibility into job distribution, account health, and performance metrics.
 
 
-        [Documentation](https://useapi.net/docs/api-google-flow-v1/get-google-flow-jobs)'
+        Documentation'
       tags:
       - google-flow
       parameters:
@@ -419,14 +419,14 @@ paths:
   /jobs/{jobId}:
     get:
       operationId: getJobsByJobid
-      summary: GET jobs/<jobId>
+      summary: GET jobs/
       description: 'Retrieve job status and results by job ID.
 
 
         Returns complete job information including generated images/videos with download URLs.
 
 
-        [Documentation](https://useapi.net/docs/api-google-flow-v1/get-google-flow-jobs-jobid)'
+        Documentation'
       tags:
       - google-flow
       parameters:
@@ -474,7 +474,7 @@ paths:
         Note: captchaToken, captchaRetry, and captchaOrder are mutually exclusive.
 
 
-        [Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-images-upscale)'
+        Documentation'
       tags:
       - google-flow
       requestBody:
@@ -543,7 +543,7 @@ paths:
         Note: captchaToken, captchaRetry, and captchaOrder are mutually exclusive.
 
 
-        [Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-videos-upscale)'
+        Documentation'
       tags:
       - google-flow
       requestBody:
@@ -593,7 +593,7 @@ paths:
         - Returns base64-encoded GIF data.
 
 
-        [Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-videos-gif)'
+        Documentation'
       tags:
       - google-flow
       requestBody:
@@ -658,7 +658,7 @@ paths:
         Note: captchaToken, captchaRetry, and captchaOrder are mutually exclusive.
 
 
-        [Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-videos-extend)'
+        Documentation'
       tags:
       - google-flow
       requestBody:
@@ -692,7 +692,31 @@ paths:
     post:
       operationId: postVideosConcatenate
       summary: POST videos/concatenate
-      description: "Concatenate multiple videos into a single video.\n\nCombines 2-10 videos with optional trimming for smooth transitions. Returns base64-encoded video (~7MB per input).\n\n**Body Parameters:**\n- `media` (required) - Array of 2-10 video objects:\n  - `mediaGenerationId` (required) - Video reference from POST /videos\n  - `trimStart` (optional) - Seconds to trim from start (0-8). Use 1 for extended videos to remove overlap.\n  - `trimEnd` (optional) - Seconds to trim from end (0-8)\n\n- No captcha required.\n- All videos must have the same aspect ratio.\n- Synchronous - waits for completion.\n\n[Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-videos-concatenate)"
+      description: 'Concatenate multiple videos into a single video.
+
+
+        Combines 2-10 videos with optional trimming for smooth transitions. Returns base64-encoded video (~7MB per input).
+
+
+        **Body Parameters:**
+
+        - `media` (required) - Array of 2-10 video objects:
+
+        - `mediaGenerationId` (required) - Video reference from POST /videos
+
+        - `trimStart` (optional) - Seconds to trim from start (0-8). Use 1 for extended videos to remove overlap.
+
+        - `trimEnd` (optional) - Seconds to trim from end (0-8)
+
+
+        - No captcha required.
+
+        - All videos must have the same aspect ratio.
+
+        - Synchronous - waits for completion.
+
+
+        Documentation'
       tags:
       - google-flow
       requestBody:
@@ -737,7 +761,7 @@ paths:
         Returns masked keys for AntiCaptcha, EzCaptcha, CapSolver, and YesCaptcha if configured.
 
 
-        [Documentation](https://useapi.net/docs/api-google-flow-v1/get-google-flow-accounts-captcha-providers)'
+        Documentation'
       tags:
       - google-flow
       responses:
@@ -765,7 +789,7 @@ paths:
         Set a field to empty string to remove that provider.
 
 
-        [Documentation](https://useapi.net/docs/api-google-flow-v1/post-google-flow-accounts-captcha-providers)'
+        Documentation'
       tags:
       - google-flow
       requestBody:
@@ -805,7 +829,7 @@ paths:
         Returns detailed information about captcha token requests including success/failure rates, solve times, and provider breakdowns.
 
 
-        [Documentation](https://useapi.net/docs/api-google-flow-v1/get-google-flow-accounts-captcha-stats)'
+        Documentation'
       tags:
       - google-flow
       parameters:
@@ -886,7 +910,7 @@ paths:
     get:
       operationId: getVoices
       summary: GET voices
-      description: List system + user voices on the account. Fast — no audioUrl resolution. Use GET /voices/<ref> to play a specific voice.
+      description: List system + user voices on the account. Fast — no audioUrl resolution. Use GET /voices/ to play a specific voice.
       tags:
       - google-flow
       parameters:
@@ -918,7 +942,7 @@ paths:
   /voices/{ref}:
     get:
       operationId: getVoicesByRef
-      summary: GET voices/<ref>
+      summary: GET voices/
       description: Resolve a single voice with playback URL. System voice -> static sampleUrl. User voice -> signed audioUrl (~6h). CF-cached 1h.
       tags:
       - google-flow
@@ -943,7 +967,7 @@ paths:
           description: Too Many Requests — see the Retry-After header
     delete:
       operationId: deleteVoicesByRef
-      summary: DELETE voices/<ref>
+      summary: DELETE voices/
       description: Delete a user voice. Busts CF caches for this voice + any character that referenced it. System voices -> 400.
       tags:
       - google-flow
@@ -1006,7 +1030,7 @@ paths:
     get:
       operationId: getCharacters
       summary: GET characters
-      description: List all characters on the account. Fast — no previewUrl/thumbnailUrl/audioUrl resolution. Use GET /characters/<ref> for previews.
+      description: List all characters on the account. Fast — no previewUrl/thumbnailUrl/audioUrl resolution. Use GET /characters/ for previews.
       tags:
       - google-flow
       parameters:
@@ -1032,7 +1056,7 @@ paths:
   /characters/{ref}:
     get:
       operationId: getCharactersByRef
-      summary: GET characters/<ref>
+      summary: GET characters/
       description: 'Resolve a single character with all media URLs: imageReferences[].previewUrl, thumbnailUrl, voice.audioUrl. CF-cached 1h.'
       tags:
       - google-flow
@@ -1057,7 +1081,7 @@ paths:
           description: Too Many Requests — see the Retry-After header
     delete:
       operationId: deleteCharactersByRef
-      summary: DELETE characters/<ref>
+      summary: DELETE characters/
       description: Delete a character. The attached voice (if any) is not deleted — voices have their own lifecycle.
       tags:
       - google-flow

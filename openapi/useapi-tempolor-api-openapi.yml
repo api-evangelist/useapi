@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: v1 by useapi.net Tempolor API
   version: 1.0.0
-  description: '[TemPolor API v1 by useapi.net](https://useapi.net/docs/api-tempolor-v1)
+  description: 'TemPolor API v1 by useapi.net
 
 
     ---
@@ -25,7 +25,7 @@ paths:
     get:
       operationId: getAccounts
       summary: accounts
-      description: '[Retrieve TemPolor accounts information.](https://useapi.net/docs/api-tempolor-v1/get-tempolor-accounts)'
+      description: Retrieve TemPolor accounts information.
       tags:
       - tempolor
       responses:
@@ -44,7 +44,7 @@ paths:
     post:
       operationId: postAccounts
       summary: accounts
-      description: '[Create or update TemPolor API account.](https://useapi.net/docs/api-tempolor-v1/post-tempolor-accounts)'
+      description: Create or update TemPolor API account.
       tags:
       - tempolor
       requestBody:
@@ -69,8 +69,8 @@ paths:
   /accounts/{user_id}:
     get:
       operationId: getAccountsByUserid
-      summary: accounts/<user_id>
-      description: '[Retrieve TemPolor account information.](https://useapi.net/docs/api-tempolor-v1/get-tempolor-accounts-user_id)'
+      summary: accounts/
+      description: Retrieve TemPolor account information.
       tags:
       - tempolor
       parameters:
@@ -94,8 +94,8 @@ paths:
           description: Too Many Requests — see the Retry-After header
     delete:
       operationId: deleteAccountsByUserid
-      summary: accounts/<user_id>
-      description: '[Delete TemPolor account.](https://useapi.net/docs/api-tempolor-v1/del-tempolor-accounts-user_id)'
+      summary: accounts/
+      description: Delete TemPolor account.
       tags:
       - tempolor
       parameters:
@@ -121,7 +121,7 @@ paths:
     post:
       operationId: postMusicSong
       summary: music/song
-      description: '[Create music with vocals](https://useapi.net/docs/api-tempolor-v1/post-tempolor-music-song)'
+      description: Create music with vocals
       tags:
       - tempolor
       requestBody:
@@ -168,7 +168,7 @@ paths:
     post:
       operationId: postMusicInstrumental
       summary: music/instrumental
-      description: '[Create instrumental music](https://useapi.net/docs/api-tempolor-v1/post-tempolor-music-instrumental)'
+      description: Create instrumental music
       tags:
       - tempolor
       requestBody:
@@ -213,7 +213,7 @@ paths:
     post:
       operationId: postMusicStemsSplitter
       summary: music/stems-splitter • use Body » binary to upload audio file
-      description: '[Split audio into stems](https://useapi.net/docs/api-tempolor-v1/post-tempolor-music-stems-splitter)'
+      description: Split audio into stems
       tags:
       - tempolor
       parameters:
@@ -247,7 +247,7 @@ paths:
     get:
       operationId: getMusic
       summary: music
-      description: '[Retrieve generated music](https://useapi.net/docs/api-tempolor-v1/get-tempolor-music)'
+      description: Retrieve generated music
       tags:
       - tempolor
       parameters:
@@ -279,8 +279,8 @@ paths:
   /music/{job_id}:
     get:
       operationId: getMusicByJobid
-      summary: music/<job_id>
-      description: '[Retrieve music generation job status](https://useapi.net/docs/api-tempolor-v1/get-tempolor-music-job_id)'
+      summary: music/
+      description: Retrieve music generation job status
       tags:
       - tempolor
       parameters:
@@ -304,8 +304,8 @@ paths:
           description: Too Many Requests — see the Retry-After header
     delete:
       operationId: deleteMusicByJobid
-      summary: music/<job_id>
-      description: '[Delete generated music](https://useapi.net/docs/api-tempolor-v1/delete-tempolor-music-job_id)'
+      summary: music/
+      description: Delete generated music
       tags:
       - tempolor
       parameters:
@@ -330,8 +330,8 @@ paths:
   /music/download/{job_id}:
     get:
       operationId: getMusicDownloadByJobid
-      summary: music/download/<job_id>
-      description: '[Download generated music](https://useapi.net/docs/api-tempolor-v1/get-tempolor-music-download-job_id)'
+      summary: music/download/
+      description: Download generated music
       tags:
       - tempolor
       parameters:
@@ -364,7 +364,7 @@ paths:
     get:
       operationId: getMusicArtistVoices
       summary: music/artist-voices
-      description: '[List artist voices](https://useapi.net/docs/api-tempolor-v1/get-tempolor-music-artist-voices)'
+      description: List artist voices
       tags:
       - tempolor
       parameters:
@@ -397,7 +397,7 @@ paths:
     get:
       operationId: getMusicClonedVoices
       summary: music/cloned-voices
-      description: '[List cloned voices](https://useapi.net/docs/api-tempolor-v1/get-tempolor-music-cloned-voices)'
+      description: List cloned voices
       tags:
       - tempolor
       parameters:
@@ -429,7 +429,7 @@ paths:
     post:
       operationId: postMusicClonedVoices
       summary: music/cloned-voices • use Body » binary to upload audio file
-      description: '[Upload voice sample for cloning](https://useapi.net/docs/api-tempolor-v1/post-tempolor-music-cloned-voices)'
+      description: Upload voice sample for cloning
       tags:
       - tempolor
       parameters:
@@ -468,8 +468,8 @@ paths:
   /music/cloned-voices/{clonedVoiceItemId}:
     delete:
       operationId: deleteMusicClonedVoicesByClonedvoiceitemid
-      summary: music/cloned-voices/<clonedVoiceItemId>
-      description: '[Delete cloned voice](https://useapi.net/docs/api-tempolor-v1/delete-tempolor-music-cloned-voices-clonedVoiceItemId)'
+      summary: music/cloned-voices/
+      description: Delete cloned voice
       tags:
       - tempolor
       parameters:
@@ -495,7 +495,7 @@ paths:
     get:
       operationId: getMusicMidi
       summary: music/midi
-      description: '[List uploaded MIDI files](https://useapi.net/docs/api-tempolor-v1/get-tempolor-music-midi)'
+      description: List uploaded MIDI files
       tags:
       - tempolor
       parameters:
@@ -527,7 +527,7 @@ paths:
     post:
       operationId: postMusicMidi
       summary: music/midi • use Body » binary to upload MIDI file
-      description: '[Upload MIDI file](https://useapi.net/docs/api-tempolor-v1/post-tempolor-music-midi)'
+      description: Upload MIDI file
       tags:
       - tempolor
       parameters:
@@ -566,8 +566,8 @@ paths:
   /music/midi/{midiItemId}:
     delete:
       operationId: deleteMusicMidiByMidiitemid
-      summary: music/midi/<midiItemId>
-      description: '[Delete MIDI file](https://useapi.net/docs/api-tempolor-v1/delete-tempolor-music-midi-midiItemId)'
+      summary: music/midi/
+      description: Delete MIDI file
       tags:
       - tempolor
       parameters:
@@ -593,7 +593,7 @@ paths:
     get:
       operationId: getScheduler
       summary: scheduler
-      description: '[List scheduled jobs](https://useapi.net/docs/api-tempolor-v1/get-tempolor-scheduler)'
+      description: List scheduled jobs
       tags:
       - tempolor
       responses:
@@ -613,7 +613,7 @@ paths:
     get:
       operationId: getSchedulerAvailable
       summary: scheduler/available
-      description: '[Retrieve available capacity](https://useapi.net/docs/api-tempolor-v1/get-tempolor-scheduler-available)'
+      description: Retrieve available capacity
       tags:
       - tempolor
       responses:
@@ -632,8 +632,8 @@ paths:
   /scheduler/{job_id}:
     delete:
       operationId: deleteSchedulerByJobid
-      summary: scheduler/<job_id>
-      description: '[Cancel a running job](https://useapi.net/docs/api-tempolor-v1/del-tempolor-scheduler-job_id)'
+      summary: scheduler/
+      description: Cancel a running job
       tags:
       - tempolor
       parameters:

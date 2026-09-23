@@ -1,10 +1,9 @@
 openapi: 3.2.0
 info:
-  title: Useapi Account API
+  title: Midjourney REST API v2 by useapi.net Account API
+  description: Simple, reliable and affordable way to use Midjourney via standard REST API
   version: '1.0'
-  description: 'Operations tagged Account across 2 of this provider''s published API definitions: useapi-midjourney-v1-openapi.yml, useapi-midjourney-v2-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://api.useapi.net/v1
 - url: https://api.useapi.net/v2
 security:
 - apiToken: []
@@ -26,9 +25,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/responseError'
+                $ref: '#/components/schemas/accountResponse'
       tags:
       - Account
+      summary: Get account
+      x-summary-source: derived
+      operationId: getAccount
+      x-operation-id-source: derived
     post:
       description: Update account information
       requestBody:
@@ -52,17 +55,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/accountResponse_2'
+                $ref: '#/components/schemas/accountResponse'
         '401':
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/accountResponse_2'
+                $ref: '#/components/schemas/accountResponse'
       tags:
       - Account
-    servers:
-    - url: https://api.useapi.net/v1
+      summary: Create account
+      x-summary-source: derived
+      operationId: postAccount
+      x-operation-id-source: derived
   /account/midjourney:
     get:
       description: Retrieve Midjourney accounts information, see https://useapi.net/docs/api-v2/get-account-midjourney
@@ -77,8 +82,10 @@ paths:
                 $ref: '#/components/schemas/midjourneyResponse'
       tags:
       - Account
-    servers:
-    - url: https://api.useapi.net/v2
+      summary: Get account midjourney
+      x-summary-source: derived
+      operationId: getAccountMidjourney
+      x-operation-id-source: derived
   /account/midjourney/{channel}:
     get:
       description: Retrieve Midjourney account information for specified channel
@@ -106,6 +113,10 @@ paths:
           description: Configuration not found for provided channel
       tags:
       - Account
+      summary: Get account midjourney by channel
+      x-summary-source: derived
+      operationId: getAccountMidjourneyByChannel
+      x-operation-id-source: derived
     delete:
       description: Delete Midjourney account information for specified channel
       parameters:
@@ -128,6 +139,10 @@ paths:
           description: Configuration not found for provided channel
       tags:
       - Account
+      summary: Delete account midjourney by channel
+      x-summary-source: derived
+      operationId: deleteAccountMidjourneyByChannel
+      x-operation-id-source: derived
     post:
       description: Create or update Midjourney account information for specified channel
       parameters:
@@ -171,17 +186,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/accountResponse_2'
+                $ref: '#/components/schemas/accountResponse'
         '401':
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/accountResponse_2'
+                $ref: '#/components/schemas/accountResponse'
       tags:
       - Account
-    servers:
-    - url: https://api.useapi.net/v2
+      summary: Create account midjourney by channel
+      x-summary-source: derived
+      operationId: postAccountMidjourneyByChannel
+      x-operation-id-source: derived
   /account/midjourney/{channel}/reset:
     post:
       description: Reset the pendingModMessage field for the Midjourney account specified by the channel
@@ -200,53 +217,38 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/accountResponse_2'
+                $ref: '#/components/schemas/accountResponse'
         '404':
           description: Configuration not found for provided channel
       tags:
       - Account
-    servers:
-    - url: https://api.useapi.net/v2
+      summary: Create account midjourney by channel reset
+      x-summary-source: derived
+      operationId: postAccountMidjourneyByChannelReset
+      x-operation-id-source: derived
 components:
   schemas:
-    responseError:
+    midjourneyResponse:
       type: object
       properties:
+        discord:
+          type: string
+        channel:
+          type: string
+        server:
+          type: string
+        maxJobs:
+          type: integer
+        pendingModMessage:
+          description: Your Discord account has received a pending moderation message from Midjourney. Please address this issue and reset pendingModMessage before making any new API calls
+          type: string
         error:
+          type: string
+        errorDetails:
           type: string
         code:
           type: integer
-          enum:
-          - 400
-          - 401
-          - 404
-          - 412
-          - 413
-      additionalProperties: false
-      required:
-      - error
-      - code
     accountResponse:
-      type: object
-      properties:
-        email:
-          type: string
-        created:
-          type: string
-        name:
-          type: string
-        verified:
-          type: string
-        sub:
-          type: string
-      additionalProperties: false
-      required:
-      - email
-      - created
-      - name
-      - verified
-      - sub
-    accountResponse_2:
       type: object
       properties:
         email:
@@ -269,31 +271,8 @@ components:
           type: string
         code:
           type: integer
-    midjourneyResponse:
-      type: object
-      properties:
-        discord:
-          type: string
-        channel:
-          type: string
-        server:
-          type: string
-        maxJobs:
-          type: integer
-        pendingModMessage:
-          description: Your Discord account has received a pending moderation message from Midjourney. Please address this issue and reset pendingModMessage before making any new API calls
-          type: string
-        error:
-          type: string
-        errorDetails:
-          type: string
-        code:
-          type: integer
   securitySchemes:
     apiToken:
       type: http
       scheme: bearer
       description: API Token
-x-refined-from:
-- useapi-midjourney-v1-openapi.yml
-- useapi-midjourney-v2-openapi.yml

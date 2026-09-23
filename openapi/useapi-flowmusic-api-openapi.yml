@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: v1 by useapi.net Flowmusic API
   version: 1.0.0
-  description: '## [FlowMusic API v1](https://useapi.net/docs/api-flowmusic-v1)
+  description: '## FlowMusic API v1
 
 
     Google Flow Music (Lyria 3 Pro) API by useapi.net. Set the `api-token` collection variable (see https://useapi.net/docs/start-here/setup-useapi). All request bodies are sent as form-data; the API also accepts equivalent JSON.'
@@ -23,7 +23,7 @@ paths:
     post:
       operationId: postAccounts
       summary: POST accounts
-      description: '## [Configure a Flow Music account](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-accounts)'
+      description: '## Configure a Flow Music account'
       tags:
       - flowmusic
       requestBody:
@@ -56,7 +56,7 @@ paths:
     get:
       operationId: getAccounts
       summary: GET accounts
-      description: '## [List accounts](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-accounts)'
+      description: '## List accounts'
       tags:
       - flowmusic
       responses:
@@ -76,7 +76,7 @@ paths:
     get:
       operationId: getAccountsByEmail
       summary: GET accounts/{email}
-      description: '## [Get one account](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-accounts-email)'
+      description: '## Get one account'
       tags:
       - flowmusic
       parameters:
@@ -101,7 +101,7 @@ paths:
     delete:
       operationId: deleteAccountsByEmail
       summary: DELETE accounts/{email}
-      description: '## [Remove an account](https://useapi.net/docs/api-flowmusic-v1/delete-flowmusic-accounts-email)'
+      description: '## Remove an account'
       tags:
       - flowmusic
       parameters:
@@ -127,7 +127,7 @@ paths:
     get:
       operationId: getAccountsUsage
       summary: GET accounts/usage
-      description: '## [Account usage](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-accounts-usage)'
+      description: '## Account usage'
       tags:
       - flowmusic
       parameters:
@@ -154,7 +154,7 @@ paths:
     post:
       operationId: postMusic
       summary: POST music
-      description: '## [Generate a song](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-music)'
+      description: '## Generate a song'
       tags:
       - flowmusic
       requestBody:
@@ -203,7 +203,7 @@ paths:
     get:
       operationId: getMusic
       summary: GET music
-      description: '## [List clips](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-music)'
+      description: '## List clips'
       tags:
       - flowmusic
       parameters:
@@ -242,7 +242,7 @@ paths:
     post:
       operationId: postMusicEdit
       summary: POST music/edit (effect)
-      description: '## [Edit a song](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-music-edit)'
+      description: '## Edit a song'
       tags:
       - flowmusic
       requestBody:
@@ -318,7 +318,7 @@ paths:
     post:
       operationId: postMusicLyrics
       summary: POST music/lyrics
-      description: '## [Generate lyrics (free)](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-music-lyrics)'
+      description: '## Generate lyrics (free)'
       tags:
       - flowmusic
       requestBody:
@@ -351,7 +351,7 @@ paths:
     get:
       operationId: getMusicDownload
       summary: GET music/download
-      description: '## [Download a clip](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-music-download)'
+      description: '## Download a clip'
       tags:
       - flowmusic
       parameters:
@@ -384,7 +384,7 @@ paths:
     post:
       operationId: postFiles
       summary: POST files (raw body upload)
-      description: '## [Upload a file](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-files)'
+      description: '## Upload a file'
       tags:
       - flowmusic
       parameters:
@@ -424,7 +424,7 @@ paths:
     post:
       operationId: postFilesGenerate
       summary: POST files/generate
-      description: '## [Generate an AI image](https://useapi.net/docs/api-flowmusic-v1/post-flowmusic-files-generate)'
+      description: '## Generate an AI image'
       tags:
       - flowmusic
       requestBody:
@@ -455,7 +455,7 @@ paths:
     get:
       operationId: getJobs
       summary: GET jobs
-      description: '## [List running jobs](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-jobs)'
+      description: '## List running jobs'
       tags:
       - flowmusic
       responses:
@@ -475,7 +475,7 @@ paths:
     get:
       operationId: getJobsByJobid
       summary: GET jobs/{jobid}
-      description: '## [Poll a job](https://useapi.net/docs/api-flowmusic-v1/get-flowmusic-jobs-jobid)'
+      description: '## Poll a job'
       tags:
       - flowmusic
       parameters:
@@ -500,7 +500,7 @@ paths:
     delete:
       operationId: deleteJobsByJobid
       summary: DELETE jobs/{jobid}
-      description: '## [Cancel a job](https://useapi.net/docs/api-flowmusic-v1/delete-flowmusic-jobs-jobid)'
+      description: '## Cancel a job'
       tags:
       - flowmusic
       parameters:

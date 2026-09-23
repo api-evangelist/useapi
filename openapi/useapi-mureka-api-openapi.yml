@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: v1 by useapi.net Mureka API
   version: 1.0.0
-  description: 'Full documentation available at [useapi.net](http://useapi.net/docs/api-mureka-v1/).
+  description: 'Full documentation available at useapi.net.
 
 
     **New Features:**
@@ -11,7 +11,7 @@ info:
 
     - Async job support with replyUrl webhooks
 
-    - GET /jobs and GET /jobs/<jobId> endpoints
+    - GET /jobs and GET /jobs/ endpoints
 
     - Browserless account setup with token + refresh_token on POST /accounts
 
@@ -36,7 +36,7 @@ paths:
     get:
       operationId: getAccounts
       summary: accounts
-      description: '## [Retrieve Mureka API accounts configuration.](https://useapi.net/docs/api-mureka-v1/get-mureka-accounts)'
+      description: '## Retrieve Mureka API accounts configuration.'
       tags:
       - mureka
       responses:
@@ -55,7 +55,7 @@ paths:
     post:
       operationId: postAccounts
       summary: accounts
-      description: '## [Configure Mureka API account](https://useapi.net/docs/api-mureka-v1/post-mureka-accounts)
+      description: '## Configure Mureka API account
 
 
         Two ways to connect — send **one** body.
@@ -97,8 +97,8 @@ paths:
   /accounts/{account}:
     get:
       operationId: getAccountsByAccount
-      summary: accounts/<account>
-      description: '## [Retrieve Mureka API account configuration for account](https://useapi.net/docs/api-mureka-v1/get-mureka-accounts-account)'
+      summary: accounts/
+      description: '## Retrieve Mureka API account configuration for account'
       tags:
       - mureka
       parameters:
@@ -122,8 +122,8 @@ paths:
           description: Too Many Requests — see the Retry-After header
     delete:
       operationId: deleteAccountsByAccount
-      summary: accounts/<account>
-      description: '## [Delete Mureka API account](https://useapi.net/docs/api-mureka-v1/del-mureka-accounts-account)'
+      summary: accounts/
+      description: '## Delete Mureka API account'
       tags:
       - mureka
       parameters:
@@ -156,7 +156,7 @@ paths:
     get:
       operationId: getJobs
       summary: jobs
-      description: '## [List running jobs for an account](https://useapi.net/docs/api-mureka-v1/get-mureka-jobs)'
+      description: '## List running jobs for an account'
       tags:
       - mureka
       parameters:
@@ -182,8 +182,8 @@ paths:
   /jobs/{jobId}:
     get:
       operationId: getJobsByJobid
-      summary: jobs/<jobId>
-      description: '## [Get job status and results](https://useapi.net/docs/api-mureka-v1/get-mureka-jobs-jobid)'
+      summary: jobs/
+      description: '## Get job status and results'
       tags:
       - mureka
       parameters:
@@ -209,7 +209,7 @@ paths:
     get:
       operationId: getProfile
       summary: profile
-      description: '## [Retrieve your mureka.ai account information (credits etc)](https://useapi.net/docs/api-mureka-v1/get-mureka-profile)'
+      description: '## Retrieve your mureka.ai account information (credits etc)'
       tags:
       - mureka
       parameters:
@@ -245,7 +245,7 @@ paths:
     get:
       operationId: getMusic
       summary: music
-      description: '## [Retrieve generated music](https://useapi.net/docs/api-mureka-v1/get-mureka-music)'
+      description: '## Retrieve generated music'
       tags:
       - mureka
       parameters:
@@ -302,8 +302,8 @@ paths:
   /music/{song_id}:
     get:
       operationId: getMusicBySongid
-      summary: music/<song_id>
-      description: '## [Retrieve generated song details](https://useapi.net/docs/api-mureka-v1/get-mureka-music-song_id)'
+      summary: music/
+      description: '## Retrieve generated song details'
       tags:
       - mureka
       parameters:
@@ -346,8 +346,8 @@ paths:
           description: Too Many Requests — see the Retry-After header
     delete:
       operationId: deleteMusicBySongid
-      summary: music/<song_id>
-      description: '## [Delete generated song](https://useapi.net/docs/api-mureka-v1/del-mureka-music-song_id)'
+      summary: music/
+      description: '## Delete generated song'
       tags:
       - mureka
       parameters:
@@ -392,7 +392,7 @@ paths:
     post:
       operationId: postMusicCreate
       summary: music/create
-      description: '## [Create a music using AI-generated lyrics](https://useapi.net/docs/api-mureka-v1/post-mureka-music-create)'
+      description: '## Create a music using AI-generated lyrics'
       tags:
       - mureka
       requestBody:
@@ -429,7 +429,7 @@ paths:
     post:
       operationId: postMusicCreateAdvanced
       summary: music/create-advanced
-      description: '## [Create a music using custom lyrics, styles, vocals and reference song](https://useapi.net/docs/api-mureka-v1/post-mureka-music-create-advanced)'
+      description: '## Create a music using custom lyrics, styles, vocals and reference song'
       tags:
       - mureka
       requestBody:
@@ -476,7 +476,7 @@ paths:
     post:
       operationId: postMusicCreateInstrumental
       summary: music/create-instrumental
-      description: '## [Create a instrumental music](https://useapi.net/docs/api-mureka-v1/post-mureka-music-create-instrumental)'
+      description: '## Create a instrumental music'
       tags:
       - mureka
       requestBody:
@@ -517,7 +517,7 @@ paths:
     post:
       operationId: postMusicExtend
       summary: music/extend
-      description: '## [Extend song](https://useapi.net/docs/api-mureka-v1/post-mureka-music-extend)'
+      description: '## Extend song'
       tags:
       - mureka
       requestBody:
@@ -552,7 +552,7 @@ paths:
     post:
       operationId: postMusicRegenerate
       summary: music/regenerate
-      description: '## [Regenerate song](https://useapi.net/docs/api-mureka-v1/post-mureka-music-regenerate)'
+      description: '## Regenerate song'
       tags:
       - mureka
       requestBody:
@@ -587,7 +587,7 @@ paths:
     post:
       operationId: postMusicVideoGenerate
       summary: music/video-generate
-      description: '## [Create an AI-generated video for your song](https://useapi.net/docs/api-mureka-v1/post-mureka-music-video-generate)'
+      description: '## Create an AI-generated video for your song'
       tags:
       - mureka
       requestBody:
@@ -616,7 +616,7 @@ paths:
     post:
       operationId: postMusicLyricsGenerate
       summary: music/lyrics-generate
-      description: '## [AI-generated lyrics from your prompt](https://useapi.net/docs/api-mureka-v1/post-mureka-music-lyrics-generate)'
+      description: '## AI-generated lyrics from your prompt'
       tags:
       - mureka
       requestBody:
@@ -647,7 +647,7 @@ paths:
     post:
       operationId: postMusicDownload
       summary: music/download
-      description: '## [Download song instrumentals&amp;stems and license](https://useapi.net/docs/api-mureka-v1/post-mureka-music-download)'
+      description: '## Download song instrumentals&stems and license'
       tags:
       - mureka
       requestBody:
@@ -678,7 +678,7 @@ paths:
     get:
       operationId: getMusicVocals
       summary: music/vocals
-      description: '## [Retrieve a list of vocal samples including the ones you uploaded](https://useapi.net/docs/api-mureka-v1/get-mureka-music-vocals)'
+      description: '## Retrieve a list of vocal samples including the ones you uploaded'
       tags:
       - mureka
       parameters:
@@ -730,7 +730,7 @@ paths:
     get:
       operationId: getMusicRefs
       summary: music/refs
-      description: '## [Retrieve songs for reference](https://useapi.net/docs/api-mureka-v1/get-mureka-music-refs)'
+      description: '## Retrieve songs for reference'
       tags:
       - mureka
       parameters:
@@ -784,7 +784,7 @@ paths:
     get:
       operationId: getMusicMoodsAndGenres
       summary: music/moods-and-genres
-      description: '## [Retrieve moods and genres](https://useapi.net/docs/api-mureka-v1/get-mureka-music-moods-and-genres)'
+      description: '## Retrieve moods and genres'
       tags:
       - mureka
       parameters:
@@ -832,7 +832,7 @@ paths:
     get:
       operationId: getFiles
       summary: files
-      description: '## [Retrieve your reference tracks](https://useapi.net/docs/api-mureka-v1/get-mureka-files)'
+      description: '## Retrieve your reference tracks'
       tags:
       - mureka
       parameters:
@@ -871,7 +871,7 @@ paths:
     post:
       operationId: postFiles
       summary: files • use Body » binary to upload .mp3
-      description: '## [Upload mp3 audio track to your music collection](https://useapi.net/docs/api-mureka-v1/post-mureka-files)'
+      description: '## Upload mp3 audio track to your music collection'
       tags:
       - mureka
       parameters:
@@ -922,7 +922,7 @@ paths:
     delete:
       operationId: deleteFiles
       summary: files
-      description: '## [Delete track](https://useapi.net/docs/api-mureka-v1/del-mureka-files)'
+      description: '## Delete track'
       tags:
       - mureka
       parameters:
@@ -962,7 +962,7 @@ paths:
     get:
       operationId: getFilesYoutube
       summary: files/youtube
-      description: '## [Retrieve soundtrack from YouTube url](https://useapi.net/docs/api-mureka-v1/get-mureka-files-youtube)'
+      description: '## Retrieve soundtrack from YouTube url'
       tags:
       - mureka
       parameters:
@@ -1002,7 +1002,7 @@ paths:
     post:
       operationId: postFilesMotif
       summary: files/motif • use Body » binary to upload .mp3
-      description: '## [Upload mp3 melody (motif) track](https://useapi.net/docs/api-mureka-v1/post-mureka-files-motif)'
+      description: '## Upload mp3 melody (motif) track'
       tags:
       - mureka
       parameters:
@@ -1036,7 +1036,7 @@ paths:
     post:
       operationId: postFilesVocal
       summary: files/vocal • use Body » binary to upload .mp3
-      description: '## [Upload mp3 vocal](https://useapi.net/docs/api-mureka-v1/post-mureka-files-vocal)'
+      description: '## Upload mp3 vocal'
       tags:
       - mureka
       parameters:
@@ -1075,7 +1075,7 @@ paths:
     delete:
       operationId: deleteFilesVocal
       summary: files/vocal
-      description: '## [Delete vocal](https://useapi.net/docs/api-mureka-v1/del-mureka-files-vocal)'
+      description: '## Delete vocal'
       tags:
       - mureka
       parameters:
@@ -1115,7 +1115,7 @@ paths:
     get:
       operationId: getSpeech
       summary: speech
-      description: '## [Retrieve generated speech](https://useapi.net/docs/api-mureka-v1/get-mureka-speech)'
+      description: '## Retrieve generated speech'
       tags:
       - mureka
       parameters:
@@ -1154,7 +1154,7 @@ paths:
     delete:
       operationId: deleteSpeech
       summary: speech
-      description: '## [Delete speech](https://useapi.net/docs/api-mureka-v1/del-mureka-speech)'
+      description: '## Delete speech'
       tags:
       - mureka
       parameters:
@@ -1194,7 +1194,7 @@ paths:
     post:
       operationId: postSpeech
       summary: speech
-      description: '## [Generate speech](https://useapi.net/docs/api-mureka-v1/post-mureka-speech)'
+      description: '## Generate speech'
       tags:
       - mureka
       requestBody:
@@ -1235,7 +1235,7 @@ paths:
     get:
       operationId: getSpeechVoices
       summary: speech/voices
-      description: '## [Retrieve speech voices](https://useapi.net/docs/api-mureka-v1/get-mureka-speech-voices)'
+      description: '## Retrieve speech voices'
       tags:
       - mureka
       parameters:
@@ -1281,7 +1281,7 @@ paths:
     post:
       operationId: postSpeechVoice
       summary: speech/voice • use Body » binary to upload .mp3
-      description: '## [Clone voice for speech](https://useapi.net/docs/api-mureka-v1/post-mureka-speech-voice)'
+      description: '## Clone voice for speech'
       tags:
       - mureka
       parameters:
@@ -1332,7 +1332,7 @@ paths:
     delete:
       operationId: deleteSpeechVoice
       summary: speech/voice
-      description: '## [Delete speech voice](https://useapi.net/docs/api-mureka-v1/del-mureka-speech-voice)'
+      description: '## Delete speech voice'
       tags:
       - mureka
       parameters:

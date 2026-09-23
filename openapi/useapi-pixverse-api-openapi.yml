@@ -2,21 +2,7 @@ openapi: 3.2.0
 info:
   title: v2 (web) by useapi.net Pixverse API
   version: 1.0.0
-  description: 'Full documentation available at [useapi.net](https://useapi.net/docs/api-pixverse-v2).
-
-
-    **Videos:** native PixVerse v6 (default), v5.6, v5.5, v5, v5-fast, pixverse-c1 with Off-Peak mode; third-party seedance-2.0 / seedance-2.0-fast / seedance-2.0-mini (omni: + up to 3 reference videos + 3 reference audios), kling-o3, kling-v3, grok-imagine, veo-3.1-lite, veo-3.1-standard, veo-3.1-fast, sora-2, sora-2-pro, happyhorse-1.0
-
-    **Motion Control:** v5.6 character-image-driven-by-video pipeline (POST /videos/motion-control)
-
-    **Images:** 10 models including Seedream, Nano Banana, Qwen Image, Kling 3.0 / O3, GPT Image 2.0 (10 aspect ratios at every quality)
-
-    **Music:** music-2.6 (MiniMax, default), music-v1 (ElevenLabs), lyria-3-pro-preview (Google) — songs, instrumentals, custom or model-written lyrics
-
-
-    ---
-
-    **Updated:** June 24, 2026'
+  description: Full documentation available at useapi.net.
   contact:
     name: useapi.net support
     email: support@useapi.net
@@ -34,7 +20,7 @@ paths:
     get:
       operationId: getAccounts
       summary: accounts
-      description: '## [Retrieve PixVerse API accounts configuration.](https://useapi.net/docs/api-pixverse-v2/get-pixverse-accounts)'
+      description: '## Retrieve PixVerse API accounts configuration.'
       tags:
       - pixverse
       responses:
@@ -53,8 +39,8 @@ paths:
   /accounts/{email}:
     get:
       operationId: getAccountsByEmail
-      summary: accounts/<email>
-      description: '## [Retrieve PixVerse API account configuration](https://useapi.net/docs/api-pixverse-v2/get-pixverse-accounts-email)'
+      summary: accounts/
+      description: '## Retrieve PixVerse API account configuration'
       tags:
       - pixverse
       parameters:
@@ -78,8 +64,8 @@ paths:
           description: Too Many Requests — see the Retry-After header
     post:
       operationId: postAccountsByEmail
-      summary: accounts/<email>
-      description: '## [Create or update PixVerse API account configuration](https://useapi.net/docs/api-pixverse-v2/post-pixverse-accounts-email)'
+      summary: accounts/
+      description: '## Create or update PixVerse API account configuration'
       tags:
       - pixverse
       parameters:
@@ -123,8 +109,8 @@ paths:
           description: Too Many Requests — see the Retry-After header
     delete:
       operationId: deleteAccountsByEmail
-      summary: accounts/<email>
-      description: '## [Delete PixVerse API account](https://useapi.net/docs/api-pixverse-v2/del-pixverse-accounts-email)'
+      summary: accounts/
+      description: '## Delete PixVerse API account'
       tags:
       - pixverse
       parameters:
@@ -157,7 +143,7 @@ paths:
     get:
       operationId: getFeatures
       summary: features
-      description: '## [Retrieve your PixVerse account information (credits etc)](https://useapi.net/docs/api-pixverse-v2/get-pixverse-features)'
+      description: '## Retrieve your PixVerse account information (credits etc)'
       tags:
       - pixverse
       parameters:
@@ -192,7 +178,7 @@ paths:
     post:
       operationId: postFiles
       summary: files • use Body » binary to upload image/video/audio file
-      description: '## [Upload image/video/audio file](https://useapi.net/docs/api-pixverse-v2/post-pixverse-files)'
+      description: '## Upload image/video/audio file'
       tags:
       - pixverse
       parameters:
@@ -226,7 +212,7 @@ paths:
     get:
       operationId: getVideos
       summary: videos
-      description: '## [Retrieve videos](https://useapi.net/docs/api-pixverse-v2/get-pixverse-videos)'
+      description: '## Retrieve videos'
       tags:
       - pixverse
       parameters:
@@ -273,8 +259,8 @@ paths:
   /videos/{videoId}:
     get:
       operationId: getVideosByVideoid
-      summary: videos/<videoId>
-      description: '## [Retrieve video](https://useapi.net/docs/api-pixverse-v2/get-pixverse-videos-video_id)'
+      summary: videos/
+      description: '## Retrieve video'
       tags:
       - pixverse
       parameters:
@@ -305,8 +291,8 @@ paths:
           description: Too Many Requests — see the Retry-After header
     delete:
       operationId: deleteVideosByVideoid
-      summary: videos/<videoId>
-      description: '## [Delete video](https://useapi.net/docs/api-pixverse-v2/del-pixverse-videos-video_id)'
+      summary: videos/
+      description: '## Delete video'
       tags:
       - pixverse
       parameters:
@@ -339,7 +325,7 @@ paths:
     post:
       operationId: postVideosCreate
       summary: videos/create
-      description: '## [Create video](https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-create-v4)'
+      description: '## Create video'
       tags:
       - pixverse
       requestBody:
@@ -418,7 +404,7 @@ paths:
     post:
       operationId: postVideosCreateFrames
       summary: videos/create-frames
-      description: '## [Create video using first and last frames](https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-create-frames-v4)'
+      description: '## Create video using first and last frames'
       tags:
       - pixverse
       requestBody:
@@ -481,7 +467,7 @@ paths:
     post:
       operationId: postVideosCreateTransition
       summary: videos/create-transition
-      description: '## [Create transition video](https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-create-transition)'
+      description: '## Create transition video'
       tags:
       - pixverse
       requestBody:
@@ -574,7 +560,7 @@ paths:
     post:
       operationId: postVideosCreateFusion
       summary: videos/create-fusion
-      description: '## [Create video using image fusion](https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-create-fusion)'
+      description: '## Create video using image fusion'
       tags:
       - pixverse
       requestBody:
@@ -641,7 +627,7 @@ paths:
     post:
       operationId: postVideosMotionControl
       summary: videos/motion-control
-      description: '## [Motion Control](https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-motion-control)
+      description: '## Motion Control
 
 
         Drives a character image with motion extracted from a reference video. v5.6 only.'
@@ -689,7 +675,7 @@ paths:
     post:
       operationId: postVideosExtend
       summary: videos/extend
-      description: '## [Extend video](https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-extend-v4)'
+      description: '## Extend video'
       tags:
       - pixverse
       requestBody:
@@ -742,7 +728,7 @@ paths:
     post:
       operationId: postVideosModify
       summary: videos/modify
-      description: '## [Modify video](https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-modify)'
+      description: '## Modify video'
       tags:
       - pixverse
       requestBody:
@@ -791,7 +777,7 @@ paths:
     post:
       operationId: postVideosRestyle
       summary: videos/restyle
-      description: '## [Restyle video](https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-restyle-v4)'
+      description: '## Restyle video'
       tags:
       - pixverse
       requestBody:
@@ -840,7 +826,7 @@ paths:
     post:
       operationId: postVideosUpscale
       summary: videos/upscale
-      description: '## [Upscale video to 4K](https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-upscale)'
+      description: '## Upscale video to 4K'
       tags:
       - pixverse
       parameters:
@@ -896,7 +882,7 @@ paths:
     post:
       operationId: postVideosLipsync
       summary: videos/lipsync
-      description: '## [Lipsync video](https://useapi.net/docs/api-pixverse-v2/post-pixverse-videos-lipsync)'
+      description: '## Lipsync video'
       tags:
       - pixverse
       requestBody:
@@ -945,7 +931,7 @@ paths:
     get:
       operationId: getVideosVoices
       summary: videos/voices
-      description: '## [Retrieve lipsync voices](https://useapi.net/docs/api-pixverse-v2/get-pixverse-videos-voices)'
+      description: '## Retrieve lipsync voices'
       tags:
       - pixverse
       parameters:
@@ -979,7 +965,7 @@ paths:
     get:
       operationId: getVideosEffects
       summary: videos/effects
-      description: '## [Retrieve effects](https://useapi.net/docs/api-pixverse-v2/get-pixverse-videos-effects)'
+      description: '## Retrieve effects'
       tags:
       - pixverse
       parameters:
@@ -1025,7 +1011,7 @@ paths:
     get:
       operationId: getVideosRestyles
       summary: videos/restyles
-      description: '## [Retrieve restyle options](https://useapi.net/docs/api-pixverse-v2/get-pixverse-videos-restyles)'
+      description: '## Retrieve restyle options'
       tags:
       - pixverse
       parameters:
@@ -1059,7 +1045,7 @@ paths:
     get:
       operationId: getImages
       summary: images
-      description: '## [Retrieve all generated images](https://useapi.net/docs/api-pixverse-v2/get-pixverse-images)'
+      description: '## Retrieve all generated images'
       tags:
       - pixverse
       responses:
@@ -1078,8 +1064,8 @@ paths:
   /images/{imageId}:
     get:
       operationId: getImagesByImageid
-      summary: images/<imageId>
-      description: '## [Retrieve generated image](https://useapi.net/docs/api-pixverse-v2/get-pixverse-images-image_id)'
+      summary: images/
+      description: '## Retrieve generated image'
       tags:
       - pixverse
       parameters:
@@ -1110,8 +1096,8 @@ paths:
           description: Too Many Requests — see the Retry-After header
     delete:
       operationId: deleteImagesByImageid
-      summary: images/<imageId>
-      description: '## [Delete generated image](https://useapi.net/docs/api-pixverse-v2/del-pixverse-images-image_id)'
+      summary: images/
+      description: '## Delete generated image'
       tags:
       - pixverse
       parameters:
@@ -1144,7 +1130,7 @@ paths:
     post:
       operationId: postImagesCreate
       summary: images/create
-      description: '## [Generate images](https://useapi.net/docs/api-pixverse-v2/post-pixverse-images-create)'
+      description: '## Generate images'
       tags:
       - pixverse
       requestBody:
@@ -1221,7 +1207,7 @@ paths:
     get:
       operationId: getMusic
       summary: music
-      description: '## [Retrieve all generated music](https://useapi.net/docs/api-pixverse-v2/get-pixverse-music)'
+      description: '## Retrieve all generated music'
       tags:
       - pixverse
       responses:
@@ -1240,8 +1226,8 @@ paths:
   /music/{audioId}:
     get:
       operationId: getMusicByAudioid
-      summary: music/<audioId>
-      description: '## [Retrieve generated music track](https://useapi.net/docs/api-pixverse-v2/get-pixverse-music-music_id)'
+      summary: music/
+      description: '## Retrieve generated music track'
       tags:
       - pixverse
       parameters:
@@ -1274,7 +1260,7 @@ paths:
     post:
       operationId: postMusicCreate
       summary: music/create
-      description: '## [Generate music](https://useapi.net/docs/api-pixverse-v2/post-pixverse-music-create)'
+      description: '## Generate music'
       tags:
       - pixverse
       requestBody:
@@ -1319,7 +1305,7 @@ paths:
     get:
       operationId: getSpeech
       summary: speech
-      description: '## [List all text-to-speech](https://useapi.net/docs/api-pixverse-v2/get-pixverse-speech)'
+      description: '## List all text-to-speech'
       tags:
       - pixverse
       responses:
@@ -1338,8 +1324,8 @@ paths:
   /speech/{audioId}:
     get:
       operationId: getSpeechByAudioid
-      summary: speech/<audioId>
-      description: '## [Retrieve generated speech](https://useapi.net/docs/api-pixverse-v2/get-pixverse-speech-speech_id)'
+      summary: speech/
+      description: '## Retrieve generated speech'
       tags:
       - pixverse
       parameters:
@@ -1372,7 +1358,7 @@ paths:
     post:
       operationId: postSpeechCreate
       summary: speech/create
-      description: '## [Generate speech from text](https://useapi.net/docs/api-pixverse-v2/post-pixverse-speech-create)'
+      description: '## Generate speech from text'
       tags:
       - pixverse
       requestBody:
@@ -1431,7 +1417,7 @@ paths:
     get:
       operationId: getSpeechVoices
       summary: speech/voices
-      description: '## [List text-to-speech voices](https://useapi.net/docs/api-pixverse-v2/get-pixverse-speech-voices)'
+      description: '## List text-to-speech voices'
       tags:
       - pixverse
       parameters:
@@ -1464,7 +1450,7 @@ paths:
     get:
       operationId: getSpeechModels
       summary: speech/models
-      description: '## [List text-to-speech models](https://useapi.net/docs/api-pixverse-v2/get-pixverse-speech-models)'
+      description: '## List text-to-speech models'
       tags:
       - pixverse
       responses:
@@ -1484,7 +1470,7 @@ paths:
     get:
       operationId: getScheduler
       summary: scheduler
-      description: '## [Retrieve the list of videos currently being executed by the API](https://useapi.net/docs/api-pixverse-v2/get-pixverse-scheduler)'
+      description: '## Retrieve the list of videos currently being executed by the API'
       tags:
       - pixverse
       requestBody:
@@ -1511,7 +1497,7 @@ paths:
     get:
       operationId: getSchedulerAvailable
       summary: scheduler/available
-      description: '## [Retrieve the list of videos currently running via the API along with the available account capacity](https://useapi.net/docs/api-pixverse-v2/get-pixverse-scheduler-available)'
+      description: '## Retrieve the list of videos currently running via the API along with the available account capacity'
       tags:
       - pixverse
       requestBody:
@@ -1537,8 +1523,8 @@ paths:
   /scheduler/{videoId}:
     delete:
       operationId: deleteSchedulerByVideoid
-      summary: scheduler/<videoId>
-      description: '## [Cancel video currently being executed by the API](https://useapi.net/docs/api-pixverse-v2/del-pixverse-scheduler-videoId)'
+      summary: scheduler/
+      description: '## Cancel video currently being executed by the API'
       tags:
       - pixverse
       parameters:

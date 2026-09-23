@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: InsightFaceSwap API v1 by useapi.net Faceswap API
   version: 1.0.0
-  description: "Experimental [REST API](https://useapi.net/docs/api-faceswap-v1) for [InsightFaceSwap Discord Bot](https://discord.gg/Ym3X8U59ZN) by [Picsi.Ai](https://www.picsi.ai/). InsightFaceSwap allows users to swap faces from source image(s) onto different target images. It offers free and paid [subscription](https://www.patreon.com/picsi) models. Paid subscribers have access to a wide selection of extra features such as [HiFidelity Mode](https://www.patreon.com/posts/89036144), [ARTIFY](https://www.patreon.com/posts/picsi-ai-v2-0-97389077), oldify/youngify, morphing multiple faces in one image, and [many more](https://discord.com/channels/1095014106576212101/1128550062683865178).\n\nThe experimental InsightFaceSwap API does not require any additional subscription, and we believe it will complement our other experimental API offerings well.\n\nFollowing InsightFaceSwap Discord Bot commands supported:\n\n- [<code>GET</code>&nbsp;faceswap/account](https://useapi.net/docs/api-faceswap-v1/get-faceswap-account.html)\n    \n- [<code>GET</code>&nbsp;faceswap/account/<code>channel</code>](https://useapi.net/docs/api-faceswap-v1/get-faceswap-account-channel.html)\n    \n- [<code>POST</code>&nbsp;faceswap/account/<code>channel</code>](https://useapi.net/docs/api-faceswap-v1/post-faceswap-account-channel.html)\n    \n- [<code>DEL</code>&nbsp;faceswap/account/<code>channel</code>](https://useapi.net/docs/api-faceswap-v1/del-faceswap-account-channel.html)\n    \n- [<code>POST</code>&nbsp;faceswap/listid](https://useapi.net/docs/api-faceswap-v1/post-faceswap-listid.html)\n    \n- [<code>POST</code>&nbsp;faceswap/saveid](https://useapi.net/docs/api-faceswap-v1/post-faceswap-saveid.html)\n    \n- [<code>POST</code>&nbsp;faceswap/swapid](https://useapi.net/docs/api-faceswap-v1/post-faceswap-swapid.html)\n    \n- [<code>POST</code>&nbsp;faceswap/swap](https://useapi.net/docs/api-faceswap-v1/post-faceswap-swap.html)\n    \n- [<code>POST</code>&nbsp;faceswap/inswapper](https://useapi.net/docs/api-faceswap-v1/post-faceswap-inswapper.html)\n    \n- [<code>POST</code>&nbsp;faceswap/setid](https://useapi.net/docs/api-faceswap-v1/post-faceswap-setid.html)\n    \n- [<code>DEL</code>&nbsp;faceswap/delid](https://useapi.net/docs/api-faceswap-v1/del-faceswap-delid.html)\n    \n- [<code>DEL</code>&nbsp;faceswap/delall](https://useapi.net/docs/api-faceswap-v1/post-faceswap-delall.html)\n    \n\nWe fully support the ability to use [multiple InsightFaceSwap accounts](https://useapi.net/docs/api-faceswap-v1/setup-multiple-faceswap-accounts), complete with automated load balancing.\n\nVisit [https://useapi.net](https://useapi.net) for more details.\n\n---\n**Updated:** January 20, 2026"
+  description: Experimental REST API for InsightFaceSwap Discord Bot by Picsi.Ai.
   contact:
     name: useapi.net support
     email: support@useapi.net
@@ -13,7 +13,7 @@ servers:
 security:
 - bearerAuth: []
 tags:
-- name: faceswap
+- name: Face Swap
   description: InsightFaceSwap API v1 by useapi.net
 paths:
   /account:
@@ -21,7 +21,7 @@ paths:
       operationId: getAccount
       summary: faceswap/account
       tags:
-      - faceswap
+      - Face Swap
       requestBody:
         required: true
         content:
@@ -45,9 +45,9 @@ paths:
   /account/{channel_id}:
     get:
       operationId: getAccountByChannelid
-      summary: faceswap/account/<channel>
+      summary: faceswap/account/
       tags:
-      - faceswap
+      - Face Swap
       parameters:
       - name: channel_id
         in: path
@@ -69,9 +69,9 @@ paths:
           description: Too Many Requests — see the Retry-After header
     post:
       operationId: postAccountByChannelid
-      summary: faceswap/account/<channel>
+      summary: faceswap/account/
       tags:
-      - faceswap
+      - Face Swap
       parameters:
       - name: channel_id
         in: path
@@ -110,9 +110,9 @@ paths:
           description: Too Many Requests — see the Retry-After header
     delete:
       operationId: deleteAccountByChannelid
-      summary: faceswap/account/<channel>
+      summary: faceswap/account/
       tags:
-      - faceswap
+      - Face Swap
       parameters:
       - name: channel_id
         in: path
@@ -137,7 +137,7 @@ paths:
       operationId: postListid
       summary: faceswap/listid
       tags:
-      - faceswap
+      - Face Swap
       requestBody:
         required: true
         content:
@@ -169,7 +169,7 @@ paths:
       operationId: postSaveid
       summary: faceswap/saveid
       tags:
-      - faceswap
+      - Face Swap
       requestBody:
         required: true
         content:
@@ -205,7 +205,7 @@ paths:
       operationId: postSwapid
       summary: faceswap/swapid
       tags:
-      - faceswap
+      - Face Swap
       requestBody:
         required: true
         content:
@@ -241,7 +241,7 @@ paths:
       operationId: postSetid
       summary: faceswap/setid
       tags:
-      - faceswap
+      - Face Swap
       requestBody:
         required: true
         content:
@@ -275,7 +275,7 @@ paths:
       operationId: postSwap
       summary: faceswap/swap
       tags:
-      - faceswap
+      - Face Swap
       requestBody:
         required: true
         content:
@@ -315,7 +315,7 @@ paths:
       operationId: postInswapper
       summary: faceswap/inswapper
       tags:
-      - faceswap
+      - Face Swap
       requestBody:
         required: true
         content:
@@ -349,7 +349,7 @@ paths:
       operationId: postPicsi
       summary: faceswap/picsi
       tags:
-      - faceswap
+      - Face Swap
       requestBody:
         required: true
         content:
@@ -387,7 +387,7 @@ paths:
       operationId: postChangebg
       summary: faceswap/changebg
       tags:
-      - faceswap
+      - Face Swap
       requestBody:
         required: true
         content:
@@ -425,7 +425,7 @@ paths:
       operationId: postHeadshot
       summary: faceswap/headshot
       tags:
-      - faceswap
+      - Face Swap
       requestBody:
         required: true
         content:
@@ -459,9 +459,9 @@ paths:
   /jobs/:
     get:
       operationId: getJobs
-      summary: faceswap/jobs/?jobid=<jobid>
+      summary: faceswap/jobs/?jobid=
       tags:
-      - faceswap
+      - Face Swap
       parameters:
       - name: jobid
         in: query
@@ -485,9 +485,9 @@ paths:
   /jobs/cancel/:
     get:
       operationId: getJobsCancel
-      summary: faceswap/jobs/cancel/?jobid=<jobid>
+      summary: faceswap/jobs/cancel/?jobid=
       tags:
-      - faceswap
+      - Face Swap
       parameters:
       - name: jobid
         in: query
@@ -513,7 +513,7 @@ paths:
       operationId: getJobs2
       summary: faceswap/jobs
       tags:
-      - faceswap
+      - Face Swap
       responses:
         '200':
           description: Success
@@ -532,7 +532,7 @@ paths:
       operationId: deleteDelid
       summary: faceswap/delid
       tags:
-      - faceswap
+      - Face Swap
       requestBody:
         required: true
         content:
@@ -566,7 +566,7 @@ paths:
       operationId: deleteDelall
       summary: faceswap/delall
       tags:
-      - faceswap
+      - Face Swap
       requestBody:
         required: true
         content:

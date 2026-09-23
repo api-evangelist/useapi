@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: v1 by useapi.net Minimax API
   version: 1.0.0
-  description: 'Full documentation available at [useapi.net](http://useapi.net/docs/api-minimax-v1/).
+  description: 'Full documentation available at useapi.net.
 
 
     ---
@@ -18,16 +18,16 @@ servers:
 security:
 - bearerAuth: []
 tags:
-- name: minimax
+- name: Mini Max
   description: MiniMax API v1 by useapi.net
 paths:
   /accounts:
     get:
       operationId: getAccounts
       summary: accounts
-      description: '## [Retrieve MiniMax API accounts configuration.](https://useapi.net/docs/api-minimax-v1/get-minimax-accounts)'
+      description: '## Retrieve MiniMax API accounts configuration.'
       tags:
-      - minimax
+      - Mini Max
       responses:
         '200':
           description: Success
@@ -44,9 +44,9 @@ paths:
     post:
       operationId: postAccounts
       summary: accounts
-      description: '## [Create or update MiniMax API account configuration](https://useapi.net/docs/api-minimax-v1/post-minimax-accounts-account)'
+      description: '## Create or update MiniMax API account configuration'
       tags:
-      - minimax
+      - Mini Max
       requestBody:
         required: true
         content:
@@ -80,10 +80,10 @@ paths:
   /accounts/{account}:
     get:
       operationId: getAccountsByAccount
-      summary: accounts/<account>
-      description: '## [Retrieve MiniMax API account configuration for <code>account</code>](https://useapi.net/docs/api-minimax-v1/get-minimax-accounts-account)'
+      summary: accounts/
+      description: '## Retrieve MiniMax API account configuration for account'
       tags:
-      - minimax
+      - Mini Max
       parameters:
       - name: account
         in: path
@@ -105,10 +105,10 @@ paths:
           description: Too Many Requests — see the Retry-After header
     delete:
       operationId: deleteAccountsByAccount
-      summary: accounts/<account>
-      description: '## [Delete MiniMax API account](https://useapi.net/docs/api-minimax-v1/del-minimax-accounts-account)'
+      summary: accounts/
+      description: '## Delete MiniMax API account'
       tags:
-      - minimax
+      - Mini Max
       parameters:
       - name: account
         in: path
@@ -139,9 +139,9 @@ paths:
     get:
       operationId: getFeatures
       summary: features
-      description: '## [Retrieve your hailuoai.video account information](https://useapi.net/docs/api-minimax-v1/get-minimax-features)'
+      description: '## Retrieve your hailuoai.video account information'
       tags:
-      - minimax
+      - Mini Max
       parameters:
       - name: 'account '
         in: query
@@ -175,9 +175,9 @@ paths:
     post:
       operationId: postVideosCreate
       summary: videos/create
-      description: '## [Create a video using a text and image prompt](https://useapi.net/docs/api-minimax-v1/post-minimax-videos-create)'
+      description: '## Create a video using a text and image prompt'
       tags:
-      - minimax
+      - Mini Max
       requestBody:
         required: true
         content:
@@ -234,9 +234,9 @@ paths:
     post:
       operationId: postVideosAgentCreate
       summary: videos/agent-create
-      description: '## [Create a video using an agent template](https://useapi.net/docs/api-minimax-v1/post-minimax-videos-agent-create)'
+      description: '## Create a video using an agent template'
       tags:
-      - minimax
+      - Mini Max
       requestBody:
         required: true
         content:
@@ -277,9 +277,9 @@ paths:
     post:
       operationId: postVideosCancel
       summary: videos/cancel
-      description: '## [Cancel the currently generated video.](https://useapi.net/docs/api-minimax-v1/post-minimax-videos-cancel)'
+      description: '## Cancel the currently generated video.'
       tags:
-      - minimax
+      - Mini Max
       requestBody:
         required: true
         content:
@@ -305,10 +305,10 @@ paths:
   /videos/{videoId}:
     get:
       operationId: getVideosByVideoid
-      summary: videos/<videoId>
-      description: '## [Retrieve video](https://useapi.net/docs/api-minimax-v1/get-minimax-videos-videoId)'
+      summary: videos/
+      description: '## Retrieve video'
       tags:
-      - minimax
+      - Mini Max
       parameters:
       - name: videoId
         in: path
@@ -337,10 +337,10 @@ paths:
           description: Too Many Requests — see the Retry-After header
     delete:
       operationId: deleteVideosByVideoid
-      summary: videos/<videoId>
-      description: '## [Delete video](https://useapi.net/docs/api-minimax-v1/del-minimax-videos-videoId)'
+      summary: videos/
+      description: '## Delete video'
       tags:
-      - minimax
+      - Mini Max
       parameters:
       - name: videoId
         in: path
@@ -371,9 +371,9 @@ paths:
     get:
       operationId: getVideos
       summary: videos
-      description: '## [Retrieve videos](https://useapi.net/docs/api-minimax-v1/get-minimax-videos)'
+      description: '## Retrieve videos'
       tags:
-      - minimax
+      - Mini Max
       parameters:
       - name: account
         in: query
@@ -417,9 +417,9 @@ paths:
     get:
       operationId: getVideosAgentTemplates
       summary: videos/agent-templates
-      description: '## [Retrieve available agent video templates](https://useapi.net/docs/api-minimax-v1/get-minimax-videos-agent-templates)'
+      description: '## Retrieve available agent video templates'
       tags:
-      - minimax
+      - Mini Max
       parameters:
       - name: account
         in: query
@@ -469,9 +469,9 @@ paths:
     get:
       operationId: getVideosCharacters
       summary: videos/characters
-      description: '## [Retrieve the list of characters](https://useapi.net/docs/api-minimax-v1/get-minimax-videos-characters)'
+      description: '## Retrieve the list of characters'
       tags:
-      - minimax
+      - Mini Max
       parameters:
       - name: account
         in: query
@@ -521,9 +521,9 @@ paths:
     post:
       operationId: postImagesCreate
       summary: images/create
-      description: '## [Create an image using a text prompt](https://useapi.net/docs/api-minimax-v1/post-minimax-images-create)'
+      description: '## Create an image using a text prompt'
       tags:
-      - minimax
+      - Mini Max
       requestBody:
         required: true
         content:
@@ -571,10 +571,10 @@ paths:
   /images/{imageId}:
     get:
       operationId: getImagesByImageid
-      summary: images/<imageId>
-      description: '## [Retrieve image](https://useapi.net/docs/api-minimax-v1/get-minimax-images-imageId)'
+      summary: images/
+      description: '## Retrieve image'
       tags:
-      - minimax
+      - Mini Max
       parameters:
       - name: imageId
         in: path
@@ -603,10 +603,10 @@ paths:
           description: Too Many Requests — see the Retry-After header
     delete:
       operationId: deleteImagesByImageid
-      summary: images/<imageId>
-      description: '## [Delete image](https://useapi.net/docs/api-minimax-v1/del-minimax-images-imageId)'
+      summary: images/
+      description: '## Delete image'
       tags:
-      - minimax
+      - Mini Max
       parameters:
       - name: imageId
         in: path
@@ -637,9 +637,9 @@ paths:
     get:
       operationId: getImages
       summary: images
-      description: '## [Retrieve the list of images you have generated](https://useapi.net/docs/api-minimax-v1/get-minimax-images)'
+      description: '## Retrieve the list of images you have generated'
       tags:
-      - minimax
+      - Mini Max
       parameters:
       - name: account
         in: query
@@ -683,9 +683,9 @@ paths:
     get:
       operationId: getMusicCreate
       summary: music/create
-      description: '## [Compose music up to 60 seconds long using a text prompt](https://useapi.net/docs/api-minimax-v1/get-minimax-music-create)'
+      description: '## Compose music up to 60 seconds long using a text prompt'
       tags:
-      - minimax
+      - Mini Max
       parameters:
       - name: styleId
         in: query
@@ -738,9 +738,9 @@ paths:
     get:
       operationId: getMusic
       summary: music
-      description: '## [Retrieve the list of songs you have generated](https://useapi.net/docs/api-minimax-v1/get-minimax-music)'
+      description: '## Retrieve the list of songs you have generated'
       tags:
-      - minimax
+      - Mini Max
       parameters:
       - name: limit
         in: query
@@ -784,9 +784,9 @@ paths:
     get:
       operationId: getMusicStyles
       summary: music/styles
-      description: '## [Retrieve the list of music styles](https://useapi.net/docs/api-minimax-v1/get-minimax-music-styles)'
+      description: '## Retrieve the list of music styles'
       tags:
-      - minimax
+      - Mini Max
       parameters:
       - name: account
         in: query
@@ -818,9 +818,9 @@ paths:
     get:
       operationId: getFiles
       summary: files
-      description: '## [Retrieve the list of images you have uploaded](https://useapi.net/docs/api-minimax-v1/get-minimax-files)'
+      description: '## Retrieve the list of images you have uploaded'
       tags:
-      - minimax
+      - Mini Max
       parameters:
       - name: account
         in: query
@@ -859,9 +859,9 @@ paths:
     post:
       operationId: postFiles
       summary: files • use Body » binary to upload .png/.jpeg/.mp3/.wav/.mp4
-      description: '## [Upload image, audio, or video file](https://useapi.net/docs/api-minimax-v1/post-minimax-files) — Content-Type: image/png, image/jpeg, audio/mpeg, audio/wav, video/mp4'
+      description: '## Upload image, audio, or video file — Content-Type: image/png, image/jpeg, audio/mpeg, audio/wav, video/mp4'
       tags:
-      - minimax
+      - Mini Max
       parameters:
       - name: account
         in: query
@@ -892,10 +892,10 @@ paths:
   /files/{file_id}:
     delete:
       operationId: deleteFilesByFileid
-      summary: files/<file_id>
-      description: '## [Delete file](https://useapi.net/docs/api-minimax-v1/del-minimax-files-fileID)'
+      summary: files/
+      description: '## Delete file'
       tags:
-      - minimax
+      - Mini Max
       parameters:
       - name: file_id
         in: path
@@ -926,9 +926,9 @@ paths:
     get:
       operationId: getAudio
       summary: audio
-      description: '## [Retrieve the list of text-to-speech audio clips you have generated](https://useapi.net/docs/api-minimax-v1/get-minimax-audio)'
+      description: '## Retrieve the list of text-to-speech audio clips you have generated'
       tags:
-      - minimax
+      - Mini Max
       parameters:
       - name: account
         in: query
@@ -971,10 +971,10 @@ paths:
   /audio/{audio_id}:
     get:
       operationId: getAudioByAudioid
-      summary: audio/<audio_id>
-      description: '## [Retrieve text-to-speech audio clip](https://useapi.net/docs/api-minimax-v1/get-minimax-audio_audio_id)'
+      summary: audio/
+      description: '## Retrieve text-to-speech audio clip'
       tags:
-      - minimax
+      - Mini Max
       parameters:
       - name: audio_id
         in: path
@@ -1003,10 +1003,10 @@ paths:
           description: Too Many Requests — see the Retry-After header
     delete:
       operationId: deleteAudioByAudioid
-      summary: audio/<audio_id>
-      description: '## [Delete text-to-speech audio clip](https://useapi.net/docs/api-minimax-v1/del-minimax-audio-audio_id)'
+      summary: audio/
+      description: '## Delete text-to-speech audio clip'
       tags:
-      - minimax
+      - Mini Max
       parameters:
       - name: audio_id
         in: path
@@ -1037,9 +1037,9 @@ paths:
     get:
       operationId: getAudioConfig
       summary: audio/config
-      description: '## [Retrieve audio configuration parameters](https://useapi.net/docs/api-minimax-v1/get-minimax-audio-config)'
+      description: '## Retrieve audio configuration parameters'
       tags:
-      - minimax
+      - Mini Max
       parameters:
       - name: account
         in: query
@@ -1071,9 +1071,9 @@ paths:
     get:
       operationId: getAudioVoices
       summary: audio/voices
-      description: '## [Retrieve the list of system and cloned audio voices](https://useapi.net/docs/api-minimax-v1/get-minimax-audio-voices)'
+      description: '## Retrieve the list of system and cloned audio voices'
       tags:
-      - minimax
+      - Mini Max
       parameters:
       - name: account
         in: query
@@ -1129,9 +1129,9 @@ paths:
     post:
       operationId: postAudioVoicesCreateMp3
       summary: audio/create-mp3
-      description: '## [Create text-to-speech audio](https://useapi.net/docs/api-minimax-v1/post-minimax-audio-create-mp3)'
+      description: '## Create text-to-speech audio'
       tags:
-      - minimax
+      - Mini Max
       requestBody:
         required: true
         content:
@@ -1188,9 +1188,9 @@ paths:
     post:
       operationId: postAudioCreateStream
       summary: audio/create-stream
-      description: '## [Create text-to-speech audio stream token and payload](https://useapi.net/docs/api-minimax-v1/post-minimax-audio-create-stream)'
+      description: '## Create text-to-speech audio stream token and payload'
       tags:
-      - minimax
+      - Mini Max
       requestBody:
         required: true
         content:
@@ -1247,9 +1247,9 @@ paths:
     post:
       operationId: postAudioUploadSample
       summary: audio/upload-sample • use Body » binary to upload .mp3 and . wav
-      description: '## [Upload an MP3 or WAV voice sample to be used for voice cloning](https://useapi.net/docs/api-minimax-v1/post-minimax-audio-upload-sample)'
+      description: '## Upload an MP3 or WAV voice sample to be used for voice cloning'
       tags:
-      - minimax
+      - Mini Max
       parameters:
       - name: account
         in: query
@@ -1281,9 +1281,9 @@ paths:
     post:
       operationId: postAudioVoicesCloneVoice
       summary: audio/clone-voice
-      description: '## [Clone the voice using the uploaded voice samples](https://useapi.net/docs/api-minimax-v1/post-minimax-audio-clone-voice)'
+      description: '## Clone the voice using the uploaded voice samples'
       tags:
-      - minimax
+      - Mini Max
       requestBody:
         required: true
         content:
@@ -1316,9 +1316,9 @@ paths:
     post:
       operationId: postAudioVoicesDeleteVoice
       summary: audio/delete-voice
-      description: '## [Delete cloned voice](https://useapi.net/docs/api-minimax-v1/post-minimax-audio-delete-voice)'
+      description: '## Delete cloned voice'
       tags:
-      - minimax
+      - Mini Max
       requestBody:
         required: true
         content:
@@ -1347,9 +1347,9 @@ paths:
     get:
       operationId: getLlm
       summary: llm
-      description: '## [Retrieve the list of LLM chats](https://useapi.net/docs/api-minimax-v1/get-minimax-llm)'
+      description: '## Retrieve the list of LLM chats'
       tags:
-      - minimax
+      - Mini Max
       parameters:
       - name: account
         in: query
@@ -1392,9 +1392,9 @@ paths:
     post:
       operationId: postLlm
       summary: llm
-      description: '## [Chat with LLM](https://useapi.net/docs/api-minimax-v1/post-minimax-llm)'
+      description: '## Chat with LLM'
       tags:
-      - minimax
+      - Mini Max
       requestBody:
         required: true
         content:
@@ -1432,9 +1432,9 @@ paths:
     delete:
       operationId: deleteLlm
       summary: llm
-      description: '## [Delete LLM chats and/or messages](https://useapi.net/docs/api-minimax-v1/del-minimax-llm)'
+      description: '## Delete LLM chats and/or messages'
       tags:
-      - minimax
+      - Mini Max
       parameters:
       - name: account
         in: query
@@ -1477,10 +1477,10 @@ paths:
   /llm/{chatID}:
     get:
       operationId: getLlmByChatid
-      summary: llm/<chatID>
-      description: '## [Retrieve the messages from the LLM chat](https://useapi.net/docs/api-minimax-v1/get-minimax-llm-chatID)'
+      summary: llm/
+      description: '## Retrieve the messages from the LLM chat'
       tags:
-      - minimax
+      - Mini Max
       parameters:
       - name: chatID
         in: path
@@ -1517,9 +1517,9 @@ paths:
     post:
       operationId: postAgent
       summary: agent
-      description: '## [Execute AI Agent with Multi-Model Support](https://useapi.net/docs/api-minimax-v1/post-minimax-agent)'
+      description: '## Execute AI Agent with Multi-Model Support'
       tags:
-      - minimax
+      - Mini Max
       requestBody:
         required: true
         content:
@@ -1558,9 +1558,9 @@ paths:
     get:
       operationId: getAgentJobs
       summary: agent/jobs
-      description: '## [List Running Agent Jobs](https://useapi.net/docs/api-minimax-v1/get-minimax-agent-jobs)'
+      description: '## List Running Agent Jobs'
       tags:
-      - minimax
+      - Mini Max
       responses:
         '200':
           description: Success
@@ -1577,10 +1577,10 @@ paths:
   /agent/{jobId}:
     get:
       operationId: getAgentByJobid
-      summary: agent/<jobId>
-      description: '## [Retrieve Agent Job Status and Results](https://useapi.net/docs/api-minimax-v1/get-minimax-agent-jobId)'
+      summary: agent/
+      description: '## Retrieve Agent Job Status and Results'
       tags:
-      - minimax
+      - Mini Max
       parameters:
       - name: jobId
         in: path
@@ -1604,9 +1604,9 @@ paths:
     get:
       operationId: getScheduler
       summary: scheduler
-      description: '## [Remove video or image generation from being tracked by the scheduler](https://useapi.net/docs/api-minimax-v1/get-minimax-scheduler)'
+      description: '## Remove video or image generation from being tracked by the scheduler'
       tags:
-      - minimax
+      - Mini Max
       requestBody:
         required: true
         content:
@@ -1631,9 +1631,9 @@ paths:
     get:
       operationId: getSchedulerAvailable
       summary: scheduler/available
-      description: '## [Retrieve the list of videos currently running via the API along with the available account capacity](https://useapi.net/docs/api-minimax-v1/get-minimax-scheduler-available)'
+      description: '## Retrieve the list of videos currently running via the API along with the available account capacity'
       tags:
-      - minimax
+      - Mini Max
       requestBody:
         required: true
         content:
@@ -1657,10 +1657,10 @@ paths:
   /scheduler/{id}:
     delete:
       operationId: deleteSchedulerById
-      summary: scheduler/<id>
-      description: '## [Remove video or image generation from being tracked by the scheduler](https://useapi.net/docs/api-minimax-v1/del-minimax-scheduler-videoId)'
+      summary: scheduler/
+      description: '## Remove video or image generation from being tracked by the scheduler'
       tags:
-      - minimax
+      - Mini Max
       parameters:
       - name: id
         in: path
