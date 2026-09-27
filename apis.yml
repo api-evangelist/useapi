@@ -49,12 +49,12 @@ tags:
 - Artificial Intelligence
 - Generative AI
 - Video Generation
-- Image-Generation
+- Image Generation
 - Music Generation
 - Text-to-Speech
 - Face Swap
 - API Aggregator
-- Machine-Learning
+- Machine Learning
 - Media
 - Webhook
 tags_raw:
@@ -70,6 +70,8 @@ tags_raw:
 - Machine Learning
 - Media
 - Webhooks
+- Image-Generation
+- Machine-Learning
 apis:
 - aid: useapi:account-v2
   name: useapi.net Account Management API v2
@@ -675,8 +677,6 @@ apis:
   humanURL: https://useapi.net/docs/account-management
   baseURL: https://api.useapi.net/v2/account
   tags:
-  - MiniMax
-  tags_raw:
   - Mini Max
   properties:
   - type: OpenAPI
