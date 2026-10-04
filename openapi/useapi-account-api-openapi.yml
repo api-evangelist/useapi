@@ -228,26 +228,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    midjourneyResponse:
-      type: object
-      properties:
-        discord:
-          type: string
-        channel:
-          type: string
-        server:
-          type: string
-        maxJobs:
-          type: integer
-        pendingModMessage:
-          description: Your Discord account has received a pending moderation message from Midjourney. Please address this issue and reset pendingModMessage before making any new API calls
-          type: string
-        error:
-          type: string
-        errorDetails:
-          type: string
-        code:
-          type: integer
     accountResponse:
       type: object
       properties:
@@ -264,6 +244,26 @@ components:
         sub:
           type: string
         replyUrl:
+          type: string
+        error:
+          type: string
+        errorDetails:
+          type: string
+        code:
+          type: integer
+    midjourneyResponse:
+      type: object
+      properties:
+        discord:
+          type: string
+        channel:
+          type: string
+        server:
+          type: string
+        maxJobs:
+          type: integer
+        pendingModMessage:
+          description: Your Discord account has received a pending moderation message from Midjourney. Please address this issue and reset pendingModMessage before making any new API calls
           type: string
         error:
           type: string
