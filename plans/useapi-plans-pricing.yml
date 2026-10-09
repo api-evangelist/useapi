@@ -1,0 +1,63 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
+method: searched
+source: https://useapi.net/docs/subscription
+sources:
+- https://useapi.net/docs/subscription
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T104522
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: tiered-subscription
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-07'
+  managed_tier: Purchase $15/month subscription
+published: true
+note: Page prices an experimental REST API connecting user accounts to AI services. States first subscription
+  $15/m (up to 3 accounts per service), additional subscriptions $10/m each; cumulative example '1 sub
+  = $15 → 2 = $25 → 3 = $35 → 4 = $45'. Purchase via Stripe or Crypto; 14-day refund if fewer than 50
+  successful generations.
+plan_count: 2
+currency: USD
+plans:
+- name: useapi.net subscription (first)
+  price_text: $15/m
+  price: 15
+  currency: USD
+  period: month
+  unit: subscription
+  included_quota: connect up to 3 of your own accounts per service
+- name: Additional subscription
+  price_text: $10/m
+  price: 10
+  currency: USD
+  period: month
+  unit: subscription
+  included_quota: 3 more accounts per service
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - subscription
+  units:
+  - period
+  plans:
+  - name: useapi.net subscription (first)
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - period
+    periods:
+    - month
+  - name: Additional subscription
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - period
+    periods:
+    - month
