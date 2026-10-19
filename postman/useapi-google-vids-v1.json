@@ -1,0 +1,631 @@
+{
+	"info": {
+		"_postman_id": "320f5a30-935d-49cf-80da-062badff57eb",
+		"name": "Google Vids API v1 by useapi.net",
+		"description": "## [Google Vids API v1](https://useapi.net/docs/api-google-vids-v1)\n\nGoogle Vids API by useapi.net: Gemini Omni 1.1 Flash video (text, start image, up to 3 image and avatar references, 3-10 s, 720p or 1080p), extend, upscale to 1080p, edit, images in 7 styles, uploads, downloads, jobs, voiced avatars and the voice list. Runs on your own Google AI plan accounts, no captcha. Set the `api-token` collection variable (see https://useapi.net/docs/start-here/setup-useapi). POST accounts sends form-data, the other POST bodies send JSON (the API accepts JSON or form-data for every body). POST assets sends the file itself as the body. Ids contain `:` and `@`: URL-encode them when you put them in a path variable.\n\n---\n**Updated:** October 7, 2026",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"updated": "2026-10-07",
+		"_exporter_id": "29112081"
+	},
+	"item": [
+		{
+			"name": "POST accounts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/google-vids/accounts",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"google-vids",
+						"accounts"
+					]
+				},
+				"description": "## [Add or update an account](https://useapi.net/docs/api-google-vids-v1/post-google-vids-accounts)",
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "cookies",
+							"value": "",
+							"description": "Required to add/re-add. The cookie table of https://docs.google.com copied from DevTools (Application → Cookies), pasted as copied (min 20 chars). Must contain SID, HSID, SSID, APISID, SAPISID, __Secure-1PSIDTS and OSID. The account email is read from Google. Free Google accounts (0 video, 0 images) are refused. See Setup Google Vids: https://useapi.net/docs/start-here/setup-google-vids",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "user@example.com",
+							"description": "Update mode only: a connected account email, sent with maxJobs and without cookies. Not accepted together with cookies.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "maxJobs",
+							"value": "",
+							"description": "Optional when adding (default 3). Required in update mode. Max concurrent jobs for this account, 1-10.",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET accounts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/google-vids/accounts",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"google-vids",
+						"accounts"
+					]
+				},
+				"description": "## [List accounts](https://useapi.net/docs/api-google-vids-v1/get-google-vids-accounts)"
+			},
+			"response": []
+		},
+		{
+			"name": "GET accounts/{email}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/google-vids/accounts/{{email}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"google-vids",
+						"accounts",
+						"{{email}}"
+					]
+				},
+				"description": "## [Check one account live (session + quota)](https://useapi.net/docs/api-google-vids-v1/get-google-vids-accounts-email)"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE accounts/{email}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/google-vids/accounts/{{email}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"google-vids",
+						"accounts",
+						"{{email}}"
+					]
+				},
+				"description": "## [Remove an account](https://useapi.net/docs/api-google-vids-v1/delete-google-vids-accounts-email)"
+			},
+			"response": []
+		},
+		{
+			"name": "POST videos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/google-vids/videos",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"google-vids",
+						"videos"
+					]
+				},
+				"description": "## [Generate a video](https://useapi.net/docs/api-google-vids-v1/post-google-vids-videos)\n\n**Body (JSON).** `prompt` is required (up to 5000 chars, may use `@referenceImage_1..3` / `@avatar_1..3` markers).\n\n- `duration`: 3-10 seconds, default 8\n- `aspectRatio`: `landscape` (default) or `portrait`\n- `resolution`: `720p` (default) or `1080p`, same cost\n- `startImage`: assetId from POST /assets, or an image mediaId from POST images (uploaded for you). Not with references.\n- `referenceImage_1`..`referenceImage_3`: assetIds from POST /assets or image mediaIds from POST images\n- `avatar_1`..`avatar_3`: avatarIds from POST /avatars or GET /avatars. At most 3 references and avatars together.\n- `email`: account to run on. Default: the account holding the inputs, or a load-balanced one.\n- `async`: `true` answers 202 at once (default `false`: waits up to 100 s for the finished job, then answers 202 with the job still running). `replyUrl`: webhook URL, receives one POST of the job record when the job ends, sync or async. `replyRef`: up to 1024 chars.",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"prompt\": \"A paper boat drifting down a rain gutter, close up\",\n    \"duration\": 8,\n    \"aspectRatio\": \"landscape\",\n    \"resolution\": \"720p\",\n    \"async\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST videos/extend",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/google-vids/videos/extend",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"google-vids",
+						"videos",
+						"extend"
+					]
+				},
+				"description": "## [Extend a video](https://useapi.net/docs/api-google-vids-v1/post-google-vids-videos-extend)\n\n**Body (JSON).** `mediaId` (a video mediaId from a finished job) and `prompt` are required.\n\n- `duration`: seconds to add, 3-10, default 8. Charged only these seconds. The whole clip is returned, up to about 41 s.\n- `aspectRatio`: `landscape` or `portrait`. Default: the source's.\n- `resolution`: `720p` or `1080p`. Default: the source's.\n- `async`: `true` answers 202 at once (default `false`: waits up to 100 s for the finished job, then answers 202 with the job still running). `replyUrl`: webhook URL, receives one POST of the job record when the job ends, sync or async. `replyRef`: up to 1024 chars.",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"mediaId\": \"{{mediaId}}\",\n    \"prompt\": \"The paper boat spins and sails into a puddle\",\n    \"duration\": 8,\n    \"async\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST videos/upscale",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/google-vids/videos/upscale",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"google-vids",
+						"videos",
+						"upscale"
+					]
+				},
+				"description": "## [Upscale a video to 1080p](https://useapi.net/docs/api-google-vids-v1/post-google-vids-videos-upscale)\n\n**Body (JSON).** `mediaId` of a 720p clip of up to 20 seconds is required. A 1080p clip or one longer than 20 seconds is refused with 400. Charged the clip's seconds again.\n\n- `async`: `true` answers 202 at once (default `false`: waits up to 100 s for the finished job, then answers 202 with the job still running). `replyUrl`: webhook URL, receives one POST of the job record when the job ends, sync or async. `replyRef`: up to 1024 chars.",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"mediaId\": \"{{mediaId}}\",\n    \"async\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST videos/edit",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/google-vids/videos/edit",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"google-vids",
+						"videos",
+						"edit"
+					]
+				},
+				"description": "## [Edit a video](https://useapi.net/docs/api-google-vids-v1/post-google-vids-videos-edit)\n\n**Body (JSON).** `video` (a video mediaId from a finished job) and `prompt` are required. An uploaded video (assetId) is accepted, but Google refuses it with 422.\n\n- `duration`: 3-10. Default: the clip's length, up to 10 (an edit works on 10 seconds). Required with an assetId.\n- `aspectRatio`, `resolution`: default the source's.\n- `async`: `true` answers 202 at once (default `false`: waits up to 100 s for the finished job, then answers 202 with the job still running). `replyUrl`: webhook URL, receives one POST of the job record when the job ends, sync or async. `replyRef`: up to 1024 chars.",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"video\": \"{{mediaId}}\",\n    \"prompt\": \"Make the paper boat bright yellow\",\n    \"async\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST images",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/google-vids/images",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"google-vids",
+						"images"
+					]
+				},
+				"description": "## [Generate an image](https://useapi.net/docs/api-google-vids-v1/post-google-vids-images)\n\n**Body (JSON).** `prompt` is required (up to 5000 chars). One JPEG of a fixed size.\n\n- `aspectRatio`: `16:9` (default, 1376×768), `1:1` (1024×1024), `9:16` (768×1376)\n- `style`: `none` (default), `photography`, `sketch`, `background`, `watercolor`, `vector-art`, `cyberpunk`\n- `email`: account to run on. Default: a load-balanced one.\n- `async`: `true` answers 202 at once (default `false`: waits up to 100 s for the finished job, then answers 202 with the job still running). `replyUrl`: webhook URL, receives one POST of the job record when the job ends, sync or async. `replyRef`: up to 1024 chars.",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"prompt\": \"A red vintage bicycle leaning on a sunny brick wall\",\n    \"aspectRatio\": \"16:9\",\n    \"style\": \"none\",\n    \"async\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST assets",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "image/jpeg",
+						"description": "The file's MIME type: image/jpeg, image/png, image/webp or video/mp4."
+					}
+				],
+				"url": {
+					"raw": "https://api.useapi.net/v1/google-vids/assets",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"google-vids",
+						"assets"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "{{email}}",
+							"description": "Optional. The account to upload to. Default: a random healthy account.",
+							"disabled": true
+						}
+					]
+				},
+				"description": "## [Upload an asset](https://useapi.net/docs/api-google-vids-v1/post-google-vids-assets)\n\nThe file is the raw request body (no multipart, no JSON), 1 byte to 50 MB. Returns the assetId used as startImage / referenceImage_N of POST videos (an image made with POST images needs no upload: pass its mediaId there).",
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/path/to/image.jpg"
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET media/{mediaId}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/google-vids/media/{{mediaId}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"google-vids",
+						"media",
+						"{{mediaId}}"
+					]
+				},
+				"description": "## [Download a video or image](https://useapi.net/docs/api-google-vids-v1/get-google-vids-media-mediaId)\n\nStreams the MP4 or JPEG from Google. A Range header is passed through (206)."
+			},
+			"response": []
+		},
+		{
+			"name": "GET jobs",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/google-vids/jobs",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"google-vids",
+						"jobs"
+					]
+				},
+				"description": "## [List running jobs](https://useapi.net/docs/api-google-vids-v1/get-google-vids-jobs)"
+			},
+			"response": []
+		},
+		{
+			"name": "GET jobs/{jobid}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/google-vids/jobs/{{jobid}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"google-vids",
+						"jobs",
+						"{{jobid}}"
+					]
+				},
+				"description": "## [Poll a job](https://useapi.net/docs/api-google-vids-v1/get-google-vids-jobs-jobid)"
+			},
+			"response": []
+		},
+		{
+			"name": "POST avatars",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/google-vids/avatars",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"google-vids",
+						"avatars"
+					]
+				},
+				"description": "## [Create an avatar](https://useapi.net/docs/api-google-vids-v1/post-google-vids-avatars)\n\n**Body (JSON).** `name` (1-40 chars) and `voice` (a name or voice id from GET voices) are required, plus either `image` or `appearance`.\n\n- `image`: an image mediaId from POST images (an uploaded photo is refused: Google's likeness check)\n- `appearance`: the person to draw, up to 500 chars (uses 1 image of the monthly allowance)\n- `outfit` (300), `shot` (`close-up` default, `upper-body`, `full-body`), `expression` (200), `details` (1000): with appearance only\n- `email`: account to save it on",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Marco\",\n    \"voice\": \"Holt\",\n    \"appearance\": \"a middle-aged man with a short grey beard\",\n    \"outfit\": \"navy blazer over a white shirt\",\n    \"shot\": \"upper-body\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET avatars",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/google-vids/avatars",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"google-vids",
+						"avatars"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "{{email}}",
+							"description": "Optional. Read one account only.",
+							"disabled": true
+						}
+					]
+				},
+				"description": "## [List avatars](https://useapi.net/docs/api-google-vids-v1/get-google-vids-avatars)"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE avatars/{avatarId}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/google-vids/avatars/{{avatarId}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"google-vids",
+						"avatars",
+						"{{avatarId}}"
+					]
+				},
+				"description": "## [Delete an avatar](https://useapi.net/docs/api-google-vids-v1/delete-google-vids-avatars-avatarId)"
+			},
+			"response": []
+		},
+		{
+			"name": "GET voices",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/google-vids/voices",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"google-vids",
+						"voices"
+					]
+				},
+				"description": "## [List voices](https://useapi.net/docs/api-google-vids-v1/get-google-vids-voices)\n\nPublic: no API token needed.",
+				"auth": {
+					"type": "noauth"
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{api-token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api-token",
+			"value": "Please refer to https://useapi.net/docs/start-here/setup-useapi",
+			"type": "string"
+		},
+		{
+			"key": "email",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "mediaId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "jobid",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "avatarId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

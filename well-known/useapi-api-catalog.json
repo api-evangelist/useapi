@@ -71,6 +71,26 @@
       ]
     },
     {
+      "anchor": "https://useapi.net/docs/api-google-vids-v1",
+      "service-desc": [
+        { "href": "https://useapi.net/assets/postman/google-vids-v1.json", "type": "application/json", "title": "Google Vids API v1 — Postman collection" }
+      ],
+      "service-doc": [
+        { "href": "https://useapi.net/docs/api-google-vids-v1", "type": "text/html", "title": "Google Vids API v1 — documentation" },
+        { "href": "https://www.postman.com/useapinet/useapi-net/collection/29112081-9ef3d017-d44c-4f43-a4cb-7351b9b265df", "type": "text/html", "title": "Google Vids API v1 — Postman docs" }
+      ]
+    },
+    {
+      "anchor": "https://useapi.net/docs/api-gemini-notebook-v1",
+      "service-desc": [
+        { "href": "https://useapi.net/assets/postman/gemini-notebook-v1.json", "type": "application/json", "title": "Gemini Notebook API v1 — Postman collection" }
+      ],
+      "service-doc": [
+        { "href": "https://useapi.net/docs/api-gemini-notebook-v1", "type": "text/html", "title": "Gemini Notebook API v1 — documentation" },
+        { "href": "https://www.postman.com/useapinet/useapi-net/collection/29112081-40696e39-d128-417e-984b-fe1b97e7bb00", "type": "text/html", "title": "Gemini Notebook API v1 — Postman docs" }
+      ]
+    },
+    {
       "anchor": "https://useapi.net/docs/api-flowmusic-v1",
       "service-desc": [
         { "href": "https://useapi.net/assets/postman/flowmusic-v1.json", "type": "application/json", "title": "FlowMusic API v1 — Postman collection" }
@@ -78,6 +98,16 @@
       "service-doc": [
         { "href": "https://useapi.net/docs/api-flowmusic-v1", "type": "text/html", "title": "FlowMusic API v1 — documentation" },
         { "href": "https://www.postman.com/useapinet/useapi-net/collection/29112081-3386ba6a-1539-415b-b9cf-7ef1c9d7939d", "type": "text/html", "title": "FlowMusic API v1 — Postman docs" }
+      ]
+    },
+    {
+      "anchor": "https://useapi.net/docs/api-muse-v1",
+      "service-desc": [
+        { "href": "https://useapi.net/assets/postman/muse-v1.json", "type": "application/json", "title": "Muse API v1 — Postman collection" }
+      ],
+      "service-doc": [
+        { "href": "https://useapi.net/docs/api-muse-v1", "type": "text/html", "title": "Muse API v1 — documentation" },
+        { "href": "https://www.postman.com/useapinet/useapi-net/collection/29112081-8619be70-7909-4fca-a03a-3b89e455c044", "type": "text/html", "title": "Muse API v1 — Postman docs" }
       ]
     },
     {

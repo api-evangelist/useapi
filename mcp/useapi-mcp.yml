@@ -2,6 +2,13 @@ generated: '2026-07-27'
 method: derived
 status: candidate
 source: openapi/ (derived from the first-party useapi.net Postman collections)
+x-superseded-2026-10-19: >-
+  useapi.net now runs hosted MCP servers (Streamable HTTP, Bearer token), listed in the official MCP Registry
+  under net.useapi/*: google-flow, google-vids, muse, gemini-notebook, kling, mureka and flowmusic, each at
+  https://api.useapi.net/v1/<service>/mcp (an unauthenticated initialize answers 401 with a JSON-RPC error and
+  WWW-Authenticate Bearer, checked 2026-10-19). The registry entries are saved verbatim in mcp/registry/ and the
+  servers are MCPServer pointers in apis.yml. This derived candidate tool list and the 2026-07-27 "none found"
+  search result below are kept as history; they no longer describe useapi.net's MCP surface.
 searched:
   result: none
   notes: 'No official or community MCP server for useapi.net was found. Probed: the official MCP registry

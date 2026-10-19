@@ -1,0 +1,2229 @@
+{
+	"info": {
+		"_postman_id": "40696e39-d128-417e-984b-fe1b97e7bb00",
+		"name": "Gemini Notebook API v1 by useapi.net",
+		"description": "## [Gemini Notebook API v1](https://useapi.net/docs/api-gemini-notebook-v1)\n\nGoogle Gemini Notebook (formerly NotebookLM) API by useapi.net: notebooks, sources (including Google Drive), grounded chat (history, settings), notes (incl. mind map notes), source labels, notebook copy and guide, sharing, Discover sources and Deep Research, and Studio artifacts (audio and video overviews, slides, reports, quizzes, flashcards, infographics, mind maps). Set the `api-token` collection variable (see https://useapi.net/docs/start-here/setup-useapi). Request bodies are sent as form-data, except POST sources, POST chat, POST sharing, POST notes/mindmap, POST labels/{label}, POST research, POST research/import and POST artifacts, which send JSON because they take arrays; the API accepts JSON for every body. POST sources/upload sends the file itself as the body.\n\n---\n**Updated:** September 28, 2026",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"updated": "2026-09-28",
+		"_exporter_id": "29112081"
+	},
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{api-token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api-token",
+			"value": "Please refer to https://useapi.net/docs/start-here/setup-useapi",
+			"type": "string"
+		},
+		{
+			"key": "email",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "notebook",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "source",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "note",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "label",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "artifact",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "jobid",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "collection",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "POST accounts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/accounts",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"accounts"
+					]
+				},
+				"description": "## [Add or update an account](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-accounts)",
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "cookies",
+							"value": "",
+							"description": "Required to add/re-add. The notebook.google.com + accounts.google.com cookie tables copied from the browser's DevTools (Brave or Ungoogled Chromium), pasted as copied (min 20 chars). The account email is read from Google. See Setup Gemini Notebook: https://useapi.net/docs/start-here/setup-gemini-notebook",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "user@example.com",
+							"description": "Update mode only: a connected account email, sent with maxJobs and/or outputLanguage and without cookies. Not accepted together with cookies.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "maxJobs",
+							"value": "",
+							"description": "Optional. Default 3 when adding. In update mode send maxJobs and/or outputLanguage. Max concurrent jobs for this account, 1-10.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "outputLanguage",
+							"value": "es",
+							"description": "Update mode only: Google's account-wide Studio output language, e.g. en, es, pt_BR, zh_Hans.",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET accounts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/accounts",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"accounts"
+					]
+				},
+				"description": "## [List accounts](https://useapi.net/docs/api-gemini-notebook-v1/get-gemini-notebook-accounts)"
+			},
+			"response": []
+		},
+		{
+			"name": "GET accounts/{email}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/accounts/{{email}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"accounts",
+						"{{email}}"
+					]
+				},
+				"description": "## [Get one account](https://useapi.net/docs/api-gemini-notebook-v1/get-gemini-notebook-accounts-email)"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE accounts/{email}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/accounts/{{email}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"accounts",
+						"{{email}}"
+					]
+				},
+				"description": "## [Remove an account](https://useapi.net/docs/api-gemini-notebook-v1/delete-gemini-notebook-accounts-email)"
+			},
+			"response": []
+		},
+		{
+			"name": "POST notebooks",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/notebooks",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"notebooks"
+					]
+				},
+				"description": "## [Create a notebook](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-notebooks)",
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "user@example.com",
+							"description": "Optional. Account to create the notebook on; the least busy healthy account is used if omitted.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "title",
+							"value": "Apollo 11",
+							"description": "Optional. Notebook title, up to 200 chars. Untitled if omitted.",
+							"type": "text"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET notebooks",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/notebooks",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"notebooks"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": null,
+							"description": "Optional. List only this account; every configured account if omitted.",
+							"disabled": true
+						}
+					]
+				},
+				"description": "## [List notebooks](https://useapi.net/docs/api-gemini-notebook-v1/get-gemini-notebook-notebooks)"
+			},
+			"response": []
+		},
+		{
+			"name": "GET notebooks/{notebook}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/notebooks/{{notebook}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"notebooks",
+						"{{notebook}}"
+					]
+				},
+				"description": "## [Get a notebook](https://useapi.net/docs/api-gemini-notebook-v1/get-gemini-notebook-notebooks-notebook)"
+			},
+			"response": []
+		},
+		{
+			"name": "POST notebooks/{notebook}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/notebooks/{{notebook}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"notebooks",
+						"{{notebook}}"
+					]
+				},
+				"description": "## [Rename a notebook](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-notebooks-notebook)",
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Apollo 11",
+							"description": "Required. New title, 1-200 chars.",
+							"type": "text"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE notebooks/{notebook}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/notebooks/{{notebook}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"notebooks",
+						"{{notebook}}"
+					]
+				},
+				"description": "## [Delete a notebook](https://useapi.net/docs/api-gemini-notebook-v1/delete-gemini-notebook-notebooks-notebook)"
+			},
+			"response": []
+		},
+		{
+			"name": "POST notebooks/copy",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/notebooks/copy",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"notebooks",
+						"copy"
+					]
+				},
+				"description": "## [Copy a notebook](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-notebooks-copy)\n\nA new notebook on the same account with the sources and Studio artifacts, all with new ids. Not retried: after a 5xx check GET notebooks before trying again.",
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "notebook",
+							"value": "{{notebook}}",
+							"description": "Required. The notebook to copy.",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "Apollo 11 (copy)",
+							"description": "Optional. 1-200 chars. Default: \"<title> (copy)\".",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET notebooks/guide",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/notebooks/guide?notebook={{notebook}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"notebooks",
+						"guide"
+					],
+					"query": [
+						{
+							"key": "notebook",
+							"value": "{{notebook}}",
+							"description": "Required. Notebook id."
+						}
+					]
+				},
+				"description": "## [Retrieve the notebook guide](https://useapi.net/docs/api-gemini-notebook-v1/get-gemini-notebook-notebooks-guide)\n\nGoogle's summary of all sources, suggested reports and suggested chat questions."
+			},
+			"response": []
+		},
+		{
+			"name": "POST sources",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/sources",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"sources"
+					]
+				},
+				"description": "## [Add sources](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-sources)\n\n**Body (JSON).** Provide `urls`, `text`, `drive`, `books` or any combination.\n\n- `notebook` (required): notebook id.\n- `urls`: array of 1-50 http(s) URLs. youtube.com / youtu.be links are added as YouTube sources, anything else as a web page. Google reads a YouTube video from its captions: a video without any ends with status error (upload the audio or video file instead).\n- `text`: pasted text added as one source, up to 500,000 chars.\n- `title`: title of the pasted text source (text only), up to 200 chars. Default `Pasted text`.\n- `drive`: array of 1-50 Google Drive files `{ fileId, mimeType, name }`, all required. A Google Doc is `application/vnd.google-apps.document`. Send the exact MIME type: a wrong one changes how Google reads the file. The account must be able to open the file in its Drive (else 409).\n- `books`: array of 1-20 Google Play Books ids from GET sources/books. The account must own each book and its publisher must allow it (`addable: true`), else 404 / 422 and nothing is added. Each book becomes one source of kind `book`.",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"notebook\": \"{{notebook}}\",\n    \"urls\": [\n        \"https://en.wikipedia.org/wiki/Apollo_11\"\n    ],\n    \"text\": \"Pasted text to add as a source.\",\n    \"title\": \"My notes\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST sources/upload",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/pdf",
+						"description": "The file's MIME type: application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document (.docx), application/vnd.openxmlformats-officedocument.presentationml.presentation (.pptx), application/epub+zip, text/markdown, text/plain, text/csv, audio/mpeg, audio/mp4, audio/wav, video/mp4, image/jpeg, image/png, image/webp."
+					}
+				],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/sources/upload?notebook={{notebook}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"sources",
+						"upload"
+					],
+					"query": [
+						{
+							"key": "notebook",
+							"value": "{{notebook}}",
+							"description": "Required. Notebook id to add the file to."
+						},
+						{
+							"key": "name",
+							"value": null,
+							"description": "Optional. File name with extension (e.g. apollo11-overview.docx), up to 200 chars; Google uses it as the source title and types the file by it. Default upload.<ext> from Content-Type.",
+							"disabled": true
+						}
+					]
+				},
+				"description": "## [Upload a file source](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-sources-upload)\n\nThe file is the raw request body (no multipart, no JSON), up to 200 MB. Content-Length is required.",
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/path/to/file.pdf"
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST sources/{source}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/sources/{{source}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"sources",
+						"{{source}}"
+					]
+				},
+				"description": "## [Rename a source](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-sources-source)",
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Apollo 11 overview",
+							"description": "Required. New title, 1-200 chars.",
+							"type": "text"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE sources/{source}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/sources/{{source}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"sources",
+						"{{source}}"
+					]
+				},
+				"description": "## [Delete a source](https://useapi.net/docs/api-gemini-notebook-v1/delete-gemini-notebook-sources-source)"
+			},
+			"response": []
+		},
+		{
+			"name": "GET sources/{source}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/sources/{{source}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"sources",
+						"{{source}}"
+					],
+					"query": [
+						{
+							"key": "content",
+							"value": "true",
+							"description": "Optional. true adds the indexed text as `content`. Default false.",
+							"disabled": true
+						}
+					]
+				},
+				"description": "## [Retrieve a source](https://useapi.net/docs/api-gemini-notebook-v1/get-gemini-notebook-sources-source)\n\nThe source plus Google's `summary` and key `topics`, `inSync` for Google Drive sources, and with `content=true` the text Google indexed. Those fields appear once the source is `ready`."
+			},
+			"response": []
+		},
+		{
+			"name": "POST sources/sync",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/sources/sync",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"sources",
+						"sync"
+					]
+				},
+				"description": "## [Sync a Google Drive source](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-sources-sync)\n\nRe-imports a Google Drive source (kind `google_docs` or `drive`) when its file changed in Drive. Returns the source with `synced` true or false. Checking a changed Google Doc (GET sources/{{source}}) can itself start Google's re-import, so a sync right after may answer `synced: false` with the new text already in. Usually answers within 1-2 minutes. If Google takes longer the API answers 504 after about 2 minutes and the sync usually still completes: check GET sources/{{source}} before retrying.",
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "source",
+							"value": "{{source}}",
+							"description": "Required. A Google Drive source id.",
+							"type": "text"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET sources/books",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/sources/books?email={{email}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"sources",
+						"books"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "{{email}}",
+							"description": "Optional with a single account, required otherwise."
+						}
+					]
+				},
+				"description": "## [List Play Books](https://useapi.net/docs/api-gemini-notebook-v1/get-gemini-notebook-sources-books)\n\nThe account's Google Play Books library. Books with `addable: true` can be added with POST sources `books`. The others carry a `reason`."
+			},
+			"response": []
+		},
+		{
+			"name": "POST sources/search",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/sources/search",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"sources",
+						"search"
+					]
+				},
+				"description": "## [Search sources](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-sources-search)\n\n**Body (JSON).** `notebook` and `query` are required. `sources`: optional array of source ids to search in. `limit`: 1-100, default 20. Returns the matching passages, best first.",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"notebook\": \"{{notebook}}\",\n    \"query\": \"oxygen tank explosion\",\n    \"limit\": 5\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST sources/append",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/sources/append",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"sources",
+						"append"
+					]
+				},
+				"description": "## [Append to a source](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-sources-append)\n\n**Body (JSON).** `source` and `text` (up to 500,000 chars) are required, `title` is an optional heading.",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"source\": \"{{source}}\",\n    \"title\": \"Day 2\",\n    \"text\": \"Mission log, day 2. The crew photographed the lunar terminator.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST sources/copy",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/sources/copy",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"sources",
+						"copy"
+					]
+				},
+				"description": "## [Copy sources](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-sources-copy)\n\n**Body (JSON).** `sources` (ids from one notebook) and the target `notebook` (same account) are required.",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"sources\": [\n        \"{{source}}\"\n    ],\n    \"notebook\": \"{{notebook}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST chat",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/chat",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"chat"
+					]
+				},
+				"description": "## [Ask a question](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-chat)\n\n**Body (JSON).**\n\n- `notebook` (required): notebook id.\n- `question` (required): 1-10,000 chars.\n- `conversation` (optional): the `conversation` id from an earlier answer in this notebook, to ask a follow-up.\n- `sources` (optional): array of 1-300 source ids from this notebook to answer from. Default: every ready source.\n\nFollow-up example: `{\"notebook\": \"{{notebook}}\", \"question\": \"...\", \"conversation\": \"<uuid>\", \"sources\": [\"{{source}}\"]}`",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"notebook\": \"{{notebook}}\",\n    \"question\": \"Who were the Apollo 11 crew members?\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET chat",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/chat?notebook={{notebook}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"chat"
+					],
+					"query": [
+						{
+							"key": "notebook",
+							"value": "{{notebook}}",
+							"description": "Required. Notebook id."
+						},
+						{
+							"key": "conversation",
+							"value": "",
+							"description": "Optional. Conversation id. Default: the latest conversation.",
+							"disabled": true
+						}
+					]
+				},
+				"description": "## [Retrieve chat history](https://useapi.net/docs/api-gemini-notebook-v1/get-gemini-notebook-chat)\n\nA conversation's turns, oldest first, up to 100."
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE chat",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/chat?notebook={{notebook}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"chat"
+					],
+					"query": [
+						{
+							"key": "notebook",
+							"value": "{{notebook}}",
+							"description": "Required. Notebook id."
+						},
+						{
+							"key": "conversation",
+							"value": "",
+							"description": "Optional. Conversation id. Default: the latest conversation.",
+							"disabled": true
+						}
+					]
+				},
+				"description": "## [Delete chat history](https://useapi.net/docs/api-gemini-notebook-v1/delete-gemini-notebook-chat)\n\nWithout `conversation` the latest one is deleted (404 when there is none)."
+			},
+			"response": []
+		},
+		{
+			"name": "POST chat/settings",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/chat/settings",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"chat",
+						"settings"
+					]
+				},
+				"description": "## [Configure chat](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-chat-settings)\n\nProvide `goal`, `persona` and/or `length`. Google saves both together, so an omitted one is set to `default`.",
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "notebook",
+							"value": "{{notebook}}",
+							"description": "Required. Notebook id.",
+							"type": "text"
+						},
+						{
+							"key": "goal",
+							"value": "learning_guide",
+							"description": "Optional. default | learning_guide | custom (custom needs persona).",
+							"type": "text"
+						},
+						{
+							"key": "persona",
+							"value": "You are a NASA flight controller.",
+							"description": "Optional. The custom goal prompt, 1-10,000 chars. Alone it implies goal custom.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "length",
+							"value": "shorter",
+							"description": "Optional. default | longer | shorter.",
+							"type": "text"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET notes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/notes?notebook={{notebook}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"notes"
+					],
+					"query": [
+						{
+							"key": "notebook",
+							"value": "{{notebook}}",
+							"description": "Required. Notebook id."
+						}
+					]
+				},
+				"description": "## [List notes](https://useapi.net/docs/api-gemini-notebook-v1/get-gemini-notebook-notes)"
+			},
+			"response": []
+		},
+		{
+			"name": "POST notes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/notes",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"notes"
+					]
+				},
+				"description": "## [Create a note](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-notes)",
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "notebook",
+							"value": "{{notebook}}",
+							"description": "Required. Notebook id.",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "Landing timeline",
+							"description": "Optional. 1-200 chars. Default New Note (Chat History with conversation).",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "Powered descent began at 102:33 GET.",
+							"description": "The note text, 1-500,000 chars. Provide content or conversation, not both.",
+							"type": "text"
+						},
+						{
+							"key": "conversation",
+							"value": "",
+							"description": "Instead of content: a chat conversation id. The whole conversation is saved as **Q:**/**A:** turns.",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET notes/{note}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/notes/{{note}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"notes",
+						"{{note}}"
+					]
+				},
+				"description": "## [Retrieve a note](https://useapi.net/docs/api-gemini-notebook-v1/get-gemini-notebook-notes-note)"
+			},
+			"response": []
+		},
+		{
+			"name": "POST notes/{note}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/notes/{{note}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"notes",
+						"{{note}}"
+					]
+				},
+				"description": "## [Update a note](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-notes-note)\n\nProvide `title` and/or `content`. A field you leave out keeps its current value.",
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Eagle landing timeline",
+							"description": "Optional. New title, 1-200 chars.",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "Powered descent began at 102:33 GET. Landing at 102:45 GET.",
+							"description": "Optional. New text, replaces the whole text, 1-500,000 chars.",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE notes/{note}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/notes/{{note}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"notes",
+						"{{note}}"
+					]
+				},
+				"description": "## [Delete a note](https://useapi.net/docs/api-gemini-notebook-v1/delete-gemini-notebook-notes-note)"
+			},
+			"response": []
+		},
+		{
+			"name": "POST notes/source",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/notes/source",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"notes",
+						"source"
+					]
+				},
+				"description": "## [Convert a note to a source](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-notes-source)\n\nThe note's title and text become a Markdown source of the same notebook. The note is kept.",
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "note",
+							"value": "{{note}}",
+							"description": "Required. Note id.",
+							"type": "text"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST notes/mindmap",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/notes/mindmap",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"notes",
+						"mindmap"
+					]
+				},
+				"description": "## [Create a mind map note](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-notes-mindmap)\n\n**Body (JSON).** One call, not a job: returns the new note (type mindmap) and its JSON `tree`.\n\n- `notebook` (required): notebook id.\n- `sources`: 1-300 source ids. Default: every ready source.\n- `language`: e.g. `en` (default), `es`, `pt_BR`.\n- `instructions`: what to focus on, up to 10,000 chars.",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"notebook\": \"{{notebook}}\",\n    \"instructions\": \"Focus on the landing\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET sharing",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/sharing?notebook={{notebook}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"sharing"
+					],
+					"query": [
+						{
+							"key": "notebook",
+							"value": "{{notebook}}",
+							"description": "Required. Notebook id."
+						}
+					]
+				},
+				"description": "## [Retrieve sharing](https://useapi.net/docs/api-gemini-notebook-v1/get-gemini-notebook-sharing)"
+			},
+			"response": []
+		},
+		{
+			"name": "POST sharing",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/sharing",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"sharing"
+					]
+				},
+				"description": "## [Share a notebook](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-sharing)\n\n**Body (JSON).** Provide `people`, `link`, `allowCopies`, `viewLevel` or any combination. Returns the sharing after the change.\n\n- `notebook` (required): notebook id.\n- `people`: array of 1-50 `{ email, role }`, role `viewer`, `editor` or `remove`. The owner cannot be changed.\n- `link`: `public` (anyone with the link) or `restricted`.\n- `allowCopies`: true or false, public link only (not with `link: restricted`, which resets it to allowed).\n- `notify`: false skips Google's share email. Default true.\n- `viewLevel`: `full` or `chat` (viewers get the chat only). Paid Google plans only (403 on a free account). Echoed in the response.",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"notebook\": \"{{notebook}}\",\n    \"people\": [\n        {\n            \"email\": \"colleague@example.com\",\n            \"role\": \"viewer\"\n        }\n    ],\n    \"notify\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET labels",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/labels?notebook={{notebook}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"labels"
+					],
+					"query": [
+						{
+							"key": "notebook",
+							"value": "{{notebook}}",
+							"description": "Required. Notebook id."
+						}
+					]
+				},
+				"description": "## [List source labels](https://useapi.net/docs/api-gemini-notebook-v1/get-gemini-notebook-labels)"
+			},
+			"response": []
+		},
+		{
+			"name": "POST labels",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/labels",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"labels"
+					]
+				},
+				"description": "## [Create source labels](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-labels)\n\nProvide `auto` or `name`. `auto: all` labels every source and replaces all labels (new ids), `auto: unlabeled` labels only sources without one. `name` (+ `emoji`) adds an empty label of your own. Returns the whole label set.",
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "notebook",
+							"value": "{{notebook}}",
+							"description": "Required. Notebook id.",
+							"type": "text"
+						},
+						{
+							"key": "auto",
+							"value": "all",
+							"description": "all | unlabeled. Not with name.",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "The landing",
+							"description": "A label of your own, 1-100 chars. Not with auto.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "emoji",
+							"value": "🚀",
+							"description": "Optional, with name only, 1-16 chars.",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST labels/{label}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/labels/{{label}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"labels",
+						"{{label}}"
+					]
+				},
+				"description": "## [Update a source label](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-labels-label)\n\n**Body (JSON).** Provide `name`, `emoji`, `addSources` and/or `removeSources`. Applied one change per Google call; a rename keeps the emoji.",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"The landing\",\n    \"addSources\": [\n        \"{{source}}\"\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE labels/{label}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/labels/{{label}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"labels",
+						"{{label}}"
+					]
+				},
+				"description": "## [Delete a source label](https://useapi.net/docs/api-gemini-notebook-v1/delete-gemini-notebook-labels-label)\n\nThe label goes, its sources stay."
+			},
+			"response": []
+		},
+		{
+			"name": "GET collections",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/collections?email={{email}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"collections"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "{{email}}",
+							"description": "Optional. Default: every account."
+						}
+					]
+				},
+				"description": "## [List collections](https://useapi.net/docs/api-gemini-notebook-v1/get-gemini-notebook-collections)\n\nDefault: every account of this API token."
+			},
+			"response": []
+		},
+		{
+			"name": "POST collections",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/collections",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"collections"
+					]
+				},
+				"description": "## [Create a collection](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-collections)\n\n**Body (JSON).** `name` is required, `emoji` is optional. `email` is required when the API token has several accounts.",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"{{email}}\",\n    \"name\": \"Space history\",\n    \"emoji\": \"🚀\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST collections/{collection}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/collections/{{collection}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"collections",
+						"{{collection}}"
+					]
+				},
+				"description": "## [Update a collection](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-collections-collection)\n\n**Body (JSON).** Provide `name`, `emoji`, `addNotebooks` and/or `removeNotebooks`.",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Apollo missions\",\n    \"addNotebooks\": [\n        \"{{notebook}}\"\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE collections/{collection}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/collections/{{collection}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"collections",
+						"{{collection}}"
+					]
+				},
+				"description": "## [Delete a collection](https://useapi.net/docs/api-gemini-notebook-v1/delete-gemini-notebook-collections-collection)\n\nThe collection goes, its notebooks stay."
+			},
+			"response": []
+		},
+		{
+			"name": "POST artifacts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/artifacts",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"artifacts"
+					]
+				},
+				"description": "## [Generate an artifact](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-artifacts)\n\n**Body (JSON).** `type` is required. With `notebook` the artifact is generated in that notebook (optionally from `sources`); without `notebook` it is a one-shot request: a new notebook is created from `urls` and/or `text` on `email` (or a load-balanced account). The example is a valid `audio` request on a notebook with every audio option at its default.\n\n- `type` (required): `audio`, `video`, `report`, `interactive_report`, `table`, `quiz`, `flashcards`, `infographic`, `slides`, `mindmap`\n- `notebook`: notebook id. Omit for one-shot.\n- `sources`: with `notebook` only. Array of 1-300 source ids from that notebook. Default: every ready source.\n- `urls`: one-shot only. Array of 1-50 http(s) URLs (youtube.com / youtu.be become YouTube sources).\n- `text`: one-shot only. Pasted text source, up to 500,000 chars.\n- `title`: one-shot only. The new notebook's title (and the pasted text's title), up to 200 chars.\n- `email`: one-shot only. Account to run on; auto-picked when omitted.\n- `deleteNotebook`: one-shot only. `true` deletes the notebook when the job ends. Only for `report`, `interactive_report`, `table`, `quiz`, `flashcards`, `mindmap`.\n- `mode`: `sync` (default) or `async`. `replyUrl`: webhook URL. `replyRef`: up to 1024 chars.\n\n**Options by type** (default first; an option not listed for a type returns 400):\n\n- `audio`: `format` deep_dive | brief | critique | debate; `length` default | short | long; `language`; `instructions`\n- `video`: `format` explainer | brief | cinematic | short; `style` auto | classic | whiteboard | heritage | paper_craft | watercolor | anime | retro_print | kawaii | custom; `stylePrompt` (up to 2,000 chars, required with style custom and only then); `language`; `instructions`. `cinematic` takes no style, instructions or language; `short` takes no style.\n- `report`: `format` briefing | study_guide | blog_post | custom; `language`; `instructions` (required with format custom, where it is the whole prompt; with a preset format it is added to the preset's prompt)\n- `interactive_report`: `language`, `instructions`\n- `table`: `language`; `instructions`\n- `quiz`, `flashcards`: `quantity` standard | fewer | more; `difficulty` medium | easy | hard; `instructions`\n- `infographic`: `orientation` landscape | portrait | square; `detail` standard | concise | detailed; `style` auto | sketch_note | professional | bento_grid | editorial | instructional | bricks | clay | anime | kawaii | scientific; `language`; `instructions`\n- `slides`: `format` detailed | presenter; `length` default | short | long; `language`; `instructions`\n- `mindmap`: `instructions`\n\n`language` is a code such as `en` (default), `es`, `pt_BR`, `zh_Hans`. `instructions` is up to 10,000 chars.",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"audio\",\n    \"notebook\": \"{{notebook}}\",\n    \"format\": \"deep_dive\",\n    \"length\": \"default\",\n    \"language\": \"en\",\n    \"instructions\": \"\",\n    \"mode\": \"sync\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST artifacts/retry",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/artifacts/retry",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"artifacts",
+						"retry"
+					]
+				},
+				"description": "## [Retry a failed artifact](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-artifacts-retry)",
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "artifact",
+							"value": "{{artifact}}",
+							"description": "Required. Id of the failed artifact.",
+							"type": "text"
+						},
+						{
+							"key": "mode",
+							"value": "sync",
+							"description": "Optional. sync (default, waits up to 90 s: 200 when done, 202 with the job record while still running) or async (201 + jobid at once; poll GET /jobs/{jobid}).",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "replyUrl",
+							"value": "",
+							"description": "Optional. Public http(s) webhook URL; the job record is POSTed to it once when the job completes or fails.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "replyRef",
+							"value": "",
+							"description": "Optional. Your own reference echoed back in the job record, up to 1024 chars.",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST artifacts/revise",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/artifacts/revise",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"artifacts",
+						"revise"
+					]
+				},
+				"description": "## [Revise one slide](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-artifacts-revise)",
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "artifact",
+							"value": "{{artifact}}",
+							"description": "Required. Id of a completed slide deck.",
+							"type": "text"
+						},
+						{
+							"key": "slide",
+							"value": "1",
+							"description": "Required. 1-based slide number, 1-500 and not above the deck slide count.",
+							"type": "text"
+						},
+						{
+							"key": "prompt",
+							"value": "Make the title larger",
+							"description": "Required. What to change on that slide, 1-2000 chars.",
+							"type": "text"
+						},
+						{
+							"key": "mode",
+							"value": "sync",
+							"description": "Optional. sync (default, waits up to 90 s: 200 when done, 202 with the job record while still running) or async (201 + jobid at once; poll GET /jobs/{jobid}).",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "replyUrl",
+							"value": "",
+							"description": "Optional. Public http(s) webhook URL; the job record is POSTed to it once when the job completes or fails.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "replyRef",
+							"value": "",
+							"description": "Optional. Your own reference echoed back in the job record, up to 1024 chars.",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET artifacts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/artifacts?notebook={{notebook}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"artifacts"
+					],
+					"query": [
+						{
+							"key": "notebook",
+							"value": "{{notebook}}",
+							"description": "Required. Notebook id."
+						}
+					]
+				},
+				"description": "## [List artifacts](https://useapi.net/docs/api-gemini-notebook-v1/get-gemini-notebook-artifacts)"
+			},
+			"response": []
+		},
+		{
+			"name": "GET artifacts/{artifact}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/artifacts/{{artifact}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"artifacts",
+						"{{artifact}}"
+					]
+				},
+				"description": "## [Get an artifact](https://useapi.net/docs/api-gemini-notebook-v1/get-gemini-notebook-artifacts-artifact)"
+			},
+			"response": []
+		},
+		{
+			"name": "POST artifacts/{artifact}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/artifacts/{{artifact}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"artifacts",
+						"{{artifact}}"
+					]
+				},
+				"description": "## [Rename an artifact](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-artifacts-artifact)",
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Apollo 11 deep dive",
+							"description": "Required. New title, 1-200 chars.",
+							"type": "text"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE artifacts/{artifact}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/artifacts/{{artifact}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"artifacts",
+						"{{artifact}}"
+					]
+				},
+				"description": "## [Delete an artifact](https://useapi.net/docs/api-gemini-notebook-v1/delete-gemini-notebook-artifacts-artifact)"
+			},
+			"response": []
+		},
+		{
+			"name": "GET artifacts/download",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/artifacts/download?artifact={{artifact}}&format=m4a",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"artifacts",
+						"download"
+					],
+					"query": [
+						{
+							"key": "artifact",
+							"value": "{{artifact}}",
+							"description": "Required. Artifact id."
+						},
+						{
+							"key": "format",
+							"value": "m4a",
+							"description": "Required. m4a (audio), mp4 (video), pdf or pptx (slides), png (infographic), slide (one slide image, needs index)."
+						},
+						{
+							"key": "index",
+							"value": null,
+							"description": "Required with format=slide, ignored otherwise. 1-based slide number, 1-500.",
+							"disabled": true
+						},
+						{
+							"key": "width",
+							"value": "1024",
+							"description": "Optional, png or slide: scale the image down to this width (100-4096 px).",
+							"disabled": true
+						}
+					]
+				},
+				"description": "## [Download an artifact file](https://useapi.net/docs/api-gemini-notebook-v1/get-gemini-notebook-artifacts-download)"
+			},
+			"response": []
+		},
+		{
+			"name": "POST artifacts/generate",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/artifacts/generate",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"artifacts",
+						"generate"
+					]
+				},
+				"description": "## [Generate a suggested item](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-artifacts-generate)\n\n**Body (JSON).** `artifact` is required: an item from an interactive report's `embedded` list with status `suggested`. Optional `instructions` plus the options of its type (infographic, slides, mindmap, quiz, flashcards). `mode`, `replyUrl`, `replyRef` as in POST artifacts.",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"artifact\": \"{{artifact}}\",\n    \"mode\": \"async\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST artifacts/export",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/artifacts/export",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"artifacts",
+						"export"
+					]
+				},
+				"description": "## [Export an artifact](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-artifacts-export)\n\n**Body (JSON).** `artifact` and `destination` are required: `docs` for a `report`, `sheets` for a `table`. `title` is optional. Returns the Google Docs or Sheets URL.",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"artifact\": \"{{artifact}}\",\n    \"destination\": \"docs\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST artifacts/copy",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/artifacts/copy",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"artifacts",
+						"copy"
+					]
+				},
+				"description": "## [Copy artifacts](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-artifacts-copy)\n\n**Body (JSON).** `artifacts` (ids from one notebook) and the target `notebook` (same account) are required.",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"artifacts\": [\n        \"{{artifact}}\"\n    ],\n    \"notebook\": \"{{notebook}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST research",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/research",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"research"
+					]
+				},
+				"description": "## [Research sources](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-research)\n\n**Body (JSON).** Runs as a job, poll GET jobs/{{jobid}}.\n\n- `notebook` (required): notebook id.\n- `query` (required): what to research, 1-2,000 chars.\n- `type`: `fast` (Discover sources, default) or `deep` (Deep Research, a Markdown report plus its sources).\n- `source`: `web` (default) or `drive` (the account's Google Drive, type fast only).\n- `mode`: `sync` (default, waits up to 90 s, then 202) or `async`. `replyUrl`: webhook URL. `replyRef`: up to 1024 chars.",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"notebook\": \"{{notebook}}\",\n    \"query\": \"Apollo 11 lunar module guidance computer alarms\",\n    \"type\": \"fast\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST research/import",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/research/import",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"research",
+						"import"
+					]
+				},
+				"description": "## [Import research results](https://useapi.net/docs/api-gemini-notebook-v1/post-gemini-notebook-research-import)\n\n**Body (JSON).** Adds a completed research job's results to its notebook. Google Drive results (`source: \"drive\"`) are added as Drive files: a Google Doc as `google_docs`, other files as `drive`. A Drive result with `mimeType: null` answers 400: add it with POST sources and `drive`. Usually answers within 1-2 minutes. If Google takes longer the API answers 504 after about 2 minutes and the import usually still completes: check GET notebooks/{{notebook}} before retrying (a retry adds every source twice).\n\n- `jobid` (required): a completed research job.\n- `urls`: up to 500 URLs from the job's `result.sources`, `[]` for none. Default: every cited source.\n- `report`: import the Deep Research report. Default true without `urls`, false with `urls`.",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"jobid\": \"{{jobid}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET jobs",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/jobs",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"jobs"
+					]
+				},
+				"description": "## [List running jobs](https://useapi.net/docs/api-gemini-notebook-v1/get-gemini-notebook-jobs)"
+			},
+			"response": []
+		},
+		{
+			"name": "GET jobs/{jobid}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/jobs/{{jobid}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"jobs",
+						"{{jobid}}"
+					]
+				},
+				"description": "## [Poll a job](https://useapi.net/docs/api-gemini-notebook-v1/get-gemini-notebook-jobs-jobid)"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE jobs/{jobid}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/gemini-notebook/jobs/{{jobid}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"gemini-notebook",
+						"jobs",
+						"{{jobid}}"
+					]
+				},
+				"description": "## [Cancel a job](https://useapi.net/docs/api-gemini-notebook-v1/delete-gemini-notebook-jobs-jobid)"
+			},
+			"response": []
+		}
+	]
+}

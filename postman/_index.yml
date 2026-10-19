@@ -71,3 +71,24 @@ collections:
   source: https://useapi.net/assets/postman/faceswap-v1.json
   public_docs: https://www.postman.com/useapinet/useapi-net/collection/29112081-9ac29d7b-9ca5-42c9-9d86-b9e29a16df56
   requests: 18
+- file: useapi-google-vids-v1.json
+  api: useapi:google-vids-v1
+  name: Google Vids API v1 by useapi.net
+  source: https://useapi.net/assets/postman/google-vids-v1.json
+  public_docs: https://www.postman.com/useapinet/useapi-net/collection/29112081-9ef3d017-d44c-4f43-a4cb-7351b9b265df
+  requests: 17
+  fetched: '2026-10-19'
+- file: useapi-gemini-notebook-v1.json
+  api: useapi:gemini-notebook-v1
+  name: Gemini Notebook API v1 by useapi.net
+  source: https://useapi.net/assets/postman/gemini-notebook-v1.json
+  public_docs: https://www.postman.com/useapinet/useapi-net/collection/29112081-40696e39-d128-417e-984b-fe1b97e7bb00
+  requests: 58
+  fetched: '2026-10-19'
+- file: useapi-muse-v1.json
+  api: useapi:muse-v1
+  name: Muse API v1 by useapi.net
+  source: https://useapi.net/assets/postman/muse-v1.json
+  public_docs: https://www.postman.com/useapinet/useapi-net/collection/29112081-8619be70-7909-4fca-a03a-3b89e455c044
+  requests: 42
+  fetched: '2026-10-19'

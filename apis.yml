@@ -3,9 +3,12 @@ name: useapi.net
 description: useapi.net is an experimental, unified REST API platform that fronts a set of consumer AI
   content-generation services — video, image, music, speech and face-swap models — behind one flat $15/month
   subscription and a single bearer-token API surface, so developers do not have to hold a separate developer
-  account with each underlying provider. Ten services are exposed today (Google Flow, Flow Music, Dreamina,
-  Kling, MiniMax/Hailuo, Runway, PixVerse, Mureka, TemPolor and InsightFaceSwap), each as its own versioned
-  REST API under api.useapi.net with its own native request/response shapes. The platform is built around
+  account with each underlying provider. Thirteen services are exposed today (Google Flow, Flow Music, Google
+  Vids, NotebookLM (Gemini Notebook), Meta Muse, Dreamina, Kling, MiniMax/Hailuo, Runway, PixVerse, Mureka, TemPolor and
+  InsightFaceSwap), each as its own versioned REST API under api.useapi.net with its own native request/response
+  shapes, and seven of them (Google Flow, Google Vids, Muse, Gemini Notebook, Kling, Mureka, Flow Music) also as hosted
+  MCP servers (Streamable HTTP, Bearer token) listed in the official MCP Registry under net.useapi/*. useapi.net is an
+  independent third-party service, not affiliated with Google, Meta or the other model vendors. The platform is built around
   bring-your-own-account access — the caller links one or more of their existing accounts on the underlying
   AI service and useapi.net performs automated multi-account load balancing, quarantine of rate-limited
   accounts, asynchronous job handling and replyUrl webhook callbacks on job completion or failure. It is a
@@ -42,7 +45,7 @@ accessModel:
   method: derived
 specificationVersion: '0.23'
 created: '2026-07-27'
-modified: '2026-07-27'
+modified: '2026-10-19'
 image: https://useapi.net/assets/images/logo.png
 tags:
 - Company
@@ -725,6 +728,72 @@ apis:
     url: https://useapi.net/docs/api-faceswap-v1
   - type: Documentation
     url: https://useapi.net/docs/api-v2
+- aid: useapi:google-vids-v1
+  name: useapi.net Google Vids API v1
+  description: >-
+    useapi.net's third-party REST API over a customer's own Google Vids account: generate avatar videos and Veo clips and manage Vids projects. useapi.net is an independent service, not affiliated with Google; customers connect their own accounts under a useapi.net subscription.
+  humanURL: https://useapi.net/docs/api-google-vids-v1
+  baseURL: https://api.useapi.net/v1/google-vids
+  tags:
+  - Video Generation
+  - AI Avatars
+  properties:
+  - type: Documentation
+    url: https://useapi.net/docs/api-google-vids-v1
+  - type: PostmanCollection
+    url: postman/useapi-google-vids-v1.json
+  - type: PostmanCollection
+    url: https://useapi.net/assets/postman/google-vids-v1.json
+  - type: MCPServer
+    url: https://api.useapi.net/v1/google-vids/mcp
+    name: Hosted MCP server (Streamable HTTP, Bearer token; MCP Registry net.useapi/google-vids)
+  - type: Documentation
+    url: https://useapi.net/docs/api-google-vids-v1/mcp
+    name: MCP server documentation
+- aid: useapi:gemini-notebook-v1
+  name: useapi.net NotebookLM (Gemini Notebook) API v1
+  description: >-
+    useapi.net's third-party REST API over a customer's own NotebookLM (Gemini Notebook) account: notebooks, sources, Audio and Video Overviews, and chat. useapi.net is an independent service, not affiliated with Google; customers connect their own accounts under a useapi.net subscription.
+  humanURL: https://useapi.net/docs/api-gemini-notebook-v1
+  baseURL: https://api.useapi.net/v1/gemini-notebook
+  tags:
+  - Notebooks
+  - Audio Generation
+  properties:
+  - type: Documentation
+    url: https://useapi.net/docs/api-gemini-notebook-v1
+  - type: PostmanCollection
+    url: postman/useapi-gemini-notebook-v1.json
+  - type: PostmanCollection
+    url: https://useapi.net/assets/postman/gemini-notebook-v1.json
+  - type: MCPServer
+    url: https://api.useapi.net/v1/gemini-notebook/mcp
+    name: Hosted MCP server (Streamable HTTP, Bearer token; MCP Registry net.useapi/gemini-notebook)
+  - type: Documentation
+    url: https://useapi.net/docs/api-gemini-notebook-v1/mcp
+    name: MCP server documentation
+- aid: useapi:muse-v1
+  name: useapi.net Meta Muse API v1
+  description: >-
+    useapi.net's third-party REST API over a customer's own Meta Muse account: Muse images, videos and agent chat. useapi.net is an independent service, not affiliated with Meta; customers connect their own accounts under a useapi.net subscription.
+  humanURL: https://useapi.net/docs/api-muse-v1
+  baseURL: https://api.useapi.net/v1/muse
+  tags:
+  - Image Generation
+  - Video Generation
+  properties:
+  - type: Documentation
+    url: https://useapi.net/docs/api-muse-v1
+  - type: PostmanCollection
+    url: postman/useapi-muse-v1.json
+  - type: PostmanCollection
+    url: https://useapi.net/assets/postman/muse-v1.json
+  - type: MCPServer
+    url: https://api.useapi.net/v1/muse/mcp
+    name: Hosted MCP server (Streamable HTTP, Bearer token; MCP Registry net.useapi/muse)
+  - type: Documentation
+    url: https://useapi.net/docs/api-muse-v1/mcp
+    name: MCP server documentation
 common:
 - type: Plans
   url: plans/useapi-plans-pricing.yml
@@ -790,6 +859,27 @@ common:
   url: packages/useapi-packages.yml
 - type: SDKs
   url: packages/useapi-packages.yml
+- type: MCPServer
+  url: https://api.useapi.net/v1/google-flow/mcp
+  name: useapi.net google-flow MCP server (MCP Registry net.useapi/google-flow)
+- type: MCPServer
+  url: https://api.useapi.net/v1/google-vids/mcp
+  name: useapi.net google-vids MCP server (MCP Registry net.useapi/google-vids)
+- type: MCPServer
+  url: https://api.useapi.net/v1/muse/mcp
+  name: useapi.net muse MCP server (MCP Registry net.useapi/muse)
+- type: MCPServer
+  url: https://api.useapi.net/v1/gemini-notebook/mcp
+  name: useapi.net gemini-notebook MCP server (MCP Registry net.useapi/gemini-notebook)
+- type: MCPServer
+  url: https://api.useapi.net/v1/kling/mcp
+  name: useapi.net kling MCP server (MCP Registry net.useapi/kling)
+- type: MCPServer
+  url: https://api.useapi.net/v1/mureka/mcp
+  name: useapi.net mureka MCP server (MCP Registry net.useapi/mureka)
+- type: MCPServer
+  url: https://api.useapi.net/v1/flowmusic/mcp
+  name: useapi.net flowmusic MCP server (MCP Registry net.useapi/flowmusic)
 - type: X-MCPServerCandidate
   url: mcp/useapi-mcp.yml
   note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'

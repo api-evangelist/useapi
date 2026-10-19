@@ -1,0 +1,1621 @@
+{
+	"info": {
+		"_postman_id": "d4367cb6-e0ed-466d-bd50-04f7ed032c36",
+		"name": "Muse API v1 by useapi.net",
+		"description": "## [Muse API v1](https://useapi.net/docs/api-muse-v1)\n\nMuse API by useapi.net: images and 10-second videos with sound from Meta's Muse agent (muse.ai) on your own Muse accounts. Text to image, image to image from up to 9 images, text / image / video to video with up to 9 images, 3 videos and 3 audio files as inputs. Uploads (raw file or from a URL), the whole Library (media, documents, web apps with public sharing, podcasts), downloads and deletes, jobs, a two-way chat with the Muse agent over SSE with reactions, a live view of the agent's own browser that you can take control of, accounts, account reset and the weekly allowance. Set the `api-token` collection variable (see https://useapi.net/docs/start-here/setup-useapi). POST bodies send JSON (the API accepts JSON or form-data). POST assets sends the file itself as the body. Ids contain `:` and `@`: URL-encode them when you put them in a path variable.\n\n---\n**Updated:** October 14, 2026",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"updated": "2026-10-12",
+		"_exporter_id": "29112081"
+	},
+	"item": [
+		{
+			"name": "POST accounts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/accounts",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"accounts"
+					]
+				},
+				"description": "## [Add or update an account](https://useapi.net/docs/api-muse-v1/post-muse-accounts)\n\n**Body (JSON).** `email` is required. With `password` the account is added or re-added (signed in once, 30-day session renewed by the API, Muse emails the account a login code on each sign-in). With `email` + `maxJobs` and no `password`, only maxJobs changes.\n\n- `maxJobs`: 1-50, default 10 for a new account.\n\n596 = Meta asks for a security check: sign in once at https://muse.ai in a browser, complete it, then post the same email and password again.",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"example@gmail.com\",\n    \"password\": \"\",\n    \"maxJobs\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET accounts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/accounts",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"accounts"
+					]
+				},
+				"description": "## [List accounts](https://useapi.net/docs/api-muse-v1/get-muse-accounts)\n\nStored records, no call to Muse."
+			},
+			"response": []
+		},
+		{
+			"name": "GET accounts/{email}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/accounts/{{email}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"accounts",
+						"{{email}}"
+					]
+				},
+				"description": "## [Read one account live (plan + weekly usage)](https://useapi.net/docs/api-muse-v1/get-muse-accounts-email)"
+			},
+			"response": []
+		},
+		{
+			"name": "GET accounts/{email}/approvals",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/accounts/{{email}}/approvals",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"accounts",
+						"{{email}}",
+						"approvals"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "pending",
+							"description": "Optional: pending or all. Default: all.",
+							"disabled": true
+						},
+						{
+							"key": "limit",
+							"value": "50",
+							"description": "Optional, decided requests to read, 1 to 100. Default: 50.",
+							"disabled": true
+						}
+					]
+				},
+				"description": "## [List approvals](https://useapi.net/docs/api-muse-v1/get-muse-accounts-email-approvals)\n\nThe agent's permission requests on the account: `pending` (each with its `chatId` and `options`; answer with POST chats/{chatId}/approvals/{approvalId}) and `decided`."
+			},
+			"response": []
+		},
+		{
+			"name": "GET accounts/{email}/permissions",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/accounts/{{email}}/permissions",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"accounts",
+						"{{email}}",
+						"permissions"
+					]
+				},
+				"description": "## [List permissions](https://useapi.net/docs/api-muse-v1/get-muse-accounts-email-permissions)\n\n`defaults` {web, connectors}: auto_allow or always_ask, plus the standing `rules` (allow or deny one website or app action; created by allow_always answers)."
+			},
+			"response": []
+		},
+		{
+			"name": "POST accounts/{email}/permissions",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/accounts/{{email}}/permissions",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"accounts",
+						"{{email}}",
+						"permissions"
+					]
+				},
+				"description": "## [Change permission defaults](https://useapi.net/docs/api-muse-v1/post-muse-accounts-email-permissions)\n\n**Body (JSON).** `web` and/or `connectors`: `auto_allow` (Muse's \"Ask for some actions\": some actions, like sending an email from a connected Gmail, happen without asking) or `always_ask` (Muse asks first, as an approval in the chat).",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"connectors\": \"always_ask\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST accounts/{email}/permissions/{permissionId}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/accounts/{{email}}/permissions/{{permissionId}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"accounts",
+						"{{email}}",
+						"permissions",
+						"{{permissionId}}"
+					]
+				},
+				"description": "## [Change a permission rule](https://useapi.net/docs/api-muse-v1/post-muse-accounts-email-permissions-permissionId)\n\n**Body (JSON).** `mode`: one of the rule's `modes` (allow, ask, deny). `ask` removes the rule (asking is the default) and answers `removed: true`. URL-encode the permissionId.",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"mode\": \"deny\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE accounts/{email}/permissions/{permissionId}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/accounts/{{email}}/permissions/{{permissionId}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"accounts",
+						"{{email}}",
+						"permissions",
+						"{{permissionId}}"
+					]
+				},
+				"description": "## [Delete a permission rule](https://useapi.net/docs/api-muse-v1/delete-muse-accounts-email-permissions-permissionId)\n\nRemoves the rule. 404 when it is not there. URL-encode the permissionId."
+			},
+			"response": []
+		},
+		{
+			"name": "POST accounts/{email}/reset",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/accounts/{{email}}/reset",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"accounts",
+						"{{email}}",
+						"reset"
+					]
+				},
+				"description": "## [Reset a Muse account](https://useapi.net/docs/api-muse-v1/post-muse-accounts-email-reset)\n\n**Permanently deletes everything on the account**: every chat, file, document, web app and podcast, the agent's memory and its name. The account gets a fresh agent computer and stays added. **Body (JSON).** `confirm` is required: the account email again. Answers 200 `{email, reset: true, ready: true}`, or 202 with `ready: false` while the new computer starts: do not call it again then. 409 while jobs or chat answers run on the account.",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"confirm\": \"{{email}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE accounts/{email}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/accounts/{{email}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"accounts",
+						"{{email}}"
+					]
+				},
+				"description": "## [Remove an account](https://useapi.net/docs/api-muse-v1/delete-muse-accounts-email)"
+			},
+			"response": []
+		},
+		{
+			"name": "POST assets",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "image/jpeg",
+						"description": "The file's MIME type: image/jpeg, image/png, image/webp, video/mp4, video/quicktime, video/webm, audio/mpeg, audio/wav, audio/x-wav, audio/mp4, audio/x-m4a or audio/ogg."
+					}
+				],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/assets",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"assets"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "{{email}}",
+							"description": "Optional. The account to upload to. Default: a random healthy account with allowance left.",
+							"disabled": true
+						}
+					]
+				},
+				"description": "## [Upload an asset](https://useapi.net/docs/api-muse-v1/post-muse-assets)\n\nThe file is the raw request body (no multipart), 1 to 52,428,800 bytes (50 MB), with Content-Length. To upload from a link instead, see POST assets (url). Returns the assetId used as image_N / video_N / audio_N of a job. The file is written into the account's Muse workspace.",
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/path/to/image.jpg"
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET assets/{assetId}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/assets/{{assetId}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"assets",
+						"{{assetId}}"
+					],
+					"query": [
+						{
+							"key": "part",
+							"value": "cover",
+							"description": "Optional, podcasts only: cover = the episode's cover image.",
+							"disabled": true
+						},
+						{
+							"key": "format",
+							"value": "pdf",
+							"description": "Optional, md, txt and html documents only: pdf = the document as a PDF.",
+							"disabled": true
+						}
+					]
+				},
+				"description": "## [Download an asset](https://useapi.net/docs/api-muse-v1/get-muse-assets-assetId)\n\nStreams any Library item from the account's Muse workspace: an image, video or audio file, a document (with `format=pdf` an md, txt or html document as PDF), a web app as one HTML file, or a podcast as MP3 (with `part=cover` its cover). URL-encode the assetId."
+			},
+			"response": []
+		},
+		{
+			"name": "POST assets (url)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/assets",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"assets"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "{{email}}",
+							"description": "Optional. The account to upload to. Default: a random healthy account with allowance left.",
+							"disabled": true
+						}
+					]
+				},
+				"description": "## [Upload an asset from a URL](https://useapi.net/docs/api-muse-v1/post-muse-assets#upload-from-a-url)\n\nJSON body `{\"url\": \"https://…\"}`: a public https URL of the file (up to 2048 chars). The API downloads it and uploads it to the account's Muse workspace. Same supported types and 50 MB limit as a raw upload. Returns the assetId.",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"url\": \"https://your-domain.com/photos/rider.jpg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET assets",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/assets",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"assets"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "{{email}}",
+							"description": "Required when the token has more than one Muse account.",
+							"disabled": true
+						},
+						{
+							"key": "type",
+							"value": "image",
+							"description": "Optional: image, video, audio, document, web, podcast, or any other type the list shows.",
+							"disabled": true
+						},
+						{
+							"key": "origin",
+							"value": "generated",
+							"description": "Optional, media only: uploaded, generated or made.",
+							"disabled": true
+						},
+						{
+							"key": "limit",
+							"value": "50",
+							"description": "Optional, 1 to 100. Default: 50.",
+							"disabled": true
+						},
+						{
+							"key": "cursor",
+							"value": "",
+							"description": "Optional, the cursor from the previous page.",
+							"disabled": true
+						}
+					]
+				},
+				"description": "## [List assets](https://useapi.net/docs/api-muse-v1/get-muse-assets)\n\nThe account's whole Muse Library as asset ids, newest first: images, videos and audio, documents, web apps (with `shareUrl` while published) and podcasts, each with its `type`. `origin` (media only): `uploaded`, `generated` or `made` (by the agent's own tools). Read on with `cursor` until it is null. `partial: true` means a part of the Library could not be read."
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE assets/{assetId}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/assets/{{assetId}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"assets",
+						"{{assetId}}"
+					]
+				},
+				"description": "## [Delete an asset](https://useapi.net/docs/api-muse-v1/delete-muse-assets-assetId)\n\nDeletes a Library item: a media file, a document, a web app or a podcast episode. 404 when it is not there. URL-encode the assetId."
+			},
+			"response": []
+		},
+		{
+			"name": "POST assets/{assetId}/share",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/assets/{{assetId}}/share",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"assets",
+						"{{assetId}}",
+						"share"
+					]
+				},
+				"description": "## [Publish a web app](https://useapi.net/docs/api-muse-v1/post-muse-assets-assetId-share)\n\nPublishes a web app the agent built (an asset of type `web`) on a public link that anyone can open. Muse reviews the app first (about 15 s) and can refuse with 422 and the issues in `errorDetails`. Answers 200 `{assetId, shareUrl}`. Publishing again republishes the current version."
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE assets/{assetId}/share",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/assets/{{assetId}}/share",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"assets",
+						"{{assetId}}",
+						"share"
+					]
+				},
+				"description": "## [Stop sharing a web app](https://useapi.net/docs/api-muse-v1/delete-muse-assets-assetId-share)\n\nThe public link stops working. The app stays in the Library. Answers 200 `{assetId, shareUrl: null}`."
+			},
+			"response": []
+		},
+		{
+			"name": "GET files",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/files",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"files"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "{{email}}",
+							"description": "Required when the token has more than one Muse account.",
+							"disabled": true
+						},
+						{
+							"key": "path",
+							"value": "workspace",
+							"description": "Optional. Default: workspace.",
+							"disabled": true
+						}
+					]
+				},
+				"description": "## [List workspace files](https://useapi.net/docs/api-muse-v1/get-muse-files)\n\nA folder's files and folders (default `workspace`), or one file's entry for a file path. Media files carry their assetId."
+			},
+			"response": []
+		},
+		{
+			"name": "GET files/content",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/files/content?path=workspace/your_files/report.pdf",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"files",
+						"content"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "{{email}}",
+							"description": "Required when the token has more than one Muse account.",
+							"disabled": true
+						},
+						{
+							"key": "path",
+							"value": "workspace/your_files/report.pdf",
+							"description": "Required. A path in the workspace, e.g. workspace/your_files/report.pdf.",
+							"disabled": false
+						}
+					]
+				},
+				"description": "## [Download a workspace file](https://useapi.net/docs/api-muse-v1/get-muse-files-content)\n\nThe file itself (code, PDF, CSV, text, media), streamed with its Content-Type."
+			},
+			"response": []
+		},
+		{
+			"name": "GET files/search",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/files/search?name=report",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"files",
+						"search"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "{{email}}",
+							"description": "Required when the token has more than one Muse account.",
+							"disabled": true
+						},
+						{
+							"key": "path",
+							"value": "workspace",
+							"description": "Optional. Default: workspace.",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "report",
+							"description": "Optional, part of the file name.",
+							"disabled": false
+						},
+						{
+							"key": "extensions",
+							"value": "pdf,csv",
+							"description": "Optional, comma-separated.",
+							"disabled": true
+						},
+						{
+							"key": "limit",
+							"value": "50",
+							"description": "Optional, 1 to 200. Default: 50.",
+							"disabled": true
+						},
+						{
+							"key": "offset",
+							"value": "0",
+							"description": "Optional. Default: 0.",
+							"disabled": true
+						}
+					]
+				},
+				"description": "## [Search workspace files](https://useapi.net/docs/api-muse-v1/get-muse-files-search)\n\nBy part of the name and/or extensions (comma list) under a folder, at least one of the two. Answers entries, total, hasMore."
+			},
+			"response": []
+		},
+		{
+			"name": "POST files",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/files?path=workspace/your_files/report.pdf",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"files"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "{{email}}",
+							"description": "Required when the token has more than one Muse account.",
+							"disabled": true
+						},
+						{
+							"key": "path",
+							"value": "workspace/your_files/report.pdf",
+							"description": "Required. A path in the workspace, e.g. workspace/your_files/report.pdf.",
+							"disabled": false
+						}
+					]
+				},
+				"description": "## [Write a workspace file](https://useapi.net/docs/api-muse-v1/post-muse-files)\n\nThe raw request body (any type, up to 50 MB, with Content-Length) is written at `path`, replacing a file already there. Pass the path in a chat's `files` to have the agent work on it (file_1, file_2…).",
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/path/to/report.pdf"
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE files",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/files?path=workspace/your_files/report.pdf",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"files"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "{{email}}",
+							"description": "Required when the token has more than one Muse account.",
+							"disabled": true
+						},
+						{
+							"key": "path",
+							"value": "workspace/your_files/report.pdf",
+							"description": "Required. A path in the workspace, e.g. workspace/your_files/report.pdf.",
+							"disabled": false
+						}
+					]
+				},
+				"description": "## [Delete a workspace file](https://useapi.net/docs/api-muse-v1/delete-muse-files)\n\nFiles only, not folders. 404 when it is not there."
+			},
+			"response": []
+		},
+		{
+			"name": "POST jobs/image",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/jobs/image",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"jobs",
+						"image"
+					]
+				},
+				"description": "## [Generate an image](https://useapi.net/docs/api-muse-v1/post-muse-jobs-image)\n\n**Body (JSON).** `prompt` is required (up to 5000 chars). Optional inputs `image_1`..`image_9`: asset ids, all from the same account; name them in the prompt.\n\n- `email`: account to run on. Default: the account that holds the inputs, else a load-balanced one.\n- `async`: `true` answers 201 at once (default `false`: waits up to 100 s for the finished job, then answers 202 with the job still running). `replyUrl`: public https webhook URL, receives one POST of the job record when the job ends, sync or async. `replyRef`: up to 1024 chars.\n\nNo model, aspect ratio, resolution or duration parameters: say the aspect ratio in the prompt (\"in exactly 16:9 aspect ratio\").",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"prompt\": \"In exactly 16:9 aspect ratio (landscape), a cinematic photo of a vintage 1920s black BMW motorcycle parked on wet cobblestones at night in San Francisco, the Golden Gate Bridge glowing through fog in the distance\",\n    \"async\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST jobs/video",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/jobs/video",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"jobs",
+						"video"
+					]
+				},
+				"description": "## [Generate a video](https://useapi.net/docs/api-muse-v1/post-muse-jobs-video)\n\n**Body (JSON).** `prompt` is required (up to 5000 chars). About 10 s at about 720p with sound, quoted lines are spoken. Optional inputs: `image_1`..`image_9`, `video_1`..`video_3`, `audio_1`..`audio_3`, asset ids all from the same account; name them in the prompt.\n\n- `email`: account to run on. Default: the account that holds the inputs, else a load-balanced one.\n- `async`: `true` answers 201 at once (default `false`: waits up to 100 s for the finished job, then answers 202 with the job still running). `replyUrl`: public https webhook URL, receives one POST of the job record when the job ends, sync or async. `replyRef`: up to 1024 chars.\n\nNo model, aspect ratio, resolution or duration parameters: say the aspect ratio in the prompt (\"in exactly 16:9 aspect ratio\").",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"prompt\": \"Animate image_1: she turns to the camera and says: \\\"Best seat in San Francisco.\\\" Keep her face exactly as in image_1.\",\n    \"image_1\": \"{{assetId}}\",\n    \"async\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET jobs",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/jobs",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"jobs"
+					]
+				},
+				"description": "## [List running jobs](https://useapi.net/docs/api-muse-v1/get-muse-jobs)\n\n`running` (image and video jobs) and `accounts` {email: {running, maxJobs}}. Chats take no maxJobs slot."
+			},
+			"response": []
+		},
+		{
+			"name": "GET jobs/{jobid}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/jobs/{{jobid}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"jobs",
+						"{{jobid}}"
+					],
+					"query": [
+						{
+							"key": "history",
+							"value": "true",
+							"description": "Optional. Adds the job's chat turn from Muse.",
+							"disabled": true
+						}
+					]
+				},
+				"description": "## [Retrieve a job](https://useapi.net/docs/api-muse-v1/get-muse-jobs-jobid)\n\nURL-encode the jobid. `history=true` adds the job's Muse chat turn, read live, for troubleshooting."
+			},
+			"response": []
+		},
+		{
+			"name": "POST chats",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/chats",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"chats"
+					]
+				},
+				"description": "## [Start a chat](https://useapi.net/docs/api-muse-v1/post-muse-chats)\n\n**Body (JSON).** `message` is required (up to 5000 chars). Optional `files`: asset ids (up to 9 images, 3 videos, 3 audio files) and workspace paths of other files from POST files (up to 10), all on one account, named image_1, video_1, audio_1, file_1… in order. Optional `email`: the account to chat on, default the account of the files or a load-balanced one (required with only workspace paths when the token has more than one account).\n\nAnswers 201 `{chatId, email, messageId}`. Read the answer with GET chats/{chatId}/stream. Chat does not use maxJobs (jobs only).",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"message\": \"Write a 300-word story about the sea, then make one image for it.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET chats/{chatId}/stream",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/chats/{{chatId}}/stream",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"chats",
+						"{{chatId}}",
+						"stream"
+					],
+					"query": [
+						{
+							"key": "after",
+							"value": "0",
+							"description": "Optional, resume after this event id (same as the Last-Event-ID header).",
+							"disabled": true
+						}
+					]
+				},
+				"description": "## [Stream a chat](https://useapi.net/docs/api-muse-v1/get-muse-chats-chatId-stream)\n\nServer-Sent Events for the whole chat: `data:` lines with JSON events (initialized, message, activity, text, message.done, widget, file, status, approval, approval.resolved, turn.done, error, keepalive, idle, reconnect). Resume with the `Last-Event-ID` header or `after`. About 50 open streams per account (approximate: a closed connection is noticed within about a minute), more answer 429 with Retry-After 60. After `idle` or `reconnect`, reconnect with Last-Event-ID to resume exactly where it left off. See the [Chat Streaming Guide](https://useapi.net/docs/api-muse-v1/chat-streaming-guide)."
+			},
+			"response": []
+		},
+		{
+			"name": "GET chats/streams",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/chats/streams",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"chats",
+						"streams"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "{{email}}",
+							"description": "Required when the token has more than one Muse account.",
+							"disabled": true
+						}
+					]
+				},
+				"description": "## [List open streams](https://useapi.net/docs/api-muse-v1/get-muse-chats-streams)\n\nThe account's open chat streams, approximate: `count`, `limit` (about 50), and per stream `chatId`, `opened`, `seen` (when the connection last reported in, about every 5 minutes)."
+			},
+			"response": []
+		},
+		{
+			"name": "POST chats/{chatId}/messages",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/chats/{{chatId}}/messages",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"chats",
+						"{{chatId}}",
+						"messages"
+					]
+				},
+				"description": "## [Send a message](https://useapi.net/docs/api-muse-v1/post-muse-chats-chatId-messages)\n\n**Body (JSON).** `message` is required (up to 5000 chars), optional `files` (asset ids and workspace paths on the chat's account). Send any time, also while Muse is still answering: it takes the message into the running answer. Answers 202 `{chatId, email, messageId}`.",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"message\": \"Also add one sentence about the moon.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST chats/{chatId}/messages/{messageId}/reactions",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/chats/{{chatId}}/messages/{{messageId}}/reactions",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"chats",
+						"{{chatId}}",
+						"messages",
+						"{{messageId}}",
+						"reactions"
+					]
+				},
+				"description": "## [React to a message](https://useapi.net/docs/api-muse-v1/post-muse-chats-chatId-messages-messageId-reactions)\n\n**Body (JSON).** `emoji` is required, one emoji such as 👍. Sending the same emoji again removes it. Answers 200 `{chatId, messageId, reactions}` with the message's reactions after the change.",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"emoji\": \"👍\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST chats/{chatId}/cancel",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/chats/{{chatId}}/cancel",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"chats",
+						"{{chatId}}",
+						"cancel"
+					]
+				},
+				"description": "## [Cancel an answer](https://useapi.net/docs/api-muse-v1/post-muse-chats-chatId-cancel)\n\nStops the running answer. Answers `{chatId, cancelled}`."
+			},
+			"response": []
+		},
+		{
+			"name": "POST chats/{chatId}/approvals/{approvalId}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/chats/{{chatId}}/approvals/{{approvalId}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"chats",
+						"{{chatId}}",
+						"approvals",
+						"{{approvalId}}"
+					]
+				},
+				"description": "## [Answer an approval](https://useapi.net/docs/api-muse-v1/post-muse-chats-chatId-approvals-approvalId)\n\n**Body (JSON).** `decision` is required: one of the `decision` values in the approval event's `options`, e.g. `allow_once` (this one request), `allow_always` (permanent for that site on the Muse account) or `deny`. Answers 200 `{chatId, approvalId, decision, status}`. 409 when the request is no longer waiting (answered or timed out).",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"decision\": \"allow_once\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST chats/{chatId}/widgets/{widgetId}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/chats/{{chatId}}/widgets/{{widgetId}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"chats",
+						"{{chatId}}",
+						"widgets",
+						"{{widgetId}}"
+					]
+				},
+				"description": "## [Answer a widget](https://useapi.net/docs/api-muse-v1/post-muse-chats-chatId-widgets-widgetId)\n\n**Body (JSON).** Exactly one of `option` (index into the widget's `options`, from 0) or `text` (your own reply, up to 5000 chars). Only kind `option` widgets can be answered. The answer is sent as your next message: 202 `{chatId, email, messageId}`, the reply streams as usual.\n\nWidget kinds: `option` (quick replies in `options`, the only kind you can answer), `html` (a card the agent wrote, in `html`: show it only in a sandboxed iframe, sandbox=\"allow-scripts\" without allow-same-origin), any other kind (`data` as Muse sends it). Show `fallbackText` when you can't render a kind.",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"option\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET chats",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/chats",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"chats"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "{{email}}",
+							"description": "Required when the token has more than one Muse account.",
+							"disabled": true
+						},
+						{
+							"key": "limit",
+							"value": "50",
+							"description": "Optional, 1 to 100. Default: 50.",
+							"disabled": true
+						},
+						{
+							"key": "cursor",
+							"value": "",
+							"description": "Optional, the cursor from the previous page.",
+							"disabled": true
+						}
+					]
+				},
+				"description": "## [List chats](https://useapi.net/docs/api-muse-v1/get-muse-chats)\n\nThe account's chats, newest first, including the ones jobs create."
+			},
+			"response": []
+		},
+		{
+			"name": "GET chats/{chatId}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/chats/{{chatId}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"chats",
+						"{{chatId}}"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "1000",
+							"description": "Optional, 1 to 1000. Default: 1000.",
+							"disabled": true
+						},
+						{
+							"key": "before",
+							"value": "",
+							"description": "Optional, the before value from the previous response.",
+							"disabled": true
+						}
+					]
+				},
+				"description": "## [Read a chat](https://useapi.net/docs/api-muse-v1/get-muse-chats-chatId)\n\nThe chat's messages as JSON, files as asset ids. Older messages: pass the response's `before` when `hasMore` is true."
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE chats/{chatId}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/chats/{{chatId}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"chats",
+						"{{chatId}}"
+					]
+				},
+				"description": "## [Delete a chat](https://useapi.net/docs/api-muse-v1/delete-muse-chats-chatId)\n\nDeletes the chat on Muse. Its files stay in the account's workspace. Stop the agent's browsers in the chat first. The account's main chat answers 409."
+			},
+			"response": []
+		},
+		{
+			"name": "GET chats/{chatId}/browser/{taskId}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/chats/{{chatId}}/browser/{{taskId}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"chats",
+						"{{chatId}}",
+						"browser",
+						"{{taskId}}"
+					]
+				},
+				"description": "## [Read the agent's browser](https://useapi.net/docs/api-muse-v1/get-muse-chats-chatId-browser-taskId)\n\nThe browser's state now: status, the open page, `controlOwner` (agent or user), `previewAvailable` (it can be watched), `ended`, plus `presented` and the `display` size.\n\n`taskId` is the `taskId` of the chat stream's `browser` event or of `browsers` in GET chats/{chatId}. See the [Live Browser Guide](https://useapi.net/docs/api-muse-v1/live-browser-guide)."
+			},
+			"response": []
+		},
+		{
+			"name": "POST chats/{chatId}/browser/{taskId}/viewer",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/chats/{{chatId}}/browser/{{taskId}}/viewer",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"chats",
+						"{{chatId}}",
+						"browser",
+						"{{taskId}}",
+						"viewer"
+					]
+				},
+				"description": "## [Open a live view of the browser](https://useapi.net/docs/api-muse-v1/post-muse-chats-chatId-browser-taskId-viewer)\n\n**Body (JSON), all optional.** `mode`: `view` (default) or `control`. `ttl`: seconds to open the link, 15 to 300 (default 60). `quality` and `compression`: 0 to 9 (default 6 and 1). `width` 320 to 1920 and `height` 240 to 1080 (default 1280 × 720) for a client that sends no size of its own. Answers 200 `{chatId, taskId, url, expiresAt, mode, viewerId, quality, compression}`: open `url` once, before `expiresAt`. One viewer per account at a time, sessions up to 30 minutes.\n\n`taskId` is the `taskId` of the chat stream's `browser` event or of `browsers` in GET chats/{chatId}. See the [Live Browser Guide](https://useapi.net/docs/api-muse-v1/live-browser-guide).",
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"mode\": \"control\",\n    \"ttl\": 60\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE chats/{chatId}/browser/{taskId}/viewer",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/chats/{{chatId}}/browser/{{taskId}}/viewer",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"chats",
+						"{{chatId}}",
+						"browser",
+						"{{taskId}}",
+						"viewer"
+					]
+				},
+				"description": "## [Revoke live views of the browser](https://useapi.net/docs/api-muse-v1/delete-muse-chats-chatId-browser-taskId-viewer)\n\nOpen viewer sessions end within about 15 seconds, and unused links stop working. Answers 200 `{chatId, taskId, revoked: true}`.\n\n`taskId` is the `taskId` of the chat stream's `browser` event or of `browsers` in GET chats/{chatId}. See the [Live Browser Guide](https://useapi.net/docs/api-muse-v1/live-browser-guide)."
+			},
+			"response": []
+		},
+		{
+			"name": "POST chats/{chatId}/browser/{taskId}/release",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/chats/{{chatId}}/browser/{{taskId}}/release",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"chats",
+						"{{chatId}}",
+						"browser",
+						"{{taskId}}",
+						"release"
+					]
+				},
+				"description": "## [Give the browser back](https://useapi.net/docs/api-muse-v1/post-muse-chats-chatId-browser-taskId-release)\n\nGives control of the browser back to the agent. Answers 200 `{chatId, taskId, released: true, controlOwner}`, also when the agent already has control.\n\n`taskId` is the `taskId` of the chat stream's `browser` event or of `browsers` in GET chats/{chatId}. See the [Live Browser Guide](https://useapi.net/docs/api-muse-v1/live-browser-guide)."
+			},
+			"response": []
+		},
+		{
+			"name": "POST chats/{chatId}/browser/{taskId}/stop",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.useapi.net/v1/muse/chats/{{chatId}}/browser/{{taskId}}/stop",
+					"protocol": "https",
+					"host": [
+						"api",
+						"useapi",
+						"net"
+					],
+					"path": [
+						"v1",
+						"muse",
+						"chats",
+						"{{chatId}}",
+						"browser",
+						"{{taskId}}",
+						"stop"
+					]
+				},
+				"description": "## [Stop the agent's browser](https://useapi.net/docs/api-muse-v1/post-muse-chats-chatId-browser-taskId-stop)\n\nCloses the browser for good. A Muse account runs at most 2 browsers at a time: stop one you no longer need, and before deleting its chat. Answers 200 `{chatId, taskId, stopped: true}`, 409 when it is already closed.\n\n`taskId` is the `taskId` of the chat stream's `browser` event or of `browsers` in GET chats/{chatId}. See the [Live Browser Guide](https://useapi.net/docs/api-muse-v1/live-browser-guide)."
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{api-token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api-token",
+			"value": "Please refer to https://useapi.net/docs/start-here/setup-useapi",
+			"type": "string"
+		},
+		{
+			"key": "email",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "assetId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "jobid",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "chatId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "approvalId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "permissionId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "widgetId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "messageId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "taskId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
