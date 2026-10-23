@@ -1,19 +1,18 @@
 aid: useapi
 name: useapi.net
-description: useapi.net is an experimental, unified REST API platform that fronts a set of consumer AI
+description: useapi.net is a third-party, unified REST API platform, in production since 2023, that fronts a set of consumer AI
   content-generation services — video, image, music, speech and face-swap models — behind one flat $15/month
   subscription and a single bearer-token API surface, so developers do not have to hold a separate developer
   account with each underlying provider. Thirteen services are exposed today (Google Flow, Flow Music, Google
-  Vids, NotebookLM (Gemini Notebook), Meta Muse, Dreamina, Kling, MiniMax/Hailuo, Runway, PixVerse, Mureka, TemPolor and
+  Vids, Gemini Notebook (NotebookLM), Meta Muse, Dreamina, Kling, MiniMax/Hailuo, Runway, PixVerse, Mureka, TemPolor and
   InsightFaceSwap), each as its own versioned REST API under api.useapi.net with its own native request/response
   shapes, and seven of them (Google Flow, Google Vids, Muse, Gemini Notebook, Kling, Mureka, Flow Music) also as hosted
   MCP servers (Streamable HTTP, Bearer token) listed in the official MCP Registry under net.useapi/*. useapi.net is an
   independent third-party service, not affiliated with Google, Meta or the other model vendors. The platform is built around
   bring-your-own-account access — the caller links one or more of their existing accounts on the underlying
   AI service and useapi.net performs automated multi-account load balancing, quarantine of rate-limited
-  accounts, asynchronous job handling and replyUrl webhook callbacks on job completion or failure. It is a
-  reverse-engineered, explicitly experimental service, positioned as substantially cheaper than the official
-  first-party APIs of the services it wraps.
+  accounts, asynchronous job handling and replyUrl webhook callbacks on job completion or failure. It is
+  positioned as substantially cheaper than the official first-party APIs of the services it wraps.
 url: https://raw.githubusercontent.com/api-evangelist/useapi/refs/heads/main/apis.yml
 x-type: company
 x-source: manual:request
